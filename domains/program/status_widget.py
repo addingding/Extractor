@@ -4,9 +4,9 @@ from prots import *
 from app.board import info
 
 grid_key_style = """
-    QPushButton{background-color:rgba(200,200,200,60%);border:0.5px solid gray;border-radius:25;font:24px;}
-    QPushButton:hover{background-color:rgba(220,220,220,80%);border:1px solid lightblue;font:36px bold;}
-    QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);border:2px solid lightblue;font:36px bold;border-style:inset;}
+    QPushButton{background-color:rgba(230,230,230,70%);border:0.5px solid gray;border-radius:25;font:24px;}
+    QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:36px bold;}
+    QPushButton:pressed,QpushButton:checked{background-color:rgba(0,240,120,80%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
   """
 
 status_map ={
