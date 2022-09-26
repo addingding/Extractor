@@ -34,7 +34,9 @@ class Beeper():
         GPIO.cleanup()
         self.off()
 
-
+    def __del__(self):
+        self.exit()
+        
 class Singer(object):
     def __init__(self,pin_buzzer=22,delay_beat=0.5):
         
@@ -127,4 +129,4 @@ class TestBeeper:
 
 if __name__ == '__main__':
     T = TestBeeper()
-    T.test_beeper()
+    T.beeper()
