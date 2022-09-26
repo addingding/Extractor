@@ -6,7 +6,7 @@ from app.board import info
 grid_key_style = """
     QPushButton{background-color:rgba(230,230,230,70%);border:0.5px solid gray;border-radius:25;font:24px;}
     QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:36px bold;}
-    QPushButton:pressed,QpushButton:checked{background-color:rgba(0,240,120,80%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
+    QPushButton:pressed,QpushButton:checked{background-color:rgba(0,252,50,90%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
   """
 
 status_map ={
