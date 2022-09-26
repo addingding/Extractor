@@ -95,7 +95,6 @@ def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
     machine.task_end()
     info.update({
             "op_name":lang('Finshed'),
-            "disk": 8,
             })
     signal_updated.emit(1)
     
@@ -110,8 +109,6 @@ def task_end_notice(a=None):
 def notify(message_known:Event):
     while not message_known.is_set():
         beeper.on()
-        machine.led.turn_off()
         time.sleep(0.5)
         beeper.off()
-        machine.led.turn_on()
         time.sleep(0.5)
