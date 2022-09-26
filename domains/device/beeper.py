@@ -25,7 +25,7 @@ class Beeper():
     def off(self):
         GPIO.output(self.pin, GPIO.HIGH)
     def beep(self):
-        for i in range(10):
+        for i in range(3):
             self.on()
             time.sleep(0.5)
             self.off()
@@ -36,7 +36,7 @@ class Beeper():
 
     def __del__(self):
         self.exit()
-        
+
 class Singer(object):
     def __init__(self,pin_buzzer=22,delay_beat=0.5):
         
