@@ -104,7 +104,12 @@ class SongHappy():
 
 class Beepers:
     def get_beeper(self,pin=22):
-        return Beeper(pin)
+        try:
+            _beeper = Beeper(pin)
+        except Exception as e:
+            print(e)
+            _beeper = None
+        return _beeper
     def get_singer(self,pin=22):
         return Singer(pin,0.5)
 
