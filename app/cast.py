@@ -35,7 +35,7 @@ app_worker = TempWorker()
 
 try:
     from domains.device.beeper import beepers
-    beeper = call(beepers.get_beeper(),beeper)
+    beeper = call(beeper,beepers.get_beeper())
     print("load",beeper)
 except Exception as e:
     print(e)

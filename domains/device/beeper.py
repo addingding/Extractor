@@ -31,8 +31,8 @@ class Beeper():
             self.off()
             time.sleep(0.5)
     def exit(self):
-        GPIO.cleanup()
         self.off()
+        GPIO.cleanup()
 
     def __del__(self):
         self.exit()
