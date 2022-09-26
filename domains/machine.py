@@ -246,10 +246,10 @@ class Machines:
         return _sers
     def close_servers(self):
         try:
-            self.server_0.close()
-            self.server_1.close()
-            self.server_2.close()
-            self.server_3.close()
+            if not self.server_0 is None: self.server_0.close()
+            if not self.server_1 is None: self.server_1.close()
+            if not self.server_2 is None: self.server_2.close()
+            if not self.server_3 is None: self.server_3.close()
         except Exception as e:
             print(e)
 
