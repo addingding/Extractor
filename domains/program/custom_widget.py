@@ -49,10 +49,10 @@ class CustomWidget(QWidget):
 
         for name in option_names:
             if exist(name):
-                os.replace(src=file(name),dst=local_files.get(name))
+                shutil.copyfile(src=file(name),dst=local_files.get(name))
         for name in data_names:
             if is_in:
                 if exist(name):
-                    os.replace(src=file(name),dst=local_files.get(name))
+                    shutil.copyfile(src=file(name),dst=local_files.get(name))
             else:
-                os.replace(src=local_files.get(name),dst=file(name))
+                shutil.copyfile(src=local_files.get(name),dst=file(name))
