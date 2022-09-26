@@ -1,0 +1,119 @@
+--------------------------
+
+ Sun Sep 25 22:58:18 2022
+start 2022-09-25 22:58:18.044407
+Windows platform
+working serial_ports: []
+No module named 'RPi'
+12 6 0xf LsStepperDriver 'NoneType' object has no attribute 'execute'
+12 6 0x147 LsStepperDriver 'NoneType' object has no attribute 'execute'
+12 6 0x6000 LsStepperDriver 'NoneType' object has no attribute 'execute'
+12 6 0x191 LsStepperDriver 'NoneType' object has no attribute 'execute'
+13 6 0x23 DiskMotor 'NoneType' object has no attribute 'execute'
+'NoneType' object has no attribute 'lock'
+->aMachine.uv
+machine is not ready ,wait for 5 secs and simulator on
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+--------------------------
+
+ Sun Sep 25 22:58:57 2022
+start 2022-09-25 22:58:57.823472
+Windows platform
+working serial_ports: []
+No module named 'RPi'
+12 6 0xf LsStepperDriver 'NoneType' object has no attribute 'execute'
+12 6 0x147 LsStepperDriver 'NoneType' object has no attribute 'execute'
+12 6 0x6000 LsStepperDriver 'NoneType' object has no attribute 'execute'
+12 6 0x191 LsStepperDriver 'NoneType' object has no attribute 'execute'
+13 6 0x23 DiskMotor 'NoneType' object has no attribute 'execute'
+'NoneType' object has no attribute 'lock'
+->aMachine.uv
+machine is not ready ,wait for 5 secs and simulator on
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()
+aMachine.update()

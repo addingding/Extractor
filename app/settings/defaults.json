@@ -1,0 +1,81 @@
+{
+    "language": 1,
+    "directory": {
+        "programs_file": "app/data/programs.json",
+        "operations_file": "app/data/operations.json",
+        "tasks_file": "app/data/tasks.json",
+        "database_file": "app/data/database.db"
+    },
+    "beads_distance": 1,
+    "device_map": {
+        "port_0": {
+            "Linux": "/dev/ttyAMA0",
+            "Windows": "COM4",
+            "Virtual": "0"
+        },
+        "port_1": {
+            "Linux": "/dev/ttyAMA1",
+            "Windows": "COM4",
+            "Virtual": "0"
+        },
+        "port_2": {
+            "Linux": "/dev/ttyAMA2",
+            "Windows": "COM4",
+            "Virtual": "0"
+        },
+        "port_3": {
+            "Linux": "/dev/ttyAMA3",
+            "Windows": "COM4",
+            "Virtual": "0"
+        },
+        "ios": 1,
+        "thermos": 3,
+        "motor_stir": 12,
+        "motor_disk": 13,
+        "motor_mag": 14,
+        "motor_mask": 15,
+        "thermo_channel": 0,
+        "sensors": {
+            "door_safe": 0,
+            "sheath_sensor": 1,
+            "reagent_sensor": 2
+        },
+        "switches": {
+            "led": 0,
+            "fan": 2,
+            "uv": 1
+        }
+    },
+    "motor_speed": [
+        [
+            120,
+            90
+        ],
+        [
+            100,
+            120
+        ],
+        [
+            100,
+            240
+        ]
+    ],
+    "motor_ppr": {
+        "motor_stir": 10000,
+        "motor_mag": 51200,
+        "motor_disk": 51200,
+        "motor_mask": 51200
+    },
+    "motor_upr": {
+        "motor_stir": 60,
+        "motor_mag": 4,
+        "motor_disk": 0.4447323292111213,
+        "motor_mask": 2
+    },
+    "motor_bottom": {
+        "motor_stir": 74.634,
+        "motor_mag": 64.8,
+        "motor_disk": 0.22469406039127512,
+        "motor_mask": -0.5
+    }
+}
