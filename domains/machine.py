@@ -188,10 +188,11 @@ class Machine(aMachine):
         self.motor_mask.home()
         self.motor_stir.home_return()
         self.motor_mag.home()
-        self.motor_mask.bottom()
     def task_end(self):
         self.idle()
-        self.motor_disk.grid(8)
+        self.motor_mask.bottom()
+        self.motor_disk.grid(5)
+        self.motor_mask.home()
     def end(self):
         self.idle()
         self.motor_disk.grid(1)

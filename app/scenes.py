@@ -79,7 +79,6 @@ def machine_init():
         machine.motor_mag.home()
         machine.motor_mag.bottom()
         machine.motor_mag.home()
-        machine.motor_mask.bottom()
 
         try:
             machine.motor_disk.home_return()
