@@ -196,6 +196,7 @@ class Machine(aMachine):
     def end(self):
         self.idle()
         self.motor_disk.grid(1)
+        self.led.turn_off()
 
     def perform_moves(self,moves:List[Tuple[str]]):
         for move in moves:
