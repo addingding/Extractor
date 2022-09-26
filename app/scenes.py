@@ -73,7 +73,7 @@ def machine_init():
         machine.motor_mag.set_points(0,bottoms["motor_mag"])
         machine.motor_stir.set_points(200,bottoms["motor_stir"])
         machine.motor_mag.local_set_speed(8)
-        machine.motor_disk.local_set_speed(4)
+        machine.motor_disk.local_set_speed(2)
 
         machine.motor_mask.home()
         machine.motor_stir.home_return()
