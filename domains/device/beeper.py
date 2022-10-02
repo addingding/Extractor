@@ -2,14 +2,6 @@
 import RPi.GPIO as GPIO
 import time
 
-"""
-金币 3 7
-蘑菇 3 5  3123
-过关 5 1 3 5 1 3 5 3
-b6 1 b3 b6 1 b3 b6 b3
-b7 2 4 b7 2 4 b7 b7 b7 b7 1
-挂掉 1444321 或者_5444321
-"""
 
 class Beeper():
 
@@ -37,9 +29,17 @@ class Beeper():
     def __del__(self):
         self.exit()
 
+"""
+    金币 3 7
+    蘑菇 3 5  3123
+    过关 5 1 3 5 1 3 5 3
+    b6 1 b3 b6 1 b3 b6 b3
+    b7 2 4 b7 2 4 b7 b7 b7 b7 1
+    挂掉 1444321 或者_5444321
+"""
 class Singer(object):
     def __init__(self,pin_buzzer=22,delay_beat=0.5):
-        
+
         # 设置蜂鸣器引脚模式
         self.pin_buzzer = pin_buzzer
         GPIO.setmode(GPIO.BCM)
@@ -114,6 +114,10 @@ class Beepers:
         return Singer(pin,0.5)
 
 beepers = Beepers()
+
+
+
+
 
 class TestBeeper:
     def beeper(self):

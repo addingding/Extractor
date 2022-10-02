@@ -65,30 +65,37 @@ def machine_exit():
 def machine_init():
 
     if is_real(machine):
-        bottoms = defaults.get("motor_bottom")
-        machine.led.turn_on()
-        machine.fan.turn_on()
-        machine.motor_disk.set_points(0,bottoms["motor_disk"])
-        machine.motor_mask.set_points(0,bottoms["motor_mask"])
-        machine.motor_mag.set_points(0,bottoms["motor_mag"])
-        machine.motor_stir.set_points(200,bottoms["motor_stir"])
-        machine.motor_mag.local_set_speed(8)
-        machine.motor_disk.local_set_speed(2)
-
-        machine.motor_mask.home()
-        machine.motor_stir.home_return()
-        machine.motor_mag.home()
-        machine.motor_mag.bottom()
-        machine.motor_mag.home()
-
         try:
-            machine.motor_disk.home_return()
+            bottoms = defaults.get("motor_bottom")
+            machine.led.turn_on()
+            machine.fan.turn_on()
+            machine.motor_disk.set_points(0,bottoms["motor_disk"])
+            machine.motor_mask.set_points(0,bottoms["motor_mask"])
+            machine.motor_mag.set_points(0,bottoms["motor_mag"])
+            machine.motor_stir.set_points(200,bottoms["motor_stir"])
+            machine.motor_mag.local_set_speed(8)
+            machine.motor_disk.local_set_speed(2)
+
+            machine.motor_mask.home()
+            machine.motor_stir.home_return()
+            machine.motor_mag.home()
+            machine.motor_mag.bottom()
+            machine.motor_mag.home()
+
+            machine.motor_disk.home_return(timeout=30)
             machine.motor_disk.bottom()
+
+            print("machine is ready!")
+
+        except HomeError:
+            window.popup(about=(lang('Alert'),lang('HomeError')))
+        except TimeoutError:
+            window.popup(about=(lang('Alert'),lang('TimeoutError')))
         except SafeError:
-            window.popup(about=(lang('Alert'),lang('Not safe for moving. Please check and retry.')))
+            window.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
             print(e)
-        print("machine is ready!")
+            window.popup(about=(lang('Alert'),lang('InitError')))
     else:
         print("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)

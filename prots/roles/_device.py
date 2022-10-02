@@ -92,6 +92,9 @@ class aSheathSite(aInput):
 class aReagentSite(aInput):
     pass
 
+
+class HomeError(Exception):
+    pass
 class SafeError(Exception):
     pass
 

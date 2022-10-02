@@ -71,6 +71,10 @@
     "Export done":["Export done","导出完成"],
     "Directory":["Directory","文件路径"],
     "Import Programs":["Import Programs","导入设置"],
-    "Export Programs":["Export Programs","导出设置"]
+    "Export Programs":["Export Programs","导出设置"],
+    "InitError":["InitError. Please check and retry.","初始化错误，请检查重试"],
+    "HomeError":["HomeError. Please check and retry.","回零错误，请检查重试"],
+    "TimeoutError":["Motion TimeoutError. Please check and retry.","动作超时，请检查重试"],
+    "SafeError":["Motion SafeError. Please check and retry.","电机干涉，请检查重试"]
     
 }

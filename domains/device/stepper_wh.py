@@ -3,6 +3,7 @@ from prots import *
 from domains.device.modbus import  *
 
 
+
 PPR = 51200
 def tuple_int(a,b):
     assert a in [1,0]
@@ -45,8 +46,8 @@ class ModbusStepperDriver(ModbusTerminal):
             (_right_enabled<<1)+(_left_enanbled)
         time.sleep(0.05)
         self.set_single(0x002A,code)
+        time.sleep(0.1)
 
-    
     def _rotate_to(self,cw,at_home,left_low,right_enabled,left_enabled,position_pulse):
         assert position_pulse>=0
         b_pulses = binstring(abs(position_pulse),25)
@@ -153,25 +154,33 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
     def rotate_till(self, speed: int, direction_right: bool, sensor_right: bool, sensor_high: bool):
         return super().rotate_till(speed, direction_right, sensor_right, sensor_high)
 
-    def _back_zero(self):
+    def _back_zero(self,timeout =None):
         print(self.name,"back_zero:",datetime.datetime.now())
         _status = self._status
         if _status is None:
             time.sleep(1)
             print(self.name,"no return, retry...")
-            self._back_zero()
+            self._back_zero(timeout)
         else:
             if not self.at_home:
                 print(self.name,"hard home return")
                 self._restore()
-                time.sleep(0.1)
             else:
                 print(self.name,"just right_at_home")
-        self._wait_until_stopped()
+        self._wait_until_stopped(timeout)
+        self._assert_zero_point()
         self.current_point = 0
 
-    def _wait_until_stopped(self):
+    def _assert_zero_point(self):
+        if not self.at_home:
+            print(self.name,"HomeError")
+            raise HomeError
+
+    def _wait_until_stopped(self,timeout=None):
         time.sleep(1)
+        if not timeout is None:
+            timeout -= 1
+        
         t = 0
         while True:
             try:
@@ -181,17 +190,24 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                         print("motor stopped")
                         return
                     time.sleep(0.1)
+                    if not timeout is None:
+                        timeout -= 0.1
+                        if timeout<=0:
+                            raise TimeoutError
+            except TimeoutError:
+                print(self.name,"wait stop timeout")
+                raise TimeoutError
             except Exception as e:
-                print(e)
+                print(self.name,e)
 
 
 
-    def home_return(self):
+    def home_return(self,timeout=None):
         if self.motion_safe:
-            self._back_zero()
+            self._back_zero(timeout)
             self._position = 0
         else:
-            print("not sure to move safely ")
+            print(self.name,"not sure to move safely ")
             raise SafeError
 
     def set_points(self,ul,bottom_u:float):
