@@ -1,5 +1,5 @@
 from prots import *
-from app.params import *
+from app.board import *
 
 class CustomWidget(QWidget):
     def __init__(self,ui) -> None:

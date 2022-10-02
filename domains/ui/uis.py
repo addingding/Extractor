@@ -1,9 +1,9 @@
 from ecosys import *
 
-from app.show import application
+from app.stage import application
 
 
-from app.params import logo_file,opening_gif,defaults
+from app.board import logo_file,opening_gif,defaults
 
 from domains.ui.__styles import *
 from domains.ui.translate_ui import *

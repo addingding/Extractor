@@ -161,15 +161,15 @@ class Logging(WithAble):
         sys.stdout = self.sysout_bak
 
 class RollbackAble:
-    def __init__(self,charge_params:list):
+    def __init__(self,charge_board:list):
         self.rollback_able = True
-        self.charge_params= charge_params
+        self.charge_board= charge_board
         self._buffer = {}
         self._changes = {}
         self._buffer_status()
     def _buffer_status(self):
         for key,value in self.__dict__.items():
-            if key in self.charge_params: 
+            if key in self.charge_board: 
                 self._buffer[key]=value
     
     def reload(self):

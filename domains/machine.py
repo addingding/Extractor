@@ -1,5 +1,5 @@
 from prots import *
-from app.params import *
+from app.board import *
 from app.board import info
 
 from domains.device import *

@@ -1,7 +1,7 @@
 from ecosys import *
 from prots import *
 
-from app.show import application
+from app.stage import application
 from app.board import info
 
 from domains import uis,programer_widgets,start_widgets

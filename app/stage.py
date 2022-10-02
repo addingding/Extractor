@@ -1,5 +1,5 @@
 from ecosys import *
-from app.params import ico_file
+from app.board import ico_file
 
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)

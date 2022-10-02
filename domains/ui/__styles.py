@@ -1,5 +1,5 @@
 from ecosys import *
-from app.params import background_png
+from app.board import background_png
 
 main_win_style = """
     QMainWindow{

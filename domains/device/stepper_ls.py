@@ -1,6 +1,6 @@
 from ecosys import *
 from prots import *
-from app.params import defaults
+from app.board import defaults
 from domains.device.modbus import  *
 from domains.uv_widget.uv_timer import JobTimer
 
