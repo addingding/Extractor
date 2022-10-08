@@ -934,7 +934,7 @@ class Ui_MainWindow(object):
         font5.setFamily(u"Arial")
         font5.setPointSize(18)
         self.lineEdit_8.setFont(font5)
-        self.lineEdit_8.setStyleSheet(u"border-color: rgb(170, 170, 0);")
+        self.lineEdit_8.setStyleSheet(u"")
         self.lineEdit_8.setFrame(True)
         self.lineEdit_8.setReadOnly(True)
         self.pushButton_52 = QPushButton(self.widget)
@@ -1284,7 +1284,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.toolBox = QToolBox(self.tab_help)
         self.toolBox.setObjectName(u"toolBox")
-        self.toolBox.setStyleSheet(u"background-color: rgb(0, 250, 220);")
+        self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
         self.page_status.setGeometry(QRect(0, 0, 1228, 418))
@@ -1365,7 +1365,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect(MainWindow.close)
 
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(5)
         self.stackedWidget.setCurrentIndex(2)
         self.toolBox.setCurrentIndex(0)
 

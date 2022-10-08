@@ -270,7 +270,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
@@ -2842,7 +2842,7 @@ font:24px;</string>
         <item row="0" column="0">
          <widget class="QToolBox" name="toolBox">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(0, 250, 220);</string>
+           <string notr="true">background-color: rgba(0, 250, 220,0);</string>
           </property>
           <property name="currentIndex">
            <number>0</number>

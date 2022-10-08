@@ -11,7 +11,7 @@ main_win_style = """
 tool_box_style = """ 
     QWidget {
         font:24px;
-        background-color:rgba(255,255,255,0);
+        background-color:rgba(0,255,255,0);
     } 
 
 
