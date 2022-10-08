@@ -25,10 +25,9 @@ class Ui_MainWindow(object):
         MainWindow.setDockNestingEnabled(False)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayout_10 = QGridLayout(self.centralwidget)
-        self.gridLayout_10.setObjectName(u"gridLayout_10")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
+        self.frame.setGeometry(QRect(9, 641, 1030, 60))
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -125,11 +124,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.pushButton_5)
 
-
-        self.gridLayout_10.addWidget(self.frame, 1, 0, 1, 1, Qt.AlignTop)
-
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setGeometry(QRect(9, 9, 1251, 664))
         sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
@@ -966,14 +963,57 @@ class Ui_MainWindow(object):
         self.gridLayout_14.setObjectName(u"gridLayout_14")
         self.groupBox_4 = QGroupBox(self.page_5)
         self.groupBox_4.setObjectName(u"groupBox_4")
-        self.gridLayout_21 = QGridLayout(self.groupBox_4)
-        self.gridLayout_21.setObjectName(u"gridLayout_21")
+        self.gridLayout_10 = QGridLayout(self.groupBox_4)
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.verticalSpacer_34 = QSpacerItem(20, 189, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_10.addItem(self.verticalSpacer_34, 0, 1, 1, 1)
+
+        self.horizontalSpacer_28 = QSpacerItem(239, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_10.addItem(self.horizontalSpacer_28, 1, 0, 1, 1)
+
+        self.lineEdit_9 = QLineEdit(self.groupBox_4)
+        self.lineEdit_9.setObjectName(u"lineEdit_9")
+        self.lineEdit_9.setMinimumSize(QSize(0, 30))
+        self.lineEdit_9.setFont(font5)
+        self.lineEdit_9.setStyleSheet(u"")
+        self.lineEdit_9.setFrame(True)
+        self.lineEdit_9.setReadOnly(True)
+
+        self.gridLayout_10.addWidget(self.lineEdit_9, 1, 1, 1, 2)
+
+        self.pushButton_54 = QPushButton(self.groupBox_4)
+        self.pushButton_54.setObjectName(u"pushButton_54")
+        self.pushButton_54.setMinimumSize(QSize(120, 35))
+
+        self.gridLayout_10.addWidget(self.pushButton_54, 1, 3, 1, 1)
+
+        self.horizontalSpacer_29 = QSpacerItem(240, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_10.addItem(self.horizontalSpacer_29, 1, 4, 1, 1)
+
+        self.verticalSpacer_36 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.gridLayout_10.addItem(self.verticalSpacer_36, 2, 2, 1, 1)
+
+        self.pushButton_53 = QPushButton(self.groupBox_4)
+        self.pushButton_53.setObjectName(u"pushButton_53")
+        self.pushButton_53.setMinimumSize(QSize(240, 80))
+        self.pushButton_53.setMaximumSize(QSize(240, 80))
+
+        self.gridLayout_10.addWidget(self.pushButton_53, 3, 1, 1, 1)
+
         self.pushButton_32 = QPushButton(self.groupBox_4)
         self.pushButton_32.setObjectName(u"pushButton_32")
         self.pushButton_32.setMinimumSize(QSize(240, 80))
         self.pushButton_32.setMaximumSize(QSize(240, 80))
 
-        self.gridLayout_21.addWidget(self.pushButton_32, 0, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.pushButton_32, 3, 2, 1, 2)
+
+        self.verticalSpacer_35 = QSpacerItem(20, 188, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_10.addItem(self.verticalSpacer_35, 4, 1, 1, 1)
 
 
         self.gridLayout_14.addWidget(self.groupBox_4, 0, 0, 1, 1)
@@ -1287,7 +1327,7 @@ class Ui_MainWindow(object):
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 1228, 418))
+        self.page_status.setGeometry(QRect(0, 0, 1227, 456))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
@@ -1357,16 +1397,13 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.toolBox, 0, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab_help, "")
-
-        self.gridLayout_10.addWidget(self.tabWidget, 0, 0, 1, 1)
-
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect(MainWindow.close)
 
-        self.tabWidget.setCurrentIndex(5)
-        self.stackedWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(3)
         self.toolBox.setCurrentIndex(0)
 
 
@@ -1457,7 +1494,10 @@ class Ui_MainWindow(object):
         self.lineEdit_8.setPlaceholderText(QCoreApplication.translate("MainWindow", u"files directory", None))
         self.pushButton_52.setText(QCoreApplication.translate("MainWindow", u"Directory", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Upgrade", None))
-        self.pushButton_32.setText(QCoreApplication.translate("MainWindow", u"\u4eceU\u76d8\u5347\u7ea7", None))
+        self.lineEdit_9.setPlaceholderText(QCoreApplication.translate("MainWindow", u"files directory", None))
+        self.pushButton_54.setText(QCoreApplication.translate("MainWindow", u"Directory", None))
+        self.pushButton_53.setText(QCoreApplication.translate("MainWindow", u"Import UI", None))
+        self.pushButton_32.setText(QCoreApplication.translate("MainWindow", u"Upgrade Open", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Language", None))
         self.pushButton_29.setText(QCoreApplication.translate("MainWindow", u"\u7b80\u4f53\u4e2d\u6587", None))
         self.pushButton_30.setText(QCoreApplication.translate("MainWindow", u"\u7e41\u9ad4\u4e2d\u6587", None))

@@ -13,7 +13,7 @@ from domains.program.programs import programers
 from domains.program.calib_widget import Calibration
 from domains.program.machine_signals import MachineSignals
 from domains.program.qthread_worker import *
-from domains.program.custom_widget import CustomWidget
+from domains.program.custom_widget import CustomWidget,UpgradeWidget
 
 from prots._cast import *
 
@@ -30,6 +30,7 @@ window = uis.main_win()
 program_handler = programers.program_handler()
 operation_handler = programers.operation_handler()
 program_io = CustomWidget(window)
+upgrade_pg = UpgradeWidget(window)
 
 app_worker = TempWorker()
 
