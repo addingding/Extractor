@@ -180,7 +180,6 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         time.sleep(1)
         if not timeout is None:
             timeout -= 1
-        
         t = 0
         while True:
             try:
@@ -191,12 +190,13 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                         return
                     time.sleep(0.1)
                     if not timeout is None:
+                        print(timeout)
                         timeout -= 0.1
                         if timeout<=0:
                             raise TimeoutError
-            except TimeoutError:
-                print(self.name,"wait stop timeout")
-                raise TimeoutError
+            # except TimeoutError:
+            #     print(self.name,"wait stop timeout")
+            #     raise TimeoutError
             except Exception as e:
                 print(self.name,e)
 
