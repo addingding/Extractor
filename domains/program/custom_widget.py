@@ -20,12 +20,12 @@ class CustomWidget(QWidget):
         self.line_directory.setText(directory)
         
     def import_files(self,a=None):
-        if QMessageBox.question(None,lang("Alert"),lang("Sure to import files?"),QMessageBox.Yes|QMessageBox.No,QMessageBox.No):
+        if QMessageBox.question(None,lang("Alert"),lang("Sure to import files?"),QMessageBox.Yes|QMessageBox.No,QMessageBox.No)==QMessageBox.Yes:
             directory = self.line_directory.text()
             self.replace_files(directory,is_in=True)
             QMessageBox.about(None,lang("Attention"),lang("Import done"))
     def export_files(self,a=None):
-        if QMessageBox.question(None,lang("Alert"),lang("Sure to export files?"),QMessageBox.Yes|QMessageBox.No,QMessageBox.No):
+        if QMessageBox.question(None,lang("Alert"),lang("Sure to export files?"),QMessageBox.Yes|QMessageBox.No,QMessageBox.No)==QMessageBox.Yes:
             directory = self.line_directory.text()
             self.replace_files(directory,is_in=False)
             QMessageBox.about(None,lang("Attention"),lang("Export done"))
@@ -67,7 +67,8 @@ class UpgradeWidget(QWidget):
         self.line_directory.setText(directory)
         
     def replace_ui_files(self,a=None):
-        if QMessageBox.question(None,lang("Alert"),lang("Sure to import files?"),QMessageBox.Yes|QMessageBox.No,QMessageBox.No):
+        ret = QMessageBox.question(None,lang("Alert"),lang("Sure to import files?"),QMessageBox.Yes|QMessageBox.No,QMessageBox.No)
+        if ret==QMessageBox.Yes:
             directory = self.line_directory.text()
             self.replace_files(directory,is_in=True,is_data=False)        
             QMessageBox.about(None,lang("Attention"),lang("Import done"))
@@ -92,5 +93,8 @@ class UpgradeWidget(QWidget):
 
     def upgrade_open(self):
         directory = self.line_directory.text()
-        os.system(f'xdg-open {directory}')
+        if sys.platform.startswith('win'):
+            os.startfile(directory)
+        else:
+            os.system(f'xdg-open {directory}')
     
