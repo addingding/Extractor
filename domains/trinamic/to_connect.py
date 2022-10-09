@@ -9,8 +9,8 @@ connectionManager = ConnectionManager()  # using USB
 with connectionManager.connect() as myInterface: 
     module = TMCM6110(myInterface)
     motor_0 = module.motors[0]
-    motor_1 = module.motors[1]
-    motor_2 = module.motors[2]
+    motor_1 = module.motors[2]
+    motor_2 = module.motors[1]
     motor_3 = module.motors[3]
     motor_4 = module.motors[4]
     motor_5 = module.motors[5]

@@ -83,7 +83,7 @@ def machine_init():
             machine.motor_mag.bottom()
             machine.motor_mag.home()
 
-            machine.motor_disk.home_return(timeout=30)
+            machine.motor_disk.home_return(timeout=15)
             machine.motor_disk.bottom()
 
             print("machine is ready!")
