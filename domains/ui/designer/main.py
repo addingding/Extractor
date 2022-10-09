@@ -25,8 +25,8 @@ class Ui_MainWindow(object):
         MainWindow.setDockNestingEnabled(False)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayout_21 = QGridLayout(self.centralwidget)
-        self.gridLayout_21.setObjectName(u"gridLayout_21")
+        self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
@@ -1229,7 +1229,7 @@ class Ui_MainWindow(object):
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 1238, 366))
+        self.page_status.setGeometry(QRect(0, 0, 1238, 347))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
@@ -1300,7 +1300,7 @@ class Ui_MainWindow(object):
 
         self.tabWidget.addTab(self.tab_help, "")
 
-        self.gridLayout_21.addWidget(self.tabWidget, 0, 0, 1, 1)
+        self.verticalLayout_3.addWidget(self.tabWidget)
 
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
@@ -1401,7 +1401,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.pushButton_5)
 
 
-        self.gridLayout_21.addWidget(self.frame, 1, 0, 1, 1, Qt.AlignTop)
+        self.verticalLayout_3.addWidget(self.frame)
+
+        self.verticalSpacer_37 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_37)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
