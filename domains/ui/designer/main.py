@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout = QVBoxLayout(self.frame_2)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalSpacer_25 = QSpacerItem(28, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_25 = QSpacerItem(28, 40, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_25)
 
@@ -160,7 +160,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.gridLayout_23)
 
-        self.verticalSpacer_26 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_26 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_26)
 
@@ -174,7 +174,7 @@ class Ui_MainWindow(object):
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.frame_5)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalSpacer_8 = QSpacerItem(20, 149, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_8 = QSpacerItem(20, 149, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_8)
 
@@ -206,7 +206,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.pushButton_20)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 163, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_6 = QSpacerItem(20, 163, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_6)
 
@@ -225,7 +225,7 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.gridLayout_28 = QGridLayout(self.frame_3)
         self.gridLayout_28.setObjectName(u"gridLayout_28")
-        self.verticalSpacer_30 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_30 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.gridLayout_28.addItem(self.verticalSpacer_30, 0, 1, 1, 1)
 
@@ -351,7 +351,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_28.addItem(self.horizontalSpacer_25, 1, 2, 1, 1)
 
-        self.verticalSpacer_31 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_31 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.gridLayout_28.addItem(self.verticalSpacer_31, 2, 1, 1, 1)
 
@@ -1229,7 +1229,7 @@ class Ui_MainWindow(object):
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 1238, 347))
+        self.page_status.setGeometry(QRect(0, 0, 1238, 340))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
@@ -1403,7 +1403,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.frame)
 
-        self.verticalSpacer_37 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_37 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_37)
 

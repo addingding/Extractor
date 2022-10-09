@@ -85,6 +85,9 @@ QPushButton{font:22px;}</string>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>28</width>
@@ -243,6 +246,9 @@ QPushButton{font:22px;}</string>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
@@ -273,6 +279,9 @@ QPushButton{font:22px;}</string>
             <spacer name="verticalSpacer_8">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -358,6 +367,9 @@ QPushButton{font:22px;}</string>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
@@ -395,10 +407,13 @@ QPushButton{font:22px;}</string>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>20</height>
+               <height>10</height>
               </size>
              </property>
             </spacer>
@@ -742,10 +757,13 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>20</height>
+               <height>10</height>
               </size>
              </property>
             </spacer>
@@ -2763,7 +2781,7 @@ font:24px;</string>
              <x>0</x>
              <y>0</y>
              <width>1238</width>
-             <height>347</height>
+             <height>340</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3167,7 +3185,7 @@ p, li { white-space: pre-wrap; }
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>10</height>
+        <height>20</height>
        </size>
       </property>
      </spacer>
