@@ -252,7 +252,7 @@ class DiskMotor(ModbusStepper):
         super().__init__(id, server, address, ppr, upr)
         self._position = 0
         self._grid = 1
-        self.set_current(16) # (n=15+1)/16 A
+        self.set_current(15) # (n=15+1)/16 A
         self.local_set_speed(1)
 
     def grid(self,n:int):
