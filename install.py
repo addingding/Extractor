@@ -1,5 +1,5 @@
 import PyInstaller.__main__
 PyInstaller.__main__.run([
-    '/home/raspberrypi/Extractor/start.py',
+    '/home/pi/Extractor/start.py',
     '--nowindow'
 ])
