@@ -58,7 +58,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
@@ -2806,8 +2806,8 @@ font:24px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1227</width>
-             <height>415</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3220,24 +3220,7 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>179</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>539</x>
-     <y>344</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup"/>
  </buttongroups>

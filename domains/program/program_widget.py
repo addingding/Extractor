@@ -182,6 +182,8 @@ class ProgramWidget(aProgrameWidget):
             self.program_handler.update(pg)
         self.table_update()
     def delete(self):
+        if not self.ui.popup(question=(lang("Alert"),lang("Sure to Delete?"))):
+            return
         try:
             self.program_handler.delete(int(self.selected_idx))
             self.table_update()
@@ -305,6 +307,8 @@ class OperationWidget(aOperationWidget):
         self.table_update()
 
     def delete(self):
+        if not self.ui.popup(question=(lang("Alert"),lang("Sure to Delete?"))):
+            return
         try:
             idx = self.table.currentIndex().row()
             obj = self.handler.obj_all()[idx]
