@@ -7,7 +7,7 @@ from app.scene_perform import *
 def start():
     
     # opening_show_window()
-    window.showFullScreen()
+    infowin.show()
     app_worker.work_for(machine_init)
     app_worker.job_done.connect(window_ready)
     app_worker.start()
@@ -25,10 +25,13 @@ def opening_show_window():
         window.show()
 
 def window_ready():
+    infowin.close()
     if not is_real(machine):
         window.popup(about=(lang("Alert"),lang("Device Error!")))
+        return
     control_assign()
     refresh_thread_start()
+    window.showFullScreen()
 
 def control_assign():
     control_button_activate()
@@ -64,8 +67,10 @@ def machine_exit():
         machine.exit()
 
 def machine_init():
+    infowin.show_info("Machine initializing")
 
     if is_real(machine):
+        infowin.show_info("Machine Initialized")
         try:
             bottoms = defaults.get("motor_bottom")
             machine.led.turn_on()
@@ -77,26 +82,36 @@ def machine_init():
             machine.motor_mag.local_set_speed(8)
             machine.motor_disk.local_set_speed(1.5)
 
+            infowin.show_info("Mask Motor homing ...")
             machine.motor_mask.home()
+            infowin.show_info("Mask Motor homed")
+            infowin.show_info("Stir Motor homing ...")
             machine.motor_stir.home_return()
+            infowin.show_info("Stir Motor homed")
+            infowin.show_info("Mag-sitck Motor homing ...")
             machine.motor_mag.home()
             machine.motor_mag.bottom()
             machine.motor_mag.home()
+            infowin.show_info("Mag-sitck Motor homed")
 
+            infowin.show_info("Disk Motor homing ...")
             machine.motor_disk.home_return(timeout=15)
+            infowin.show_info("Disk Motor homed")
             machine.motor_disk.bottom()
+            infowin.show_info("Disk Motor ready")
 
             print("machine is ready!")
+            infowin.show_info("machine is ready!")
 
         except HomeError:
-            window.popup(about=(lang('Alert'),lang('HomeError')))
+            infowin.popup(about=(lang('Alert'),lang('HomeError')))
         except TimeoutError:
-            window.popup(about=(lang('Alert'),lang('TimeoutError')))
+            infowin.popup(about=(lang('Alert'),lang('TimeoutError')))
         except SafeError:
-            window.popup(about=(lang('Alert'),lang('SafeError')))
+            infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
             print(e)
-            window.popup(about=(lang('Alert'),lang('InitError')))
+            infowin.popup(about=(lang('Alert'),lang('InitError')))
     else:
         print("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)

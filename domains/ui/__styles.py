@@ -8,6 +8,13 @@ main_win_style = """
         border-image:url('""" + background_png + """');
         }
     """
+info_win_style = """  
+    QLabel{
+        font: 24px bold black;
+        border-radius: 5px;
+        background-color:rgba(255,255,255,70);
+        }
+    """
 tool_box_style = """ 
     QWidget {
         font:24px;

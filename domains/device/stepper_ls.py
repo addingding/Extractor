@@ -28,8 +28,6 @@ class LsStepperDriver(ModbusTerminal):
         super().__init__(name, server, address)
         self.points = {}
         self.enable_io()
-        # self.enable_stopper()
-        # self.set_zero_threshold()
         self.pr_control_set()
         self.set_max_current(15)
 
@@ -39,9 +37,6 @@ class LsStepperDriver(ModbusTerminal):
     def enable_io(self):
         self.set_single(0x000F,1)
         self.set_single(0x0147,0xA5)    #di2 limit 常闭
-
-    def enable_stopper(self):
-        self.set_single(0x0149,0x22)    #di3 stopper NO: 0x22; NC:0xA2  
 
     def pr_set_back_zero_mode(self):
         self.set_single(0x600A,0x01)
@@ -425,7 +420,7 @@ if __name__ == "__main__":
     
     # T.test_calibration()
     # time.sleep(1)
-    T.test_stir()
+    # T.test_stir()
     # T.test_home_return_and_stir()
 
     # T.test_mix_sec()

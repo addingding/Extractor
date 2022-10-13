@@ -25,6 +25,7 @@ update_timer = QTimer()
 
 splash = uis.splash_win()
 flash = uis.flash_win()
+infowin = uis.info_win()
 window = uis.main_win()
 
 program_handler = programers.program_handler()

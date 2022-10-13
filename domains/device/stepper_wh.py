@@ -289,10 +289,10 @@ class ModbusStepperTest():
 
         self.server = server
 
-        self.motor_disk = DiskMotor('motor_disk',self.server,13,51200,0.44473) #0.25pie
-        self.motor_mag = ModbusStepper('motor_mag',self.server,14,51200,4)
-        self.motor_mask = ModbusStepper('motor_mask',self.server,15,51200,2)
-        self.steppers:List[ModbusStepper] = [self.motor_mag,self.motor_disk,self.motor_mask]
+        self.motor_disk = DiskMotor('motor_disk',self.server,13,51200,0.11473) #0.25pie
+        # self.motor_mag = ModbusStepper('motor_mag',self.server,14,51200,4)
+        # self.motor_mask = ModbusStepper('motor_mask',self.server,15,51200,2)
+        # self.steppers:List[ModbusStepper] = [self.motor_mag,self.motor_disk,self.motor_mask]
 
 
     # def __del__(self):
@@ -301,7 +301,9 @@ class ModbusStepperTest():
 
     #     self.switches.exit()
 
-
+    def test_motor_disk(self):
+        self.motor_disk.home_return()
+        self.motor_disk.move_to(-self.motor_disk._upr)
     def test_signal(self):
         for stepper in self.steppers:
             print(stepper.name,"right:",stepper.at_home)
@@ -375,9 +377,10 @@ class ModbusStepperTest():
         self.motor_mag.home()
 def main():
     T = ModbusStepperTest()
+    T.test_motor_disk()
     # T.test_signal()
     # T.test_home()
     # T.test_calibrate()
-    T.test_mag_speed()
+    # T.test_mag_speed()
 if __name__ == "__main__":
     main()

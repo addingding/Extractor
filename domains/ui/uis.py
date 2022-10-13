@@ -9,6 +9,7 @@ from domains.ui.__styles import *
 from domains.ui.translate_ui import *
 from domains.ui.designer.main import Ui_MainWindow as MainWin
 from domains.ui.designer.open import Ui_MainWindow as Opening
+from domains.ui.designer.info import Ui_MainWindow as info_win
 
 class WithPop:
     
@@ -235,6 +236,19 @@ class MainInterface(QMainWindow,MainWin,WithPop):
         self.pushButton_41.clicked.connect(show_page_calibration)
         self.pushButton_42.clicked.connect(show_page_calibration)
 
+class Infowin(QMainWindow,info_win,WithPop):
+    def __init__(self) -> None:
+        super().__init__()
+        info_win.__init__(self)
+        self.setupUi(self)
+        self.retranslateUi(self)
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setStyleSheet(info_win_style)
+
+        self.label:QLabel = self.label
+    def show_info(self,info:str):
+        self.label.setText(lang(info))
 
 class Open(QMainWindow,Opening):
     def __init__(self) -> None:
@@ -273,6 +287,8 @@ class Uis:
 
     def splash_win(self):
         return SplashScreen()
+    def info_win(self):
+        return Infowin()
     def flash_win(self):
         if os.path.exists(opening_gif):
             return Open()
