@@ -177,7 +177,7 @@ class MainInterface(QMainWindow,MainWin,WithPop):
 
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setStyleSheet(main_win_style+frame_widget_style+scroll_vertical + button_style+main_tab_widget_style)
-        # self.setAttribute(Qt.WA_AcceptTouchEvents, True)
+        self.setAttribute(Qt.WA_AcceptTouchEvents, True)
         self.set_styles()
 
         self.tabWidget.setCurrentIndex(0)
