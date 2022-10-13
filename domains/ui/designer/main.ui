@@ -58,7 +58,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
@@ -1229,25 +1229,22 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
            <bool>true</bool>
           </property>
           <layout class="QGridLayout" name="gridLayout_22">
-           <item row="0" column="0" rowspan="3">
-            <widget class="QTableWidget" name="tableWidget_3">
+           <item row="2" column="1">
+            <widget class="QPushButton" name="pushButton_17">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="minimumSize">
               <size>
-               <width>900</width>
-               <height>240</height>
+               <width>100</width>
+               <height>50</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>1280</width>
-               <height>16777215</height>
-              </size>
+             <property name="text">
+              <string>Delete</string>
              </property>
             </widget>
            </item>
@@ -1270,25 +1267,6 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="pushButton_35">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Copy</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="1">
             <widget class="QPushButton" name="pushButton_36">
              <property name="sizePolicy">
@@ -1305,44 +1283,6 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              </property>
              <property name="text">
               <string>Edit</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_34">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Save</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton_17">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Delete</string>
              </property>
             </widget>
            </item>
@@ -1365,6 +1305,73 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              </property>
             </widget>
            </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButton_35">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Copy</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton_34">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Save</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="pushButton_55">
+             <property name="text">
+              <string>Unlock</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" rowspan="4">
+            <widget class="QTableWidget" name="tableWidget_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>900</width>
+               <height>240</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>1280</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -1375,7 +1382,65 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
         <string>Config</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="0" column="0" rowspan="7">
+        <item row="0" column="1">
+         <spacer name="verticalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::MinimumExpanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pushButton_12">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Language</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_8">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Time</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <spacer name="verticalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::MinimumExpanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="0" rowspan="8">
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="minimumSize">
            <size>
@@ -2460,24 +2525,8 @@ font:24px;</string>
           </widget>
          </widget>
         </item>
-        <item row="0" column="1">
-         <spacer name="verticalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::MinimumExpanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="pushButton_8">
+        <item row="5" column="1">
+         <widget class="QPushButton" name="pushButton_41">
           <property name="minimumSize">
            <size>
             <width>200</width>
@@ -2485,7 +2534,7 @@ font:24px;</string>
            </size>
           </property>
           <property name="text">
-           <string>Time</string>
+           <string>Calibration</string>
           </property>
          </widget>
         </item>
@@ -2515,47 +2564,18 @@ font:24px;</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="QPushButton" name="pushButton_12">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Language</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="pushButton_41">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Calibration</string>
-          </property>
-         </widget>
-        </item>
         <item row="6" column="1">
-         <spacer name="verticalSpacer_10">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::MinimumExpanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
+         <widget class="QPushButton" name="pushButton_56">
+          <property name="minimumSize">
            <size>
-            <width>20</width>
-            <height>40</height>
+            <width>200</width>
+            <height>50</height>
            </size>
           </property>
-         </spacer>
+          <property name="text">
+           <string>Unlock</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -2787,7 +2807,7 @@ font:24px;</string>
              <x>0</x>
              <y>0</y>
              <width>1227</width>
-             <height>343</height>
+             <height>415</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2800,7 +2820,7 @@ font:24px;</string>
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    Click &amp;quot;Inspect&amp;quot; to inspect the operation currently loaded to device system and have a look of the operation parameters.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    点击&amp;quot;状态监控&amp;quot;以查看当前仪器状态以及操作中的程序参数。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2834,7 +2854,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:14pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    Click &amp;quot;Start&amp;quot; to run the program list mode, scan mode, quick launch mode and view  the steps of the program to start running according to the selected current step.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -2863,7 +2883,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    Click &amp;quot;Programs&amp;quot; to create new programs, edit programs, delete programs and other functions.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    点击“程序管理”，可以对操作程序新建、编辑、删除以及其他操作。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2891,7 +2911,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    Click &amp;quot;Config&amp;quot; to set the time, instrument motion parameters, export the protocol to the U disk, import the protocol from the U disk to the system and upgrade the software.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    点击“仪器管理”以设置时间、设备运动参数、将程序在系统与U盘之间导入导出，此处亦可升级软件。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2919,7 +2939,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    Click &amp;quot;Sterilize&amp;quot; to enter the UV disinfection interface, and click &amp;quot;+&amp;quot;, &amp;quot;-&amp;quot; to adjust the disinfection time. Click &amp;quot;start&amp;quot; to turn on the UV light. The operation would be broken when the door is pulled open.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:14pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:12pt;&quot;&gt;    点击&amp;quot;紫外消毒&amp;quot;,进入紫外消毒界面，点击“+”“-”可调整消毒时间。消毒操作可因仓门被打开而中断。&lt;/span&gt;&lt;/p&gt;
@@ -2948,7 +2968,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:14pt;&quot;&gt;version: v1.05&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:14pt;&quot;&gt;版本：v1.05&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>

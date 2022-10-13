@@ -115,3 +115,7 @@ class aWidget():
             setattr(self,key,getattr(ui,value))
     def widget_activate(self):
         ...
+
+class MyQInputDialog(QInputDialog):
+    def closeEvent(self,event):
+        event.ignore()

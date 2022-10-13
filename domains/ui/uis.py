@@ -33,25 +33,29 @@ class WithPop:
             ret = True if reply == QMessageBox.Yes else False
             self.pop_ret = ret
             return ret
+
         if dialog is not None:
-            _dialog = QInputDialog(self.tabWidget) #XXX
+            _dialog = MyQInputDialog(None) #XXX
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
+            _dialog.setFocusPolicy(Qt.ClickFocus)
+            _dialog.setTextEchoMode(QLineEdit.Normal)
             _dialog.setStyleSheet(message_style+button_style)
             _dialog.setWindowTitle(dialog[0])
-            _dialog.setInputMode(QInputDialog.TextInput)
             _dialog.setLabelText(dialog[1])
+            _dialog.setInputMode(QInputDialog.TextInput)
+
             if len(dialog)==3:
                 _dialog.setTextValue(dialog[2])
-                
+            
             ok = _dialog.exec_()
-            text_ = _dialog.textValue()
-
-            if ok and text_:
-                self.pop_ret = text_
-                return text_
-            else:
-                self.pop_ret = None
-                return None
+            if ok:
+                text_ = _dialog.textValue()
+                if text_:
+                    self.pop_ret = text_
+                    return text_
+                else:
+                    self.pop_ret = None
+                    return None
     def popup_no_frame(self,*args,about:tuple=None,question:tuple=None,dialog:tuple=None,input:tuple=None):
         if len(args)>0:
             a_ = args[0]
@@ -99,7 +103,7 @@ class WithPop:
             self.pop_ret = ret
             return ret
         if dialog is not None:
-            _dialog = QInputDialog(None)
+            _dialog = MyQInputDialog(None)
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
             _dialog.setStyleSheet(message_style+button_style)
             _dialog.setWindowTitle(dialog[0])
@@ -173,8 +177,7 @@ class MainInterface(QMainWindow,MainWin,WithPop):
 
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setStyleSheet(main_win_style+frame_widget_style+scroll_vertical + button_style+main_tab_widget_style)
-        # self.setStyleSheet(button_style)
-        self.setAttribute(Qt.WA_AcceptTouchEvents, True)
+        # self.setAttribute(Qt.WA_AcceptTouchEvents, True)
         self.set_styles()
 
         self.tabWidget.setCurrentIndex(0)

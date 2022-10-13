@@ -1,5 +1,6 @@
 from prots import *
 from domains.program.programs import *
+from domains.program.lock_widget import LockWidget
 
 
 program_map = {
@@ -22,6 +23,23 @@ operation_map = {
     "btn_delete_all":"pushButton_37",
     
 }
+
+button_lock = "pushButton_55"
+
+locked_buttons = [
+    "pushButton_13",
+    "pushButton_15",
+    "pushButton_21",
+    "pushButton_14",
+    "pushButton_16",
+    "pushButton_22",
+    "pushButton_33",
+    "pushButton_35",
+    "pushButton_36",
+    "pushButton_34",
+    "pushButton_17",
+    "pushButton_37",
+]
 
 tree_style_1 = """
     QTreeWidget{
@@ -80,7 +98,13 @@ class ProgramWidget(aProgrameWidget):
         table:QTreeWidget = self.table
         table.setStyleSheet(tree_style_1)
         table.header().setDefaultAlignment(Qt.AlignCenter)
+
+        self.lock_widget = LockWidget(ui,"2022",locked_buttons,button_lock)
+        self.lock_widget.lock_buttons()
+
         self.table_show()
+
+
     def create(self):
         text = self.ui.popup(dialog=('输入程序名称', '程序名称:'))
         if text:
@@ -111,16 +135,16 @@ class ProgramWidget(aProgrameWidget):
         item = self.tree.currentItem()
         if item is None: return
         if item.parent() is None:
-            text, ok = QInputDialog.getText(self.tree, '输入程序名称', '程序名称:')
+            text, ok = MyQInputDialog.getText(self.ui, '输入程序名称', '程序名称:')
             if ok and text:
                 item.setText(0, text)
         else:
             disks =  [str(i) for i in range(1,9)]
             operations = self.operation_handler.obj_names()
-            disk, ok = QInputDialog.getItem(self.tree, '选择盘位', '盘位(1-8):',disks,0,True)
+            disk, ok = MyQInputDialog.getItem(self.ui, '选择盘位', '盘位(1-8):',disks,0,True)
             if ok and disk:
                 item.setText(1, f"盘位 {str(disk)}")
-                op_name, ok = QInputDialog.getItem(self.tree, '选择操作', '操作:',operations,0,True)
+                op_name, ok = MyQInputDialog.getItem(self.ui, '选择操作', '操作:',operations,0,True)
                 if ok and op_name:
                     idx = self.operation_handler.obj_idxes()[operations.index(op_name)]
                     op = self.operation_handler.obj(idx)

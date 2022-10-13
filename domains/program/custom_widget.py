@@ -1,6 +1,15 @@
 from prots import *
 from app.board import *
 
+from domains.program.lock_widget import LockWidget
+
+locked_buttons = [
+    "pushButton_10",
+    "pushButton_11",
+    "pushButton_41",
+
+]
+button_lock = "pushButton_56"
 class CustomWidget(QWidget):
     def __init__(self,ui) -> None:
         self.ui = ui
@@ -14,6 +23,9 @@ class CustomWidget(QWidget):
 
         self.btn_input.clicked.connect(self.import_files)
         self.btn_output.clicked.connect(self.export_files)
+
+        self.lock_widget = LockWidget(ui,"205413",locked_buttons,button_lock)
+        self.lock_widget.lock_buttons()
 
     def get_dir(self,a=None):
         directory = QtWidgets.QFileDialog.getExistingDirectory(None, lang("select_directory"), "/")
