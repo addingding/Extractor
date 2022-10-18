@@ -38,7 +38,7 @@ def control_assign():
     calibration_widget_activate()
     
 def control_button_activate():
-    window.pushButton_26.clicked.connect(prepare_task)#prepare
+    start_widget.btn_start.clicked.connect(prepare_task)#prepare
     window.pushButton_4.clicked.connect(fan_switch)
     window.pushButton_5.clicked.connect(led_switch)
 def fan_switch():

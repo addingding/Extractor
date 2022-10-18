@@ -2,13 +2,14 @@ from ecosys import *
 from app.cast import *
 
 def prepare_task(a=None):
+    print("prepare task")
     window.tabWidget.setCurrentIndex(0)
     if event_working.is_set():
         window.popup(about=("注意！","工作中，无法启动新任务！"))
         return
     
     start_widget.btn_start.setEnabled(False)
-    status_widget.btn_start.setEnabled(True)
+    status_widget.btn_task_start.setEnabled(True)
     status_widget.btn_task_start.clicked.connect(start_task)
     machine.motor_stir.prepare()
 
