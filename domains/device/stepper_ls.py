@@ -217,7 +217,7 @@ class LsStepper(Stepper):
         
 
         sp_home = sPoint(standard_mode,*high_low_number(p_home),30,100,100,100)
-        sp_prepare = sPoint(standard_mode,*high_low_number(p_prepare),30,100,100,100)
+        sp_prepare = sPoint(standard_mode,*high_low_number(-p_prepare),30,100,100,100)
         sp_liquid = sPoint(standard_mode,*high_low_number(-p_liquid),30,100,100,100)
 
         sp_liquid_inner = sPoint(standard_mode,*high_low_number(-p_liquid),2,100,100,100)
