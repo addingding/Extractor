@@ -9,7 +9,7 @@ def prepare_task(a=None):
     
     start_widget.btn_start.setEnabled(False)
     status_widget.btn_start.setEnabled(True)
-    status_widget.btn_start.clicked.connect(start_task)
+    status_widget.btn_task_start.clicked.connect(start_task)
     machine.motor_stir.prepare()
 
 def start_task(a=None):

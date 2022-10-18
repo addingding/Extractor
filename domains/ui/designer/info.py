@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QSize(600, 160))
         self.label.setAutoFillBackground(True)
-        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
         self.label.setMargin(10)
         self.label.setIndent(4)
 

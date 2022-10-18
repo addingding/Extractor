@@ -257,7 +257,7 @@ class Infowin(QMainWindow,info_win,WithPop):
 
         self.label:QLabel = self.label
     def show_info(self,info:str):
-        self.label.setText(lang(info))
+        self.label.setText(self.label.text()+"\n"+lang(info))
 
 class Open(QMainWindow,Opening):
     def __init__(self) -> None:
