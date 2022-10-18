@@ -56,7 +56,7 @@ class StartWidget(aStartWidget):
         self.table.setStyleSheet(tree_style)
         self.btn_scan.hide()
         self.btn_view.hide()
-
+        self.btn_start.setStyleSheet(u"QPushButton{font:32px;}")
         self.table_show()
 
     def scan(self):

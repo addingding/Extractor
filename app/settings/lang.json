@@ -31,6 +31,7 @@
     "delete":["Delete","删除"],
     "delete_all":["Delete All","全部删除"],
     "scan":["Scan Start","扫码运行"],
+    "prepare":["Prepare","加样\n准备"],
     "start":["Start","开始"],
     "view":["Details","查看"],
     "temp_control":["Temp Control","温控"],

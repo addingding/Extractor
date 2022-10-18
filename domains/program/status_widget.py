@@ -33,6 +33,7 @@ status_map ={
     "btn_p6":"pushButton_48",
     "btn_p7":"pushButton_49",
     "btn_p8":"pushButton_50",
+    "btn_task_start":"pushButton_57",
     "btn_task_pause":"pushButton_19",
     "btn_task_stop":"pushButton_18",
     "btn_task_return":"pushButton_20",
@@ -58,11 +59,15 @@ class StatusWidget(QWidget,aWidget):
         self.event_working=event_working
         self.e_safe = e_safe_perform
         self.e_stop = e_stop_perform
+        self.btn_task_start:QPushButton = self.btn_task_start
 
         self.btn_task_pause.clicked.connect(self.btn_pause_clicked)
         self.btn_task_stop.clicked.connect(self.btn_stop_clicked)
         self.btn_task_return.clicked.connect(self.return_to_start)
 
+        self.btn_task_start.setEnabled(False)
+        self.btn_task_pause.setEnabled(False)
+        self.btn_task_stop.setEnabled(False)
 
         disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk360.png')
         self.show_selected_image(disk_img)

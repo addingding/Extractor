@@ -22,7 +22,7 @@ def retranslate_ui(window):
     window.label_26.setText(lang("speed_mix"))
     window.tabWidget.setTabText(window.tabWidget.indexOf(window.tab_status), lang("status_inspection"))
     window.pushButton_25.setText(lang("scan"))
-    window.pushButton_26.setText(lang("start"))
+    window.pushButton_26.setText(lang("prepare"))
     window.pushButton_27.setText(lang("view"))
     window.tabWidget.setTabText(window.tabWidget.indexOf(window.tab_run), lang("program_start"))
     window.groupBox_7.setTitle(lang("programs"))
@@ -81,6 +81,7 @@ def retranslate_ui(window):
     window.pushButton_9.setText(lang("Import Programs"))
     window.pushButton_51.setText(lang("Export Programs"))
     window.pushButton_52.setText(lang("Directory"))
+    window.pushButton_57.setText(lang("start"))
 
 # retranslateUi
 

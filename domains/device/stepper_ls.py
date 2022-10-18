@@ -27,15 +27,21 @@ class LsStepperDriver(ModbusTerminal):
     def __init__(self, name: str, server: RtuServer, address: int):
         super().__init__(name, server, address)
         self.points = {}
+
+
         self.enable_io()
         self.pr_control_set()
-        self.set_max_current(15)
+        self.set_max_current(10)
+        self.save_settings()
+        time.sleep(0.5)
 
     def set_zero_threshold(self):
         self.set_single(0x0175,10)
 
     def enable_io(self):
-        self.set_single(0x000F,1)
+
+        self.set_single(0x0003,0)       #0开环，2闭环
+        self.set_single(0x000F,1)       #强制使能
         self.set_single(0x0147,0xA5)    #di2 limit 常闭
 
     def pr_set_back_zero_mode(self):
@@ -83,9 +89,13 @@ class LsStepperDriver(ModbusTerminal):
         self.set_single(0x6010,1)  # back_zero low_speed
 
     def save_settings(self):
-        self.set_single(0x1801,0x2211)
+        self.set_single(0x1801,0x2211)  #settings
+
     def reset_settings(self):
-        self.set_single(0x1801,0x2233)
+        self.set_single(0x1801,0x1111)  #clear error at now
+        self.set_single(0x1801,0x1122)  #clear error in history
+        self.set_single(0x1801,0x2233)  #reset
+        self.set_single(0x1801,0x2211)  #save settings
 
     def set_max_current(self,cur=10):
         if cur<=30:
@@ -187,6 +197,7 @@ class LsStepper(Stepper):
     def set_points(self,ul:float,bottom_u:float,
             stir_accel_ms = 100,stir_speed_rpm = 240):
 
+        prepare_point = defaults.get("prepare_point",0)
         beads_distance = defaults.get("beads_distance",0)
         bottom_u = abs(bottom_u)- beads_distance
 
@@ -198,6 +209,7 @@ class LsStepper(Stepper):
             stir_mm = 7
 
         p_home = 0
+        p_prepare = int(prepare_point*self.ppu)
         p_bottom = int(bottom_u*self.ppu)
         p_liquid = int((bottom_u-level_mm)*self.ppu)
         p_half = int((bottom_u-level_mm/2)*self.ppu)
@@ -205,6 +217,7 @@ class LsStepper(Stepper):
         
 
         sp_home = sPoint(standard_mode,*high_low_number(p_home),30,100,100,100)
+        sp_prepare = sPoint(standard_mode,*high_low_number(p_prepare),30,100,100,100)
         sp_liquid = sPoint(standard_mode,*high_low_number(-p_liquid),30,100,100,100)
 
         sp_liquid_inner = sPoint(standard_mode,*high_low_number(-p_liquid),2,100,100,100)
@@ -225,6 +238,14 @@ class LsStepper(Stepper):
 
         self.driver.point_set(7,sp_home)
         self.driver.point_set(8,sp_liquid)
+
+        self.driver.point_set(9,sp_prepare)
+
+    def prepare(self):
+        self.driver.activate_positioning(9)
+    def prepare_to_ready(self):
+        self.driver.activate_positioning(7)
+
 
     def bottom(self):
         self.driver.activate_positioning(3)
@@ -282,15 +303,14 @@ class TestLs:
 
         self.server = servers.get_modbus_server("COM4" if sys.platform.startswith('win') else "/dev/ttyAMA1")
 
-        sw = switches.get_ios("ios",self.server,1)
-        led = switches.get_switch(sw,0)
-        led.turn_on()
-        self.stopper = switches.get_switch(sw,3)
+        # sw = switches.get_ios("ios",self.server,1)
+        # led = switches.get_switch(sw,0)
+        # led.turn_on()
+        # self.stopper = switches.get_switch(sw,3)
         
         self.stepper = ls_steppers.get_stepper_ls("LsStepper",self.server,12,10000,60)
         self.driver = self.stepper.driver
-        self.stepper.home_return()
-        
+
         # self.stepper.set_points(100,75)
     def __del__(self):
         self.server.close()
@@ -372,11 +392,11 @@ class TestLs:
         self.driver.activate_positioning(9)
         self.driver.activate_positioning_without_wait(11)
         time.sleep(3)
-        self.stopper.turn_on()
+        # self.stopper.turn_on()
         # self.driver.activate_positioning(9)
         # self.driver.speed_stop()
-        time.sleep(3)
-        self.stopper.turn_off()
+        # time.sleep(3)
+        # self.stopper.turn_off()
         # for i in range(ts):
         #     self.driver.activate_positioning(11)
         # dt = time.time()-t
@@ -412,8 +432,11 @@ if __name__ == "__main__":
     # T.test_jog()
 
     driver = T.stepper.driver
+    # driver.reset_settings()
+
+    T.stepper.home_return()
     # T.test_motion()
-    # T.test_stir()
+    T.test_stir()
     # T.test_speed()
     # T.test_direction()
     # T.read_light_limit()
@@ -421,7 +444,7 @@ if __name__ == "__main__":
     # T.test_calibration()
     # time.sleep(1)
     # T.test_stir()
-    # T.test_home_return_and_stir()
+    driver.soft_stop()
 
     # T.test_mix_sec()
     

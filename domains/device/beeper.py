@@ -7,7 +7,7 @@ class Beeper():
 
     def __init__(self,pin=22):
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM) #GPIO.BOAR
+        GPIO.setmode(GPIO.BCM) #GPIO.BOARD
         GPIO.setup(pin,GPIO.OUT)
         self.pin = pin
         self.off()
