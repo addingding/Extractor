@@ -256,8 +256,11 @@ class Infowin(QMainWindow,info_win,WithPop):
         self.setStyleSheet(info_win_style)
 
         self.label:QLabel = self.label
+        self.infos = []
     def show_info(self,info:str):
-        self.label.setText(self.label.text()+"\n"+lang(info))
+        self.infos.append(lang(info))
+        to_show = self.infos[-5:] if len(self.infos)>5 else self.infos
+        self.label.setText("\n".join(to_show))
 
 class Open(QMainWindow,Opening):
     def __init__(self) -> None:
