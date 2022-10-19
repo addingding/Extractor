@@ -99,7 +99,6 @@ def machine_init():
             infowin.show_info("Disk Motor homed")
             machine.motor_disk.bottom()
             infowin.show_info("Disk Motor ready")
-            machine.motor_stir.set_points()
 
             print("machine is ready!")
             infowin.show_info("machine is ready!")
@@ -112,7 +111,7 @@ def machine_init():
             infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
             print(e)
-            infowin.popup(about=(lang('Alert'),lang('InitError')))
+            # infowin.popup(about=(lang('Alert'),lang('InitError')))
     else:
         print("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)
