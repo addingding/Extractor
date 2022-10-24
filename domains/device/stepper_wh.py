@@ -23,7 +23,7 @@ class ModbusStepperDriver(ModbusTerminal):
 
     def _set_current(self,current:int=16):
         if current >31: current =31
-        _current = (current<<8) + 3
+        _current = (current<<8) + 7
         self.set_single(0x0023,_current)
     
     def _set_baud(self,baud:int):

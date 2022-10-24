@@ -196,6 +196,7 @@ class MainInterface(QMainWindow,MainWin,WithPop):
         self.pushButton_35.hide() #copy
         self.pushButton_22.hide() #program delete all
         self.pushButton_37.hide() #process delete all
+        self.pushButton.hide()
         # self.pushButton_10.hide() #program io
         self.pushButton_28.clicked.connect(lambda x: self.tabWidget.setCurrentIndex(1))
         self.pushButton.clicked.connect(self.close_window)
