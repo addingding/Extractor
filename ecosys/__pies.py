@@ -205,10 +205,10 @@ class Simulator():
         attr = getattr(_sim,__name)
 
         _c,_p = get_attrs(_sim)
-        def printf():
+        def printf(n=None):
             _cls = _sim.__name__
-            print(f"{_cls}.{__name}()")
-            return f"{_cls}.{__name}()"
+            print(f"{_cls}.{__name}({n})")
+            return f"{_cls}.{__name}({n})"
         if __name in _c:
             return printf
         elif __name in _p:

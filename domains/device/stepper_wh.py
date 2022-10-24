@@ -266,7 +266,11 @@ class DiskMotor(ModbusStepper):
         self.grid(self._grid+1)
     def grid_ccw(self):
         self.grid(self._grid-1)
-
+    def prepare_to_ready(self):
+        self.home_return()
+        self.bottom()
+        self._position = 0
+        self._grid = 1
 
 class WhSteppers:
     def get_stepper_wh(self,name,server,address,ppr,upr):

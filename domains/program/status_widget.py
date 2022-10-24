@@ -119,6 +119,9 @@ class StatusWidget(QWidget,aWidget):
         for key in self.keys:
             key.setCheckable(enabled)
             key.setStyleSheet(grid_key_style)
+    def set_keys_enable(self,enabled:bool):
+        for key in self.keys:
+            key.setEnabled(enabled)
 
     def show_selected_image(self, filename):
         self.graph.setPixmap(QPixmap(filename))
@@ -128,6 +131,8 @@ class StatusWidget(QWidget,aWidget):
             self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
             return
         self.event_working.set()
+        self.set_keys_enable(False)
+
         self.btn_p1.setChecked(False) #TODO not working
         self.btn_p1.setDown(False)
         # print(self.btn_p1.isChecked())
@@ -152,6 +157,7 @@ class StatusWidget(QWidget,aWidget):
 
     def disk_arrived_and_work_done(self,n:int):
         self.disk_arrived(n)
+        self.set_keys_enable(True)
         self.event_working.clear()
         
     def refresh_disk_key_order(self,n:int):

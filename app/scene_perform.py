@@ -2,29 +2,30 @@ from ecosys import *
 from app.cast import *
 
 def prepare_task(a=None):
-    print("prepare task")
-    window.tabWidget.setCurrentIndex(0)
     if event_working.is_set():
         window.popup(about=("注意！","工作中，无法启动新任务！"))
         return
+    if start_widget.selected_program is None:
+        window.popup(about=(lang("Alert"),lang("choose one")))
+        return
     
+    print("prepare task")
+    window.tabWidget.setCurrentIndex(0)
     start_widget.btn_start.setEnabled(False)
     status_widget.btn_task_start.setEnabled(True)
     status_widget.btn_task_start.clicked.connect(start_task)
     machine.motor_stir.prepare()
 
 def start_task(a=None):
-    print("start task")
-    machine.motor_stir.prepare_to_ready()
-    status_widget.btn_task_pause.setEnabled(True)
-    status_widget.btn_task_pause.setEnabled(True)
-    
     if machine.sheath_sensor.is_on:
         window.popup(about=(lang("Alert"),lang("No sheath")) )
         return
-    if start_widget.selected_program is None:
-        window.popup(about=(lang("Alert"),lang("choose one")))
-        return
+    
+    print("start task")
+    machine.motor_stir.prepare_to_ready()
+    machine.motor_disk.prepare_to_ready()
+    status_widget.btn_task_pause.setEnabled(True)
+    
     
     global task_performer
     task_performer = TaskPerformer(_start_task,e_safe_perform,e_stop_perform)
