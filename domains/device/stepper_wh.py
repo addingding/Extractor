@@ -21,9 +21,9 @@ class ModbusStepperDriver(ModbusTerminal):
     def _verify_address(self):
         return super()._verify_address()
 
-    def _set_current(self,current:int=16):
+    def _set_current(self,current:int=16,standby:int=1):
         if current >31: current =31
-        _current = (current<<8) + 7
+        _current = (current<<8) + standby
         self.set_single(0x0023,_current)
     
     def _set_baud(self,baud:int):
@@ -117,8 +117,8 @@ class ModbusStepperDriver(ModbusTerminal):
             return _r [0]
     def set_baud(self):
         return self._set_baud(115200)
-    def set_current(self,current=16):
-        return self._set_current(current)
+    def set_current(self,current=16,standby=1):
+        return self._set_current(current,standby)
     def local_set_speed(self,speed_float):
         speed_p = int(PPR*speed_float)
         self._set_running_speed(speed_p)
@@ -252,7 +252,7 @@ class DiskMotor(ModbusStepper):
         super().__init__(id, server, address, ppr, upr)
         self._position = 0
         self._grid = 1
-        self.set_current(23) # (n=15+1)/16 A
+        self.set_current(23,7) # (n=15+1)/16 A
         self.local_set_speed(1)
 
     def grid(self,n:int):

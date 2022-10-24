@@ -109,6 +109,7 @@ class WithPop:
             _dialog.setWindowTitle(dialog[0])
             _dialog.setInputMode(QInputDialog.TextInput)
             _dialog.setLabelText(dialog[1])
+            _dialog.setWindowModality(Qt.WindowModal)
             if len(dialog)==3:
                 _dialog.setTextValue(dialog[2])
                 
