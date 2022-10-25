@@ -154,7 +154,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
     def rotate_till(self, speed: int, direction_right: bool, sensor_right: bool, sensor_high: bool):
         return super().rotate_till(speed, direction_right, sensor_right, sensor_high)
 
-    def _back_zero(self,timeout =None):
+    def _back_zero(self,timeout = 15):
         print(self.name,"back_zero:",datetime.datetime.now())
         _status = self._status
         if _status is None:
@@ -202,7 +202,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
 
 
 
-    def home_return(self,timeout=None):
+    def home_return(self,timeout=15):
         if self.motion_safe:
             self._back_zero(timeout)
             self._position = 0
