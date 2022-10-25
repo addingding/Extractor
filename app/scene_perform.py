@@ -119,6 +119,7 @@ def task_end_notice(a=None):
     Thread(target=notify,args=(message_known,)).start()
     window.popup(about=(lang("attention"),lang('Finshed')+"!"))
     message_known.set()
+    start_widget.selected_program._selected_idx = None
     machine.motor_stir.prepare()
     start_widget.btn_start.setEnabled(True)
 
