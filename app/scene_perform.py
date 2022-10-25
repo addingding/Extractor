@@ -23,8 +23,8 @@ def start_task(a=None):
     
     print("start task")
     status_widget.btn_task_start.setEnabled(False)
-    machine.motor_stir.prepare_to_ready()
-    machine.motor_disk.prepare_to_ready()
+    machine.motor_stir.prepare_at_home()
+    machine.motor_disk.prepare_at_grid_1()
     status_widget.btn_task_pause.setEnabled(True)
     
     
@@ -50,6 +50,9 @@ def _start_task(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
 
     info[f"disk_1_preset"] = 25
     info[f"disk_8_preset"] = 25
+    machine.thermo_0.set_temperatrue(25)
+    machine.thermo_1.set_temperatrue(25)
+
     set_temperature(steps,1)
     e_safe.wait()
     if not e_stop.is_set():
@@ -120,7 +123,7 @@ def task_end_notice(a=None):
     Thread(target=notify,args=(message_known,)).start()
     window.popup(about=(lang("attention"),lang('Finshed')+"!"))
     message_known.set()
-    start_widget.selected_program._selected_idx = None
+    start_widget._selected_idx = None
     machine.motor_stir.prepare()
     start_widget.btn_start.setEnabled(True)
 

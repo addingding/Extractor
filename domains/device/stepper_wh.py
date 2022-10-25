@@ -250,9 +250,8 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
 class DiskMotor(ModbusStepper):
     def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
         super().__init__(id, server, address, ppr, upr)
-        self._position = 0
         self._grid = 1
-        self.set_current(23,5) # (n=15+1)/16 A
+        self.set_current(23,4) # (n=15+1)/16 A
         self.local_set_speed(1)
 
     def grid(self,n:int):
@@ -266,10 +265,9 @@ class DiskMotor(ModbusStepper):
         self.grid(self._grid+1)
     def grid_ccw(self):
         self.grid(self._grid-1)
-    def prepare_to_ready(self):
+    def prepare_at_grid_1(self):
         self.home_return()
         self.bottom()
-        self._position = 0
         self._grid = 1
 
 class WhSteppers:

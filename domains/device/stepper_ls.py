@@ -253,7 +253,8 @@ class LsStepper(Stepper):
 
     def prepare(self):
         self.driver.activate_positioning(9)
-    def prepare_to_ready(self):
+
+    def prepare_at_home(self):
         self.driver.activate_positioning(7)
 
 
