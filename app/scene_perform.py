@@ -46,28 +46,26 @@ def _start_task(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
     info["pg_total_time"] = total_pg_time(steps)
     info["pg_start_time"] = time.time()
     signal_updated.emit(1)
-    set_temperatures(steps)
+
+    info[f"disk_1_preset"] = 25
+    info[f"disk_8_preset"] = 25
+    set_temperature(steps,1)
     e_safe.wait()
     if not e_stop.is_set():
         run_task(e_safe,e_stop,signal_updated,machine,steps)
     event_working.clear()
     
-def set_temperatures(steps:list):
-    info["disk_1_preset"] = 25
-    info["disk_8_preset"] = 25
-    for step in steps:
-        if int(step[1])==1 and step[2]:
-            op_idx = int(step[2])
+def set_temperature(steps:list,step:int):
+    assert step in [1,8]
+    thermo = machine.thermo_0 if step==1 else machine.thermo_1
+    for stp in steps:
+        if int(stp[1])==step and stp[2]:
+            op_idx = int(stp[2])
             op:Operation = operation_handler.obj(op_idx)
             t = op.temperature
-            machine.thermo_0.set_temperatrue(t)
-            info["disk_1_preset"] = t
-        if int(step[1])==8 and step[2]:
-            op_idx = int(step[2])
-            op:Operation = operation_handler.obj(op_idx)
-            t = op.temperature
-            machine.thermo_1.set_temperatrue(t)
-            info["disk_8_preset"] = t
+            thermo.set_temperatrue(t)
+            info[f"disk_{step}_preset"] = t
+
 def total_pg_time(steps:list):
     t=0
     for step in steps:
@@ -77,7 +75,7 @@ def total_pg_time(steps:list):
         t += operation.sec_mag
         t += operation.sec_mix
         t += operation.sec_wait
-        t += 60 #TODO how to evaluate?
+        t += 70 #HACK how to evaluate?
     return t
 
 def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
@@ -85,6 +83,10 @@ def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
         partition:int = int(step[1])
         operation_idx = int(step[2])
         operation:Operation = operation_handler.obj(operation_idx)
+
+        if partition==8:
+            set_temperature(steps,8)
+
         info.update({
             "step_idx": int(step[0]),
             "op_name":operation.op_name,
@@ -117,6 +119,7 @@ def task_end_notice(a=None):
     Thread(target=notify,args=(message_known,)).start()
     window.popup(about=(lang("attention"),lang('Finshed')+"!"))
     message_known.set()
+    machine.motor_stir.prepare()
     start_widget.btn_start.setEnabled(True)
 
 
