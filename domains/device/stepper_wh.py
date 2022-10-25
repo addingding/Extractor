@@ -168,6 +168,9 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
             else:
                 print(self.name,"just right_at_home")
         self._wait_until_stopped(timeout)
+        if not self.at_home:
+            self._back_zero()
+            
         self._assert_zero_point()
         self.current_point = 0
 
