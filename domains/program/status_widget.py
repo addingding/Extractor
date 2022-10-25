@@ -131,11 +131,11 @@ class StatusWidget(QWidget,aWidget):
             self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
             return
         self.event_working.set()
-        self.set_keys_enable(False)
 
         self.btn_p1.setChecked(False) #TODO not working
         self.btn_p1.setDown(False)
-        # print(self.btn_p1.isChecked())
+        self.set_keys_enable(False)
+        
         n = int(n)
         self.disk_key_pressed.emit(n)
 
