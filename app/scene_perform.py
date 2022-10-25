@@ -24,7 +24,8 @@ def start_task(a=None):
     print("start task")
     status_widget.btn_task_start.setEnabled(False)
     machine.motor_stir.prepare_at_home()
-    machine.motor_disk.prepare_at_grid_1()
+    machine.motor_disk.home_return(timeout=15)
+    machine.motor_disk.bottom()
     status_widget.btn_task_pause.setEnabled(True)
     
     

@@ -188,7 +188,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                     if t>=3:
                         print("motor stopped")
                         return
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     if not timeout is None:
                         print(timeout)
                         timeout -= 0.1
