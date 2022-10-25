@@ -22,6 +22,7 @@ def start_task(a=None):
         return
     
     print("start task")
+    status_widget.btn_task_start.setEnabled(False)
     machine.motor_stir.prepare_to_ready()
     machine.motor_disk.prepare_to_ready()
     status_widget.btn_task_pause.setEnabled(True)
