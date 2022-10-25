@@ -35,30 +35,40 @@ class LsStepperDriver(ModbusTerminal):
         self.save_settings()
         time.sleep(0.5)
 
+    def ls_set_single(self,a,b):
+        try:
+            ret = self.set_single(data_start=a,output_value=b)
+            if ret is None:
+                time.sleep(0.01)
+                self.ls_set_single(a,b)
+            else:
+                return ret
+        except Exception as e:
+            print(e)
     def set_zero_threshold(self):
-        self.set_single(0x0175,10)
+        self.ls_set_single(0x0175,10)
 
     def enable_io(self):
 
-        self.set_single(0x0003,0)       #0开环，2闭环
-        self.set_single(0x000F,1)       #强制使能
-        self.set_single(0x0147,0xA5)    #di2 limit 常闭
+        self.ls_set_single(0x0003,0)       #0开环，2闭环
+        self.ls_set_single(0x000F,1)       #强制使能
+        self.ls_set_single(0x0147,0xA5)    #di2 limit 常闭
 
     def pr_set_back_zero_mode(self):
-        self.set_single(0x600A,0x01)
+        self.ls_set_single(0x600A,0x01)
     def pr_start_back_zero(self):
-        self.set_single(0x6002,0x20)
+        self.ls_set_single(0x6002,0x20)
     
     def set_current_point_0(self):
-        self.set_single(0x6002,0x21)
+        self.ls_set_single(0x6002,0x21)
 
     def speed_run(self,speed:int):
         if speed<600:
-            self.set_single(0x6200,0x0002)  #speed mode
-            self.set_single(0x6203,speed)   #set_speed
-            self.set_single(0x6002,0x0010)  #triger
+            self.ls_set_single(0x6200,0x0002)  #speed mode
+            self.ls_set_single(0x6203,speed)   #set_speed
+            self.ls_set_single(0x6002,0x0010)  #triger
     def speed_stop(self):
-        self.set_single(0x6002,0x0040)
+        self.ls_set_single(0x6002,0x0040)
     def soft_stop(self):
         self.speed_stop()
         self.set_max_current(0)
@@ -85,39 +95,39 @@ class LsStepperDriver(ModbusTerminal):
         return (self.high_pos<<16)+self.low_pos
 
     def set_back_zero_speed(self):
-        self.set_single(0x600F,10) # back_zero high_speed
-        self.set_single(0x6010,1)  # back_zero low_speed
+        self.ls_set_single(0x600F,10) # back_zero high_speed
+        self.ls_set_single(0x6010,1)  # back_zero low_speed
 
     def save_settings(self):
-        self.set_single(0x1801,0x2211)  #settings
+        self.ls_set_single(0x1801,0x2211)  #settings
 
     def reset_settings(self):
-        self.set_single(0x1801,0x1111)  #clear error at now
-        self.set_single(0x1801,0x1122)  #clear error in history
-        self.set_single(0x1801,0x2233)  #reset
-        self.set_single(0x1801,0x2211)  #save settings
+        self.ls_set_single(0x1801,0x1111)  #clear error at now
+        self.ls_set_single(0x1801,0x1122)  #clear error in history
+        self.ls_set_single(0x1801,0x2233)  #reset
+        self.ls_set_single(0x1801,0x2211)  #save settings
 
     def set_max_current(self,cur=10):
         if cur<=30:
-            self.set_single(0x0191,cur)
-            # self.set_single(0x0195,10) #额定电流
-            # self.set_single(0x0197,10) #锁轴电流
+            self.ls_set_single(0x0191,cur)
+            # self.ls_set_single(0x0195,10) #额定电流
+            # self.ls_set_single(0x0197,10) #锁轴电流
 
     def set_ppr(self,ppr=10000):
         assert 200<=ppr<=51200
-        self.set_single(0x1001,ppr)
+        self.ls_set_single(0x1001,ppr)
 
     def jog(self,right):
-        self.set_single(0x1801,0x4001+right)
+        self.ls_set_single(0x1801,0x4001+right)
     def pr_control_set(self,ctrg:bool=0,soft:bool=1,open_on:bool=0,level:bool=0):
         pr = (level<<4)+(open_on<<2)+(soft<<1)+ctrg
-        self.set_single(0x6000,pr)
+        self.ls_set_single(0x6000,pr)
     
     def activate_positioning(self,site:int):
-        self.set_single(0x6002,0x10+site)
+        self.ls_set_single(0x6002,0x10+site)
         self.wait_positioned()
     def activate_positioning_without_wait(self,site:int):
-        self.set_single(0x6002,0x10+site)
+        self.ls_set_single(0x6002,0x10+site)
 
     def wait_positioned(self):
         while True:
@@ -136,13 +146,13 @@ class LsStepperDriver(ModbusTerminal):
             point = self.points.get(site,default_point)
         self.points[str(site)] = point
         for i in range(8):
-            self.set_single(0x6200+site*8,point.mode)
-            self.set_single(0x6201+site*8,point.pos_h)
-            self.set_single(0x6202+site*8,point.pos_l)
-            self.set_single(0x6203+site*8,point.speed)
-            self.set_single(0x6204+site*8,point.acc_time)
-            self.set_single(0x6205+site*8,point.dacc_time)
-            self.set_single(0x6206+site*8,point.interval)
+            self.ls_set_single(0x6200+site*8,point.mode)
+            self.ls_set_single(0x6201+site*8,point.pos_h)
+            self.ls_set_single(0x6202+site*8,point.pos_l)
+            self.ls_set_single(0x6203+site*8,point.speed)
+            self.ls_set_single(0x6204+site*8,point.acc_time)
+            self.ls_set_single(0x6205+site*8,point.dacc_time)
+            self.ls_set_single(0x6206+site*8,point.interval)
 
         
 class LsStepper(Stepper):
