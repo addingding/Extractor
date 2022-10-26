@@ -34,7 +34,7 @@ def start_task(a=None):
     status_widget.btn_task_pause.setEnabled(True)
     
     
-    # global task_performer
+    global task_performer
     task_performer = TaskPerformer(perform_job,e_safe_perform,e_stop_perform)
     task_performer.signal_end.connect(task_end_notice)
     task_performer.signal_updated.connect(status_widget.update)

@@ -186,17 +186,16 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         t = 0
         while True:
             try:
-                if self._status.get("stopped"):
+                if self.at_home:
                     t += 1
                     if t>=3:
                         print("motor stopped")
                         return
-                    time.sleep(0.2)
-                    if not timeout is None:
-                        print(timeout)
-                        timeout -= 0.1
-                        if timeout<=0:
-                            raise TimeoutError
+                time.sleep(0.1)
+                if not timeout is None:
+                    timeout -= 0.1
+                    if timeout<=0:
+                        raise TimeoutError
             # except TimeoutError:
             #     print(self.name,"wait stop timeout")
             #     raise TimeoutError
