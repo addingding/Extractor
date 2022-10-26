@@ -1,5 +1,6 @@
-from ecosys import *
 from app.cast import *
+from ecosys import *
+
 
 def prepare_task(a=None):
     if event_working.is_set():
@@ -13,9 +14,10 @@ def prepare_task(a=None):
     window.tabWidget.setCurrentIndex(0)
     start_widget.btn_start.setEnabled(False)
     status_widget.btn_task_start.setEnabled(True)
-    status_widget.btn_task_start.clicked.connect(start_task)
+    status_widget.btn_task_start.clicked.connect(start_task, type=Qt.UniqueConnection)
     machine.motor_stir.prepare()
 
+@Slot()
 def start_task(a=None):
     if machine.sheath_sensor.is_on:
         window.popup(about=(lang("Alert"),lang("No sheath")) )
@@ -32,13 +34,13 @@ def start_task(a=None):
     status_widget.btn_task_pause.setEnabled(True)
     
     
-    global task_performer
-    task_performer = TaskPerformer(_start_task,e_safe_perform,e_stop_perform)
+    # global task_performer
+    task_performer = TaskPerformer(perform_job,e_safe_perform,e_stop_perform)
     task_performer.signal_end.connect(task_end_notice)
     task_performer.signal_updated.connect(status_widget.update)
     task_performer.start()
 
-def _start_task(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
+def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
     event_working.set()
     e_stop.clear()
     task_program = start_widget.selected_program

@@ -126,6 +126,7 @@ class StatusWidget(QWidget,aWidget):
     def show_selected_image(self, filename):
         self.graph.setPixmap(QPixmap(filename))
 
+    @Slot(str)
     def key_pressed(self,n:str):
         if self.event_working.is_set():
             self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
@@ -134,6 +135,7 @@ class StatusWidget(QWidget,aWidget):
 
         self.btn_p1.setChecked(False) #TODO not working
         self.btn_p1.setDown(False)
+
         self.set_keys_enable(False)
         
         n = int(n)

@@ -28,7 +28,7 @@ def window_ready():
     infowin.close()
     if not is_real(machine):
         window.popup(about=(lang("Alert"),lang("Device Error!")))
-        return
+        # return
     control_assign()
     refresh_thread_start()
     window.showFullScreen()
@@ -41,8 +41,10 @@ def control_button_activate():
     start_widget.btn_start.clicked.connect(prepare_task)#prepare
     window.pushButton_4.clicked.connect(fan_switch)
     window.pushButton_5.clicked.connect(led_switch)
+@Slot()
 def fan_switch():
     return machine.fan.switch()
+@Slot()
 def led_switch(a=None):
     return machine.led.switch()
 
@@ -75,6 +77,9 @@ def machine_init():
             bottoms = defaults.get("motor_bottom")
             machine.led.turn_on()
             machine.fan.turn_on()
+            window.pushButton_4.setChecked(True)
+            window.pushButton_5.setChecked(True)
+
             machine.motor_disk.set_points(0,bottoms["motor_disk"])
             machine.motor_mask.set_points(0,bottoms["motor_mask"])
             machine.motor_mag.set_points(0,bottoms["motor_mag"])

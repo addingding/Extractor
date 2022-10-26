@@ -175,6 +175,13 @@ button_style =(""" QPushButton{
                     QPushButton:focus{
                         outline:none;
                         }
+                    QPushButton:checked
+
+                        {
+
+                        background-color:rgb(255,235,181);
+
+                        }
                                 """)
 invisible = (""" QWidget{
                 qproperty-visible:false;
