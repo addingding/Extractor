@@ -186,7 +186,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         t = 0
         while True:
             try:
-                if self.at_home:
+                if self._status.get("stopped"):
                     t += 1
                     if t>=3:
                         print("motor stopped")
