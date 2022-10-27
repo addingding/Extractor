@@ -33,17 +33,18 @@ class LsStepperDriver(ModbusTerminal):
         self.pr_control_set()
         self.set_max_current(10)
         self.save_settings()
+        self.tries = 0
         time.sleep(0.5)
 
     def ls_set_single(self,a,b):
-        n = 0
         try:
             ret = self.set_single(data_start=a,output_value=b)
             if ret is None:
-                if n>=10:
+                self.tries += 1
+                if self.tries >= 10:
                     print("No response 10 times. Ignore.")
+                    self.tries = 0
                     return
-                n += 1
                 time.sleep(0.01)
                 self.ls_set_single(a,b)
             else:

@@ -42,6 +42,15 @@ locked_buttons = [
 ]
 
 tree_style_1 = """
+    QHeaderView::section
+    {
+        font-size:22px;
+        color:black;
+        background:rgba(255,255,255,0);
+        border:1px solid gray;
+        margin-left:0px;
+        padding-left:0px;
+    }
     QTreeWidget{
         font:22px;
         border:1px solid gray;
