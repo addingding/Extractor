@@ -196,9 +196,6 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                     timeout -= 0.1
                     if timeout<=0:
                         raise TimeoutError
-            # except TimeoutError:
-            #     print(self.name,"wait stop timeout")
-            #     raise TimeoutError
             except Exception as e:
                 print(self.name,e)
 
