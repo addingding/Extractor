@@ -43,7 +43,8 @@ class aStepper():
     # def exit(self):...
     # def __del__(self):
     #     self.exit()
-
+    def _grid(self):...
+    
 class aScrew():
     @abstractproperty
     def upr(self)->float:              # unit per round

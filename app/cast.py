@@ -29,7 +29,6 @@ infowin = uis.info_win()
 window = uis.main_win()
 
 program_handler = programers.program_handler()
-operation_handler = programers.operation_handler()
 program_io = CustomWidget(window)
 upgrade_pg = UpgradeWidget(window)
 
@@ -45,12 +44,11 @@ except Exception as e:
 
 uv_widget = timers.uv_widget(window,event_working,timer_map)
 pg = programer_widgets.program_widget(window)
-op = programer_widgets.operation_widget(window)
 start_widget = start_widgets.start_widget(window)
 window.program_updated.connect(start_widget.table_update)
 
 translator_widget = translators.translator(window)
-translator_widget.collect_tables(pg,op,start_widget)
+translator_widget.collect_tables(pg,start_widget)
 translator_widget.trans_tables()
 
 status_widget = status_widgets.status_widget(window,event_working,e_safe_perform, e_stop_perform)

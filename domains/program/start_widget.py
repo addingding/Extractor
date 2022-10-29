@@ -1,8 +1,12 @@
 from prots import *
 from domains.program.programs import *
 
+
 checked_img = os.path.join(BASE_DIR,'app','settings','imgs','checked.png')
 unchecked_img = os.path.join(BASE_DIR,'app','settings','imgs','unchecked.png')
+fold_img =  os.path.join(BASE_DIR,'app','settings','imgs','fold.png')
+expand_img =  os.path.join(BASE_DIR,'app','settings','imgs','expand.png')
+ico = os.path.join(BASE_DIR,'domains/ui/image/home.png')
 
 start_map:dict = {
     "table":"treeWidget_2",
@@ -11,20 +15,19 @@ start_map:dict = {
     "btn_view":"pushButton_27",
 }
 
-        # border:1px golid gray;
+# border:1px golid gray;
 tree_style = """
-
-    QHeaderView{
-        }
-    QHeaderView::section{
+    QTreeWidget{
+        font-size:22px;
+        border:1px solid gray;
+    }
+    QHeaderView::section
+    {
+        font-size: 18px;
+        color:black;
         background:rgba(0,156,230,30);
         margin:0px;
-        height:30px;
-        font: 18px;
-    }
-    QTreeWidget{
-        font:24px;
-        border:1px solid gray;
+        padding:0px;
     }
     QTreeWidget::item{margin:4px;}
     QTreeWidget::indicator {
@@ -37,6 +40,10 @@ tree_style = """
     QTreeWidget::indicator:unchecked {
         image:url('""" +unchecked_img+ """');
         }
+    QTreeView::branch:open:has-children:!has-siblings{}
+    QTreeView::branch:closed:has-children:!has-siblings{}
+    QTreeView::branch:open:has-children {image: url('""" + fold_img + """');}
+    QTreeView::branch:closed:has-children {image: url('""" + expand_img + """');}
 
   """
 tree_style =  tree_style.replace("\\","/")
@@ -45,7 +52,6 @@ tree_style =  tree_style.replace("\\","/")
 class StartWidget(aStartWidget):
     def __init__(self,ui,map):
         self.program_handler:Objsoner=programers.program_handler()
-        self.operation_handler:Objsoner=programers.operation_handler()
         super().__init__(ui,map)
 
         self._selected_idx = 0
@@ -53,10 +59,11 @@ class StartWidget(aStartWidget):
 
         self.table:QTreeWidget = self.table
         self.table.setIconSize(QSize(60,30))
-        self.table.setStyleSheet(tree_style)
+        self.table.header().setDefaultAlignment(Qt.AlignCenter)
         self.btn_scan.hide()
         self.btn_view.hide()
         self.btn_start.setStyleSheet(u"QPushButton{font:32px;}")
+        self.table.setStyleSheet(tree_style)
         self.table_show()
 
     def scan(self):
@@ -96,7 +103,7 @@ class StartWidget(aStartWidget):
         children_cnt = item.childCount()
         for idx in range(children_cnt):
             child = item.child(idx)
-            if child.checkState(0) == Qt.Checked:
+            if child.checkState(9) == Qt.Checked:
                 step_idxes.append(idx)
         return step_idxes
     def table_update(self):
@@ -104,58 +111,65 @@ class StartWidget(aStartWidget):
         self.table_show()
         pass
     def table_show(self):
-        ico = os.path.join(BASE_DIR,'domains/ui/image/home.png')
         program_handler = self.program_handler
-        operation_handler = self.operation_handler
         self.tree:QTreeWidget = self.table
 
-        self.tree.setColumnCount(9)
-        self.tree.setColumnWidth(0,200)
-        self.tree.setColumnWidth(1,120)
+        self.tree.setColumnCount(10)
+        self.tree.setColumnWidth(0,150)
+        self.tree.setColumnWidth(1,100)
         self.tree.setColumnWidth(2,120)
-        for i in range(3,9):
+        for i in range(3,8):
             self.tree.setColumnWidth(i,80)
+        self.tree.setColumnWidth(9,0)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)
         # self.tree.header().setLineWidth(1)                          #设置外线宽度
         # self.tree.header().setMidLineWidth(0)
         # self.tree.header().setFrameStyle(QFrame.VLine|QFrame.Plain)                          #设置外线宽度
-        self.tree.header().setMidLineWidth(0)
-        self.tree.header().setFrameStyle(QFrame.VLine|QFrame.Plain)
+        
+        # self.tree.header().setMidLineWidth(0)
+        # self.tree.header().setFrameStyle(QFrame.VLine|QFrame.Plain)
         head = self.tree.headerItem()
-        heads = ['','disk','op_name','sec_wait','sec_mix','sec_mag','ul_volumn','speed_mix','temperature']
-        for i in range(9):
+        heads = ['','disk','op_name','ul_volumn','sec_mix','speed_mix','sec_mag','sec_wait','temperature','activated']
+        for i in range(10):
             head.setText(i,lang(heads[i]))
             # if i>2:
-            #     head.setTextAlignment(i,Qt.AlignHCenter)
+            head.setTextAlignment(i,Qt.AlignCenter)
 
         for pg in program_handler.obj_all():
             child = QTreeWidgetItem(self.tree)
             child.setText(0,pg.pg_name)
-            child.setText(1,str(pg.idx))
-            child.setIcon(0,QIcon(ico))
+            child.setFont(0,QFont('times', 18, QFont.Black))
+            # child.setText(1,str(pg.idx))
+            # child.setIcon(0,QIcon(ico))
             steps:list = pg.steps
             for step in steps:
                 try:
                     chd = QTreeWidgetItem(child)
-                    chd.setCheckState(0,Qt.Checked)
+                    chd.setCheckState(9,Qt.Checked)
                     chd.setText(0,f"{lang('step')} {step[0]}")
                     chd.setText(1,f"{lang('disk')} {step[1]}")
-                    op = operation_handler.obj(int(step[2])) 
-                    chd.setText(2,op.op_name)
-                    chd.setText(3,str(op.sec_wait))
-                    chd.setText(4,str(op.sec_mix))
-                    chd.setText(5,str(op.sec_mag))
-                    chd.setText(6,str(op.ul_volumn))
-                    chd.setText(7,str(op.speed_mix))
-                    chd.setText(8,str(op.temperature))
+                    chd.setText(2,str(step[2][0]))
+                    chd.setText(3,str(step[2][1]))
+                    chd.setText(4,str(step[2][2]))
+                    chd.setText(5,str(step[2][3]))
+                    chd.setText(6,str(step[2][4]))
+                    chd.setText(7,str(step[2][5]))
+                    chd.setText(8,str(step[2][6]))
                 except Exception as e:
                     # print(e)
                     pass
             self.tree.addTopLevelItem(child)
-        self.tree.expandAll()
+            
+        # self.tree.expandAll()
+        # self.tree.setItemsExpandable(False)
+        self.tree.setIconSize(QSize(48,48))
+        self.tree.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tree.setSelectionMode(QAbstractItemView.SingleSelection)
+
         self.tree.clicked.connect(self.onTreeClicked)
-    
+
+
     def onTreeClicked(self,qmodelindex):
         item = self.tree.currentItem()
         if item is None:

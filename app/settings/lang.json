@@ -23,7 +23,7 @@
     "programs":["Programs","程序"],
     "steps":["Steps","步骤"],
     "quit":["Exit","退出"],
-    "new_program":["New Program","新程序"],
+    "new_program":["New Program","新建"],
     "new_step":["New Step","新步骤"],
     "copy":["Copy","复制"],
     "edit":["Edit","编辑"],
@@ -76,6 +76,6 @@
     "InitError":["InitError. Please check and retry.","初始化错误，请检查重试"],
     "HomeError":["HomeError. Please check and retry.","回零错误，请检查重试"],
     "TimeoutError":["Motion TimeoutError. Please check and retry.","动作超时，请检查重试"],
-    "SafeError":["Motion SafeError. Please check and retry.","电机干涉，请检查重试"]
-    
+    "SafeError":["Motion SafeError. Please check and retry.","电机干涉，请检查重试"],
+    "activated":["Activated","激活"]
 }

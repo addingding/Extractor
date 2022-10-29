@@ -1,6 +1,11 @@
 from ecosys import *
 from app.board import background_png
 
+checked_img = os.path.join(BASE_DIR,'app','settings','imgs','checked.png')
+unchecked_img = os.path.join(BASE_DIR,'app','settings','imgs','unchecked.png')
+fold_img =  os.path.join(BASE_DIR,'app','settings','imgs','fold.png')
+expand_img =  os.path.join(BASE_DIR,'app','settings','imgs','expand.png')
+
 main_win_style = """
     QMainWindow{
         font: 22px;
@@ -12,7 +17,7 @@ info_win_style = """
     QLabel{
         font: 24px bold black;
         border-radius: 5px;
-        background-color:rgba(255,255,255,70);
+        background-color:rgba(255,255,255,95);
         }
     """
 tool_box_style = """ 
@@ -20,6 +25,13 @@ tool_box_style = """
         font:24px;
         background-color:rgba(0,255,255,0);
     } """
+    
+program_tree = """  
+    QTreeView::branch:open:has-children:!has-siblings {}
+    QTreeView::branch:open:has-children:has-siblings {image: url('""" + fold_img + """');}
+    QTreeView::branch:closed:has-children:!has-siblings{}
+    QTreeView::branch:closed:has-children:has-siblings {image: url('""" + expand_img + """');}
+    """
 
 
 frame_widget_style = """

@@ -25,7 +25,6 @@ def retranslate_ui(window):
     window.pushButton_26.setText(lang("prepare"))
     window.pushButton_27.setText(lang("view"))
     window.tabWidget.setTabText(window.tabWidget.indexOf(window.tab_run), lang("program_start"))
-    window.groupBox_7.setTitle(lang("programs"))
     window.pushButton_13.setText(lang("new_program"))
     window.pushButton_15.setText(lang("copy"))
     window.pushButton_21.setText(lang("edit"))
