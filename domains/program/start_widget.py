@@ -114,27 +114,27 @@ class StartWidget(aStartWidget):
         program_handler = self.program_handler
         self.tree:QTreeWidget = self.table
 
-        self.tree.setColumnCount(10)
+        self.tree.setColumnCount(11)
         self.tree.setColumnWidth(0,150)
         self.tree.setColumnWidth(1,100)
         self.tree.setColumnWidth(2,120)
-        for i in range(3,8):
-            self.tree.setColumnWidth(i,80)
-        self.tree.setColumnWidth(9,0)
+        for i in range(3,9):
+            self.tree.setColumnWidth(i,90)
+        self.tree.setColumnWidth(9,60)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)
-        # self.tree.header().setLineWidth(1)                          #设置外线宽度
-        # self.tree.header().setMidLineWidth(0)
-        # self.tree.header().setFrameStyle(QFrame.VLine|QFrame.Plain)                          #设置外线宽度
+        self.tree.header().setLineWidth(0)                          #设置外线宽度
+        self.tree.header().setMidLineWidth(0)
+        self.tree.header().setFrameStyle(QFrame.VLine|QFrame.Plain)
         
-        # self.tree.header().setMidLineWidth(0)
-        # self.tree.header().setFrameStyle(QFrame.VLine|QFrame.Plain)
         head = self.tree.headerItem()
-        heads = ['','disk','op_name','ul_volumn','sec_mix','speed_mix','sec_mag','sec_wait','temperature','activated']
-        for i in range(10):
+        heads = ['','disk','op_name','ul_volumn','sec_mix','speed_mix','sec_mag','sec_wait','temperature','activated','']
+        for i in range(11):
             head.setText(i,lang(heads[i]))
             # if i>2:
             head.setTextAlignment(i,Qt.AlignCenter)
+            head.setFont(i,QFont('times', 16, QFont.Normal))
+            head.setBackgroundColor(i,QColor(0,156,230,30))
 
         for pg in program_handler.obj_all():
             child = QTreeWidgetItem(self.tree)
@@ -156,6 +156,9 @@ class StartWidget(aStartWidget):
                     chd.setText(6,str(step[2][4]))
                     chd.setText(7,str(step[2][5]))
                     chd.setText(8,str(step[2][6]))
+                    for i in range(9):
+                        chd.setTextAlignment(i,Qt.AlignCenter)
+                        chd.setFont(i,QFont('times', 18, QFont.Normal))
                 except Exception as e:
                     # print(e)
                     pass

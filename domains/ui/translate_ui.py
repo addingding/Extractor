@@ -8,7 +8,6 @@ trans_map = {
 }
 
 def retranslate_ui(window):
-    window.label_29.setText(lang("temp_control"))
     window.label_30.setText(f'{lang("disk")} 1')
     window.label_33.setText(f'{lang("disk")} 8')
     window.label_21.setText(lang("sec_mag"))

@@ -183,9 +183,9 @@ class ProgramWidget(aProgrameWidget):
         self.tree.setColumnCount(10)
         self.tree.setColumnWidth(0,150)
         self.tree.setColumnWidth(1,100)
-        self.tree.setColumnWidth(2,100)
+        self.tree.setColumnWidth(2,120)
         for i in range(3,9):
-            self.tree.setColumnWidth(i,80)
+            self.tree.setColumnWidth(i,90)
         self.tree.setColumnWidth(10,1)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)

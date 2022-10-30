@@ -1,32 +1,32 @@
 from prots import *
 
 class LockWidget(QWidget):
-    def __init__(self,ui,key:str,locked_buttons:List[str],button_lock:str):
+    def __init__(self,ui,key:str,locked_buttons:List[str],locker:str):
         super().__init__()
         self.ui = ui
         self.key=key
         self.locked_buttons = locked_buttons
-        self.button_lock = button_lock
-        self.set_unlock_button()
 
-    def lock_buttons(self):
+        self.locker:QPushButton = getattr(self.ui,locker)
+        self.locker.setText(lang("unlock"))
+        self.locker.clicked.connect(self.locker_pressed)
+
+    def locker_pressed(self):
+        lock = (self.locker.text()==lang("lock"))
+        if lock:
+            self.lock_buttons()
+        else:
+            self.unlock_buttons()
+
+    def lock_buttons(self,lock:bool=True):
         for button in self.locked_buttons:
-            self.lock_button(button,True)
-
-    def set_unlock_button(self):
-        btn:QPushButton = getattr(self.ui,self.button_lock)
-        btn.clicked.connect(self.to_unlock_buttons)
+            btn:QPushButton = getattr(self.ui,button)
+            btn.setEnabled(not lock)
+        self.locker.setText(lang("unlock" if lock else "lock"))
 
     def unlock_buttons(self):
-        for button in self.locked_buttons:
-            self.lock_button(button,False)
-    def lock_button(self,button:str,lock:bool=True):
-        btn:QPushButton = getattr(self.ui,button)
-        btn.setEnabled(not lock)
-
-    def to_unlock_buttons(self):
         text = self.ui.popup(dialog=(lang("Input"),lang("Input unlock key")))
         if text not in [None,""] and text == self.key:
-            self.unlock_buttons()
+            self.lock_buttons(False)
         else:
             self.ui.popup(about=(lang("Alert"),lang("No Entry")))

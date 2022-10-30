@@ -62,7 +62,7 @@
     "Align DISK 1":["Align DISK 1, and press 'Yes' to fall motor Z","对齐盘位1后点击'是',振荡机构将落下,请保证对齐"],
     "Aligned?":["Aligned?","已对齐？"],
     "No sheath":["No sheath find! Please check.","未检测到磁套，不能开始。请检查。"],
-    "Device Error!":["Device Error!","设备故障，请检查或联系支持工程师。"],
+    "Device Error!":["Device Error!","设备故障，请检查或联系技术支持工程师。"],
     "choose one":["Please choose one program and start.","请点击选择程序后再开始。"],
     "select_directory":["select directory to import","选择导入文件所在文件夹"],
     "select_output_directory":["select directory to output","选择文件导出到的文件夹"],
@@ -77,5 +77,12 @@
     "HomeError":["HomeError. Please check and retry.","回零错误，请检查重试"],
     "TimeoutError":["Motion TimeoutError. Please check and retry.","动作超时，请检查重试"],
     "SafeError":["Motion SafeError. Please check and retry.","电机干涉，请检查重试"],
-    "activated":["Activated","激活"]
+    "activated":["Activated","激活"],
+    "Input unlock key":["Input unlock key","输入解锁密码"],
+    "Input":["Input","输入"],
+    "Unlock":["Unlock","解锁"],
+    "unlock":["Unlock","解锁"],
+    "lock":["Lock","锁定"],
+    "Lock":["Lock","锁定"],
+    "No Entry":["No Entry","未解锁"]
 }
