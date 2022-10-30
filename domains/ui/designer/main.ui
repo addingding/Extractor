@@ -306,7 +306,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
@@ -1469,6 +1469,22 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
         <string>Start</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
+        <item row="3" column="1">
+         <spacer name="verticalSpacer_14">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="0" column="1">
          <spacer name="verticalSpacer_12">
           <property name="orientation">
@@ -1507,6 +1523,22 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
           </property>
          </widget>
         </item>
+        <item row="4" column="1">
+         <spacer name="verticalSpacer_11">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>149</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="2" column="1">
          <spacer name="verticalSpacer_13">
           <property name="orientation">
@@ -1523,65 +1555,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
           </property>
          </spacer>
         </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="pushButton_25">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Scan Start</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <spacer name="verticalSpacer_14">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="pushButton_27">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Details</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <spacer name="verticalSpacer_11">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>149</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0" rowspan="7">
+        <item row="0" column="0" rowspan="5">
          <widget class="QTreeWidget" name="treeWidget_2">
           <property name="font">
            <font>
@@ -1848,7 +1822,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
            </size>
           </property>
           <property name="currentIndex">
-           <number>6</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="page">
            <layout class="QGridLayout" name="gridLayout_12">
@@ -3134,6 +3108,44 @@ font:24px;</string>
              </item>
             </layout>
            </widget>
+           <widget class="QPushButton" name="pushButton_27">
+            <property name="geometry">
+             <rect>
+              <x>610</x>
+              <y>222</y>
+              <width>120</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Details</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton_25">
+            <property name="geometry">
+             <rect>
+              <x>610</x>
+              <y>140</y>
+              <width>120</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Scan Start</string>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>
@@ -3421,8 +3433,8 @@ font:24px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1219</width>
-             <height>405</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">

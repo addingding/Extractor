@@ -14,12 +14,12 @@ def prepare_task(a=None):
         ctx:List[Tuple[int,str]] = []
         for stp in pg.steps:
             ctx.append((int(stp[1]),str(stp[2][0])))
+        info["disk_info"]=[""]*8
         for idx,txt in ctx:
             info["disk_info"][idx-1] = txt
     
     print("prepare task")
     window.tabWidget.setCurrentIndex(0)
-    start_widget.btn_start.setEnabled(False)
     status_widget.btn_task_start.setEnabled(True)
     status_widget.btn_task_start.clicked.connect(start_task, type=Qt.UniqueConnection)
     machine.motor_stir.prepare()
@@ -31,9 +31,11 @@ def start_task(a=None):
         return
     
     print("start task")
-    status_widget.btn_task_start.setEnabled(False)
-    machine.motor_stir.prepare_at_home()
+
+
+    set_task_start_sets(True)
     
+    machine.motor_stir.prepare_at_home()
     machine.motor_disk.home_return(timeout=15)
     machine.motor_disk.bottom()
     machine.motor_disk._grid = 1
@@ -46,6 +48,13 @@ def start_task(a=None):
     task_performer.signal_end.connect(task_end_notice)
     task_performer.signal_updated.connect(status_widget.update)
     task_performer.start()
+
+def set_task_start_sets(ends:bool=False):
+    tabwidget:QTabWidget = window.tabWidget
+    tabwidget.setTabEnabled(3,ends)
+    tabwidget.setTabEnabled(4,ends)
+    start_widget.btn_start.setEnabled(ends)
+    status_widget.btn_task_start.setEnabled(False)
 
 def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
     event_working.set()
@@ -133,9 +142,10 @@ def task_end_notice(a=None):
     Thread(target=notify,args=(message_known,)).start()
     window.popup(about=(lang("attention"),lang('Finshed')+"!"))
     message_known.set()
+
+    set_task_start_sets(ends=True)
     start_widget._selected_idx = None
     machine.motor_stir.prepare()
-    start_widget.btn_start.setEnabled(True)
 
 
 def notify(message_known:Event):

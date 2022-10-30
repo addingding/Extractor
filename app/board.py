@@ -28,8 +28,7 @@ info = dict(
     uv_is_on = False,
     door_at_spot = False,
     sheath_at_spot = False,
-    # disk_info = [""]*8,
-    disk_info = ["裂解","","","","吸磁","清洗","","洗脱"]
+    disk_info = [""]*8,
   
 )
 
