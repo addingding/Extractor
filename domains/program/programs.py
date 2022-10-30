@@ -25,17 +25,23 @@ class MoveGroup():
 
 
 @dataclass
-class Operation(aOperation):
+class Operation():
+    op_name:str 
+    ul_volumn:int  # 50-1000
+    sec_mix:int   # 0-1800
+    speed_mix:int  # 1-3
+    sec_mag:int  # 0-300
+    sec_wait:int  # 0-600
+    temperature:int  #30-80
     keys = [
         "op_name",
-        "sec_wait","sec_mix","sec_mag",
-        "ul_volumn","speed_mix","temperature"]
-    sec_wait:int= 0  # 0-600
-    sec_mix:int = 0  # 0-1800
-    sec_mag:int = 0 # 0-300
-    ul_volumn:int = 0 # 50-1000
-    speed_mix:int = 0 # 1-3
-    temperature:int = 0 #30-80
+        "ul_volumn",
+        "sec_mix",
+        "speed_mix",
+        "sec_mag",
+        "sec_wait",
+        "temperature",
+        ]
 
 
 @dataclass
@@ -85,8 +91,7 @@ class ProgramJsoner(Singleton,Jsoner):
 class TaskJsoner(Singleton,Jsoner):
     pass
 class Programers():
-    def operation_handler(self):
-        return Objsoner(Operation,OperationJsoner(operations_file))
+
     def program_handler(self):
         return Objsoner(Program,ProgramJsoner(programs_file))
     def task_handler(self):

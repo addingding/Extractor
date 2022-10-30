@@ -41,6 +41,7 @@ def retranslate_ui(window):
     window.pushButton_8.setText(lang("time_set"))
     window.pushButton_12.setText(lang("language"))
     window.pushButton_11.setText(lang("upgrade"))
+    window.pushButton_32.setText(lang("upgrade_open"))
     window.pushButton_10.setText(lang("program_io"))
     window.groupBox_2.setTitle(lang("device_set"))
     

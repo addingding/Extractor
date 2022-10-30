@@ -6,9 +6,16 @@ def prepare_task(a=None):
     if event_working.is_set():
         window.popup(about=("注意！","工作中，无法启动新任务！"))
         return
-    if start_widget.selected_program is None:
+    pg = start_widget.selected_program
+    if pg is None:
         window.popup(about=(lang("Alert"),lang("choose one")))
         return
+    else:
+        ctx:List[Tuple[int,str]] = []
+        for stp in pg.steps:
+            ctx.append((int(stp[1]),str(stp[2][0])))
+        for idx,txt in ctx:
+            info["disk_info"][idx-1] = txt
     
     print("prepare task")
     window.tabWidget.setCurrentIndex(0)
@@ -70,8 +77,7 @@ def set_temperature(steps:list,step:int):
     thermo = machine.thermo_0 if step==1 else machine.thermo_1
     for stp in steps:
         if int(stp[1])==step and stp[2]:
-            op_idx = int(stp[2])
-            op:Operation = operation_handler.obj(op_idx)
+            op:Operation = Operation(*stp[2])
             t = op.temperature
             thermo.set_temperatrue(t)
             info[f"disk_{step}_preset"] = t
@@ -80,8 +86,7 @@ def total_pg_time(steps:list):
     t=0
     for step in steps:
         partition:int = int(step[1])
-        operation_idx = int(step[2])
-        operation:Operation = operation_handler.obj(operation_idx)
+        operation:Operation = Operation(*step[2])
         t += operation.sec_mag
         t += operation.sec_mix
         t += operation.sec_wait
@@ -91,8 +96,7 @@ def total_pg_time(steps:list):
 def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
     for step in steps:
         partition:int = int(step[1])
-        operation_idx = int(step[2])
-        operation:Operation = operation_handler.obj(operation_idx)
+        operation:Operation = Operation(*step[2])
 
         if partition==8:
             set_temperature(steps,8)

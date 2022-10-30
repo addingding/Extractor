@@ -109,4 +109,5 @@ class UpgradeWidget(QWidget):
             os.startfile(directory)
         else:
             os.system(f'xdg-open {directory}')
+        self.ui.close()
     

@@ -119,3 +119,25 @@ class aWidget():
 class MyQInputDialog(QInputDialog):
     def closeEvent(self,event):
         event.ignore()
+class MyQProgressDialog(QProgressDialog):
+    def closeEvent(self,event):
+        if self.value()>=98:
+            event.accept()
+        else:
+            event.ignore()
+        
+    def wait_to_exit(self,event:Event=Event(),timeout=0.01):
+        for val in range(71):
+            self.setValue(val)
+            QCoreApplication.processEvents()
+            if self.wasCanceled():
+                break
+            event.wait(0.01)
+            if event.is_set():
+                break
+        event.wait(timeout)
+        import time
+        for i in range(71,101):
+            self.setValue(i)
+            time.sleep(0.01)
+        self.cancel()

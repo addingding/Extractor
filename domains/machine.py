@@ -219,7 +219,7 @@ class Machine(aMachine):
             info.update({
                 "disk_1_temperature":self.thermo_0.temperature,
                 "disk_8_temperature":self.thermo_1.temperature,
-                "disk_pos":self.motor_disk._grid,
+                "disk":self.motor_disk._grid,
                 "led_is_on":self.led.is_on,
                 "fan_is_on":self.fan.is_on,
                 "uv_is_on":self.uv.is_on,

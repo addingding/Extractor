@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1269</width>
+    <width>1261</width>
     <height>713</height>
    </rect>
   </property>
@@ -306,7 +306,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
@@ -1127,7 +1127,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              <widget class="QLabel" name="label_36">
               <property name="geometry">
                <rect>
-                <x>379</x>
+                <x>380</x>
                 <y>71</y>
                 <width>72</width>
                 <height>30</height>
@@ -1165,7 +1165,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
               <property name="geometry">
                <rect>
                 <x>214</x>
-                <y>9</y>
+                <y>0</y>
                 <width>72</width>
                 <height>30</height>
                </rect>
@@ -1201,8 +1201,8 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              <widget class="QLabel" name="label_38">
               <property name="geometry">
                <rect>
-                <x>58</x>
-                <y>72</y>
+                <x>50</x>
+                <y>70</y>
                 <width>72</width>
                 <height>30</height>
                </rect>
@@ -1406,7 +1406,29 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              </layout>
             </widget>
            </item>
-           <item row="2" column="0" colspan="2">
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="label_11">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>600</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>当前步骤剩余时间00:00:00  全部操作剩余时间 00:00:00</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="3">
             <widget class="QProgressBar" name="progressBar_2">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -1429,27 +1451,11 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
              <property name="value">
               <number>24</number>
              </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="2">
-            <widget class="QLabel" name="label_11">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>600</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>当前步骤剩余时间00:00:00  全部操作剩余时间 00:00:00</string>
-             </property>
              <property name="alignment">
-              <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="textVisible">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -3349,8 +3355,8 @@ font:24px;</string>
           </property>
           <property name="font">
            <font>
-            <family>Adobe Heiti Std</family>
-            <pointsize>42</pointsize>
+            <family>Arial</family>
+            <pointsize>48</pointsize>
             <weight>50</weight>
             <bold>false</bold>
             <kerning>true</kerning>
@@ -3408,15 +3414,15 @@ font:24px;</string>
            <string notr="true">background-color: rgba(0, 250, 220,0);</string>
           </property>
           <property name="currentIndex">
-           <number>6</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_status">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>89</width>
-             <height>89</height>
+             <width>1219</width>
+             <height>405</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3584,20 +3590,6 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
            </layout>
-          </widget>
-          <widget class="QWidget" name="page_9">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>100</width>
-             <height>30</height>
-            </rect>
-           </property>
-           <attribute name="label">
-            <string>页</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_29"/>
           </widget>
          </widget>
         </item>

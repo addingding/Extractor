@@ -8,6 +8,11 @@ grid_key_style = """
     QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:36px bold;}
     QPushButton:pressed,QpushButton:checked{background-color:rgba(0,252,50,90%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
   """
+grid_key_style_ctx =""" 
+    QPushButton{background-color:rgb(255,235,181);border:0.5px solid gray;border-radius:25;font:24px;}
+    QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:36px bold;}
+    QPushButton:pressed,QpushButton:checked{background-color:rgba(0,252,50,90%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
+ """
 
 status_map ={
     "graph":"label",
@@ -16,6 +21,14 @@ status_map ={
     "temp_2":"label_32",
     "time_label":"label_11",
     "time_bar":"progressBar_2",
+}
+op_buttons = {
+    "btn_task_start":"pushButton_57",
+    "btn_task_pause":"pushButton_19",
+    "btn_task_stop":"pushButton_18",
+    "btn_task_return":"pushButton_20",
+}
+step_info = {
     "lbl_op_name":"label_13",
     "lbl_step":"label_15",
     "lbl_disk":"label_16",
@@ -24,7 +37,8 @@ status_map ={
     "lbl_mag":"label_22",
     "lbl_volumn":"label_24",
     "lbl_speed":"label_25",
-    "lbl_temperature":"label_28",
+    "lbl_temperature":"label_28",}
+disk_buttons = {
     "btn_p1":"pushButton_43",
     "btn_p2":"pushButton_44",
     "btn_p3":"pushButton_45",
@@ -33,11 +47,23 @@ status_map ={
     "btn_p6":"pushButton_48",
     "btn_p7":"pushButton_49",
     "btn_p8":"pushButton_50",
-    "btn_task_start":"pushButton_57",
-    "btn_task_pause":"pushButton_19",
-    "btn_task_stop":"pushButton_18",
-    "btn_task_return":"pushButton_20",
 }
+
+disk_labels = {
+    "lbl_p1":"label_3",
+    "lbl_p2":"label_10",
+    "lbl_p3":"label_35",
+    "lbl_p4":"label_36",
+    "lbl_p5":"label_37",
+    "lbl_p6":"label_38",
+    "lbl_p7":"label_39",
+    "lbl_p8":"label_40",
+}
+
+status_map.update(step_info)
+status_map.update(op_buttons)
+status_map.update(disk_buttons)
+status_map.update(disk_labels)
 
 font_style ="""QLabel{font-size:28px;} """
 
@@ -72,14 +98,23 @@ class StatusWidget(QWidget,aWidget):
         disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk360.png')
         self.show_selected_image(disk_img)
 
-        self.btn_p1.clicked.connect(lambda n: self.key_pressed(self.btn_p1.text()))
-        self.btn_p2.clicked.connect(lambda n: self.key_pressed(self.btn_p2.text()))
-        self.btn_p3.clicked.connect(lambda n: self.key_pressed(self.btn_p3.text()))
-        self.btn_p4.clicked.connect(lambda n: self.key_pressed(self.btn_p4.text()))
-        self.btn_p5.clicked.connect(lambda n: self.key_pressed(self.btn_p5.text()))
-        self.btn_p6.clicked.connect(lambda n: self.key_pressed(self.btn_p6.text()))
-        self.btn_p7.clicked.connect(lambda n: self.key_pressed(self.btn_p7.text()))
-        self.btn_p8.clicked.connect(lambda n: self.key_pressed(self.btn_p8.text()))
+        def press_p1(): self.key_pressed("1")
+        def press_p2(): self.key_pressed("2")
+        def press_p3(): self.key_pressed("3")
+        def press_p4(): self.key_pressed("4")
+        def press_p5(): self.key_pressed("5")
+        def press_p6(): self.key_pressed("6")
+        def press_p7(): self.key_pressed("7")
+        def press_p8(): self.key_pressed("8")
+
+        self.btn_p1.clicked.connect(press_p1, type=Qt.UniqueConnection)
+        self.btn_p2.clicked.connect(press_p2, type=Qt.UniqueConnection)
+        self.btn_p3.clicked.connect(press_p3, type=Qt.UniqueConnection)
+        self.btn_p4.clicked.connect(press_p4, type=Qt.UniqueConnection)
+        self.btn_p5.clicked.connect(press_p5, type=Qt.UniqueConnection)
+        self.btn_p6.clicked.connect(press_p6, type=Qt.UniqueConnection)
+        self.btn_p7.clicked.connect(press_p7, type=Qt.UniqueConnection)
+        self.btn_p8.clicked.connect(press_p8, type=Qt.UniqueConnection)
 
         self.keys =(
             self.btn_p1,
@@ -91,9 +126,23 @@ class StatusWidget(QWidget,aWidget):
             self.btn_p7,
             self.btn_p8,
             )
+        self.labels = (
+            self.lbl_p1,
+            self.lbl_p2,
+            self.lbl_p3,
+            self.lbl_p4,
+            self.lbl_p5,
+            self.lbl_p6,
+            self.lbl_p7,
+            self.lbl_p8,
+            )
         self.set_keys_checkable(True)
+        self.event_finished = Event()
 
         self.ui.tabWidget.setStyleSheet(font_style)
+
+        # for test
+        # self.disk_key_pressed.connect(self.act_after_pressed)
 
     def btn_pause_clicked(self):
         if self.btn_task_pause.text()==lang("pause"):
@@ -119,7 +168,7 @@ class StatusWidget(QWidget,aWidget):
         for key in self.keys:
             key.setCheckable(enabled)
             key.setStyleSheet(grid_key_style)
-    def set_keys_enable(self,enabled:bool):
+    def set_keys_enabled(self,enabled:bool):
         for key in self.keys:
             key.setEnabled(enabled)
 
@@ -132,41 +181,56 @@ class StatusWidget(QWidget,aWidget):
             self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
             return
         self.event_working.set()
-
-        self.btn_p1.setChecked(False) #TODO not working
-        self.btn_p1.setDown(False)
-
-        self.set_keys_enable(False)
-        
-        n = int(n)
+        self.event_finished.clear()
+        btn = getattr(self,f"btn_p{n}")
+        n = int(btn.text())
         self.disk_key_pressed.emit(n)
-
+        pb = self.ui.popup(pb_dialog=("Wait","Processing"))
+        pb.wait_to_exit(self.event_finished,6)
+    @Slot(int)
+    def act_after_pressed(self,n:int):
         # code for test
-        # time.sleep(1)
-        # self.disk_arrived_and_work_done(n)
-    
+        time.sleep(2)
+        self.disk_arrived_and_work_done(n)
+
+
+
     def disk_arrived(self,n:int):
         info.update({"disk":n})
         self.disk_look_update(n)
 
     def disk_look_update(self, n):
         self.refresh_disk_key_order(n)
-        btn = getattr(self,f"btn_p{n+1}")
+        btn = getattr(self,f"btn_p{n}")
         btn.setChecked(False)
 
         self.btn_p1.setChecked(True)
         self.btn_p1.setDown(True)
 
     def disk_arrived_and_work_done(self,n:int):
-        self.disk_arrived(n)
-        self.set_keys_enable(True)
+        self.event_finished.set()
         self.event_working.clear()
+        self.disk_arrived(n)
         
     def refresh_disk_key_order(self,n:int):
         for i in range(8):
             key:QPushButton = self.keys[i]
             key.setText(str((n-1+i)%8+1))
-        
+
+            label:QLabel = self.labels[i]
+            ctx = str(info.get("disk_info")[int(key.text())-1])
+            label.setText(ctx)
+            if ctx=="":
+                label.setStyleSheet(u"background-color: rgba(255,255,224,0);")
+                key.setStyleSheet(u"background-color: rgba(255,127,0,98);")
+                key.setStyleSheet(grid_key_style)
+            else:
+                key.setStyleSheet(grid_key_style_ctx)
+                if i == 0:
+                    label.setStyleSheet(u"background-color: rgb(0,255,0);")
+                else:
+                    label.setStyleSheet(u"background-color: rgba(255,255,224,98);")
+
 
 
     def get_device(self,machine:aMachine):
@@ -204,7 +268,6 @@ class StatusWidget(QWidget,aWidget):
         self.time_label.setText(\
             f'{lang("step needs:")} {step_time_left}s,{lang("program needs:")} {pg_time_left}s'
             )
-
         self.disk_look_update(int(info.get("disk")))
 
     def check_signals(self,info):
@@ -231,3 +294,4 @@ class TestStatusWidget():
 
 if __name__ == "__main__":
     TestStatusWidget().test_status_widget()
+    pass

@@ -3,20 +3,20 @@ from ecosys import *
 info = dict(
     pg_idx = None,
     pg_name = None,
-    disk_1_preset = 50,
-    disk_8_preset = 80,
+    disk_1_preset = 25,
+    disk_8_preset = 25,
     pg_total_time = 1,
     pg_start_time = time.time(),
 
     step_idx = 1,
-    op_name= "mixing",
+    op_name= "----",
     disk = 1,
     sec_wait= 50,
     sec_mix= 60,
     sec_mag= 6,
     ul_volumn= 700,
     speed_mix= 2,
-    temperature= 25,
+    temperature= 0,
     step_total_time = 1,
     step_start_time = time.time(),
     
@@ -28,6 +28,8 @@ info = dict(
     uv_is_on = False,
     door_at_spot = False,
     sheath_at_spot = False,
+    # disk_info = [""]*8,
+    disk_info = ["裂解","","","","吸磁","清洗","","洗脱"]
   
 )
 

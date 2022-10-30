@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setWindowModality(Qt.NonModal)
-        MainWindow.resize(1269, 713)
+        MainWindow.resize(1261, 713)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -487,7 +487,7 @@ class Ui_MainWindow(object):
         self.label_35.setIndent(0)
         self.label_36 = QLabel(self.widget_7)
         self.label_36.setObjectName(u"label_36")
-        self.label_36.setGeometry(QRect(379, 71, 72, 30))
+        self.label_36.setGeometry(QRect(380, 71, 72, 30))
         sizePolicy6.setHeightForWidth(self.label_36.sizePolicy().hasHeightForWidth())
         self.label_36.setSizePolicy(sizePolicy6)
         self.label_36.setMinimumSize(QSize(72, 30))
@@ -496,7 +496,7 @@ class Ui_MainWindow(object):
         self.label_36.setIndent(0)
         self.label_37 = QLabel(self.widget_7)
         self.label_37.setObjectName(u"label_37")
-        self.label_37.setGeometry(QRect(214, 9, 72, 30))
+        self.label_37.setGeometry(QRect(214, 0, 72, 30))
         sizePolicy6.setHeightForWidth(self.label_37.sizePolicy().hasHeightForWidth())
         self.label_37.setSizePolicy(sizePolicy6)
         self.label_37.setMinimumSize(QSize(72, 30))
@@ -505,7 +505,7 @@ class Ui_MainWindow(object):
         self.label_37.setIndent(0)
         self.label_38 = QLabel(self.widget_7)
         self.label_38.setObjectName(u"label_38")
-        self.label_38.setGeometry(QRect(58, 72, 72, 30))
+        self.label_38.setGeometry(QRect(50, 70, 72, 30))
         sizePolicy6.setHeightForWidth(self.label_38.sizePolicy().hasHeightForWidth())
         self.label_38.setSizePolicy(sizePolicy6)
         self.label_38.setMinimumSize(QSize(72, 30))
@@ -593,6 +593,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_28.addWidget(self.frame_4, 1, 0, 1, 3)
 
+        self.label_11 = QLabel(self.frame_3)
+        self.label_11.setObjectName(u"label_11")
+        sizePolicy3.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
+        self.label_11.setSizePolicy(sizePolicy3)
+        self.label_11.setMinimumSize(QSize(600, 30))
+        self.label_11.setAlignment(Qt.AlignJustify|Qt.AlignVCenter)
+
+        self.gridLayout_28.addWidget(self.label_11, 3, 0, 1, 2)
+
         self.progressBar_2 = QProgressBar(self.frame_3)
         self.progressBar_2.setObjectName(u"progressBar_2")
         sizePolicy7.setHeightForWidth(self.progressBar_2.sizePolicy().hasHeightForWidth())
@@ -603,17 +612,10 @@ class Ui_MainWindow(object):
         font3.setPointSize(14)
         self.progressBar_2.setFont(font3)
         self.progressBar_2.setValue(24)
+        self.progressBar_2.setAlignment(Qt.AlignCenter)
+        self.progressBar_2.setTextVisible(False)
 
-        self.gridLayout_28.addWidget(self.progressBar_2, 2, 0, 1, 2)
-
-        self.label_11 = QLabel(self.frame_3)
-        self.label_11.setObjectName(u"label_11")
-        sizePolicy3.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
-        self.label_11.setSizePolicy(sizePolicy3)
-        self.label_11.setMinimumSize(QSize(600, 30))
-        self.label_11.setAlignment(Qt.AlignJustify|Qt.AlignVCenter)
-
-        self.gridLayout_28.addWidget(self.label_11, 3, 0, 1, 2)
+        self.gridLayout_28.addWidget(self.progressBar_2, 2, 0, 1, 3)
 
 
         self.gridLayout_16.addWidget(self.frame_3, 0, 0, 1, 1)
@@ -1421,8 +1423,8 @@ class Ui_MainWindow(object):
         self.timeEdit.setMinimumSize(QSize(300, 100))
         self.timeEdit.setBaseSize(QSize(300, 100))
         font10 = QFont()
-        font10.setFamily(u"Adobe Heiti Std")
-        font10.setPointSize(42)
+        font10.setFamily(u"Arial")
+        font10.setPointSize(48)
         font10.setBold(False)
         font10.setWeight(50)
         font10.setKerning(True)
@@ -1450,7 +1452,7 @@ class Ui_MainWindow(object):
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 89, 89))
+        self.page_status.setGeometry(QRect(0, 0, 1219, 405))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
@@ -1516,12 +1518,6 @@ class Ui_MainWindow(object):
         self.gridLayout_18.addWidget(self.textBrowser_6, 0, 0, 1, 1)
 
         self.toolBox.addItem(self.page_3, u"Version")
-        self.page_9 = QWidget()
-        self.page_9.setObjectName(u"page_9")
-        self.page_9.setGeometry(QRect(0, 0, 100, 30))
-        self.gridLayout_29 = QGridLayout(self.page_9)
-        self.gridLayout_29.setObjectName(u"gridLayout_29")
-        self.toolBox.addItem(self.page_9, u"\u9875")
 
         self.gridLayout_2.addWidget(self.toolBox, 0, 0, 1, 1)
 
@@ -1537,9 +1533,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         self.stackedWidget.setCurrentIndex(6)
-        self.toolBox.setCurrentIndex(6)
+        self.toolBox.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1720,7 +1716,6 @@ class Ui_MainWindow(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:14pt;\">version: v1.05</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:14pt;\">\u7248\u672c\uff1av1.05</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_3), QCoreApplication.translate("MainWindow", u"Version", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_9), QCoreApplication.translate("MainWindow", u"\u9875", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_help), QCoreApplication.translate("MainWindow", u"Helps", None))
     # retranslateUi
 

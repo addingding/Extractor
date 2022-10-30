@@ -13,7 +13,7 @@ from domains.ui.designer.info import Ui_MainWindow as info_win
 
 class WithPop:
     
-    def popup(self,*args,about:tuple=None,question:tuple=None,dialog:tuple=None,input:tuple=None):
+    def popup(self,*args,about:tuple=None,question:tuple=None,dialog:tuple=None,input:tuple=None,pb_dialog:tuple=None):
         if len(args)>0:
             a_ = args[0]
             about = a_.get("about")
@@ -33,6 +33,18 @@ class WithPop:
             ret = True if reply == QMessageBox.Yes else False
             self.pop_ret = ret
             return ret
+
+        if pb_dialog is not None:
+            _dialog = MyQProgressDialog(lang("progress"),lang("cancel"),0,100,None) #XXX
+            _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
+            _dialog.setFocusPolicy(Qt.ClickFocus)
+            _dialog.setWindowModality(Qt.WindowModal)
+            _dialog.setStyleSheet(message_style+button_style)
+            _dialog.setCancelButton(None)
+            _dialog.setLabel(None)
+            _dialog.setWindowTitle("waiting...")
+            _dialog.show()
+            return _dialog
 
         if dialog is not None:
             _dialog = MyQInputDialog(None) #XXX
@@ -56,6 +68,8 @@ class WithPop:
                 else:
                     self.pop_ret = None
                     return None
+
+"""                     
     def popup_no_frame(self,*args,about:tuple=None,question:tuple=None,dialog:tuple=None,input:tuple=None):
         if len(args)>0:
             a_ = args[0]
@@ -102,6 +116,7 @@ class WithPop:
             ret = True if reply == QMessageBox.Yes else False
             self.pop_ret = ret
             return ret
+
         if dialog is not None:
             _dialog = MyQInputDialog(None)
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
@@ -122,7 +137,7 @@ class WithPop:
             else:
                 self.pop_ret = None
                 return None
-
+ """
 
 class PopThread(QThread):
     _signal = Signal(dict) 
@@ -326,7 +341,9 @@ def main():
 
     # splash.effect()
     # main_win.close()
-    
+    pb = main_win.popup(pb_dialog=("title","txt"))
+    pb.wait_to_exit(timeout=5)
+
     sys.exit(application.exec_())
 
 if __name__ == "__main__":

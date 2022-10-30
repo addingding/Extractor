@@ -54,7 +54,7 @@ class StartWidget(aStartWidget):
         self.program_handler:Objsoner=programers.program_handler()
         super().__init__(ui,map)
 
-        self._selected_idx = 0
+        self._selected_idx = None
         self._checked_step_idxes = list()
 
         self.table:QTreeWidget = self.table
@@ -140,7 +140,8 @@ class StartWidget(aStartWidget):
             child = QTreeWidgetItem(self.tree)
             child.setText(0,pg.pg_name)
             child.setFont(0,QFont('times', 18, QFont.Black))
-            # child.setText(1,str(pg.idx))
+            child.setText(1,str(pg.idx))
+            child.setTextColor(1,QColor(0,0,0,0))
             # child.setIcon(0,QIcon(ico))
             steps:list = pg.steps
             for step in steps:
@@ -166,9 +167,9 @@ class StartWidget(aStartWidget):
             
         # self.tree.expandAll()
         # self.tree.setItemsExpandable(False)
-        self.tree.setIconSize(QSize(48,48))
-        self.tree.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.tree.setSelectionMode(QAbstractItemView.SingleSelection)
+        # self.tree.setIconSize(QSize(48,48))
+        # self.tree.setSelectionBehavior(QAbstractItemView.SelectRows)
+        # self.tree.setSelectionMode(QAbstractItemView.SingleSelection)
 
         self.tree.clicked.connect(self.onTreeClicked)
 
@@ -183,6 +184,7 @@ class StartWidget(aStartWidget):
             else:
                 idx = item.parent().text(1)
             self._selected_idx = idx
+        print(self._selected_idx,"clicked")
 
 
 class Widgets():

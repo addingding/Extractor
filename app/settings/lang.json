@@ -43,6 +43,7 @@
     "device_set":["Device","仪器设置"],
     "program_io":["Program IO","程序导入/导出"],
     "upgrade":["Upgrade","软件升级"],
+    "upgrade_open":["Upgrade open","从文件升级"],
     "language":["语言设置","Language"],
     "accept":["Accept","确定"],
     "ok":["Ok","确定"],

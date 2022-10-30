@@ -122,7 +122,7 @@ class ProgramWidget(aProgrameWidget):
         self.table_update()
     def copy(self):
         try:
-            idx = self._selected_idx
+            idx = self.selected_idx
             new_obj = self.program_handler.copy(idx)
         except Exception as e:
             print(e)
@@ -160,7 +160,7 @@ class ProgramWidget(aProgrameWidget):
         if not self.ui.popup(question=(lang("Alert"),lang("Sure to Delete?"))):
             return
         try:
-            self.program_handler.delete(int(self._selected_idx))
+            self.program_handler.delete(int(self.selected_idx))
             self.table_update()
         except Exception as e:
             print(e)
