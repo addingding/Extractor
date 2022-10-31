@@ -228,6 +228,7 @@ class Machine(aMachine):
             })
         except Exception as e:
             print(e)
+            # info.update({"disk":1})
             # raise e
 class Machines:
     def connect_servers(self):

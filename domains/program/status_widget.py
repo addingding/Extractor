@@ -187,6 +187,7 @@ class StatusWidget(QWidget,aWidget):
         self.disk_key_pressed.emit(n)
         pb = self.ui.popup(pb_dialog=("Wait","Processing"))
         pb.wait_to_exit(self.event_finished,6)
+        
     @Slot(int)
     def act_after_pressed(self,n:int):
         # code for test

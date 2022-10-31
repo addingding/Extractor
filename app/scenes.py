@@ -30,8 +30,10 @@ def window_ready():
         window.popup(about=(lang("Alert"),lang("Device Error!")))
         # return
     control_assign()
+    
     refresh_thread_start()
-    window.showFullScreen()
+    # window.showFullScreen()
+    window.show()
 
 def control_assign():
     control_button_activate()

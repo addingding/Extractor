@@ -625,6 +625,10 @@ class Ui_MainWindow(object):
         self.tab_run.setObjectName(u"tab_run")
         self.gridLayout_9 = QGridLayout(self.tab_run)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.verticalSpacer_14 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_9.addItem(self.verticalSpacer_14, 3, 1, 1, 1)
+
         self.verticalSpacer_12 = QSpacerItem(20, 149, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.gridLayout_9.addItem(self.verticalSpacer_12, 0, 1, 1, 1)
@@ -641,29 +645,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.pushButton_26, 1, 1, 1, 1)
 
+        self.verticalSpacer_11 = QSpacerItem(20, 149, QSizePolicy.Minimum, QSizePolicy.Preferred)
+
+        self.gridLayout_9.addItem(self.verticalSpacer_11, 4, 1, 1, 1)
+
         self.verticalSpacer_13 = QSpacerItem(20, 100, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.gridLayout_9.addItem(self.verticalSpacer_13, 2, 1, 1, 1)
-
-        self.pushButton_25 = QPushButton(self.tab_run)
-        self.pushButton_25.setObjectName(u"pushButton_25")
-        self.pushButton_25.setMinimumSize(QSize(100, 50))
-
-        self.gridLayout_9.addWidget(self.pushButton_25, 3, 1, 1, 1)
-
-        self.verticalSpacer_14 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_9.addItem(self.verticalSpacer_14, 4, 1, 1, 1)
-
-        self.pushButton_27 = QPushButton(self.tab_run)
-        self.pushButton_27.setObjectName(u"pushButton_27")
-        self.pushButton_27.setMinimumSize(QSize(100, 50))
-
-        self.gridLayout_9.addWidget(self.pushButton_27, 5, 1, 1, 1)
-
-        self.verticalSpacer_11 = QSpacerItem(20, 149, QSizePolicy.Minimum, QSizePolicy.Preferred)
-
-        self.gridLayout_9.addItem(self.verticalSpacer_11, 6, 1, 1, 1)
 
         self.treeWidget_2 = QTreeWidget(self.tab_run)
         __qtreewidgetitem = QTreeWidgetItem()
@@ -675,7 +663,7 @@ class Ui_MainWindow(object):
         font5.setPointSize(16)
         self.treeWidget_2.setFont(font5)
 
-        self.gridLayout_9.addWidget(self.treeWidget_2, 0, 0, 7, 1)
+        self.gridLayout_9.addWidget(self.treeWidget_2, 0, 0, 5, 1)
 
         self.tabWidget.addTab(self.tab_run, "")
         self.tab_program = QWidget()
@@ -1326,6 +1314,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout_22.addWidget(self.pushButton_15, 4, 2, 1, 1)
 
+        self.pushButton_27 = QPushButton(self.page_10)
+        self.pushButton_27.setObjectName(u"pushButton_27")
+        self.pushButton_27.setGeometry(QRect(610, 222, 120, 50))
+        self.pushButton_27.setMinimumSize(QSize(100, 50))
+        self.pushButton_25 = QPushButton(self.page_10)
+        self.pushButton_25.setObjectName(u"pushButton_25")
+        self.pushButton_25.setGeometry(QRect(610, 140, 120, 50))
+        self.pushButton_25.setMinimumSize(QSize(100, 50))
         self.stackedWidget.addWidget(self.page_10)
 
         self.gridLayout_8.addWidget(self.stackedWidget, 0, 0, 8, 1)
@@ -1533,8 +1529,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(4)
-        self.stackedWidget.setCurrentIndex(6)
+        self.tabWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(5)
         self.toolBox.setCurrentIndex(0)
 
 
@@ -1578,15 +1574,15 @@ class Ui_MainWindow(object):
         self.pushButton_48.setText(QCoreApplication.translate("MainWindow", u"6", None))
         self.pushButton_49.setText(QCoreApplication.translate("MainWindow", u"7", None))
         self.pushButton_50.setText(QCoreApplication.translate("MainWindow", u"8", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_3.setText("")
         self.label.setText("")
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_37.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_38.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_39.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_40.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_10.setText("")
+        self.label_35.setText("")
+        self.label_36.setText("")
+        self.label_37.setText("")
+        self.label_38.setText("")
+        self.label_39.setText("")
+        self.label_40.setText("")
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Disk 1", None))
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"37\u2103", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"Disk 8", None))
@@ -1594,8 +1590,6 @@ class Ui_MainWindow(object):
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u6b65\u9aa4\u5269\u4f59\u65f6\u95f400:00:00  \u5168\u90e8\u64cd\u4f5c\u5269\u4f59\u65f6\u95f4 00:00:00", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_status), QCoreApplication.translate("MainWindow", u"Inspect", None))
         self.pushButton_26.setText(QCoreApplication.translate("MainWindow", u"Prepare", None))
-        self.pushButton_25.setText(QCoreApplication.translate("MainWindow", u"Scan Start", None))
-        self.pushButton_27.setText(QCoreApplication.translate("MainWindow", u"Details", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_run), QCoreApplication.translate("MainWindow", u"Start", None))
         self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"New Prog", None))
         self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
@@ -1650,6 +1644,8 @@ class Ui_MainWindow(object):
         self.pushButton_22.setText(QCoreApplication.translate("MainWindow", u"Del All", None))
         self.pushButton_21.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
         self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"Copy", None))
+        self.pushButton_27.setText(QCoreApplication.translate("MainWindow", u"Details", None))
+        self.pushButton_25.setText(QCoreApplication.translate("MainWindow", u"Scan Start", None))
         self.pushButton_41.setText(QCoreApplication.translate("MainWindow", u"Calibration", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Programs IO", None))
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Upgrade", None))
