@@ -70,17 +70,20 @@ def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
     info["pg_start_time"] = time.time()
     signal_updated.emit(1)
 
-    info[f"disk_1_preset"] = 25
-    info[f"disk_8_preset"] = 25
-    machine.thermo_0.set_temperatrue(25)
-    machine.thermo_1.set_temperatrue(25)
+    set_temperature_to_roomtemperature()
 
     set_temperature(steps,1)
     e_safe.wait()
     if not e_stop.is_set():
         run_task(e_safe,e_stop,signal_updated,machine,steps)
     event_working.clear()
-    
+
+def set_temperature_to_roomtemperature():
+    info[f"disk_1_preset"] = 25
+    info[f"disk_8_preset"] = 25
+    machine.thermo_0.set_temperatrue(25)
+    machine.thermo_1.set_temperatrue(25)
+
 def set_temperature(steps:list,step:int):
     assert step in [1,8]
     thermo = machine.thermo_0 if step==1 else machine.thermo_1
@@ -142,7 +145,8 @@ def task_end_notice(a=None):
     Thread(target=notify,args=(message_known,)).start()
     window.popup(about=(lang("attention"),lang('Finshed')+"!"))
     message_known.set()
-
+    
+    set_temperature_to_roomtemperature()
     set_task_start_sets(ends=True)
     start_widget._selected_idx = None
     machine.motor_stir.prepare()
