@@ -139,5 +139,5 @@ class Objsoner():
     def delete(self,prg_idx:int,stp_idx:int=None):
         self.jsoner.delete(prg_idx,stp_idx)
     def insert(self,prg_idx:int,stp_idx:int):
-        self.jsoner.insert(prg_idx,stp_idx,(1,"name",[0]*7))
+        self.jsoner.insert(prg_idx,stp_idx,(1,["name",*([0]*6)]))
 

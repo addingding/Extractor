@@ -41,6 +41,8 @@ locked_buttons = [
     "pushButton_34",
     "pushButton_17",
     "pushButton_37",
+    "pushButton_58",
+    "pushButton_59",
 ]
 
 
@@ -217,7 +219,7 @@ class ProgramWidget(aProgrameWidget):
         self.tree.setColumnWidth(2,120)
         for i in range(3,9):
             self.tree.setColumnWidth(i,90)
-        self.tree.setColumnWidth(10,1)
+        self.tree.setColumnWidth(9,1)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)
         # self.tree.header().setLineWidth(1)                          #设置外线宽度
@@ -256,6 +258,7 @@ class ProgramWidget(aProgrameWidget):
                 chd.setText(7,str(step[2][5]))
                 chd.setText(8,str(step[2][6]))
                 for i in range(9):
+                    chd.setFont(0,QFont('times', 18, QFont.Normal))
                     chd.setTextAlignment(i,Qt.AlignHCenter)
                 for i in range(1,9):
                     chd.setFlags(Qt.ItemIsEnabled | Qt.ItemIsEditable)
