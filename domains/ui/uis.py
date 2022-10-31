@@ -219,7 +219,7 @@ class MainInterface(QMainWindow,MainWin,WithPop):
         
 
     def close_window(self):
-        if self.popup(question=(lang("Alert"),lang("Are you sure?"))):
+        if self.popup(question=(lang("Alert"),lang("Are_you_sure?"))):
             self.close()
 
     def languages_retranslate(self):

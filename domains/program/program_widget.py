@@ -11,6 +11,8 @@ program_map = {
     "btn_save":"pushButton_14",
     "btn_delete":"pushButton_16",
     "btn_delete_all":"pushButton_22",
+    "btn_insert_up":"pushButton_58",
+    "btn_insert_down":"pushButton_59",
 }
 
 # operation_map = {
@@ -94,9 +96,13 @@ class ProgramWidget(aProgrameWidget):
 
         self.lock_widget = LockWidget(ui,"2022",locked_buttons,button_lock)
         self.lock_widget.lock_buttons()
-        self._selected_idx = None
+        self._selected_program_idx:int = None
+        self._selected_step_idx:int = None
+        self.btn_insert_up.clicked.connect(self.insert_blank_up)
+        self.btn_insert_down.clicked.connect(self.insert_blank_down)
 
         self.table_show()
+
     def _set_default_style(self):
         self.table.setStyleSheet(table_style)
         self.table.header().setDefaultAlignment(Qt.AlignCenter)
@@ -122,7 +128,7 @@ class ProgramWidget(aProgrameWidget):
         self.table_update()
     def copy(self):
         try:
-            idx = self.selected_idx
+            idx:int = self._selected_program_idx
             new_obj = self.program_handler.copy(idx)
         except Exception as e:
             print(e)
@@ -155,16 +161,41 @@ class ProgramWidget(aProgrameWidget):
             pg.steps = steps
             self.program_handler.update(pg)
         self.table_update()
+
+    def insert_blank_up(self):
+        if self._selected_step_idx is None:
+            return
+        self.program_handler.insert(self._selected_program_idx,self._selected_step_idx)
+        self.table_update()
+    def insert_blank_down(self):
+        if self._selected_step_idx is None:
+            return
+        self.program_handler.insert(self._selected_program_idx,self._selected_step_idx+1)
+        self.table_update()
+    
+    def delete_program(self,prg_idx:int):
+        try:
+            self.program_handler.delete(prg_idx)
+        except Exception as e:
+            print(e)
+    def delete_step(self,prg_idx:int,stp_idx:int):
+        try:
+            self.program_handler.delete(prg_idx,stp_idx)
+        except Exception as e:
+            print(e)
         
     def delete(self):
         if not self.ui.popup(question=(lang("Alert"),lang("Sure to Delete?"))):
             return
-        try:
-            self.program_handler.delete(int(self.selected_idx))
-            self.table_update()
-        except Exception as e:
-            print(e)
-        pass
+        if self._selected_program_idx is None:
+            return
+        elif self._selected_step_idx is None:
+            self.delete_program(self._selected_program_idx)
+        else:
+            self.delete_step(self._selected_program_idx,self._selected_step_idx)
+
+        self.table_update()
+
     def delete_all(self):
         pass
 
@@ -241,13 +272,17 @@ class ProgramWidget(aProgrameWidget):
     def onTreeClicked(self,qmodelindex):
         item = self.tree.currentItem()
         if item is None:
-            self._selected_idx = None
+            self._selected_program_idx = None
+            self._selected_step_idx = None
         else:
             if item.parent() is None:
-                idx = item.text(1)
+                self._selected_program_idx = int(item.text(1))
+                self._selected_step_idx = None
+
             else:
-                idx = item.parent().text(1)
-            self._selected_idx = idx
+                self._selected_program_idx = int(item.parent().text(1))
+                self._selected_step_idx = int((item.text(0).split(" "))[1])
+        # print(self._selected_program_idx,self._selected_step_idx)
 
 
 class Widgets():

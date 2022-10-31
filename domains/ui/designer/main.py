@@ -680,11 +680,11 @@ class Ui_MainWindow(object):
         self.treeWidget.setMinimumSize(QSize(0, 0))
         self.treeWidget.setMaximumSize(QSize(1280, 16777215))
 
-        self.gridLayout_17.addWidget(self.treeWidget, 0, 0, 9, 1)
+        self.gridLayout_17.addWidget(self.treeWidget, 0, 0, 13, 1)
 
         self.verticalSpacer_15 = QSpacerItem(20, 136, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
-        self.gridLayout_17.addItem(self.verticalSpacer_15, 0, 1, 1, 1)
+        self.gridLayout_17.addItem(self.verticalSpacer_15, 0, 2, 1, 1)
 
         self.pushButton_13 = QPushButton(self.tab_program)
         self.pushButton_13.setObjectName(u"pushButton_13")
@@ -701,37 +701,57 @@ class Ui_MainWindow(object):
 
         self.gridLayout_17.addItem(self.verticalSpacer_17, 2, 2, 1, 1)
 
+        self.pushButton_58 = QPushButton(self.tab_program)
+        self.pushButton_58.setObjectName(u"pushButton_58")
+        self.pushButton_58.setMinimumSize(QSize(120, 50))
+
+        self.gridLayout_17.addWidget(self.pushButton_58, 3, 1, 1, 2)
+
+        self.verticalSpacer_18 = QSpacerItem(20, 13, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_17.addItem(self.verticalSpacer_18, 4, 2, 1, 1)
+
         self.pushButton_16 = QPushButton(self.tab_program)
         self.pushButton_16.setObjectName(u"pushButton_16")
-        self.pushButton_16.setMinimumSize(QSize(100, 50))
+        self.pushButton_16.setMinimumSize(QSize(120, 50))
 
-        self.gridLayout_17.addWidget(self.pushButton_16, 3, 1, 1, 2)
+        self.gridLayout_17.addWidget(self.pushButton_16, 5, 1, 1, 2)
+
+        self.verticalSpacer_30 = QSpacerItem(20, 13, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_17.addItem(self.verticalSpacer_30, 6, 2, 1, 1)
+
+        self.pushButton_59 = QPushButton(self.tab_program)
+        self.pushButton_59.setObjectName(u"pushButton_59")
+        self.pushButton_59.setMinimumSize(QSize(120, 50))
+
+        self.gridLayout_17.addWidget(self.pushButton_59, 7, 1, 1, 2)
 
         self.verticalSpacer_38 = QSpacerItem(20, 13, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
-        self.gridLayout_17.addItem(self.verticalSpacer_38, 4, 2, 1, 1)
+        self.gridLayout_17.addItem(self.verticalSpacer_38, 8, 2, 1, 1)
 
         self.pushButton_14 = QPushButton(self.tab_program)
         self.pushButton_14.setObjectName(u"pushButton_14")
         sizePolicy6.setHeightForWidth(self.pushButton_14.sizePolicy().hasHeightForWidth())
         self.pushButton_14.setSizePolicy(sizePolicy6)
-        self.pushButton_14.setMinimumSize(QSize(100, 50))
+        self.pushButton_14.setMinimumSize(QSize(120, 50))
 
-        self.gridLayout_17.addWidget(self.pushButton_14, 5, 1, 1, 2)
+        self.gridLayout_17.addWidget(self.pushButton_14, 9, 1, 1, 2)
 
         self.verticalSpacer_40 = QSpacerItem(20, 13, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
-        self.gridLayout_17.addItem(self.verticalSpacer_40, 6, 2, 1, 1)
+        self.gridLayout_17.addItem(self.verticalSpacer_40, 10, 2, 1, 1)
 
         self.pushButton_55 = QPushButton(self.tab_program)
         self.pushButton_55.setObjectName(u"pushButton_55")
-        self.pushButton_55.setMinimumSize(QSize(100, 50))
+        self.pushButton_55.setMinimumSize(QSize(120, 50))
 
-        self.gridLayout_17.addWidget(self.pushButton_55, 7, 1, 1, 2)
+        self.gridLayout_17.addWidget(self.pushButton_55, 11, 1, 1, 2)
 
         self.verticalSpacer_19 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
-        self.gridLayout_17.addItem(self.verticalSpacer_19, 8, 1, 1, 1)
+        self.gridLayout_17.addItem(self.verticalSpacer_19, 12, 1, 1, 1)
 
         self.tabWidget.addTab(self.tab_program, "")
         self.tab_manage = QWidget()
@@ -1529,7 +1549,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.stackedWidget.setCurrentIndex(5)
         self.toolBox.setCurrentIndex(0)
 
@@ -1592,7 +1612,9 @@ class Ui_MainWindow(object):
         self.pushButton_26.setText(QCoreApplication.translate("MainWindow", u"Prepare", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_run), QCoreApplication.translate("MainWindow", u"Start", None))
         self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"New Prog", None))
+        self.pushButton_58.setText(QCoreApplication.translate("MainWindow", u"Insert Up", None))
         self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
+        self.pushButton_59.setText(QCoreApplication.translate("MainWindow", u"Insert Down", None))
         self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.pushButton_55.setText(QCoreApplication.translate("MainWindow", u"Unlock", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_program), QCoreApplication.translate("MainWindow", u"Programs", None))

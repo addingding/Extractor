@@ -306,7 +306,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
@@ -1577,7 +1577,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
         <string>Programs</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_17">
-        <item row="0" column="0" rowspan="9">
+        <item row="0" column="0" rowspan="13">
          <widget class="QTreeWidget" name="treeWidget">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1604,7 +1604,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
           </column>
          </widget>
         </item>
-        <item row="0" column="1">
+        <item row="0" column="2">
          <spacer name="verticalSpacer_15">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -1656,20 +1656,20 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
          </spacer>
         </item>
         <item row="3" column="1" colspan="2">
-         <widget class="QPushButton" name="pushButton_16">
+         <widget class="QPushButton" name="pushButton_58">
           <property name="minimumSize">
            <size>
-            <width>100</width>
+            <width>120</width>
             <height>50</height>
            </size>
           </property>
           <property name="text">
-           <string>Delete</string>
+           <string>Insert Up</string>
           </property>
          </widget>
         </item>
         <item row="4" column="2">
-         <spacer name="verticalSpacer_38">
+         <spacer name="verticalSpacer_18">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1685,26 +1685,20 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
          </spacer>
         </item>
         <item row="5" column="1" colspan="2">
-         <widget class="QPushButton" name="pushButton_14">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QPushButton" name="pushButton_16">
           <property name="minimumSize">
            <size>
-            <width>100</width>
+            <width>120</width>
             <height>50</height>
            </size>
           </property>
           <property name="text">
-           <string>Save</string>
+           <string>Delete</string>
           </property>
          </widget>
         </item>
         <item row="6" column="2">
-         <spacer name="verticalSpacer_40">
+         <spacer name="verticalSpacer_30">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1720,10 +1714,74 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
          </spacer>
         </item>
         <item row="7" column="1" colspan="2">
+         <widget class="QPushButton" name="pushButton_59">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Insert Down</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2">
+         <spacer name="verticalSpacer_38">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="9" column="1" colspan="2">
+         <widget class="QPushButton" name="pushButton_14">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2">
+         <spacer name="verticalSpacer_40">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="11" column="1" colspan="2">
          <widget class="QPushButton" name="pushButton_55">
           <property name="minimumSize">
            <size>
-            <width>100</width>
+            <width>120</width>
             <height>50</height>
            </size>
           </property>
@@ -1732,7 +1790,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="12" column="1">
          <spacer name="verticalSpacer_19">
           <property name="orientation">
            <enum>Qt::Vertical</enum>

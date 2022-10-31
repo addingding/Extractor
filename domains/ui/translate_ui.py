@@ -8,6 +8,8 @@ trans_map = {
 }
 
 def retranslate_ui(window):
+    window.pushButton_58.setText(lang("Insert_Up"))
+    window.pushButton_59.setText(lang("Insert_Down"))
     window.label_30.setText(f'{lang("disk")} 1')
     window.label_33.setText(f'{lang("disk")} 8')
     window.label_21.setText(lang("sec_mag"))
@@ -77,8 +79,8 @@ def retranslate_ui(window):
     window.pushButton_41.setText(lang("calibration"))
     window.pushButton_42.setText(lang("return"))
     window.groupBox_8.setTitle(lang("calibration"))
-    window.pushButton_9.setText(lang("Import Programs"))
-    window.pushButton_51.setText(lang("Export Programs"))
+    window.pushButton_9.setText(lang("Import_Programs"))
+    window.pushButton_51.setText(lang("Export_Programs"))
     window.pushButton_52.setText(lang("Directory"))
     window.pushButton_57.setText(lang("start"))
 

@@ -28,7 +28,7 @@ info = dict(
     uv_is_on = False,
     door_at_spot = False,
     sheath_at_spot = False,
-    disk_info = [""]*8,
+    disk_info = [0]*8,
   
 )
 

@@ -52,11 +52,31 @@ class Jsoner():
     def update(self,ins:dict):
         self.data.update(ins)
         self.save()
-    def delete(self,idx:int):
+    def delete(self,idx:int,stp:int=None):
         k = str(idx)
-        self.data.pop(k)
+        item = self.data.pop(k)
+        if not stp is None:
+            steps = item['steps']
+            for i in range(len(steps)):
+                if i == stp-1:
+                    steps.pop(i)
+            for i in range(len(steps)):
+                steps[i][0] = i+1
+
+            item.update({"steps":steps})
+            self.data.update({k:item})
         self.save()
-            
+    def insert(self,idx:int,stp:int,ctx:tuple):
+        k = str(idx)
+        item = self.data.pop(k)
+        steps:list = item['steps']
+        steps.insert(stp-1,[stp,*ctx])
+        for i in range(len(steps)):
+            steps[i][0] = i+1
+        item.update({"steps":steps})
+        self.data.update({k:item})
+        self.save()
+
 
 class Objsoner():
     def __init__(self,model:object,jsoner:Jsoner):
@@ -116,7 +136,8 @@ class Objsoner():
     def update(self,obj:object):
         _ins = self.obj_to_ins(obj)
         self.jsoner.update(_ins)
-    def delete(self,idx:int):
-        self.jsoner.delete(idx)
-    
+    def delete(self,prg_idx:int,stp_idx:int=None):
+        self.jsoner.delete(prg_idx,stp_idx)
+    def insert(self,prg_idx:int,stp_idx:int):
+        self.jsoner.insert(prg_idx,stp_idx,(1,"name",[0]*7))
 

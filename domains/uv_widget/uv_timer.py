@@ -63,7 +63,7 @@ class UvTimerWidget(aTimerWidget):
     def ring(self):
         self.stop_clicked()
         print("Time reached!")
-        self.head.setText("UV Time Reached!!!")
+        self.head.setText("UV Time Satified!!!")
 
     def start_clicked(self):
         if self.event_working.is_set():
