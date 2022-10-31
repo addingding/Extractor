@@ -42,6 +42,13 @@ class Operation():
         "sec_wait",
         "temperature",
         ]
+    def __post_init__(self):
+        self.ul_volumn = int(self.ul_volumn)
+        self.sec_mix = int(self.sec_mix)
+        self.speed_mix = int(self.speed_mix)
+        self.sec_mag = int(self.sec_mag)
+        self.sec_wait = int(self.sec_wait)
+        self.temperature = int(self.temperature)
 
 
 @dataclass

@@ -11,7 +11,7 @@ class MachineSignals(QWidget):
         if not self.machine.motor_stir.at_home:
             self.machine.motor_stir.home_direct()
         self.machine.motor_disk.grid(n)
-        self.grid_arrived.emit(self.machine.motor_disk._grid)
+        self.grid_arrived.emit(n) #XXX self.machine.motor_disk._grid 
     
     def update(self):
         self.machine.update()

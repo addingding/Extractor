@@ -202,36 +202,44 @@ class Simulator():
         self._sim = aClass
     def __getattribute__(self, __name: str):
         _sim = super().__getattribute__("_sim")
-        attr = getattr(_sim,__name)
+        try:
+            attr = getattr(_sim,__name)
+        except AttributeError:
+            print("Lack Attr",_sim,__name)
+            return print
 
         _c,_p = get_attrs(_sim)
-        def printf(n=None):
+        def printf(*args,n=None,**kw):
             _cls = _sim.__name__
             print(f"{_cls}.{__name}({n})")
             return f"{_cls}.{__name}({n})"
-        if __name in _c:
-            return printf
-        elif __name in _p:
-            #property
-            if hasattr(attr,"fget"): 
-                _attr = getattr(attr,'fget')
-                annotations = _attr.__annotations__
-            
-                # has annotation
-                if "return" in annotations.keys():  
-                    print(f"->{_sim.__name__}.{__name}")
-                    _type = annotations.get("return")
-                    if _type in [str,int,float,bool,list,dict,tuple,set]:
-                        return f"->{_type.__name__}"
-                    else:
-                        return Simulator(_type)
-                # no annotation
-                else:                               
-                    print(__name,"cited1")
-            # attribute
-            else:                   
-                print(__name,"attr cited")
-        else:
-            print(":::Simulator NotFind:::")
+        try:
+            if __name in _c:
+                return printf
+            elif __name in _p:
+                #property
+                if hasattr(attr,"fget"): 
+                    _attr = getattr(attr,'fget')
+                    annotations = _attr.__annotations__
+                
+                    # has annotation
+                    if "return" in annotations.keys():  
+                        print(f"->{_sim.__name__}.{__name}")
+                        _type = annotations.get("return")
+                        if _type in [str,int,float,bool,list,dict,tuple,set]:
+                            return f"->{_type.__name__}"
+                        else:
+                            return Simulator(_type)
+                    # no annotation
+                    else:                               
+                        print(__name,"cited1")
+                # attribute
+                else:                   
+                    print(__name,"attr cited")
+            else:
+                print(":::Simulator NotFind:::")
+                return printf
+        except Exception as e:
+            print(e)
             return printf
 aSim = Simulator
