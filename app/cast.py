@@ -1,24 +1,19 @@
+from app.board import info
+from app.stage import application
+from domains import (programer_widgets, start_widgets, status_widgets,
+                     translators, uis)
+from domains.machine import *
+from domains.program.calib_widget import Calibration
+from domains.program.custom_widget import CustomWidget, UpgradeWidget
+from domains.program.machine_signals import MachineSignals
+from domains.program.programs import programers
+from domains.program.qthread_worker import *
+from domains.uv_widget.uv_timer import timer_map, timers
 from ecosys import *
 from prots import *
-
-from app.stage import application
-from app.board import info
-
-from domains import uis,programer_widgets,start_widgets
-from domains import translators
-from domains import status_widgets
-from domains.uv_widget.uv_timer import timers,timer_map
-from domains.machine import *
-from domains.program.programs import programers
-from domains.program.calib_widget import Calibration
-from domains.program.machine_signals import MachineSignals
-from domains.program.qthread_worker import *
-from domains.program.custom_widget import CustomWidget,UpgradeWidget
-
 from prots._cast import *
 
 e_work = Event()
-e_safe = Event()
 e_stop = Event()
 
 update_timer = QTimer()
@@ -51,7 +46,7 @@ translator_widget = translators.translator(window)
 translator_widget.collect_tables(pg,start_widget)
 translator_widget.trans_tables()
 
-status_widget = status_widgets.status_widget(window,e_work,e_safe, e_stop)
+status_widget = status_widgets.status_widget(window,e_work, e_stop)
 calib_widget = Calibration(window)
 
 

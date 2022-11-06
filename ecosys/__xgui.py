@@ -64,43 +64,43 @@ class Worker(QThread):
         self.e_stop.set()
     def pause(self):
         self.e_safe.clear()
-    def work_on(self):
+    def resume(self):
         self.e_safe.set()
     def dismiss(self):
         self.stop()
+
 class Performer(QThread):
     """
     # main
-    self.worker = Worker(task,*args,**kws)
-    self.worker.signal_end.connect(self.work_end)
-    self.worker.start()
+    performer = Performer(task,*args,**kws)
+    performer.signal_end.connect(self.work_end)
+    performer.start()
     def work_end(self,ins:int):
         print(f'get_int{ins}')
         self.open = 1
     """
     # signal_end = Signal(int)
     # signal_updated = Signal(int)
-    def __init__(self,task,e_safe,e_stop,*argv,**kwargv):
+    signal_pause = Signal(int)
+    def __init__(self,task,e_stop,*argv,**kwargv):
         super().__init__()
         self.task = task
         self.argv = argv
         self.kwargv = kwargv
         self.e_stop:Event = e_stop #terminate
-        self.e_safe:Event = e_safe #pause
 
     def run(self):
-        self.e_safe.set()
-        self.task(self.e_safe,self.e_stop,self.signal_updated,*self.argv,**self.kwargv)
+        self.task(self.e_stop,self.signal_updated,*self.argv,**self.kwargv)
         self.signal_end.emit(0)
 
     def stop(self):
-        self.e_stop.set()
+        ...
     def pause(self):
-        self.e_safe.clear()
-    def work_on(self):
-        self.e_safe.set()
+        ...
+    def resume(self):
+        ...
     def dismiss(self):
-        self.stop()
+        ...
 
 class ClickableLabel(QLabel):
     clicked = Signal()

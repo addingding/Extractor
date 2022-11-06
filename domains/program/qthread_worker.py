@@ -5,10 +5,6 @@ from ecosys import *
 e_safe_collect = Event()
 e_stop_collect = Event()
 
-class DataCollector(Worker):
-    signal_end = Signal(int)
-    signal_updated = Signal(int)
-
 
 
 class TaskPerformer(Performer):

@@ -128,9 +128,8 @@ class Machine(aMachine):
         #         print(e)
         pass
 
-    def perform_step(self,e_safe:Event,partition:int,operation:Operation,step_idx:int):
+    def perform_step(self,partition:int,operation:Operation,step_idx:int):
         self.motor_stir.home_return()
-        e_safe.wait()
         defaults= read_defaults()
         speed = operation.speed_mix
         if speed<=1: speed =1
@@ -146,16 +145,11 @@ class Machine(aMachine):
         self.motor_mask.set_points(operation.ul_volumn,
             defaults.get("motor_bottom").get("motor_mask"))
 
-        e_safe.wait()
         self.partition_ready(partition,operation.sec_wait)
-        e_safe.wait()
         if int(step_idx) == 1:
             self.first_touch(operation.sec_mag)
-        e_safe.wait()
-        self.stir(e_safe,operation.sec_mix)
-        e_safe.wait()
+        self.stir(operation.sec_mix)
         self.up(operation.sec_mag)
-        e_safe.wait()
 
     def partition_ready(self,partition,sec_wait):
         self.motor_stir.home_return()
@@ -167,17 +161,12 @@ class Machine(aMachine):
 
     def first_touch(self,sec_mag):
         self.motor_stir.bottom_mag(sec_mag)
-    def stir(self,e_safe:Event,sec_mix):
+    def stir(self,sec_mix):
         if sec_mix>0:
-            e_safe.wait()
             self.motor_stir.half_liquid()
-            e_safe.wait()
             self.motor_mag.home()
-            e_safe.wait()
-            self.motor_stir.stir_mix(e_safe,sec_mix)
-            e_safe.wait()
+            self.motor_stir.stir_mix(sec_mix)
             self.motor_stir.inner_liquid()
-            e_safe.wait()
     def up(self,sec_mag):
         if sec_mag > 0:
             self.motor_mag.bottom()

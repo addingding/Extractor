@@ -1,8 +1,5 @@
 from ecosys import aSim
-from prots.roles._uis import *
-from prots.roles._user import aConfigor,aOperator
-from prots.roles._machine import aMachine
-from prots.roles._device import *
+from prots import *
 
 splash_screen:aSplashScreen = aSim(aSplashScreen)
 login_screen:aLoginScreen = aSim(aLoginScreen)
@@ -16,6 +13,7 @@ operator:aOperator = aSim(aOperator)
 machine: aMachine = aSim(aMachine)
 uv_widget:aUV = aSim(aUV)
 beeper:aBeeper = aSim(aBeeper)
+
 
 
 def is_real(obj):

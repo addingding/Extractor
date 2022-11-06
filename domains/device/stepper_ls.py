@@ -279,7 +279,7 @@ class LsStepper(Stepper):
     def home_direct(self):
         self.driver.activate_positioning(7)
         
-    def stir_mix(self,e_safe:Event,mix_sec):
+    def stir_mix(self,mix_sec):
         if mix_sec<=0: return
         self.driver.set_max_current(20)
         self.stir_time = Event()

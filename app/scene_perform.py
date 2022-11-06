@@ -23,6 +23,7 @@ def prepare_task(a=None):
     status_widget.btn_task_start.setEnabled(True)
     status_widget.btn_task_start.clicked.connect(start_task, type=Qt.UniqueConnection)
     machine.motor_stir.prepare()
+    set_temperature_to_roomtemperature()
 
 @Slot()
 def start_task(a=None):
@@ -44,7 +45,7 @@ def start_task(a=None):
     
     
     global task_performer
-    task_performer = TaskPerformer(perform_job,e_safe,e_stop)
+    task_performer = TaskPerformer(perform_job,e_stop)
     task_performer.signal_end.connect(task_end_notice)
     task_performer.signal_updated.connect(status_widget.update)
     task_performer.start()
@@ -56,7 +57,7 @@ def set_task_start_sets(ends:bool=False):
     start_widget.btn_start.setEnabled(ends)
     status_widget.btn_task_start.setEnabled(False)
 
-def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
+def perform_job(e_stop:Event,signal_updated:Signal=None):
     global e_work
     e_work.set()
     e_stop.clear()
@@ -71,12 +72,10 @@ def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
     info["pg_start_time"] = time.time()
     signal_updated.emit(1)
 
-    set_temperature_to_roomtemperature()
 
     set_temperature(steps,1)
-    e_safe.wait()
     if not e_stop.is_set():
-        run_task(e_safe,e_stop,signal_updated,machine,steps)
+        run_task(e_stop,signal_updated,machine,steps)
     e_work.clear()
 
 def set_temperature_to_roomtemperature():
@@ -106,7 +105,7 @@ def total_pg_time(steps:list):
         t += 65 #HACK how to evaluate?
     return t
 
-def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
+def run_task(e_stop,signal_updated,machine:Machine,steps:list):
     for step in steps:
         partition:int = int(step[1])
         operation:Operation = Operation(*step[2])
@@ -130,8 +129,7 @@ def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
             "step_start_time":time.time(),
             })
         signal_updated.emit(1)
-        e_safe.wait()
-        machine.perform_step(e_safe,partition,operation,step[0])
+        machine.perform_step(partition,operation,step[0])
         if e_stop.is_set():
             break
     machine.task_end()

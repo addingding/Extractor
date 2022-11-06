@@ -42,6 +42,23 @@ class aTask():
     idx:str
     program:aProgram
 
+class aSteps(list):...
+
+class aPerform(ABC):
+    @abstractmethod
+    def start(self,steps:List[list]): ...
+    @abstractmethod
+    def cancel(self): ...
+    @abstractmethod
+    def pause(self): ...
+    @abstractmethod
+    def resume(self): ...
+
+class aPerformer(aPerform):
+    @abstractproperty
+    def machine(self)->aMachine:...
+    @abstractproperty
+    def steps(self)->List[list]:...
 
 
 class TestOperations():

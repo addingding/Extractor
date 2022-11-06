@@ -72,12 +72,11 @@ class StatusWidget(QWidget,aWidget):
     pause_signal = Signal(int)
     stop_signal = Signal(int)
 
-    def __init__(self, ui, map,e_work:Event,e_safe:Event, e_stop:Event):
+    def __init__(self, ui, map,e_work:Event, e_stop:Event):
         super().__init__()
         aWidget.__init__(self,ui, map)
 
         self.e_work=e_work
-        self.e_safe = e_safe
         self.e_stop = e_stop
         self.btn_task_start:QPushButton = self.btn_task_start
 
@@ -154,13 +153,13 @@ class StatusWidget(QWidget,aWidget):
         
     def working_pause_set(self):
         if (info.get("door_at_spot")!= 0) and self.btn_task_pause.text == lang("pause"):
-            self.e_safe.set()
+            self.pause_signal.emit(1)
         else:
-            self.e_safe.clear()
+            self.pause_signal.emit(0)
 
     def btn_stop_clicked(self):
         if self.ui.popup(question=(lang("Alert"),lang("Eorror would happen.Are you sure?"))):
-            self.e_stop.set()
+            self.stop_signal.emit(1)
 
     def return_to_start(self):
         self.ui.tabWidget.setCurrentIndex(1)
@@ -274,8 +273,8 @@ class StatusWidget(QWidget,aWidget):
 
 
 class StatusWidgets():
-    def status_widget(self,ui,e_work,e_safe, e_stop):
-        return StatusWidget(ui,status_map,e_work,e_safe, e_stop)
+    def status_widget(self,ui,e_work, e_stop):
+        return StatusWidget(ui,status_map,e_work, e_stop)
 
 status_widgets = StatusWidgets()
 

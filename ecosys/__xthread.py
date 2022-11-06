@@ -66,7 +66,7 @@ class LineWorker():
     
     def pause(self):
         self.go.clear()
-    def work_on(self):
+    def resume(self):
         self.go.set()
 
     def pause_switch(self):
@@ -171,7 +171,7 @@ def utest_flow_worker():
         time.sleep(1)
 
     print("continue_work")
-    _worker.work_on()
+    _worker.resume()
     time.sleep(2)
     
     print("dismiss!!!!")
