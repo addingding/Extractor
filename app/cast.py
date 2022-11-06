@@ -17,9 +17,9 @@ from domains.program.custom_widget import CustomWidget,UpgradeWidget
 
 from prots._cast import *
 
-event_working = Event()
-e_safe_perform = Event()
-e_stop_perform = Event()
+e_work = Event()
+e_safe = Event()
+e_stop = Event()
 
 update_timer = QTimer()
 
@@ -42,7 +42,7 @@ except Exception as e:
     print(e)
 
 
-uv_widget = timers.uv_widget(window,event_working,timer_map)
+uv_widget = timers.uv_widget(window,e_work,timer_map)
 pg = programer_widgets.program_widget(window)
 start_widget = start_widgets.start_widget(window)
 window.program_updated.connect(start_widget.table_update)
@@ -51,7 +51,7 @@ translator_widget = translators.translator(window)
 translator_widget.collect_tables(pg,start_widget)
 translator_widget.trans_tables()
 
-status_widget = status_widgets.status_widget(window,event_working,e_safe_perform, e_stop_perform)
+status_widget = status_widgets.status_widget(window,e_work,e_safe, e_stop)
 calib_widget = Calibration(window)
 
 

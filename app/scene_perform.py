@@ -3,7 +3,7 @@ from ecosys import *
 
 
 def prepare_task(a=None):
-    if event_working.is_set():
+    if e_work.is_set():
         window.popup(about=("注意！","工作中，无法启动新任务！"))
         return
     pg = start_widget.selected_program
@@ -44,7 +44,7 @@ def start_task(a=None):
     
     
     global task_performer
-    task_performer = TaskPerformer(perform_job,e_safe_perform,e_stop_perform)
+    task_performer = TaskPerformer(perform_job,e_safe,e_stop)
     task_performer.signal_end.connect(task_end_notice)
     task_performer.signal_updated.connect(status_widget.update)
     task_performer.start()
@@ -57,7 +57,8 @@ def set_task_start_sets(ends:bool=False):
     status_widget.btn_task_start.setEnabled(False)
 
 def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
-    event_working.set()
+    global e_work
+    e_work.set()
     e_stop.clear()
     task_program = start_widget.selected_program
     pg_idx = task_program.idx
@@ -76,7 +77,7 @@ def perform_job(e_safe:Event,e_stop:Event,signal_updated:Signal=None):
     e_safe.wait()
     if not e_stop.is_set():
         run_task(e_safe,e_stop,signal_updated,machine,steps)
-    event_working.clear()
+    e_work.clear()
 
 def set_temperature_to_roomtemperature():
     info[f"disk_1_preset"] = 25
@@ -102,7 +103,7 @@ def total_pg_time(steps:list):
         t += operation.sec_mag
         t += operation.sec_mix
         t += operation.sec_wait
-        t += 70 #HACK how to evaluate?
+        t += 65 #HACK how to evaluate?
     return t
 
 def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
@@ -125,7 +126,7 @@ def run_task(e_safe,e_stop,signal_updated,machine:Machine,steps:list):
             "temperature": operation.temperature,
             "step_total_time": operation.sec_mag
                 +operation.sec_mix
-                +operation.sec_wait+30,
+                +operation.sec_wait+65,
             "step_start_time":time.time(),
             })
         signal_updated.emit(1)

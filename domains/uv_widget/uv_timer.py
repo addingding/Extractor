@@ -15,11 +15,11 @@ timer_map:dict = dict(
 )
 
 class UvTimerWidget(aTimerWidget):
-    def __init__(self,ui,map,event_working:Event =None,uv:aUV = None):
+    def __init__(self,ui,map,e_work:Event =None,uv:aUV = None):
         super().__init__(ui,map)
-        if event_working is None:
-            event_working = Event()
-        self.event_working = event_working
+        if e_work is None:
+            e_work = Event()
+        self.e_work = e_work
         self._uv:aUV = uv
         self.stop.clicked.connect(self.stop_clicked)
         self.reset.clicked.connect(self.reset_clicked)
@@ -66,10 +66,10 @@ class UvTimerWidget(aTimerWidget):
         self.head.setText("UV Time Satified!!!")
 
     def start_clicked(self):
-        if self.event_working.is_set():
+        if self.e_work.is_set():
             self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
             return
-        self.event_working.set() 
+        self.e_work.set() 
         self.head.setText("UV Time")
         self.time_count = self.read_face_time()
         self.time_total = self.time_count
@@ -88,7 +88,7 @@ class UvTimerWidget(aTimerWidget):
         self.face.setReadOnly(False)
         self.start.setEnabled(True)
         self.reset.setEnabled(True)
-        self.event_working.clear()
+        self.e_work.clear()
         pass
     def reset_clicked(self):
         self.time_count = DEFAULT_STOP_TIME
@@ -137,8 +137,8 @@ class JobTimer():
             self.nex_opertation()
 
 class Timers():
-    def uv_widget(self,ui,timer_map,event_working=None,uv:aUV=None):
-        return UvTimerWidget(ui,event_working,timer_map,uv)
+    def uv_widget(self,ui,timer_map,e_work=None,uv:aUV=None):
+        return UvTimerWidget(ui,e_work,timer_map,uv)
     def job_timer(self):
         return JobTimer()
 

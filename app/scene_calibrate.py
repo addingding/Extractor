@@ -9,24 +9,24 @@ def calibration_widget_activate():
 
 
 def calibrate_axis_stir():
-    if event_working.is_set():
+    if e_work.is_set():
         return
-    event_working.set()
+    e_work.set()
     calibrate_motor_stir()
-    event_working.clear()
+    e_work.clear()
 def calibrate_axis_mag():
-    if event_working.is_set():
+    if e_work.is_set():
         return
-    event_working.set()
+    e_work.set()
     calibrate_motor_mag() #TODO
-    event_working.clear()
+    e_work.clear()
 
 def calibrate_axis_disk():
-    if event_working.is_set():
+    if e_work.is_set():
         return
-    event_working.set()
+    e_work.set()
     disk_calibrate()
-    event_working.clear()
+    e_work.clear()
 
 def motor_mag_spin(a:float=0):
     assert -70.0 <= a <= -50.0

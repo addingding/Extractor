@@ -72,19 +72,13 @@ class StatusWidget(QWidget,aWidget):
     pause_signal = Signal(int)
     stop_signal = Signal(int)
 
-    def __init__(self, ui, map,event_working,e_safe_perform, e_stop_perform):
+    def __init__(self, ui, map,e_work:Event,e_safe:Event, e_stop:Event):
         super().__init__()
         aWidget.__init__(self,ui, map)
-        if event_working is None:
-            event_working = Event()
-        if e_safe_perform is None:
-            e_safe_perform = Event()
-        if e_stop_perform is None:
-            e_stop_perform = Event()
 
-        self.event_working=event_working
-        self.e_safe = e_safe_perform
-        self.e_stop = e_stop_perform
+        self.e_work=e_work
+        self.e_safe = e_safe
+        self.e_stop = e_stop
         self.btn_task_start:QPushButton = self.btn_task_start
 
         self.btn_task_pause.clicked.connect(self.btn_pause_clicked)
@@ -142,8 +136,15 @@ class StatusWidget(QWidget,aWidget):
         self.ui.tabWidget.setStyleSheet(font_style)
 
         # for test
-        # self.disk_key_pressed.connect(self.act_after_pressed)
+        self.disk_key_pressed.connect(self.act_after_pressed)
 
+    @Slot(int)
+    def act_after_pressed(self,n:int):
+        time.sleep(2)
+        self.disk_arrived_and_work_done(n)
+        
+
+        
     def btn_pause_clicked(self):
         if self.btn_task_pause.text()==lang("pause"):
             self.btn_task_pause.setText(lang("go_on"))
@@ -177,10 +178,10 @@ class StatusWidget(QWidget,aWidget):
 
     @Slot(str)
     def key_pressed(self,n:str):
-        if self.event_working.is_set():
+        if self.e_work.is_set():
             self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
             return
-        self.event_working.set()
+        self.e_work.set()
         self.event_finished.clear()
         btn = getattr(self,f"btn_p{n}")
         n = int(btn.text())
@@ -188,11 +189,7 @@ class StatusWidget(QWidget,aWidget):
         pb = self.ui.popup(pb_dialog=("Wait","Processing"))
         pb.wait_to_exit(self.event_finished,6)
         
-    @Slot(int)
-    def act_after_pressed(self,n:int):
-        # code for test
-        time.sleep(2)
-        self.disk_arrived_and_work_done(n)
+
 
 
 
@@ -210,7 +207,7 @@ class StatusWidget(QWidget,aWidget):
 
     def disk_arrived_and_work_done(self,n:int):
         self.event_finished.set()
-        self.event_working.clear()
+        self.e_work.clear()
         self.disk_arrived(n)
         
     def refresh_disk_key_order(self,n:int):
@@ -277,8 +274,8 @@ class StatusWidget(QWidget,aWidget):
 
 
 class StatusWidgets():
-    def status_widget(self,ui,event_working=None,e_safe_perform=None, e_stop_perform=None):
-        return StatusWidget(ui,status_map,event_working,e_safe_perform, e_stop_perform)
+    def status_widget(self,ui,e_work,e_safe, e_stop):
+        return StatusWidget(ui,status_map,e_work,e_safe, e_stop)
 
 status_widgets = StatusWidgets()
 
