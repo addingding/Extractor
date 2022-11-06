@@ -13,6 +13,7 @@ def _lang(*args):
         else:
             _ret = LANGS[arg][LANGUAGES[0]]
     return _ret
+
 def lang(*args):
     if len(args)==0:
         return ""
@@ -20,6 +21,7 @@ def lang(*args):
         return _lang(*args)
     except:
         return args[0]
+
 
 def test_language_settings(language=1):
     LANGUAGES[0] = language
