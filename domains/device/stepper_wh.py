@@ -11,6 +11,8 @@ def tuple_int(a,b):
     ab = 1-a*2
     return b*ab
 
+class NotSafe(Exception):...
+
 
 class ModbusStepperDriver(ModbusTerminal):
     def __init__(self, id: str, server: RtuServer, address: int):
@@ -132,7 +134,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         Stepper.__init__(self,ppr,upr)
         self.name = self.id
         time.sleep(0.2)
-
+        self._wait_ignore = Event()
 
         # self.set_baud()
         self.set_current(15) # (n=15+1)/16 A
@@ -145,11 +147,16 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
 
   
     def rotate(self, pulses: int, accel_ms: int, speed: int, keep_sec: int):
+        self.rotate_with_no_wait(pulses)
+        self._wait_until_stopped()
+
+    def rotate_no_wait(self, pulses):
         _pulses = self.position + pulses
         _cw = 0 if _pulses >0 else 1 
         _point = abs(_pulses)
         self._rotate_to(_cw,False,False,False,False,_point)
-        self._wait_until_stopped()
+
+
 
     def rotate_till(self, speed: int, direction_right: bool, sensor_right: bool, sensor_high: bool):
         return super().rotate_till(speed, direction_right, sensor_right, sensor_high)
@@ -179,6 +186,9 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
             print(self.name,"HomeError")
             raise HomeError
 
+    def is_stopped(self):
+        return self._status.get("stopped")
+
     def _wait_until_stopped(self,timeout=None):
         time.sleep(1)
         if not timeout is None:
@@ -186,11 +196,11 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         t = 0
         while True:
             try:
-                if self._status.get("stopped"):
+                if self.is_stopped():
                     t += 1
                     if t>=3:
                         print("motor stopped")
-                        return
+                        break
                 time.sleep(0.1)
                 if not timeout is None:
                     timeout -= 0.1
@@ -222,7 +232,9 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self.move_to(0)
         self.home_return()
     def hard_stop(self):
-        self._stop(True)
+        self._stop(power_stop=True)
+    def soft_stop(self):
+        self._stop(power_stop=False)
 
     def calibrate(self):
         self.set_speed(0.2)
@@ -231,7 +243,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         # self.home_return() # self.position==0
         self.move_till(True,False,True)
         self._wait_until_stopped()
-        self._stop(False)
+        self.soft_stop(False)
         pos_after = self.position
         print("before",pos_before,"after",pos_after)
         delta_p = pos_after-pos_before
@@ -246,28 +258,78 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         return delta_p
 
 
-class DiskMotor(ModbusStepper):
-    def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
-        super().__init__(id, server, address, ppr, upr)
+class ActionStoppable():
+    def __init__(self,mstepper:ModbusStepper):
+        self._stepper:ModbusStepper = mstepper
         self._grid = 1
-        self.set_current(23,4) # (n=15+1)/16 A
-        self.local_set_speed(1)
 
-    def grid(self,n:int):
-        if not self.motion_safe:
-            print("not safe for motion, please check the stir_motor")
-        else:
-            if 1<= n <=8:
-                self.move(-(n-self._grid))
-                self._grid = n
+        self._action_end = Event()
+        self._pause_pass = Event()
+        self._target = None
+
     def grid_cw(self):
         self.grid(self._grid+1)
     def grid_ccw(self):
         self.grid(self._grid-1)
     def prepare_at_grid_1(self):
-        self.home_return()
-        self.bottom()
+        self._stepper.home_return()
+        self._stepper.bottom()
         self._grid = 1
+
+    def wait_start_end(self):
+        self._action_end.clear()
+        while True:
+            self._pause_pass.wait()
+            if self._action_end.is_set():
+                return False
+            if self._stepper.is_stopped():
+                return True
+            time.sleep(0.01)
+
+    def grid(self,site:int):
+        self._target = site
+        if not self._stepper.motion_safe:
+            print("not safe for motion, please check the stir_motor")
+            raise(NotSafe)
+        else:
+            if 1<= site <=8:
+                _point = self._stepper.ppu*(site+self._stepper.bottom)
+                self._stepper._rotate_to(False,False,False,False,False,_point)
+
+                if self.wait_start_end():
+                    self._grid = self._target
+                    self._target = None
+                    return True
+                else:
+                    return False
+
+    def pause(self):
+        self._pause_pass.clear()
+        time.sleep(0.01)
+        self.soft_stop()
+    def resume(self):
+        self._pause_pass.set()
+        time.sleep(0.01)
+        if not self._target is None:
+            self.grid(self._target)
+    def cancel(self):
+        self._action_end.set()
+        self._pause_pass.set()
+        if not self._grid is None:
+            self.grid(self._grid)
+    def stop(self):
+        self.pause()
+        self.cancel()
+        self.prepare_at_grid_1()
+
+
+class DiskMotor(ModbusStepper,ActionStoppable):
+    def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
+        ModbusStepper.__init__(self,id, server, address, ppr, upr)
+        ActionStoppable.__init__(self,self)
+        
+        self.set_current(23,4) # (n=15+1)/16 A
+        self.local_set_speed(1)
 
 class WhSteppers:
     def get_stepper_wh(self,name,server,address,ppr,upr):

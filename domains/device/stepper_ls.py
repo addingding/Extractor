@@ -129,20 +129,28 @@ class LsStepperDriver(ModbusTerminal):
         pr = (level<<4)+(open_on<<2)+(soft<<1)+ctrg
         self.ls_set_single(0x6000,pr)
     
+
+
+
+
     def activate_positioning(self,site:int):
         self.ls_set_single(0x6002,0x10+site)
         self.wait_positioned()
     def activate_positioning_without_wait(self,site:int):
         self.ls_set_single(0x6002,0x10+site)
 
+    def is_ended(self):
+        r = self.query(0x6002,1)
+        if r is not None:
+            t = r[0]
+            if (t is not None) and (not t):
+                return True
+        return False
+
     def wait_positioned(self):
         while True:
             try:
-                r = self.query(0x6002,1)
-                if r is not None:
-                    t = r[0]
-                    if (t is not None) and (not t):
-                        return
+                if self.is_ended(): return
             except Exception as e:
                 print(e)
 
@@ -160,11 +168,64 @@ class LsStepperDriver(ModbusTerminal):
             self.ls_set_single(0x6205+site*8,point.dacc_time)
             self.ls_set_single(0x6206+site*8,point.interval)
 
-        
-class LsStepper(Stepper):
+class ActionStoppable():
+    def __init__(self,driver:LsStepperDriver=None):
+        self.driver:LsStepperDriver = driver
+        self._target = None
+        self._pos = None
+        self._action_end = Event()
+        self._pause_pass = Event()
+        self._pause_pass.set()
+
+    def wait_start_end(self):
+        self._action_end.clear()
+        while True:
+            self._pause_pass.wait()
+
+            if self._action_end.is_set():
+                return False
+            if self.driver.is_ended():
+                return True
+
+            time.sleep(0.01)
+
+    def start(self,site:int):
+        self._target = site
+        self.driver.activate_positioning_without_wait(site)
+        if self.wait_start_end():
+            self._pos = self._target
+            self._target = None
+            return True
+        else:
+            return False
+    def pause(self):
+        self._pause_pass.clear()
+        time.sleep(0.01)
+        self.driver.speed_stop()
+    def resume(self):
+        self._pause_pass.set()
+        time.sleep(0.01)
+        if not self._target is None:
+            self.start(self._target)
+    def cancel(self):
+        self._action_end.set()
+        self._pause_pass.set()
+        time.sleep(0.01)
+        if not self._pos is None:
+            self.start(self._pos)
+    def stop(self):
+        try:
+            self.pause()
+            self.cancel()
+            self.home()
+        except:
+            self.driver.pr_start_back_zero()
+
+class LsStepper(Stepper,ActionStoppable):
     def __init__(self,name: str, server: RtuServer, address: int,ppr:int,upr:float) -> None:
         super().__init__(ppr,upr)
         self.driver:LsStepperDriver = LsStepperDriver(name, server, address)
+        ActionStoppable.__init__(self,self.driver)
 
     def drop_before_calibrate(self):
         self.driver.set_max_current(0)
@@ -231,7 +292,6 @@ class LsStepper(Stepper):
         p_half = int((bottom_u-level_mm/2)*self.ppu)
         p_stir = int((bottom_u-stir_mm)*self.ppu)
         
-
         sp_home = sPoint(standard_mode,*high_low_number(p_home),30,100,100,100)
         sp_prepare = sPoint(standard_mode,*high_low_number(-p_prepare),30,100,100,100)
         sp_liquid = sPoint(standard_mode,*high_low_number(-p_liquid),30,100,100,100)
@@ -258,14 +318,14 @@ class LsStepper(Stepper):
         self.driver.point_set(9,sp_prepare)
 
     def prepare(self):
-        self.driver.activate_positioning(9)
+        self.start(9)
 
     def prepare_at_home(self):
-        self.driver.activate_positioning(7)
+        self.start(7)
 
 
     def bottom(self):
-        self.driver.activate_positioning(3)
+        self.start(3)
 
     def bottom_mag(self,mag_sec):
         self.bottom()
@@ -274,17 +334,17 @@ class LsStepper(Stepper):
     def at_home(self) -> bool:
         return self.driver.right_light_is_on
     def home(self):
-        self.driver.activate_positioning(1)
-        self.driver.activate_positioning(7)
+        self.start(1)
+        self.start(7)
     def home_direct(self):
-        self.driver.activate_positioning(7)
-        
+        self.start(7)
+
+
     def stir_mix(self,mix_sec):
         if mix_sec<=0: return
         self.driver.set_max_current(20)
         self.stir_time = Event()
 
-        
         self.driver.activate_positioning_without_wait(5)
         self.stir_time.wait(mix_sec)
 
@@ -301,12 +361,12 @@ class LsStepper(Stepper):
             time.sleep(keep_sec)
 
     def inner_liquid(self):
-        self.driver.activate_positioning(1)
+        self.start(1)
     def outer_liquid(self):
-        self.driver.activate_positioning(8)
+        self.start(8)
 
     def half_liquid(self):
-        self.driver.activate_positioning(2)
+        self.start(2)
     def hard_stop(self):
         self.driver.soft_stop()
 
@@ -352,8 +412,8 @@ class TestLs:
         self.driver.point_set(1,point_1)
         time.sleep(0.5)
 
-        self.driver.activate_positioning(0)
-        self.driver.activate_positioning(1)
+        self.start(0)
+        self.start(1)
 
 
 
@@ -381,8 +441,8 @@ class TestLs:
         
         time.sleep(0.5)
 
-        self.driver.activate_positioning(1)
-        # self.driver.activate_positioning(0)
+        self.start(1)
+        # self.start(0)
 
     def test_stir(self):
         self.driver.set_max_current(20)
@@ -408,16 +468,16 @@ class TestLs:
 
         t = time.time()
         ts = 100
-        self.driver.activate_positioning(9)
+        self.start(9)
         self.driver.activate_positioning_without_wait(11)
         time.sleep(3)
         # self.stopper.turn_on()
-        # self.driver.activate_positioning(9)
+        # self.start(9)
         # self.driver.speed_stop()
         # time.sleep(3)
         # self.stopper.turn_off()
         # for i in range(ts):
-        #     self.driver.activate_positioning(11)
+        #     self.start(11)
         # dt = time.time()-t
         
         # print(int(ts/dt),"Hz")
@@ -437,7 +497,7 @@ class TestLs:
         print(self.driver.position/self.stepper.ppu)
         a = 400
         for i in range(a):
-            T.stepper.driver.activate_positioning(5)
+            T.stepper.start(5)
     
     def test_calibration(self):
         self.stepper.drop_before_calibrate()
