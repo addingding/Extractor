@@ -41,7 +41,7 @@ moves_end =[
     ("v","home")
     ]
 
-class Machine(aMachine):
+class MachineMain(aMachine):
     def __init__(self,devices) -> None:
         self.devices = devices
         self._status_acting:str = "waiting" 
@@ -49,6 +49,8 @@ class Machine(aMachine):
         self._available = Event()
         self._emergency = Event()
         self.job_timer = timers.job_timer()
+        
+        self.sleep = time.sleep
 
     @property
     def motor_stir(self) -> Union[aStepper,LsStepper]:
@@ -145,9 +147,12 @@ class Machine(aMachine):
         self.motor_mask.set_points(operation.ul_volumn,
             defaults.get("motor_bottom").get("motor_mask"))
 
-        self.partition_ready(partition,operation.sec_wait)
+
         if int(step_idx) == 1:
-            self.first_touch(operation.sec_mag)
+            self.partition_ready(partition,1)
+            self.first_touch()
+        else:
+            self.partition_ready(partition,operation.sec_wait)
         self.stir(operation.sec_mix)
         self.up(operation.sec_mag)
 
@@ -157,20 +162,26 @@ class Machine(aMachine):
         self.motor_mask.bottom()
         self.motor_disk.grid(partition)
         self.motor_mask.home()
-        self.motor_stir.liquid_wait(sec_wait)
+        self.motor_stir.liquid_wait()
+        self.sleep(sec_wait)
 
-    def first_touch(self,sec_mag):
-        self.motor_stir.bottom_mag(sec_mag)
+    def first_touch(self):
+        self.motor_stir.bottom_mag()
+        self.sleep(3)
+        
     def stir(self,sec_mix):
         if sec_mix>0:
             self.motor_stir.half_liquid()
             self.motor_mag.home()
-            self.motor_stir.stir_mix(sec_mix)
-            self.motor_stir.inner_liquid()
+            self.motor_stir.stir_mix()
+            self.sleep(sec_mix)
+            self.motor_stir.stop_mix()
+        self.motor_stir.inner_liquid()
     def up(self,sec_mag):
         if sec_mag > 0:
             self.motor_mag.bottom()
-            self.motor_stir.bottom_mag(sec_mag)
+            self.motor_stir.bottom_mag()
+            self.sleep(sec_mag)
         self.motor_stir.inner_liquid()
 
     def idle(self):
@@ -219,6 +230,60 @@ class Machine(aMachine):
             print(e)
             # info.update({"disk":1})
             # raise e
+
+class PauseTime():
+    def __init__(self,pause_signal:Event,end:Event):
+        self.pause_signal:Event = pause_signal
+        self.end_signal:Event = end
+
+    def sleep(self,seconds:int):
+        seconds = int(seconds)
+        self.pause_signal.clear()
+        for i in range(seconds):
+            if self.end_signal.is_set():
+                break
+            self.pause_signal.wait()
+            time.sleep(1)
+
+class MachinePause():
+    def __init__(self,machine:MachineMain):
+        self._machine = machine
+        self.pause_pass:Event = Event()
+        self.task_end:Event = Event()
+        self.pause_time = PauseTime(self.pause_pass,self.task_end)
+        self.sleep = self.pause_time.sleep
+
+    def pause_pressed(self,checked:bool):
+        if checked:
+            Thread(target=self.pause).start()
+        else:
+            Thread(target=self.resume).start()
+    def stop_pressed(self,pressed:int):
+        Thread(target=self.stop).start()
+
+    def pause(self):
+        self.pause_pass.clear()
+        self._machine.motor_disk.pause()
+        self._machine.motor_stir.pause()
+    def resume(self):
+        self._machine.motor_disk.resume()
+        self._machine.motor_stir.resume()
+        self.pause_pass.set()
+    def cancel(self):
+        self._machine.motor_disk.cancel()
+        self._machine.motor_stir.cancel()
+        self.pause_pass.set()
+        self.task_end.set()
+    def stop(self):
+        self.cancel()
+        self._machine.motor_stir.stop()
+        # self._machine.motor_disk.stop()
+
+class Machine(MachineMain,MachinePause):
+    def __init__(self,devices):
+        super().__init__(devices)
+        MachinePause.__init__(self,self)
+
 class Machines:
     def connect_servers(self):
         _sers:Dict[str,aModbusServer] = {}

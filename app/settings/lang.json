@@ -37,7 +37,7 @@
     "temp_control":["Temp Control","温控"],
     "stop":["Stop","停止"],
     "pause":["Pause","暂停"],
-    "go_on":["Continue","继续"],
+    "resume":["Continue","继续"],
     "reset":["Reset","重置"],
     "time_set":["Time","系统时间"],
     "device_set":["Device","仪器设置"],

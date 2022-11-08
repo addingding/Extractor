@@ -146,16 +146,16 @@ class StatusWidget(QWidget,aWidget):
         
     def btn_pause_clicked(self):
         if self.btn_task_pause.text()==lang("pause"):
-            self.btn_task_pause.setText(lang("go_on"))
+            self.btn_task_pause.setText(lang("resume"))
         else:
             self.btn_task_pause.setText(lang("pause"))
         self.working_pause_set()
         
     def working_pause_set(self):
         if (info.get("door_at_spot")!= 0) and self.btn_task_pause.text == lang("pause"):
-            self.pause_signal.emit(1)
-        else:
             self.pause_signal.emit(0)
+        else:
+            self.pause_signal.emit(1)
 
     def btn_stop_clicked(self):
         if self.ui.popup(question=(lang("Alert"),lang("Eorror would happen.Are you sure?"))):

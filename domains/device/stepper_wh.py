@@ -258,7 +258,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         return delta_p
 
 
-class ActionStoppable():
+class GridMoveStoppable():
     def __init__(self,mstepper:ModbusStepper):
         self._stepper:ModbusStepper = mstepper
         self._grid = 1
@@ -293,7 +293,7 @@ class ActionStoppable():
             raise(NotSafe)
         else:
             if 1<= site <=8:
-                _point = self._stepper.ppu*(site+self._stepper.bottom)
+                _point = self._stepper.ppu*(site-1+self._stepper.bottom)
                 self._stepper._rotate_to(False,False,False,False,False,_point)
 
                 if self.wait_start_end():
@@ -323,10 +323,10 @@ class ActionStoppable():
         self.prepare_at_grid_1()
 
 
-class DiskMotor(ModbusStepper,ActionStoppable):
+class DiskMotor(ModbusStepper,GridMoveStoppable):
     def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
         ModbusStepper.__init__(self,id, server, address, ppr, upr)
-        ActionStoppable.__init__(self,self)
+        GridMoveStoppable.__init__(self,self)
         
         self.set_current(23,4) # (n=15+1)/16 A
         self.local_set_speed(1)
@@ -440,7 +440,7 @@ class ModbusStepperTest():
         self.motor_mag.home()
 def main():
     T = ModbusStepperTest()
-    T.test_motor_disk()
+    # T.test_motor_disk()
     # T.test_signal()
     # T.test_home()
     # T.test_calibrate()

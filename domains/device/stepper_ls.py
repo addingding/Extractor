@@ -327,7 +327,7 @@ class LsStepper(Stepper,ActionStoppable):
     def bottom(self):
         self.start(3)
 
-    def bottom_mag(self,mag_sec):
+    def bottom_mag(self,mag_sec=0):
         self.bottom()
         time.sleep(mag_sec)
     @property
@@ -340,14 +340,16 @@ class LsStepper(Stepper,ActionStoppable):
         self.start(7)
 
 
-    def stir_mix(self,mix_sec):
+    def stir_mix(self,mix_sec=0):
         if mix_sec<=0: return
         self.driver.set_max_current(20)
-        self.stir_time = Event()
 
         self.driver.activate_positioning_without_wait(5)
-        self.stir_time.wait(mix_sec)
+        time.sleep(mix_sec)
 
+        self.stop_mix()
+
+    def stop_mix(self):
         self.driver.speed_stop()
         self.driver.speed_stop()
         self.driver.speed_stop()
@@ -355,7 +357,7 @@ class LsStepper(Stepper,ActionStoppable):
 
 
 
-    def liquid_wait(self,keep_sec):
+    def liquid_wait(self,keep_sec=0):
         self.outer_liquid()
         if keep_sec>0:
             time.sleep(keep_sec)
