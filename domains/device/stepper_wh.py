@@ -11,8 +11,6 @@ def tuple_int(a,b):
     ab = 1-a*2
     return b*ab
 
-class NotSafe(Exception):...
-
 
 class ModbusStepperDriver(ModbusTerminal):
     def __init__(self, id: str, server: RtuServer, address: int):
@@ -81,7 +79,7 @@ class ModbusStepperDriver(ModbusTerminal):
         return tuple_int(_d,_p)
 
     def _stop(self,power_stop=False):
-        time.sleep(0.05)
+        # time.sleep(0.05)
         self.set_single(0x002D,power_stop)
     
     @property
@@ -147,7 +145,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
 
   
     def rotate(self, pulses: int, accel_ms: int, speed: int, keep_sec: int):
-        self.rotate_with_no_wait(pulses)
+        self.rotate_no_wait(pulses)
         self._wait_until_stopped()
 
     def rotate_no_wait(self, pulses):
@@ -290,7 +288,7 @@ class GridMoveStoppable():
         self._target = site
         if not self._stepper.motion_safe:
             print("not safe for motion, please check the stir_motor")
-            raise(NotSafe)
+            raise(SafeError)
         else:
             if 1<= site <=8:
                 _point = self._stepper.ppu*(site-1+self._stepper.bottom)
@@ -352,11 +350,13 @@ class ModbusStepperTest():
 
         self.server = server
 
-        self.motor_disk = DiskMotor('motor_disk',self.server,13,51200,0.11473) #0.25pie
+        self.motor_disk = DiskMotor('motor_disk',self.server,13,51200,0.4447323292111213) #0.25pie
         # self.motor_mag = ModbusStepper('motor_mag',self.server,14,51200,4)
         # self.motor_mask = ModbusStepper('motor_mask',self.server,15,51200,2)
         # self.steppers:List[ModbusStepper] = [self.motor_mag,self.motor_disk,self.motor_mask]
 
+        from app.board import defaults
+        self.motor_disk.set_points(0, defaults.get("motor_bottom").get("motor_disk"))
 
     # def __del__(self):
     #     self.switches.turn_off(2)
@@ -365,8 +365,9 @@ class ModbusStepperTest():
     #     self.switches.exit()
 
     def test_motor_disk(self):
-        self.motor_disk.home_return()
-        self.motor_disk.move_to(-self.motor_disk._upr)
+        self.motor_disk.prepare_at_grid_1()
+        # self.motor_disk.home_return()
+        # self.motor_disk.move_to(-self.motor_disk._upr)
     def test_signal(self):
         for stepper in self.steppers:
             print(stepper.name,"right:",stepper.at_home)
@@ -440,7 +441,7 @@ class ModbusStepperTest():
         self.motor_mag.home()
 def main():
     T = ModbusStepperTest()
-    # T.test_motor_disk()
+    T.test_motor_disk()
     # T.test_signal()
     # T.test_home()
     # T.test_calibrate()
