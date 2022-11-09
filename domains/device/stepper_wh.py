@@ -309,7 +309,7 @@ class DiskMotor(ModbusStepper):
                 return False
             self.signal_ignore.wait()
             time.sleep(0.01)
-            if self.is_stopped() and abs(point-abs(self.position))<100:
+            if abs(point-abs(self.position))<100 and self.is_stopped()  :
                 return True
             else:
                 pass #TODO 如果位置不正确，如何返回？
