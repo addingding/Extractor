@@ -18,6 +18,7 @@ e_stop = Event()
 
 update_timer = QTimer()
 
+
 splash = uis.splash_win()
 flash = uis.flash_win()
 infowin = uis.info_win()
@@ -60,6 +61,15 @@ machine_signals.grid_arrived.connect(status_widget.disk_arrived_and_work_done)
 status_widget.pause_signal.connect(machine.pause_pressed)
 status_widget.stop_signal.connect(machine.stop_pressed)
 
+emergency_timer = QTimer()
+def ermergency_check():
+    _last_status = False
+    _new_status = machine.door_safe.is_on
+    if not _last_status and _new_status:
+        status_widget.pause_signal.emit(1)
+    _last_status = _new_status
+emergency_timer.timeout.connect(ermergency_check)
+emergency_timer.start(500)
 
 
 

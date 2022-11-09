@@ -26,7 +26,7 @@ info = dict(
     led_is_on = False,
     fan_is_on = False,
     uv_is_on = False,
-    door_at_spot = False,
+    door_at_spot = True,
     sheath_at_spot = False,
     disk_info = [""]*8,
   

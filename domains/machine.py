@@ -176,6 +176,7 @@ class MachineMain(aMachine):
             self.motor_stir.inner_liquid()
     def up(self,sec_mag):
         if sec_mag > 0:
+            self.motor_stir.inner_liquid()
             self.motor_mag.bottom()
             self.motor_stir.bottom_mag(sec_mag)
         self.motor_stir.inner_liquid()
@@ -244,10 +245,6 @@ class PauseTime():
 class MachinePause():
     def __init__(self,machine:MachineMain):
         self._machine = machine
-        self.pause_pass:Event = Event()
-        self.task_end:Event = Event()
-        self.pause_time = PauseTime(self.pause_pass,self.task_end)
-        self.sleep = self.pause_time.sleep
 
     def pause_pressed(self,checked:bool):
         if checked:

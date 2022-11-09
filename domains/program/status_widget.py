@@ -135,28 +135,35 @@ class StatusWidget(QWidget,aWidget):
         self.ui.tabWidget.setStyleSheet(font_style)
 
         # for test
-        self.disk_key_pressed.connect(self.act_after_pressed)
+        # self.disk_key_pressed.connect(self.act_after_pressed)
+        
+        self.pause_signal.connect(self.btn_pause_status_trans)
 
+    # for test
     @Slot(int)
     def act_after_pressed(self,n:int):
         time.sleep(2)
         self.disk_arrived_and_work_done(n)
-        
-
-        
-    def btn_pause_clicked(self):
-        if self.btn_task_pause.text()==lang("pause"):
+    
+    @Slot(int)
+    def btn_pause_status_trans(self,n:int):
+        if n:
             self.btn_task_pause.setText(lang("resume"))
         else:
             self.btn_task_pause.setText(lang("pause"))
-        self.working_pause_set()
-        
-    def working_pause_set(self):
-        if (info.get("door_at_spot")!= 0) and self.btn_task_pause.text == lang("pause"):
-            self.pause_signal.emit(0)
-        else:
-            self.pause_signal.emit(1)
 
+    @Slot()    
+    def btn_pause_clicked(self):
+
+        if info.get("door_at_spot"): 
+            if self.btn_task_pause.text == lang("resume"):
+                self.pause_signal.emit(0) #pause end
+            else:
+                self.pause_signal.emit(1) #pause start
+        else:
+            self.ui.popup(about=((lang("Alert"),lang("close_the_door"))))
+
+    @Slot()
     def btn_stop_clicked(self):
         if self.ui.popup(question=(lang("Alert"),lang("Eorror would happen.Are you sure?"))):
             self.stop_signal.emit(1)

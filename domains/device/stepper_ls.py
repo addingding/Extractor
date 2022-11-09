@@ -350,8 +350,8 @@ class LsStepper(Stepper,ActionStoppable):
     def bottom(self,mag_sec:int=0):
         self.start(3,mag_sec)
 
-    def bottom_mag(self,mag_sec=0):
-        self.bottom(mag_sec)
+    def bottom_mag(self,mag_sec:int=0):
+        self.start(3,mag_sec)
     @property
     def at_home(self) -> bool:
         return self.driver.right_light_is_on
@@ -379,17 +379,13 @@ class LsStepper(Stepper,ActionStoppable):
         time.sleep(0.01)
         self.driver.set_max_current(10)
 
-
-
     def liquid_wait(self,keep_sec=0):
-        self.outer_liquid()
-        if keep_sec>0:
-            time.sleep(keep_sec)
+        self.outer_liquid(keep_sec)
 
     def inner_liquid(self):
         self.start(1)
-    def outer_liquid(self):
-        self.start(8)
+    def outer_liquid(self,keep_sec=0):
+        self.start(8,keep_sec)
 
     def half_liquid(self):
         self.start(2)
