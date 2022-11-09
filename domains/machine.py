@@ -262,6 +262,7 @@ class MachinePause():
         self._machine.motor_stir.resume()
     def stop(self):
         self._machine.motor_stir.stop()
+        
         # self._machine.motor_disk.stop()
 
 class Machine(MachineMain,MachinePause):

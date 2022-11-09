@@ -46,6 +46,7 @@ def start_task(a=None):
     
     
     global task_performer
+    global e_stop
     task_performer = TaskPerformer(perform_job,e_stop)
     task_performer.signal_end.connect(task_end_notice)
     task_performer.signal_updated.connect(status_widget.update)
@@ -77,7 +78,6 @@ def perform_job(e_stop:Event,signal_updated:Signal=None):
     set_temperature(steps,1)
     if not e_stop.is_set():
         run_task(e_stop,signal_updated,machine,steps)
-    e_work.clear()
 
 def set_temperature_to_roomtemperature():
     info[f"disk_1_preset"] = 25
@@ -108,6 +108,7 @@ def total_pg_time(steps:list):
 
 def run_task(e_stop,signal_updated,machine:Machine,steps:list):
     for step in steps:
+
         partition:int = int(step[1])
         operation:Operation = Operation(*step[2])
 
@@ -130,9 +131,13 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
             "step_start_time":time.time(),
             })
         signal_updated.emit(1)
+
         machine.perform_step(partition,operation,step[0])
-        if e_stop.is_set():
+        if machine.motor_stir._action_end.is_set():
+            machine.motor_stir._action_end.clear()
+            e_stop.set()
             break
+
     machine.task_end()
     info.update({
             "op_name":lang('finshed'),
@@ -140,10 +145,11 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
     signal_updated.emit(1)
     
 def task_end_notice(a=None):
-
+    e_work.clear()
     status_widget.btn_task_pause.setEnabled(False)
     status_widget.btn_task_start.setEnabled(False)
     status_widget.btn_task_stop.setEnabled(False)
+    start_widget.btn_start.setEnabled(True)
     
     start_widget.table_update()
     message_known = Event()

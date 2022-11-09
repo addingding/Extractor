@@ -210,7 +210,7 @@ class ActionStoppable():
 
         if self.wait_start_end(keep_time):
             self._pos = self._target
-            self._target = None
+            # self._target = None
             return True
         else:
             return False

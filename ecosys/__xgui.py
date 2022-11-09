@@ -136,10 +136,10 @@ class MyQProgressDialog(QProgressDialog):
         #     if event.is_set():
         #         break
         # event.wait(timeout)
-        # import time
         # for i in range(71,101):
         #     self.setValue(i)
         #     time.sleep(0.01)
         # self.setValue(100)
+
         event.wait(timeout)
         self.cancel()

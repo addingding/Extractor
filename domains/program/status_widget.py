@@ -149,17 +149,18 @@ class StatusWidget(QWidget,aWidget):
     def btn_pause_status_trans(self,n:int):
         if n==1:
             self.btn_task_pause.setText(lang("resume"))
+            self.btn_task_pause.setChecked(True)
         else:
             self.btn_task_pause.setText(lang("pause"))
+            self.btn_task_pause.setChecked(False)
 
     @Slot()    
     def btn_pause_clicked(self):
-
         if info.get("door_at_spot"): 
-            if self.btn_task_pause.text == lang("resume"):
-                self.pause_signal.emit(0) #pause end
-            else:
+            if self.btn_task_pause.text == lang("pause"):
                 self.pause_signal.emit(1) #pause start
+            else:
+                self.pause_signal.emit(0) #pause end
         else:
             self.ui.popup(about=((lang("Alert"),lang("close_the_door"))))
             self.btn_task_pause.setChecked(True)
@@ -194,7 +195,7 @@ class StatusWidget(QWidget,aWidget):
         n = int(btn.text())
         self.disk_key_pressed.emit(n)
         pb = self.ui.popup(pb_dialog=("Wait","Processing"))
-        pb.wait_to_exit(self.event_finished,1)
+        pb.wait_to_exit(self.event_finished,3)
         
 
 
@@ -232,9 +233,9 @@ class StatusWidget(QWidget,aWidget):
             else:
                 key.setStyleSheet(grid_key_style_ctx)
                 if i == 0:
-                    label.setStyleSheet(u"background-color: rgb(0,255,0);")
+                    label.setStyleSheet(u"font:12px;background-color: rgb(0,255,0);")
                 else:
-                    label.setStyleSheet(u"background-color: rgba(255,255,224,98);")
+                    label.setStyleSheet(u"font:12px;background-color: rgba(255,255,224,98);")
 
 
 
