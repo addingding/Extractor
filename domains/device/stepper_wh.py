@@ -76,8 +76,8 @@ class ModbusStepperDriver(ModbusTerminal):
             _d = int(_r[0],2)
             _p = int(_r[-28]+_r[-24:],2)
         except Exception as e:
-            print("_position_query",e)
-            return
+            print(self.id,"_position_query",e)
+            return 0
         return tuple_int(_d,_p)
 
     def _stop(self,power_stop=False):
