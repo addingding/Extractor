@@ -88,5 +88,6 @@
     "No_Entry":["No Entry","未解锁"],
     "Insert_Up":["Insert Up","上方插入"],
     "Insert_Down":["Insert Down","下方插入"],
+    "finished":["Finished!","完成！"],
     "Sure_to_Delete?":["Sure to Delete?","删除将不可恢复。确认？"]
 }

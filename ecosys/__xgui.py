@@ -79,8 +79,8 @@ class Performer(QThread):
         print(f'get_int{ins}')
         self.open = 1
     """
-    # signal_end = Signal(int)
-    # signal_updated = Signal(int)
+    signal_end = Signal(int)
+    signal_updated = Signal(int)
     signal_pause = Signal(int)
     def __init__(self,task,e_stop,*argv,**kwargv):
         super().__init__()

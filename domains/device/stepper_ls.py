@@ -33,17 +33,17 @@ class LsStepperDriver(ModbusTerminal):
         self.pr_control_set()
         self.set_max_current(10)
         self.save_settings()
-        self.tries = 0
         time.sleep(0.5)
 
     def ls_set_single(self,a,b):
+        _tries = 0
         try:
             ret = self.set_single(data_start=a,output_value=b)
             if ret is None:
-                self.tries += 1
-                if self.tries >= 10:
+                _tries += 1
+                if _tries >= 10:
                     print("No response 10 times. Ignore.")
-                    self.tries = 0
+                    _tries = 0
                     return
                 time.sleep(0.01)
                 self.ls_set_single(a,b)
@@ -174,50 +174,74 @@ class ActionStoppable():
         self._target = None
         self._pos = None
         self._action_end = Event()
-        self._pause_pass = Event()
-        self._pause_pass.set()
+        self._signal_ignore = Event()
+        self._signal_ignore.set()
 
-    def wait_start_end(self):
+    def wait_start_end(self,keep_time=0):
+        ret = False
         self._action_end.clear()
         while True:
-            self._pause_pass.wait()
-
+            self._signal_ignore.wait()
             if self._action_end.is_set():
                 return False
             if self.driver.is_ended():
-                return True
-
+                ret = True
+                break
             time.sleep(0.01)
+        if keep_time>0:
+            ret = self.delay_keep(keep_time)
+        return ret
 
-    def start(self,site:int):
+    def delay_keep(self,keep_time:int):    
+        keep_time = int(keep_time)
+        for i in range(keep_time):
+            self._signal_ignore.wait()
+            if self._action_end.is_set():
+                return False
+            time.sleep(1)
+            keep_time -= 1
+
+    def start(self,site:int,keep_time:int=0):
+        if self._action_end.is_set():
+            return
         self._target = site
         self.driver.activate_positioning_without_wait(site)
-        if self.wait_start_end():
+        self.wait_for_keep = Event()
+
+        if self.wait_start_end(keep_time):
             self._pos = self._target
             self._target = None
             return True
         else:
             return False
     def pause(self):
-        self._pause_pass.clear()
+        self._signal_ignore.clear()
         time.sleep(0.01)
         self.driver.speed_stop()
+        self._signal_ignore.set()
     def resume(self):
-        self._pause_pass.set()
+        self._signal_ignore.clear()
         time.sleep(0.01)
-        if not self._target is None:
-            self.start(self._target)
-    def cancel(self):
-        self._action_end.set()
-        self._pause_pass.set()
-        time.sleep(0.01)
-        if not self._pos is None:
-            self.start(self._pos)
+        t = self._target
+        if not t is None:
+            if t==5:
+                Thread( target=self.driver.activate_positioning_without_wait,
+                        args=(5,),
+                        daemon=True).start()
+            else:
+                self.driver.activate_positioning_without_wait(self._target)
+        self._signal_ignore.set()
     def stop(self):
         try:
             self.pause()
-            self.cancel()
-            self.home()
+            self._action_end.set()
+            self._signal_ignore.set()
+            time.sleep(1)
+            self.driver.pr_start_back_zero()
+            while True:
+                time.sleep(0.1)
+                if self.driver.right_light_is_on:
+                    break
         except:
             self.driver.pr_start_back_zero()
 
@@ -294,7 +318,7 @@ class LsStepper(Stepper,ActionStoppable):
         
         sp_home = sPoint(standard_mode,*high_low_number(p_home),30,100,100,100)
         sp_prepare = sPoint(standard_mode,*high_low_number(-p_prepare),30,100,100,100)
-        sp_liquid = sPoint(standard_mode,*high_low_number(-p_liquid),30,100,100,100)
+        sp_liquid_outer = sPoint(standard_mode,*high_low_number(-p_liquid),30,100,100,100)
 
         sp_liquid_inner = sPoint(standard_mode,*high_low_number(-p_liquid),2,100,100,100)
         sp_half = sPoint(standard_mode,*high_low_number(-p_half),2,100,100,100)
@@ -313,7 +337,7 @@ class LsStepper(Stepper,ActionStoppable):
         self.driver.point_set(5,sp_stir_bottom)
 
         self.driver.point_set(7,sp_home)
-        self.driver.point_set(8,sp_liquid)
+        self.driver.point_set(8,sp_liquid_outer)
 
         self.driver.point_set(9,sp_prepare)
 
@@ -323,13 +347,11 @@ class LsStepper(Stepper,ActionStoppable):
     def prepare_at_home(self):
         self.start(7)
 
-
-    def bottom(self):
-        self.start(3)
+    def bottom(self,mag_sec:int=0):
+        self.start(3,mag_sec)
 
     def bottom_mag(self,mag_sec=0):
-        self.bottom()
-        time.sleep(mag_sec)
+        self.bottom(mag_sec)
     @property
     def at_home(self) -> bool:
         return self.driver.right_light_is_on
@@ -339,20 +361,22 @@ class LsStepper(Stepper,ActionStoppable):
     def home_direct(self):
         self.start(7)
 
-
     def stir_mix(self,mix_sec=0):
         if mix_sec<=0: return
         self.driver.set_max_current(20)
-
-        self.driver.activate_positioning_without_wait(5)
-        time.sleep(mix_sec)
-
+        Thread(target = self.driver.activate_positioning_without_wait,
+            args=(5,),
+            daemon=True).start()        
+        self.delay_keep(mix_sec+3)
         self.stop_mix()
 
     def stop_mix(self):
         self.driver.speed_stop()
+        time.sleep(0.01)
         self.driver.speed_stop()
+        time.sleep(0.01)
         self.driver.speed_stop()
+        time.sleep(0.01)
         self.driver.set_max_current(10)
 
 
@@ -377,6 +401,8 @@ class LsSteppers:
         return LsStepper(name,server,address,ppr,upr)
     
 ls_steppers = LsSteppers()
+
+
 
 class TestLs:
     def __init__(self):
@@ -497,9 +523,9 @@ class TestLs:
 
         T.stepper.bottom_mag(1)
         print(self.driver.position/self.stepper.ppu)
-        a = 400
-        for i in range(a):
-            T.stepper.start(5)
+        T.stepper.start(5)
+        time.sleep(10)
+        T.stepper.driver.speed_stop()
     
     def test_calibration(self):
         self.stepper.drop_before_calibrate()
@@ -508,24 +534,61 @@ class TestLs:
     def test_mix_sec(self):
         self.stepper.stir_mix(10)
 
+    def test_stir_pause(self):
+        self.stepper.home_return()
+        self.stepper.set_points(700,60)
+        Thread(target=self.thread_move).start()
+        time.sleep(10)
+        Thread(target=self.thread_pause).start()
+        time.sleep(2)
+        Thread(target=self.thread_resume).start()
+        time.sleep(2)
+        Thread(target=self.thread_pause).start()
+        time.sleep(2)
+        Thread(target=self.thread_resume).start()
+        time.sleep(4)
+        Thread(target=self.thread_stop).start()
+
+    
+    def thread_move(self):
+        self.stepper.start(9)
+        self.stepper.start(8)
+        self.stepper.start(2)
+        Thread(target=self.stepper.start,args=(5,)).start()
+        time.sleep(20)
+        self.stepper.start(1)
+        self.stepper.start(7)
+
+    def thread_pause(self):
+        self.stepper.pause()
+        print("paused")
+    def thread_resume(self):
+        self.stepper.resume()
+        print("resume")
+    def thread_stop(self):
+        self.stepper.stop()
+        print("stopped")
+
+
 if __name__ == "__main__":
     T = TestLs()
+    T.test_stir_pause()
     # T.test_jog()
 
-    driver = T.stepper.driver
+    # driver = T.stepper.driver
     # driver.reset_settings()
 
-    T.stepper.home_return()
+    # T.stepper.home_return()
     # T.test_motion()
-    T.test_stir()
+    # T.test_stir()
     # T.test_speed()
     # T.test_direction()
     # T.read_light_limit()
     
     # T.test_calibration()
     # time.sleep(1)
-    # T.test_stir()
-    driver.soft_stop()
+    # T.test_home_return_and_stir()
+    # driver.soft_stop()
 
     # T.test_mix_sec()
     

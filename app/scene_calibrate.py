@@ -65,7 +65,7 @@ def calibrate_motor_stir():
             bottom_p = motor.calibrate()
             bottom_u = bottom_p/motor.ppu
             update_defaults("motor_bottom",{motor_name:bottom_u})
-            window.popup(about=(lang("About"),lang(motor_name)+', '+lang("Job finished!")))
+            window.popup(about=(lang("About"),lang(motor_name)+', '+lang("finished")))
 
         else:
             bottom_u = calibrate_motor_stir()

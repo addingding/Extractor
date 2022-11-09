@@ -15,6 +15,7 @@ def tuple_int(a,b):
 class ModbusStepperDriver(ModbusTerminal):
     def __init__(self, id: str, server: RtuServer, address: int):
         super().__init__(id, server, address)
+        self._position = 0
 
     def _change_address(self,addr:int):
         return self.set_single(0x0020,addr)
@@ -58,6 +59,7 @@ class ModbusStepperDriver(ModbusTerminal):
             +(right_enabled<<25)+(left_enabled<<24)+(_position_high<<28)+(_position_low)
         time.sleep(0.05)
         self.set_many(0x002B,2,msg)
+        return
 
     def move_till(self,cw:bool,high:bool,enabled:bool=True):
         set_zero = False
@@ -167,11 +169,11 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
             print(self.name,"no return, retry...")
             self._back_zero(timeout)
         else:
-            if not self.at_home:
-                print(self.name,"hard home return")
-                self._restore()
-            else:
-                print(self.name,"just right_at_home")
+            self._restore()
+            # if not self.at_home:
+            #     print(self.name,"hard home return")
+            # else:
+            #     print(self.name,"just right_at_home")
         self._wait_until_stopped(timeout)
         if not self.at_home:
             self._back_zero()
@@ -256,78 +258,89 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         return delta_p
 
 
-class GridMoveStoppable():
-    def __init__(self,mstepper:ModbusStepper):
-        self._stepper:ModbusStepper = mstepper
+class DiskMotor(ModbusStepper):
+    def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
+        ModbusStepper.__init__(self,id, server, address, ppr, upr)
         self._grid = 1
 
-        self._action_end = Event()
-        self._pause_pass = Event()
+        self.action_stop = Event()
+        self.signal_ignore = Event()
         self._target = None
+
+        self.set_current(23,4) # (n=15+1)/16 A
+        self.local_set_speed(1)
+
 
     def grid_cw(self):
         self.grid(self._grid+1)
     def grid_ccw(self):
         self.grid(self._grid-1)
     def prepare_at_grid_1(self):
-        self._stepper.home_return()
-        self._stepper.bottom()
+        self.home_return()
+        self.bottom()
         self._grid = 1
 
-    def wait_start_end(self):
-        self._action_end.clear()
-        while True:
-            self._pause_pass.wait()
-            if self._action_end.is_set():
-                return False
-            if self._stepper.is_stopped():
-                return True
-            time.sleep(0.01)
-
     def grid(self,site:int):
+        print("grid",site)
+        if self.action_stop.is_set():
+            return
         self._target = site
-        if not self._stepper.motion_safe:
+        if not self.motion_safe:
             print("not safe for motion, please check the stir_motor")
             raise(SafeError)
-        else:
-            if 1<= site <=8:
-                _point = self._stepper.ppu*(site-1+self._stepper.bottom)
-                self._stepper._rotate_to(False,False,False,False,False,_point)
+        elif 1<= site <=8:
+            self.grid_move(site)
+    def grid_move(self,site:int):
 
-                if self.wait_start_end():
-                    self._grid = self._target
-                    self._target = None
-                    return True
-                else:
-                    return False
+        _point = self.signal_to_site(site)
+        self.signal_ignore.set()
+        ret = self.wait_move_end(_point)
+
+        if ret:
+            self._grid = self._target
+            self._target = None
+            return True
+        else:
+            return False
+
+    def wait_move_end(self,point:int):
+        while True:
+            if self.action_stop.is_set():
+                return False
+            self.signal_ignore.wait()
+            time.sleep(0.01)
+            if self.is_stopped() and abs(point-abs(self.position))<20:
+                return True
+            else:
+                pass #TODO 如果位置不正确，如何返回？
+
+    def signal_to_site(self, site:int):
+        _point = int(self.ppu*(site-1+abs(self._bottom)))
+        self._rotate_to(True,False,False,False,False,_point)
+        return _point
 
     def pause(self):
-        self._pause_pass.clear()
+        self.signal_ignore.clear()
         time.sleep(0.01)
         self.soft_stop()
+        self.signal_ignore.set()
     def resume(self):
-        self._pause_pass.set()
+        self.signal_ignore.clear()
         time.sleep(0.01)
-        if not self._target is None:
-            self.grid(self._target)
-    def cancel(self):
-        self._action_end.set()
-        self._pause_pass.set()
-        if not self._grid is None:
-            self.grid(self._grid)
+        if self._target is not None:
+            self.signal_to_site(self._target)
+        self.signal_ignore.set()
     def stop(self):
         self.pause()
-        self.cancel()
+        time.sleep(0.5)
+        self.action_stop.set()
+        time.sleep(1)
         self.prepare_at_grid_1()
+        self.action_stop.clear()
 
 
-class DiskMotor(ModbusStepper,GridMoveStoppable):
-    def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
-        ModbusStepper.__init__(self,id, server, address, ppr, upr)
-        GridMoveStoppable.__init__(self,self)
         
-        self.set_current(23,4) # (n=15+1)/16 A
-        self.local_set_speed(1)
+
 
 class WhSteppers:
     def get_stepper_wh(self,name,server,address,ppr,upr):
@@ -366,8 +379,33 @@ class ModbusStepperTest():
 
     def test_motor_disk(self):
         self.motor_disk.prepare_at_grid_1()
-        # self.motor_disk.home_return()
-        # self.motor_disk.move_to(-self.motor_disk._upr)
+        tm = Thread(target=self.thread_move)
+        tm.start()
+        time.sleep(2)
+        Thread(target=self.thread_pause).start()
+        time.sleep(2)
+        Thread(target=self.thread_resume).start()
+        time.sleep(2)
+        Thread(target=self.thread_pause).start()
+        time.sleep(2)
+        Thread(target=self.thread_resume).start()
+        time.sleep(1)
+        ts = Thread(target=self.thread_stop)
+        ts.start()
+
+    def thread_move(self):
+        self.motor_disk.grid(5)
+        self.motor_disk.grid(2)
+    def thread_pause(self):
+        self.motor_disk.pause()
+        print('pause finished')
+    def thread_resume(self):
+        self.motor_disk.resume()
+        print('resume finished')
+    def thread_stop(self):
+        self.motor_disk.stop()
+        print('stop finished')
+
     def test_signal(self):
         for stepper in self.steppers:
             print(stepper.name,"right:",stepper.at_home)

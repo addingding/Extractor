@@ -11,10 +11,14 @@ class TaskPerformer(Performer):
     signal_end = Signal(int)
     signal_updated = Signal(int)
 
-class TempWorker(QThread):
+class QWorker(QThread):
     job_done = Signal(int)
+    job_update = Signal(int)
     def work_for(self,task):
         self.task = task
     def run(self):
-        self.task()
-        self.job_done.emit(1)
+        ret:int = self.task()
+        if ret is None:
+            ret = 0
+        self.job_done.emit(int(ret))
+

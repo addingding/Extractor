@@ -162,26 +162,22 @@ class MachineMain(aMachine):
         self.motor_mask.bottom()
         self.motor_disk.grid(partition)
         self.motor_mask.home()
-        self.motor_stir.liquid_wait()
-        self.sleep(sec_wait)
+        self.motor_stir.liquid_wait(sec_wait)
 
     def first_touch(self):
-        self.motor_stir.bottom_mag()
-        self.sleep(3)
+        self.motor_stir.bottom_mag(3)
         
     def stir(self,sec_mix):
         if sec_mix>0:
             self.motor_stir.half_liquid()
             self.motor_mag.home()
-            self.motor_stir.stir_mix()
-            self.sleep(sec_mix)
+            self.motor_stir.stir_mix(sec_mix)
             self.motor_stir.stop_mix()
-        self.motor_stir.inner_liquid()
+            self.motor_stir.inner_liquid()
     def up(self,sec_mag):
         if sec_mag > 0:
             self.motor_mag.bottom()
-            self.motor_stir.bottom_mag()
-            self.sleep(sec_mag)
+            self.motor_stir.bottom_mag(sec_mag)
         self.motor_stir.inner_liquid()
 
     def idle(self):
@@ -190,9 +186,9 @@ class MachineMain(aMachine):
         self.motor_mag.home()
     def task_end(self):
         self.idle()
-        self.motor_mask.bottom()
-        self.motor_disk.grid(5)
-        self.motor_mask.home()
+        # self.motor_mask.bottom()
+        # self.motor_disk.grid(5)
+        # self.motor_mask.home()
     def end(self):
         self.idle()
         self.motor_disk.grid(1)
@@ -262,20 +258,12 @@ class MachinePause():
         Thread(target=self.stop).start()
 
     def pause(self):
-        self.pause_pass.clear()
         self._machine.motor_disk.pause()
         self._machine.motor_stir.pause()
     def resume(self):
         self._machine.motor_disk.resume()
         self._machine.motor_stir.resume()
-        self.pause_pass.set()
-    def cancel(self):
-        self._machine.motor_disk.cancel()
-        self._machine.motor_stir.cancel()
-        self.pause_pass.set()
-        self.task_end.set()
     def stop(self):
-        self.cancel()
         self._machine.motor_stir.stop()
         # self._machine.motor_disk.stop()
 

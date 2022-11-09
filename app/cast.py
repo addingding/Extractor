@@ -27,7 +27,7 @@ program_handler = programers.program_handler()
 program_io = CustomWidget(window)
 upgrade_pg = UpgradeWidget(window)
 
-app_worker = TempWorker()
+qworker = QWorker()
 
 try:
     from domains.device.beeper import beepers
@@ -56,6 +56,7 @@ uv_widget.uv = machine.uv
 machine_signals = MachineSignals(machine)
 status_widget.disk_key_pressed.connect(machine_signals.grid_pressed)
 machine_signals.grid_arrived.connect(status_widget.disk_arrived_and_work_done)
+
 status_widget.pause_signal.connect(machine.pause_pressed)
 status_widget.stop_signal.connect(machine.stop_pressed)
 
