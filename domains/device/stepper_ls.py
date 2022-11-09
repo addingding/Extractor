@@ -225,11 +225,12 @@ class ActionStoppable():
         t = self._target
         if not t is None:
             if t==5:
-                Thread( target=self.driver.activate_positioning_without_wait,
-                        args=(5,),
-                        daemon=True).start()
+                Thread(target=self.driver.activate_positioning_without_wait,
+                        args=(5,)).start()
+                time.sleep(0.001)
             else:
                 self.driver.activate_positioning_without_wait(self._target)
+            time.sleep(0.1)
         self._signal_ignore.set()
     def stop(self):
         try:
@@ -365,8 +366,8 @@ class LsStepper(Stepper,ActionStoppable):
         if mix_sec<=0: return
         self.driver.set_max_current(20)
         Thread(target = self.driver.activate_positioning_without_wait,
-            args=(5,),
-            daemon=True).start()        
+            args=(5,)).start()
+        time.sleep(0.001)        
         self.delay_keep(mix_sec+3)
         self.stop_mix()
 
@@ -551,6 +552,7 @@ class TestLs:
         self.stepper.start(8)
         self.stepper.start(2)
         Thread(target=self.stepper.start,args=(5,)).start()
+        time.sleep(0.001)
         time.sleep(20)
         self.stepper.start(1)
         self.stepper.start(7)

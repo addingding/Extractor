@@ -91,7 +91,8 @@ def _set_room_temperature():
     machine.thermo_0.set_temperatrue(25)
     machine.thermo_1.set_temperatrue(25)
 def set_temperature_to_roomtemperature():
-    Thread(target=_set_room_temperature,daemon=True).start()
+    Thread(target=_set_room_temperature).start()
+    time.sleep(0.001)
 
 def _set_temperatrue(steps:list,step:int):
     assert step in [1,8]
@@ -103,7 +104,8 @@ def _set_temperatrue(steps:list,step:int):
             thermo.set_temperatrue(t)
             info[f"disk_{step}_preset"] = t
 def set_temperature(steps:list,step:int):
-    Thread(target=_set_temperatrue,args=(steps,step),daemon=True).start()
+    Thread(target=_set_temperatrue,args=(steps,step)).start()
+    time.sleep(0.001)
 
 def total_pg_time(steps:list):
     t=0
