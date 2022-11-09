@@ -139,6 +139,19 @@ caption_button_style =(""" QPushButton{
                         outline:none;
                         }
                                 """)
+
+pb_message_style = ("""
+                QWidget{
+                    font:12px;
+                    background-color:rgba(200,200,200,0)
+                    qproperty-visible:false;
+                    }
+                QFrame{
+                    font:24px;
+                    background-color:rgba(200,200,200,0)
+                }
+                 """)
+
 message_style = ("""
                 
                 QWidget{

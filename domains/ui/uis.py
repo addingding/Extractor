@@ -39,7 +39,7 @@ class WithPop:
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
             _dialog.setFocusPolicy(Qt.ClickFocus)
             _dialog.setWindowModality(Qt.WindowModal)
-            _dialog.setStyleSheet(message_style+button_style)
+            _dialog.setStyleSheet(pb_message_style)
             _dialog.setCancelButton(None)
             _dialog.setLabel(None)
             _dialog.setWindowTitle("waiting...")

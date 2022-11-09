@@ -135,11 +135,16 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
             break
     machine.task_end()
     info.update({
-            "op_name":lang('Finshed'),
+            "op_name":lang('finshed'),
             })
     signal_updated.emit(1)
     
 def task_end_notice(a=None):
+
+    status_widget.btn_task_pause.setEnabled(False)
+    status_widget.btn_task_start.setEnabled(False)
+    status_widget.btn_task_stop.setEnabled(False)
+    
     start_widget.table_update()
     message_known = Event()
     Thread(target=notify,args=(message_known,)).start()

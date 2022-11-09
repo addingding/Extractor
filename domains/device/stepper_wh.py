@@ -68,17 +68,27 @@ class ModbusStepperDriver(ModbusTerminal):
         self.set_single(0x002A,code)
 
     @property
-    def position(self):
-        time.sleep(0.05)
+    def position(self)->int:
+        r = None
+        t = 0
         try:
-            r = self.query(0x002B,2)
-            _r = binstring(r[0],16)+binstring(r[1],16)
-            _d = int(_r[0],2)
-            _p = int(_r[-28]+_r[-24:],2)
+            while r is None:
+                t += 1
+                r = self.query(0x002B,2)
+                if r is None:
+                    if t < 10: 
+                        time.sleep(0.05)
+                        continue
+                    else:
+                        return 0
+                else:
+                    _r = binstring(r[0],16)+binstring(r[1],16)
+                    _d = int(_r[0],2)
+                    _p = int(_r[-28]+_r[-24:],2)
+                    return tuple_int(_d,_p)
         except Exception as e:
             print(self.id,"_position_query",e)
             return 0
-        return tuple_int(_d,_p)
 
     def _stop(self,power_stop=False):
         # time.sleep(0.05)
@@ -294,7 +304,7 @@ class DiskMotor(ModbusStepper):
 
         _point = self.signal_to_site(site)
         self.signal_ignore.set()
-        ret = self.wait_move_end(_point)
+        ret = self.wait_grid_move_end(_point)
 
         if ret:
             self._grid = self._target
@@ -303,13 +313,13 @@ class DiskMotor(ModbusStepper):
         else:
             return False
 
-    def wait_move_end(self,point:int):
+    def wait_grid_move_end(self,point:int):
         while True:
             if self.action_stop.is_set():
                 return False
             self.signal_ignore.wait()
             time.sleep(0.01)
-            if self.is_stopped() and abs(point-abs(self.position))<100: # 
+            if self.is_stopped() and abs(point-abs(self.position))<20: # 
                 return True
             else:
                 pass #TODO 如果位置不正确，如何返回？
