@@ -85,13 +85,15 @@ def perform_job(e_stop:Event,signal_updated:Signal=None):
     if not e_stop.is_set():
         run_task(e_stop,signal_updated,machine,steps)
 
-def set_temperature_to_roomtemperature():
+def _set_room_temperature():
     info[f"disk_1_preset"] = 25
     info[f"disk_8_preset"] = 25
     machine.thermo_0.set_temperatrue(25)
     machine.thermo_1.set_temperatrue(25)
+def set_temperature_to_roomtemperature():
+    Thread(target=_set_room_temperature,daemon=True).start()
 
-def set_temperature(steps:list,step:int):
+def _set_temperatrue(steps:list,step:int):
     assert step in [1,8]
     thermo = machine.thermo_0 if step==1 else machine.thermo_1
     for stp in steps:
@@ -100,6 +102,8 @@ def set_temperature(steps:list,step:int):
             t = op.temperature
             thermo.set_temperatrue(t)
             info[f"disk_{step}_preset"] = t
+def set_temperature(steps:list,step:int):
+    Thread(target=_set_temperatrue,args=(steps,step),daemon=True).start()
 
 def total_pg_time(steps:list):
     t=0
