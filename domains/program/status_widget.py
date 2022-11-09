@@ -157,7 +157,7 @@ class StatusWidget(QWidget,aWidget):
     @Slot()    
     def btn_pause_clicked(self):
         if info.get("door_at_spot"): 
-            if self.btn_task_pause.text == lang("pause"):
+            if self.btn_task_pause.text() == lang("pause"):
                 self.pause_signal.emit(1) #pause start
             else:
                 self.pause_signal.emit(0) #pause end
@@ -233,9 +233,9 @@ class StatusWidget(QWidget,aWidget):
             else:
                 key.setStyleSheet(grid_key_style_ctx)
                 if i == 0:
-                    label.setStyleSheet(u"font:14px;background-color: rgb(0,255,0);")
+                    label.setStyleSheet(u"font:15px;background-color: rgb(0,255,0);")
                 else:
-                    label.setStyleSheet(u"font:14px;background-color: rgba(255,255,224,98);")
+                    label.setStyleSheet(u"font:15px;background-color: rgba(255,255,224,98);")
 
 
 
