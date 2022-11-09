@@ -243,7 +243,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         # self.home_return() # self.position==0
         self.move_till(True,False,True)
         self._wait_until_stopped()
-        self.soft_stop(False)
+        self.soft_stop()
         pos_after = self.position
         print("before",pos_before,"after",pos_after)
         delta_p = pos_after-pos_before
