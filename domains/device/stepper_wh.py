@@ -169,11 +169,11 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
             print(self.name,"no return, retry...")
             self._back_zero(timeout)
         else:
-            self._restore()
-            # if not self.at_home:
-            #     print(self.name,"hard home return")
-            # else:
-            #     print(self.name,"just right_at_home")
+            if not self.at_home:
+                print(self.name,"hard home return")
+                self._restore()
+            else:
+                print(self.name,"just right_at_home")
         self._wait_until_stopped(timeout)
         if not self.at_home:
             self._back_zero()
@@ -309,7 +309,7 @@ class DiskMotor(ModbusStepper):
                 return False
             self.signal_ignore.wait()
             time.sleep(0.01)
-            if abs(point-abs(self.position))<100 and self.is_stopped()  :
+            if self.is_stopped() and abs(point-abs(self.position))<100: # 
                 return True
             else:
                 pass #TODO 如果位置不正确，如何返回？
@@ -321,7 +321,7 @@ class DiskMotor(ModbusStepper):
 
     def pause(self):
         self.signal_ignore.clear()
-        time.sleep(0.01)
+        time.sleep(0.05)
         self.soft_stop()
         self.signal_ignore.set()
     def resume(self):
