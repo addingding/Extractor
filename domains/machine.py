@@ -246,6 +246,7 @@ class MachinePause():
     def __init__(self,machine:MachineMain):
         self._machine = machine
 
+    @Slot(int)
     def pause_pressed(self,checked:bool):
         if checked:
             Thread(target=self.pause).start()
@@ -262,7 +263,7 @@ class MachinePause():
         self._machine.motor_stir.resume()
     def stop(self):
         self._machine.motor_stir.stop()
-        
+
         # self._machine.motor_disk.stop()
 
 class Machine(MachineMain,MachinePause):

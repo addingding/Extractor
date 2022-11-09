@@ -59,6 +59,8 @@ status_widget.disk_key_pressed.connect(machine_signals.grid_pressed)
 machine_signals.grid_arrived.connect(status_widget.disk_arrived_and_work_done)
 
 status_widget.pause_signal.connect(machine.pause_pressed)
+status_widget.pause_signal.connect(status_widget.btn_pause_status_trans)
+
 status_widget.stop_signal.connect(machine.stop_pressed)
 
 emergency_timer = QTimer()
@@ -67,6 +69,7 @@ def ermergency_check():
     _new_status = machine.door_safe.is_on
     if e_work.is_set() and status_widget.btn_task_pause.isEnabled() \
         and _last_status and (not _new_status):
+        print("ermergency activated")
         status_widget.pause_signal.emit(1)
     _last_status = _new_status
 emergency_timer.timeout.connect(ermergency_check)
