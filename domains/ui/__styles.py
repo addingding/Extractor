@@ -12,7 +12,7 @@ info_win_style = """
     QLabel{
         font: 24px bold black;
         border-radius: 5px;
-        background-color:rgb(232,232,232);
+        background-color:rgba(232,232,232,84);
         }
     """
 tool_box_style = """ 
