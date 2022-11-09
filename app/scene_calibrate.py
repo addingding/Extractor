@@ -79,6 +79,7 @@ def calibrate_motor_stir():
 def disk_calibrate():
     disk_calibrate_disk_1()
     disk_calibrate_disk_8()
+    machine.motor_disk.prepare_at_grid_1()
 
 def disk_calibrate_disk_1():
     motor_name = "motor_disk"
