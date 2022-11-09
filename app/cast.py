@@ -27,7 +27,7 @@ program_handler = programers.program_handler()
 program_io = CustomWidget(window)
 upgrade_pg = UpgradeWidget(window)
 
-qworker = QWorker()
+app_worker = QWorker()
 
 try:
     from domains.device.beeper import beepers
