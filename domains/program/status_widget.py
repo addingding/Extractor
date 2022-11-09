@@ -233,9 +233,9 @@ class StatusWidget(QWidget,aWidget):
             else:
                 key.setStyleSheet(grid_key_style_ctx)
                 if i == 0:
-                    label.setStyleSheet(u"font:12px;background-color: rgb(0,255,0);")
+                    label.setStyleSheet(u"font:14px;background-color: rgb(0,255,0);")
                 else:
-                    label.setStyleSheet(u"font:12px;background-color: rgba(255,255,224,98);")
+                    label.setStyleSheet(u"font:14px;background-color: rgba(255,255,224,98);")
 
 
 
