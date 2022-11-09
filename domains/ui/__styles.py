@@ -140,11 +140,19 @@ caption_button_style =(""" QPushButton{
                         }
                                 """)
 
+                # border: 1px solid rgba(200,200,200,0);
 pb_message_style = ("""
+                QProgressBar{
+                    border-radius: 5px;
+                    background-color:rgba(200,200,200,0);
+                }
+                QProgressBar::chunk {
+                    background-color:rgba(200,200,200,0);
+                }
+
                 QWidget{
-                    font:12px;
+                    font:24px;
                     background-color:rgba(200,200,200,0)
-                    qproperty-visible:false;
                     }
                 QFrame{
                     font:24px;

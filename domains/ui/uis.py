@@ -37,6 +37,7 @@ class WithPop:
         if pb_dialog is not None:
             _dialog = MyQProgressDialog(lang("progress"),lang("cancel"),0,100,None) #XXX
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
+            # _dialog.setAttribute(Qt.WA_TranslucentBackground,True)
             _dialog.setFocusPolicy(Qt.ClickFocus)
             _dialog.setWindowModality(Qt.WindowModal)
             _dialog.setStyleSheet(pb_message_style)
@@ -330,6 +331,12 @@ class Uis:
 
 uis = Uis()
 
+class Worker(QThread):
+    def get_job(self,job):
+        self.job = job
+    def run(self):
+        self.job()
+
 def main():
     main_win = uis.main_win()
     main_win.show()
@@ -341,8 +348,13 @@ def main():
 
     # splash.effect()
     # main_win.close()
-    pb = main_win.popup(pb_dialog=("title","txt"))
-    pb.wait_to_exit(timeout=5)
+    def pop():
+        time.sleep(5)
+        pb = main_win.popup(pb_dialog=("title","txt"))
+        pb.wait_to_exit(timeout=5)
+    w = Worker()
+    w.get_job(pop)
+    w.start()
 
     sys.exit(application.exec_())
 

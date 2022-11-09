@@ -16,7 +16,7 @@ def prepare_task(a=None):
             ctx.append((int(stp[1]),str(stp[2][0]),int(stp[0])))
         info["disk_info"]=[""]*8
         for idx,txt,_stp in ctx:
-            info["disk_info"][idx-1] = "_".join(str(_stp),txt)
+            info["disk_info"][idx-1] = "_".join((str(_stp),txt))
     
     print("prepare task")
     window.tabWidget.setCurrentIndex(0)

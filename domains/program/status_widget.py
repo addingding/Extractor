@@ -194,7 +194,7 @@ class StatusWidget(QWidget,aWidget):
         n = int(btn.text())
         self.disk_key_pressed.emit(n)
         pb = self.ui.popup(pb_dialog=("Wait","Processing"))
-        pb.wait_to_exit(self.event_finished,6)
+        pb.wait_to_exit(self.event_finished,1)
         
 
 

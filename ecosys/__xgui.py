@@ -127,17 +127,19 @@ class MyQProgressDialog(QProgressDialog):
             event.ignore()
         
     def wait_to_exit(self,event:Event=Event(),timeout=0.01):
-        for val in range(71):
-            self.setValue(val)
-            # QCoreApplication.processEvents()
-            if self.wasCanceled():
-                break
-            event.wait(0.01)
-            if event.is_set():
-                break
-        event.wait(timeout)
+        # for val in range(71):
+        #     self.setValue(val)
+        #     # QCoreApplication.processEvents()
+        #     if self.wasCanceled():
+        #         break
+        #     event.wait(0.01)
+        #     if event.is_set():
+        #         break
+        # event.wait(timeout)
         # import time
-        for i in range(71,101):
-            self.setValue(i)
-            # time.sleep(0.01)
+        # for i in range(71,101):
+        #     self.setValue(i)
+        #     time.sleep(0.01)
+        # self.setValue(100)
+        event.wait(timeout)
         self.cancel()
