@@ -13,10 +13,10 @@ def prepare_task(a=None):
     else:
         ctx:List[Tuple[int,str]] = []
         for stp in pg.steps:
-            ctx.append((int(stp[1]),str(stp[2][0])))
+            ctx.append((int(stp[1]),str(stp[2][0]),int(stp[0])))
         info["disk_info"]=[""]*8
-        for idx,txt in ctx:
-            info["disk_info"][idx-1] = txt
+        for idx,txt,_stp in ctx:
+            info["disk_info"][idx-1] = "_".join(str(_stp),txt)
     
     print("prepare task")
     window.tabWidget.setCurrentIndex(0)
@@ -42,6 +42,7 @@ def start_task(a=None):
     machine.motor_disk._grid = 1
 
     status_widget.btn_task_pause.setEnabled(True)
+    status_widget.btn_task_stop.setEnabled(True)
     
     
     global task_performer

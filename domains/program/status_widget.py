@@ -147,7 +147,7 @@ class StatusWidget(QWidget,aWidget):
     
     @Slot(int)
     def btn_pause_status_trans(self,n:int):
-        if n:
+        if n==1:
             self.btn_task_pause.setText(lang("resume"))
         else:
             self.btn_task_pause.setText(lang("pause"))
@@ -162,6 +162,7 @@ class StatusWidget(QWidget,aWidget):
                 self.pause_signal.emit(1) #pause start
         else:
             self.ui.popup(about=((lang("Alert"),lang("close_the_door"))))
+            self.btn_task_pause.setChecked(True)
 
     @Slot()
     def btn_stop_clicked(self):
