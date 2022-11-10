@@ -64,13 +64,13 @@ status_widget.pause_signal.connect(status_widget.btn_pause_status_trans)
 status_widget.stop_signal.connect(machine.stop_pressed)
 
 emergency_timer = QTimer()
+
+_last_status = False
 def ermergency_check():
-    print("-------- ermergency check -------- ")
-    _last_status = False
+    global _last_status
     _new_status = machine.door_safe.is_on
-    if \
+    if e_work.is_set() and status_widget.btn_task_pause.isEnabled() and \
        _last_status and (not _new_status):
-        # e_work.is_set() and status_widget.btn_task_pause.isEnabled() and \
         print("ermergency activated")
         status_widget.pause_signal.emit(1)
     _last_status = _new_status
