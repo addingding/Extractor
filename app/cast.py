@@ -67,13 +67,14 @@ emergency_timer = QTimer()
 def ermergency_check():
     _last_status = False
     _new_status = machine.door_safe.is_on
-    if e_work.is_set() and status_widget.btn_task_pause.isEnabled() \
-        and _last_status and (not _new_status):
+    if \
+       _last_status and (not _new_status):
+        # e_work.is_set() and status_widget.btn_task_pause.isEnabled() and \
         print("ermergency activated")
         status_widget.pause_signal.emit(1)
     _last_status = _new_status
 emergency_timer.timeout.connect(ermergency_check)
-emergency_timer.start(500)
+emergency_timer.start(200)
 
 
 

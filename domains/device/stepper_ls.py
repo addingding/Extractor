@@ -218,9 +218,9 @@ class ActionStoppable():
         self._signal_ignore.clear()
         time.sleep(0.01)
         self.driver.speed_stop()
-        self._signal_ignore.set()
+        # self._signal_ignore.set()
     def resume(self):
-        self._signal_ignore.clear()
+        # self._signal_ignore.clear()
         time.sleep(0.01)
         t = self._target
         if not t is None:
