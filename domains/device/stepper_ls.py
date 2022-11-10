@@ -206,7 +206,6 @@ class ActionStoppable():
             return
         self._target = site
         self.driver.activate_positioning_without_wait(site)
-        self.wait_for_keep = Event()
 
         if self.wait_start_end(keep_time):
             self._pos = self._target
@@ -365,6 +364,7 @@ class LsStepper(Stepper,ActionStoppable):
     def stir_mix(self,mix_sec=0):
         if mix_sec<=0: return
         self.driver.set_max_current(20)
+        self._target = 5
         Thread(target = self.driver.activate_positioning_without_wait,
             args=(5,)).start()
         time.sleep(0.001)        
