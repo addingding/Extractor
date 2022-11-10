@@ -209,7 +209,7 @@ class ActionStoppable():
 
         if self.wait_start_end(keep_time):
             self._pos = self._target
-            # self._target = None
+            self._target = None
             return True
         else:
             return False
@@ -223,13 +223,10 @@ class ActionStoppable():
         time.sleep(0.01)
         t = self._target
         if not t is None:
-            if t==5:
-                Thread(target=self.driver.activate_positioning_without_wait,
-                        args=(5,)).start()
-                time.sleep(0.001)
-            else:
-                self.driver.activate_positioning_without_wait(self._target)
-            time.sleep(0.1)
+            Thread(target=self.driver.activate_positioning_without_wait,
+                    args=(t,)).start()
+            time.sleep(0.001)
+        time.sleep(0.2)
         self._signal_ignore.set()
     def stop(self):
         try:
