@@ -65,6 +65,7 @@ status_widget.stop_signal.connect(machine.stop_pressed)
 
 emergency_timer = QTimer()
 def ermergency_check():
+    print("-------- ermergency check -------- ")
     _last_status = False
     _new_status = machine.door_safe.is_on
     if \
