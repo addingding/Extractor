@@ -73,7 +73,7 @@ def ermergency_check():
         print("ermergency activated")
         status_widget.pause_signal.emit(1)
     _last_status = _new_status
-emergency_timer.setSingleShot(False)
+    emergency_timer.start(200)
 emergency_timer.timeout.connect(ermergency_check)
 emergency_timer.start(200)
 
