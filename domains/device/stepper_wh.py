@@ -69,6 +69,7 @@ class ModbusStepperDriver(ModbusTerminal):
 
     @property
     def position(self)->int:
+        ret = 0
         r = None
         t = 0
         try:
@@ -77,18 +78,19 @@ class ModbusStepperDriver(ModbusTerminal):
                 r = self.query(0x002B,2)
                 if r is None:
                     if t < 10: 
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     else:
-                        return 0
+                        ret = 0
                 else:
                     _r = binstring(r[0],16)+binstring(r[1],16)
                     _d = int(_r[0],2)
                     _p = int(_r[-28]+_r[-24:],2)
-                    return tuple_int(_d,_p)
+                    ret = tuple_int(_d,_p)
         except Exception as e:
             print(self.id,"_position_query",e)
             return 0
+        return ret
 
     def _stop(self,power_stop=False):
         # time.sleep(0.05)
