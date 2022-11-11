@@ -279,7 +279,7 @@ class DiskMotor(ModbusStepper):
         self.signal_ignore = Event()
         self._target = None
 
-        self.set_current(31,10) # (n=15+1)/16 A
+        self.set_current(25,9) # (n=15+1)/16 A
         self.local_set_speed(1)
 
 
