@@ -275,7 +275,7 @@ class LsStepper(Stepper,ActionStoppable):
 
 
         pos_p = pos_p - (int(self.ppu*d) - _p)
-        print("distance return:",pos_p,'\bp')
+        print("distance return:",pos_p,'p')
         return pos_p
 
     def rotate(self, pulses: int, accel_ms: int, speed: int, keep_sec: int):

@@ -260,7 +260,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         print("before",pos_before,"after",pos_after)
         delta_p = pos_after-pos_before
         delta_u = delta_p/self.ppu
-        print("distance_p return",delta_p)
+        print("distance_p return",delta_p,"delta_u move",-delta_u)
 
         self.position_u = 0
         self.move(-delta_u)
@@ -279,7 +279,7 @@ class DiskMotor(ModbusStepper):
         self.signal_ignore = Event()
         self._target = None
 
-        self.set_current(19,4) # (n=15+1)/16 A
+        self.set_current(31,10) # (n=15+1)/16 A
         self.local_set_speed(1)
 
 
