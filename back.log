@@ -9,3 +9,32 @@
 22-11-18 13:26:37 - No module named 'RPi'
 22-11-18 13:26:38 - machine is not ready ,wait for 5 secs and simulator on
 22-11-18 13:27:17 - 'Machines' object has no attribute 'server_0'
+22-11-18 16:22:41 - start
+22-11-18 16:22:41 - Windows platform
+22-11-18 16:22:41 - working serial_ports:[]
+22-11-18 16:22:43 - No module named 'RPi'
+22-11-18 16:22:43 - 'Machines' object has no attribute 'server_0'
+22-11-18 16:23:08 - start
+22-11-18 16:23:09 - Windows platform
+22-11-18 16:23:09 - working serial_ports:[]
+22-11-18 16:23:10 - No module named 'RPi'
+22-11-18 16:23:10 - machine is not ready ,wait for 5 secs and simulator on
+22-11-18 16:23:47 - 'Machines' object has no attribute 'server_0'
+22-11-18 16:28:55 - start
+22-11-18 16:28:55 - Windows platform
+22-11-18 16:28:55 - working serial_ports:[]
+22-11-18 16:28:56 - No module named 'RPi'
+22-11-18 16:28:56 - machine is not ready ,wait for 5 secs and simulator on
+22-11-18 16:29:03 - 'Machines' object has no attribute 'server_0'
+22-11-18 16:29:24 - start
+22-11-18 16:29:24 - Windows platform
+22-11-18 16:29:24 - working serial_ports:[]
+22-11-18 16:29:25 - No module named 'RPi'
+22-11-18 16:29:25 - machine is not ready ,wait for 5 secs and simulator on
+22-11-18 16:29:38 - 'Machines' object has no attribute 'server_0'
+22-11-18 16:29:55 - start
+22-11-18 16:29:55 - Windows platform
+22-11-18 16:29:55 - working serial_ports:[]
+22-11-18 16:29:56 - No module named 'RPi'
+22-11-18 16:29:56 - machine is not ready ,wait for 5 secs and simulator on
+22-11-18 16:30:25 - 'Machines' object has no attribute 'server_0'

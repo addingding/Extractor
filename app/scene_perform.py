@@ -4,7 +4,7 @@ from ecosys import *
 
 def prepare_task(a=None):
     if e_work.is_set():
-        window.popup(about=(lang("Alert"),lang("Busy for new job."))
+        window.popup(about=(lang("Alert"),lang("Busy for new job.")))
         return
     pg = start_widget.selected_program
     if pg is None:

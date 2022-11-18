@@ -3,3 +3,13 @@
 22-11-18 11:15:34 ERROR 'Machines' object has no attribute 'server_0' -machine.py:296 
 22-11-18 13:26:37 ERROR No module named 'RPi' -cast.py:38 
 22-11-18 13:27:17 ERROR 'Machines' object has no attribute 'server_0' -machine.py:296 
+22-11-18 16:22:43 ERROR No module named 'RPi' -cast.py:38 
+22-11-18 16:22:43 ERROR 'Machines' object has no attribute 'server_0' -machine.py:310 
+22-11-18 16:23:10 ERROR No module named 'RPi' -cast.py:38 
+22-11-18 16:23:47 ERROR 'Machines' object has no attribute 'server_0' -machine.py:310 
+22-11-18 16:28:56 ERROR No module named 'RPi' -cast.py:38 
+22-11-18 16:29:03 ERROR 'Machines' object has no attribute 'server_0' -machine.py:310 
+22-11-18 16:29:25 ERROR No module named 'RPi' -cast.py:38 
+22-11-18 16:29:38 ERROR 'Machines' object has no attribute 'server_0' -machine.py:310 
+22-11-18 16:29:56 ERROR No module named 'RPi' -cast.py:38 
+22-11-18 16:30:25 ERROR 'Machines' object has no attribute 'server_0' -machine.py:310 

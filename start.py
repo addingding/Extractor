@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 from ecosys import *
 
-logger.info(f"start")
+logger.info("start")
 
 if __name__ == "__main__":
     from app.scenes import start
@@ -10,4 +10,4 @@ if __name__ == "__main__":
     except Exception as e:
         logger.critical(e)
 
-logger.info(f"end")
+logger.info("end")

@@ -6,7 +6,6 @@ from ecosys import *
 
 def start():
     
-    # opening_show_window()
     infowin.show()
     app_worker.work_for(machine_init)
     app_worker.job_done.connect(window_ready)
