@@ -1,3 +1,5 @@
 22-11-18 11:11:45 ERROR No module named 'RPi' -cast.py:38 
 22-11-18 11:15:22 ERROR No module named 'RPi' -cast.py:38 
 22-11-18 11:15:34 ERROR 'Machines' object has no attribute 'server_0' -machine.py:296 
+22-11-18 13:26:37 ERROR No module named 'RPi' -cast.py:38 
+22-11-18 13:27:17 ERROR 'Machines' object has no attribute 'server_0' -machine.py:296 

@@ -29,7 +29,8 @@ def prepare_task(a=None):
     status_widget.btn_task_start.setEnabled(True)
     status_widget.btn_task_start.clicked.connect(start_task, type=Qt.UniqueConnection)
     machine.motor_stir.prepare()
-    set_temperature_to_roomtemperature()
+    set_temperature(1,25)
+    set_temperature(8,25)
 
 @Slot()
 def start_task(a=None):
@@ -81,31 +82,28 @@ def perform_job(e_stop:Event,signal_updated:Signal=None):
     signal_updated.emit(1)
 
 
-    set_temperature(steps,1)
     if not e_stop.is_set():
         run_task(e_stop,signal_updated,machine,steps)
 
-def _set_room_temperature():
-    info[f"disk_1_preset"] = 25
-    info[f"disk_8_preset"] = 25
-    machine.thermo_0.set_temperatrue(25)
-    machine.thermo_1.set_temperatrue(25)
-def set_temperature_to_roomtemperature():
-    Thread(target=_set_room_temperature).start()
-    time.sleep(0.001)
+def set_temperature(partition, t):
+    if partition in [1,8]:
+        info[f"disk_{partition}_preset"] = t
+        thermo = machine.thermo_0 if partition==1 else machine.thermo_1
+        Thread(target = thermo.set_temperatrue,args=(t,)).start()
+        time.sleep(0.001)
 
-def _set_temperatrue(steps:list,step:int):
-    assert step in [1,8]
-    thermo = machine.thermo_0 if step==1 else machine.thermo_1
+def set_temperature_via_steps(partition:int,steps:list):
+    if partition in [1,8]:
+        t = get_preset_temperature(steps,partition)
+        set_temperature(partition, t)
+def get_preset_temperature(partition:int,steps:list):
+    t = 25
     for stp in steps:
-        if int(stp[1])==step and stp[2]:
+        if int(stp[1])==partition and stp[2]:
             op:Operation = Operation(*stp[2])
             t = op.temperature
-            thermo.set_temperatrue(t)
-            info[f"disk_{step}_preset"] = t
-def set_temperature(steps:list,step:int):
-    Thread(target=_set_temperatrue,args=(steps,step)).start()
-    time.sleep(0.001)
+    return t
+
 
 def total_pg_time(steps:list):
     t=0
@@ -124,8 +122,8 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
         partition:int = int(step[1])
         operation:Operation = Operation(*step[2])
 
-        if partition==8:
-            set_temperature(steps,8)
+        if partition in [1,8]:
+            set_temperature_via_steps(partition,steps)
 
         info.update({
             "step_idx": int(step[0]),
@@ -148,12 +146,15 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
         if machine.motor_stir._action_end.is_set():
             machine.motor_stir._action_end.clear()
             e_stop.set()
+            if partition in [1,8]:
+                set_temperature(partition,25)
             break
 
+        if partition in [1,8]:
+            set_temperature(partition,25)
+
     machine.task_end()
-    info.update({
-            "op_name":lang('finshed'),
-            })
+    info.update({"op_name":lang('finshed'),})
     signal_updated.emit(1)
     
 def task_end_notice(a=None):
@@ -169,7 +170,6 @@ def task_end_notice(a=None):
     window.popup(about=(lang("attention"),lang('Finshed')+"!"))
     message_known.set()
     
-    set_temperature_to_roomtemperature()
     set_task_start_sets(ends=True)
     start_widget._selected_idx = None
     machine.motor_stir.prepare()

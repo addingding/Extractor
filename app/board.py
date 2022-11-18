@@ -1,5 +1,8 @@
 from ecosys import *
 
+disk_1_temperature_ok = Event()
+disk_8_temperature_ok = Event()
+
 info = dict(
     pg_idx = None,
     pg_name = None,
@@ -22,6 +25,8 @@ info = dict(
     
     disk_1_temperature = 25,
     disk_8_temperature = 25,
+    disk_1_temperature_ok = disk_1_temperature_ok,
+    disk_8_temperature_ok = disk_8_temperature_ok,
     disk_pos = 1,
     led_is_on = False,
     fan_is_on = False,
@@ -29,7 +34,8 @@ info = dict(
     door_at_spot = True,
     sheath_at_spot = False,
     disk_info = [""]*8,
-  
+    
+
 )
 
 class Updater:

@@ -1,17 +1,15 @@
-from prots import *
 from app.board import *
 from app.board import info
-
 from domains.device import *
-from domains.program import *
 from domains.device.modbus import servers
-
-from domains.device.stepper_ls import *
-from domains.device.stepper_wh import *
 from domains.device.modbus_switch import *
 from domains.device.modbus_thermo import *
-from domains.uv_widget.uv_timer import *
+from domains.device.stepper_ls import *
+from domains.device.stepper_wh import *
+from domains.program import *
 from domains.program.programs import *
+from domains.uv_widget.uv_timer import *
+from prots import *
 
 dm= defaults.get("device_map")
 
@@ -153,6 +151,12 @@ class MachineMain(aMachine):
             self.first_touch()
         else:
             self.partition_ready(partition,operation.sec_wait)
+        
+        if partition==1:
+            info["disk_1_temperature_ok"].wait()
+        if partition==8:
+            info["disk_8_temperature_ok"].wait()
+
         self.stir(operation.sec_mix)
         self.up(operation.sec_mag)
 
@@ -223,6 +227,16 @@ class MachineMain(aMachine):
                 "door_at_spot":self.door_safe.is_on,
                 "sheath_at_spot":self.has_sheath,
             })
+            if info["disk_1_temperature"]>=info["disk_1_preset"]-10:
+                info["disk_1_temperature_ok"].set()
+            else:
+                info["disk_1_temperature_ok"].clear()
+
+            if info["disk_8_temperature"]>=info["disk_8_preset"]-10:
+                info["disk_8_temperature_ok"].set()
+            else:
+                info["disk_8_temperature_ok"].clear()
+
         except Exception as e:
             logger.error(e)
             # info.update({"disk":1})

@@ -1,8 +1,8 @@
-from ecosys import *
 from app.cast import *
-
 from app.scene_calibrate import *
 from app.scene_perform import *
+from ecosys import *
+
 
 def start():
     
@@ -58,7 +58,7 @@ def refresh_thread_start():
 def signal_update():
     while not e_stop_collect.is_set():
         machine.update()
-        time.sleep(0.1)
+        time.sleep(0.2)
 
 def signal_collect_stop():
     e_stop_collect.set()

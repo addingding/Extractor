@@ -3,3 +3,9 @@
 22-11-18 11:15:20 - start 2022-11-18 11:15:20.960780
 22-11-18 11:15:22 - No module named 'RPi'
 22-11-18 11:15:34 - 'Machines' object has no attribute 'server_0'
+22-11-18 13:26:36 - start 2022-11-18 13:26:36.576046
+22-11-18 13:26:36 - Windows platform
+22-11-18 13:26:36 - working serial_ports:[]
+22-11-18 13:26:37 - No module named 'RPi'
+22-11-18 13:26:38 - machine is not ready ,wait for 5 secs and simulator on
+22-11-18 13:27:17 - 'Machines' object has no attribute 'server_0'
