@@ -27,7 +27,7 @@ def opening_show_window():
 def window_ready():
     infowin.close()
     if not is_real(machine):
-        window.popup(about=(lang("Alert"),lang("Device Error!")))
+        window.popup(about=(lang("Alert"),lang("Device_Error!")))
         # return
     control_assign()
     
@@ -117,8 +117,8 @@ def machine_init():
         except SafeError:
             infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
+            infowin.popup(about=(lang('Alert'),lang('InitError')))
             logger.error(e)
-            # infowin.popup(about=(lang('Alert'),lang('InitError')))
     else:
         logger.info("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)

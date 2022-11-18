@@ -25,8 +25,8 @@ class LockWidget(QWidget):
         self.locker.setText(lang("unlock" if lock else "lock"))
 
     def unlock_buttons(self):
-        text = self.ui.popup(dialog=(lang("Input"),lang("Input unlock key")))
+        text = self.ui.popup(dialog=(lang("Input"),lang("Input_unlock_key")))
         if text not in [None,""] and text == self.key:
             self.lock_buttons(False)
         else:
-            self.ui.popup(about=(lang("Alert"),lang("No Entry")))
+            self.ui.popup(about=(lang("Alert"),lang("No_Entry")))

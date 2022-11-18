@@ -111,12 +111,12 @@ class ProgramWidget(aProgrameWidget):
     def edit(self):
         pass
     def create(self):
-        text = self.ui.popup(dialog=('输入程序名称', '程序名称:'))
+        text = self.ui.popup(dialog=(lang("Input"),lang("Program Name")))
         if text:
             obj:aProgram = self.program_handler.create()
             obj.pg_name = text
             obj.steps = []
-            counts = self.ui.popup(dialog=('输入步骤数', '步骤数'))
+            counts = self.ui.popup(dialog=(lang('Input'), lang('Steps number')))
             try:
                 counts = int(counts)
                 if isinstance(counts,int):
@@ -186,7 +186,7 @@ class ProgramWidget(aProgrameWidget):
             logger.error(e)
         
     def delete(self):
-        if not self.ui.popup(question=(lang("Alert"),lang("Sure to Delete?"))):
+        if not self.ui.popup(question=(lang("Alert"),lang("Sure_to_Delete?"))):
             return
         if self._selected_program_idx is None:
             return

@@ -4,11 +4,11 @@ from ecosys import *
 
 def prepare_task(a=None):
     if e_work.is_set():
-        window.popup(about=("注意！","工作中，无法启动新任务！"))
+        window.popup(about=(lang("Alert"),lang("Busy for new job."))
         return
     pg = start_widget.selected_program
     if pg is None:
-        window.popup(about=(lang("Alert"),lang("choose one")))
+        window.popup(about=(lang("Alert"),lang("choose_one_program")))
         return
     else:
         ctx:List[Tuple[int,str]] = []
@@ -35,7 +35,7 @@ def prepare_task(a=None):
 @Slot()
 def start_task(a=None):
     if machine.sheath_sensor.is_on:
-        window.popup(about=(lang("Alert"),lang("No sheath")) )
+        window.popup(about=(lang("Alert"),lang("No_sheath")) )
         return
     
     logger.info("start task")
@@ -167,7 +167,7 @@ def task_end_notice(a=None):
     start_widget.table_update()
     message_known = Event()
     Thread(target=notify,args=(message_known,)).start()
-    window.popup(about=(lang("attention"),lang('Finshed')+"!"))
+    window.popup(about=(lang("Alert"),lang('finished')+"!"))
     message_known.set()
     
     set_task_start_sets(ends=True)

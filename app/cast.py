@@ -51,7 +51,7 @@ status_widget = status_widgets.status_widget(window,e_work, e_stop)
 calib_widget = Calibration(window)
 
 
-machine:Machine = call(machine,machines.get_machine())
+# machine:Machine = call(machine,machines.get_machine())
 
 uv_widget.uv = machine.uv
 machine_signals = MachineSignals(machine)

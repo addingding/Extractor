@@ -67,7 +67,7 @@ class UvTimerWidget(aTimerWidget):
 
     def start_clicked(self):
         if self.e_work.is_set():
-            self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
+            self.ui.popup(about=(lang('Alert'),lang('Busy for new job')))
             return
         self.e_work.set() 
         self.head.setText("UV Time")

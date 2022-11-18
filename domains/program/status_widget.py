@@ -169,7 +169,7 @@ class StatusWidget(QWidget,aWidget):
 
     @Slot()
     def btn_stop_clicked(self):
-        if self.ui.popup(question=(lang("Alert"),lang("Eorror would happen.Are you sure?"))):
+        if self.ui.popup(question=(lang("Alert"),lang("Error would happen.Are you sure?"))):
             self.stop_signal.emit(1)
 
     def return_to_start(self):
@@ -189,7 +189,7 @@ class StatusWidget(QWidget,aWidget):
     @Slot(str)
     def key_pressed(self,n:str):
         if self.e_work.is_set():
-            self.ui.popup(about=(lang('Alert'),lang('Could not start while working')))
+            self.ui.popup(about=(lang('Alert'),lang('Busy for new job')))
             return
         self.e_work.set()
         self.event_finished.clear()

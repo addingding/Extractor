@@ -37,7 +37,7 @@ def motor_mag_spin(a:float=0):
 
 def calibrate_motor_mag():
     bottom_u = defaults.get("motor_bottom").get("motor_mag")
-    if window.popup(question=(lang("Alert"),lang("motor_mag")+','+lang("Are you sure to calibrate?"))):
+    if window.popup(question=(lang("Alert"),lang("motor_mag")+','+lang("Are_you_sure_to_calibrate?"))):
         window.doubleSpinBox.valueChanged.connect(motor_mag_spin)
         window.pushButton_42.clicked.connect(return_with_save_assure)
         window.doubleSpinBox.setEnabled(False)
@@ -47,7 +47,7 @@ def calibrate_motor_mag():
         window.doubleSpinBox.setValue(float(-bottom_u))
         window.doubleSpinBox.setEnabled(True)
 def return_with_save_assure(): 
-    if window.popup(question=(lang("Alert"),lang("Sure to Save?"))):
+    if window.popup(question=(lang("Alert"),lang("Sure_to_Save?"))):
         bottom_u = window.doubleSpinBox.value()
         update_defaults("motor_bottom",{"motor_mag":-bottom_u})
     machine.motor_mag.home()
@@ -58,9 +58,9 @@ def calibrate_motor_stir():
     motor_name = "motor_stir"
     motor:Union[ModbusStepper,LsStepper] = getattr(machine,motor_name)
     bottom_u = defaults.get("motor_bottom").get(motor_name)
-    if window.popup(question=(lang("Alert"),lang(motor_name)+', '+lang("Are you sure to calibrate?"))):
+    if window.popup(question=(lang("Alert"),lang(motor_name)+', '+lang("Are_you_sure_to_calibrate?"))):
         motor.hard_stop()
-        ret = window.popup(question=("How to","Please assure the position, and press 'Yes'"))
+        ret = window.popup(question=("How to","Please enssure the position, and press 'Yes'"))
         if ret:
             bottom_p = motor.calibrate()
             bottom_u = bottom_p/motor.ppu
@@ -84,11 +84,11 @@ def disk_calibrate():
 def disk_calibrate_disk_1():
     motor_name = "motor_disk"
     motor = machine.motor_disk
-    if window.popup(question=(lang("Alert"),lang(motor_name)+', '+lang("Are sure to calibrate?"))):
+    if window.popup(question=(lang("Alert"),lang(motor_name)+', '+lang("Are_you_sure_to_calibrate?"))):
         machine.motor_mask.home()
         machine.motor_stir.home()
         motor.hard_stop()
-        ret = window.popup(question=(lang("How to"),lang("Align DISK 1")))
+        ret = window.popup(question=(lang("How to"),lang("Align_DISK_1")))
         if ret:
             calibrate_motor_stir()
             bottom_p = motor.calibrate()
@@ -105,12 +105,12 @@ def disk_calibrate_disk_8():
     ppr = defaults.get("motor_ppr").get("motor_disk")
     if window.popup(question=(lang("Alert"),lang(motor_name)+', '+lang("Continue to calibrate?"))):
         motor.hard_stop()
-        ret = window.popup(question=("How to",f"Align DISK 8, and press 'Yes'"))
+        ret = window.popup(question=(lang("How to"),lang("Align DISK 8, and press 'Yes'")))
         if ret:
             calibrate_motor_stir()
             disk8_p = motor.calibrate()
             motor._grid = 8
-            if window.popup(question=(lang("Alert"),lang("Is the target on the right site you wanted?"))):
+            if window.popup(question=(lang("Alert"),lang("Is the target on the same site you want?"))):
                 disk1_p = motor.ppu*disk1_u
                 delta_p = disk8_p - disk1_p
                 new_upr = 7/delta_p*ppr
@@ -119,7 +119,7 @@ def disk_calibrate_disk_8():
                 new_disk1_u = disk1_p/(ppr/new_upr)
                 update_defaults("motor_bottom",{"motor_disk":new_disk1_u})
 
-                window.popup(about=(lang("About"),lang(motor_name)+', '+lang("Ok, Job finished!")))
+                window.popup(about=(lang("About"),lang(motor_name)+', '+lang("Done. Good Job!")))
             else:
                 disk_calibrate_disk_8()
 
