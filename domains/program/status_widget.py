@@ -1,17 +1,16 @@
+from app.board import info
 from ecosys import *
 from prots import *
 
-from app.board import info
-
 grid_key_style = """
-    QPushButton{background-color:rgb(230,230,230);border:0.5px solid gray;border-radius:25;font:24px;}
-    QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:36px bold;}
+    QPushButton{background-color:rgb(230,230,230);border:0.5px solid gray;border-radius:35;font:36px;}
+    QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:42px bold;}
     QPushButton:pressed,QpushButton:checked{background-color:rgba(0,252,50,90%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
   """
 grid_key_style_ctx =""" 
-    QPushButton{background-color:rgb(255,235,181);border:0.5px solid gray;border-radius:25;font:24px;}
+    QPushButton{background-color:rgb(220,220,0);border:0.5px solid gray;border-radius:35;font:36px bold;}
     QPushButton:hover{background-color:rgba(240,240,240,80%);border:1px solid lightblue;font:36px bold;}
-    QPushButton:pressed,QpushButton:checked{background-color:rgba(0,252,50,90%);border:3px solid white;font:40px bold;border-style:inset;border-radius:12px;}
+    QPushButton:pressed,QpushButton:checked{background-color:rgba(0,252,50,90%);border:3px solid white;font:36px bold;border-style:inset;border-radius:12px;}
  """
 
 status_map ={
@@ -78,7 +77,11 @@ class StatusWidget(QWidget,aWidget):
 
         self.e_work=e_work
         self.e_stop = e_stop
-        self.btn_task_start:QPushButton = self.btn_task_start
+        
+        self.btn_task_start.setStyleSheet(u"font:36px bold black;")
+        self.btn_task_pause.setStyleSheet(u"font:36px bold black;")
+        self.btn_task_stop.setStyleSheet(u"font:36px bold black;")
+        self.btn_task_return.setStyleSheet(u"font:36px bold black;")
 
         self.btn_task_pause.clicked.connect(self.btn_pause_clicked)
         self.btn_task_stop.clicked.connect(self.btn_stop_clicked)
@@ -88,7 +91,7 @@ class StatusWidget(QWidget,aWidget):
         self.btn_task_pause.setEnabled(False)
         self.btn_task_stop.setEnabled(False)
 
-        disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk360.png')
+        disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk.png')
         self.show_selected_image(disk_img)
 
         def press_p1(): self.key_pressed("1")
@@ -235,9 +238,9 @@ class StatusWidget(QWidget,aWidget):
             else:
                 key.setStyleSheet(grid_key_style_ctx)
                 if i == 0:
-                    label.setStyleSheet(u"font-size:14px;background-color: rgb(0,255,0);")
+                    label.setStyleSheet(u"font-size:24px;background-color: rgb(0,255,0);")
                 else:
-                    label.setStyleSheet(u"font-size:14px;background-color: rgba(255,255,224,98);")
+                    label.setStyleSheet(u"font-size:24px;background-color: rgba(255,255,224,98);")
 
 
 
@@ -274,7 +277,7 @@ class StatusWidget(QWidget,aWidget):
             _value =0
         self.time_bar.setValue(_value),
         self.time_label.setText(\
-            f'{lang("step needs:")} {step_time_left}s,{lang("program needs:")} {pg_time_left}s'
+            f'{lang("step_needs")} {step_time_left}s,{lang("program_needs")} {pg_time_left}s'
             )
         self.disk_look_update(int(info.get("disk")))
 
@@ -284,14 +287,14 @@ class StatusWidget(QWidget,aWidget):
 
 
 class StatusWidgets():
-    def status_widget(self,ui,e_work, e_stop):
+    def status_widget(self,ui,e_work=None, e_stop=None):
         return StatusWidget(ui,status_map,e_work, e_stop)
 
 status_widgets = StatusWidgets()
 
 class TestStatusWidget():
     def __init__(self):
-        from domains.ui.uis import application,uis
+        from domains.ui.uis import application, uis
         self.app = application
         self.main_win = uis.main_win()
         self.main_win.show()

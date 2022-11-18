@@ -17,21 +17,21 @@ start_map:dict = {
 # border:1px golid gray;
 tree_style = """
     QTreeWidget{
-        font-size:22px;
+        font-size:42px;
         border:1px solid gray;
     }
     QHeaderView::section
     {
-        font-size: 18px;
+        font-size: 32px;
         color:black;
         background:rgba(0,156,230,30);
-        margin:0px;
+        margin:5px;
         padding:0px;
     }
-    QTreeWidget::item{margin:4px;}
+    QTreeWidget::item{margin:10px;}
     QTreeWidget::indicator {
-        width:40px;
-        height:30px;
+        width:90px;
+        height:60px;
         }
     QTreeWidget::indicator:checked {
         image:url('""" + checked_img + """');
@@ -57,7 +57,7 @@ class StartWidget(aStartWidget):
         self._checked_step_idxes = list()
 
         self.table:QTreeWidget = self.table
-        self.table.setIconSize(QSize(60,30))
+        self.table.setIconSize(QSize(90,60))
         self.table.header().setDefaultAlignment(Qt.AlignCenter)
         self.btn_scan.hide()
         self.btn_view.hide()
@@ -114,12 +114,12 @@ class StartWidget(aStartWidget):
         self.tree:QTreeWidget = self.table
 
         self.tree.setColumnCount(11)
-        self.tree.setColumnWidth(0,150)
-        self.tree.setColumnWidth(1,100)
-        self.tree.setColumnWidth(2,120)
+        self.tree.setColumnWidth(0,270)
+        self.tree.setColumnWidth(1,180)
+        self.tree.setColumnWidth(2,180)
         for i in range(3,9):
-            self.tree.setColumnWidth(i,90)
-        self.tree.setColumnWidth(9,60)
+            self.tree.setColumnWidth(i,120)
+        self.tree.setColumnWidth(9,120)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)
         self.tree.header().setLineWidth(0)                          #设置外线宽度
@@ -132,13 +132,13 @@ class StartWidget(aStartWidget):
             head.setText(i,lang(heads[i]))
             # if i>2:
             head.setTextAlignment(i,Qt.AlignCenter)
-            head.setFont(i,QFont('times', 16, QFont.Normal))
+            head.setFont(i,QFont('times', 18, QFont.Normal))
             head.setBackgroundColor(i,QColor(0,156,230,30))
 
         for pg in program_handler.obj_all():
             child = QTreeWidgetItem(self.tree)
             child.setText(0,pg.pg_name)
-            child.setFont(0,QFont('times', 18, QFont.Black))
+            child.setFont(0,QFont('times', 24, QFont.Black))
             child.setText(1,str(pg.idx))
             child.setTextColor(1,QColor(0,0,0,0))
             # child.setIcon(0,QIcon(ico))
@@ -158,7 +158,7 @@ class StartWidget(aStartWidget):
                     chd.setText(8,str(step[2][6]))
                     for i in range(9):
                         chd.setTextAlignment(i,Qt.AlignCenter)
-                        chd.setFont(i,QFont('times', 18, QFont.Normal))
+                        chd.setFont(i,QFont('times', 24, QFont.Normal))
                 except Exception as e:
                     # logger.error(e)
                     pass

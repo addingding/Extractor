@@ -1,15 +1,12 @@
-from ecosys import *
-
+from app.board import defaults, logo_file, opening_gif
 from app.stage import application
-
-
-from app.board import logo_file,opening_gif,defaults
-
 from domains.ui.__styles import *
-from domains.ui.translate_ui import *
+from domains.ui.designer.info import Ui_MainWindow as info_win
 from domains.ui.designer.main import Ui_MainWindow as MainWin
 from domains.ui.designer.open import Ui_MainWindow as Opening
-from domains.ui.designer.info import Ui_MainWindow as info_win
+from domains.ui.translate_ui import *
+from ecosys import *
+
 
 class WithPop:
     
@@ -23,14 +20,26 @@ class WithPop:
             
         if about is not None:
             t_ = 30 if len(about)==2 else int(about[2])
-            ret = QMessageBox.about(self,about[0],about[1])
+            mesBox = QMessageBox()
+            mesBox.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
+            mesBox.setWindowTitle(about[0])
+            mesBox.setText(about[1])
+            mesBox.setIcon(QMessageBox.Information)
+            mesBox.setStandardButtons(QMessageBox.Ok)
+            mesBox.setStyleSheet(message_style+button_style)
+            ret = (mesBox.exec_()==QMessageBox.Ok)
             self.pop_ret = ret
             return ret
         if question is not None:
             t_ = 10 if len(question)==2 else int(question[2])
-            reply = QMessageBox.question(self,question[0],question[1])            
+            mesBox = QMessageBox(QMessageBox.Question,question[0],question[1])
+            mesBox.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
+            mesBox.setIcon(QMessageBox.Question)
+            mesBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            mesBox.setStyleSheet(message_style+button_style)
+            clicked = mesBox.exec_()
             
-            ret = True if reply == QMessageBox.Yes else False
+            ret = True if clicked == QMessageBox.Yes else False
             self.pop_ret = ret
             return ret
 
@@ -235,7 +244,7 @@ class MainInterface(QMainWindow,MainWin,WithPop):
         #     "border-radius:5px;")
         self.dateTimeEdit.setStyleSheet(u"background-color: rgba(255,255,255,0);")
         self.timeEdit.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
-        self.toolBox.setStyleSheet(tool_box_style)
+        # self.toolBox.setStyleSheet(tool_box_style)
         
 
     def update_time(self):
@@ -348,14 +357,18 @@ def main():
 
     # splash.effect()
     # main_win.close()
-    def pop():
-        time.sleep(5)
-        pb = main_win.popup(pb_dialog=("title","txt"))
-        pb.wait_to_exit(timeout=5)
-    w = Worker()
-    w.get_job(pop)
-    w.start()
 
+    # def pop():
+    #     time.sleep(5)
+    #     pb = main_win.popup(pb_dialog=("title","txt"))
+    #     pb.wait_to_exit(timeout=5)
+    # w = Worker()
+    # w.get_job(pop)
+    # w.start()
+
+    # ret = main_win.popup(question=("how","are you ok?"))
+    ret = main_win.popup(about=("how","are you ok?"))
+    print(ret)
     sys.exit(application.exec_())
 
 if __name__ == "__main__":

@@ -98,5 +98,8 @@
     "Error would happen.Are you sure?":["Error would happen.Are you sure?","可能会引发意外。继续吗？"],
     "Is the target on the same site you want?":["Is the target on the same site you want?","位置正确吗？"],
     "Please enssure the position, and press 'Yes'":["Please enssure the position, and press 'Yes'","请确认位置后点击Yes"],
-    "Program Name":["Program Name","程序名称"]
+    "Program Name":["Program Name","程序名称"],
+    "step_needs":["step needs:","步骤需时："],
+    "program_needs":["program needs:","程序需时："]
+
 }

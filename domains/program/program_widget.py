@@ -48,7 +48,7 @@ locked_buttons = [
 table_style = """
 
     QTreeWidget{
-        font-size:18px;
+        font-size:42px;
         border:1px solid gray;
         border-radius:5px;
         background:rgba(255,255,255,0);
@@ -56,7 +56,7 @@ table_style = """
 
     QHeaderView::section
     {
-        font-size:18px;
+        font-size:32px;
         color:black;
         background:rgba(0,156,230,30);
         border:1px solid gray;
@@ -213,11 +213,11 @@ class ProgramWidget(aProgrameWidget):
         self.tree:QTreeWidget = self.table
 
         self.tree.setColumnCount(10)
-        self.tree.setColumnWidth(0,150)
-        self.tree.setColumnWidth(1,100)
-        self.tree.setColumnWidth(2,120)
+        self.tree.setColumnWidth(0,270)
+        self.tree.setColumnWidth(1,180)
+        self.tree.setColumnWidth(2,180)
         for i in range(3,9):
-            self.tree.setColumnWidth(i,90)
+            self.tree.setColumnWidth(i,120)
         self.tree.setColumnWidth(9,1)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)
@@ -231,7 +231,7 @@ class ProgramWidget(aProgrameWidget):
         heads = ['','disk','op_name','ul_volumn','sec_mix','speed_mix','sec_mag','sec_wait','temperature','']
         for i in range(10):
             head.setText(i,lang(heads[i]))
-            head.setFont(i,QFont('times', 16, QFont.Normal))
+            head.setFont(i,QFont('times', 18, QFont.Normal))
             head.setBackgroundColor(i,QColor(0,156,230,30))
             # if i>2:
             head.setTextAlignment(i,Qt.AlignCenter)
@@ -240,7 +240,7 @@ class ProgramWidget(aProgrameWidget):
             child = QTreeWidgetItem(self.tree)
             child.setFlags(Qt.ItemIsEnabled | Qt.ItemIsEditable)
             child.setText(0,pg.pg_name)
-            child.setFont(0,QFont('times', 18, QFont.Black))
+            child.setFont(0,QFont('times', 24, QFont.Black))
             child.setText(1,str(pg.idx))
             child.setTextColor(1,QColor(0,0,0,0))
             # child.setIcon(0,QIcon(ico))
@@ -257,7 +257,7 @@ class ProgramWidget(aProgrameWidget):
                 chd.setText(7,str(step[2][5]))
                 chd.setText(8,str(step[2][6]))
                 for i in range(9):
-                    chd.setFont(0,QFont('times', 18, QFont.Normal))
+                    chd.setFont(0,QFont('times', 24, QFont.Normal))
                     chd.setTextAlignment(i,Qt.AlignHCenter)
                 for i in range(1,9):
                     chd.setFlags(Qt.ItemIsEnabled | Qt.ItemIsEditable)

@@ -27,6 +27,7 @@ def prepare_task(a=None):
     logger.info("prepare task")
     window.tabWidget.setCurrentIndex(0)
     status_widget.btn_task_start.setEnabled(True)
+    status_widget.btn_task_start.setChecked(True)
     status_widget.btn_task_start.clicked.connect(start_task, type=Qt.UniqueConnection)
     machine.motor_stir.prepare()
     set_temperature(1,25)
@@ -64,6 +65,7 @@ def set_task_start_sets(ends:bool=False):
     tabwidget.setTabEnabled(3,ends)
     tabwidget.setTabEnabled(4,ends)
     start_widget.btn_start.setEnabled(ends)
+    status_widget.btn_task_start.setChecked(False)
     status_widget.btn_task_start.setEnabled(False)
 
 def perform_job(e_stop:Event,signal_updated:Signal=None):

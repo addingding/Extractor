@@ -1,9 +1,9 @@
-from ecosys import *
 from app.board import background_png
+from ecosys import *
 
 main_win_style = """
     QMainWindow{
-        font: 22px;
+        font-size:36px;
         background-color:rgba(255,255,255,0);
         border-image:url('""" + background_png + """');
         }
@@ -16,9 +16,8 @@ info_win_style = """
         }
     """
 tool_box_style = """ 
-    QWidget {
-        font:24px;
-        background-color:rgba(0,255,255,0);
+    QWidget{
+        font:36px;
     } """
 
 
@@ -37,16 +36,16 @@ main_tab_widget_style=("""
         alignment: center; 
     } 
     QTabBar::tab{
-        font:28px;
-        width:200px;
-        height:60;
+        font:48px;
+        width:302px;
+        height:90;
         margin-top:5px; 
-        margin-right:1px;
-        margin-left:1px;
+        margin-right:3px;
+        margin-left:3px;
         margin-bottom:0px;
         border-bottom-color: #C2C7CB;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
     }
     QTabWidget::pane{
         border:none;
@@ -163,10 +162,10 @@ pb_message_style = ("""
 message_style = ("""
                 
                 QWidget{
-                    font:24px;
+                    font:48px;
                     }
                 QFrame{
-                    font:24px;
+                    font:48px;
                 }
                  """)
 
@@ -178,19 +177,19 @@ round_frame_style = ("""
                 """)
 
 button_style =(""" QPushButton{
-                        height:40px;
-                        width:140px;
-                        font:24px bold black;
+                        height:90px;
+                        width:240px;
+                        font:36px bold black;
                         text-align:center middle;
                         border-radius:10px;
                         border: 1px solid #4fa9aD;
                         } 
                     QPushButton:hover{
                         border: 2px solid #4fa9aD;
-                        background-color:rgba(40,200,60,70);
+                        background-color:rgba(40,200,60,40);
                         }
                     QPushButton:pressed{
-                        background-color:rgb(225,225,225);
+                        background-color:rgba(40,200,60,99);
                         }
                     QPushButton:focus{
                         outline:none;
@@ -199,7 +198,7 @@ button_style =(""" QPushButton{
 
                         {
 
-                        background-color:rgb(255,235,181);
+                        background-color:rgba(40,200,60,75);
 
                         }
                                 """)
