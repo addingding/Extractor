@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*
 import RPi.GPIO as GPIO
-import time
+
+from prots import *
 
 
 class Beeper():
@@ -107,7 +108,7 @@ class Beepers:
         try:
             _beeper = Beeper(pin)
         except Exception as e:
-            print(e)
+            logger.error(e)
             _beeper = None
         return _beeper
     def get_singer(self,pin=22):

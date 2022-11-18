@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 from ecosys import *
-logging.start()
+
 print("start",datetime.datetime.now())
 
 if __name__ == "__main__":
@@ -8,7 +8,6 @@ if __name__ == "__main__":
     try:
         start()
     except Exception as e:
-        print(e)
+        logger.error(e)
 
 print("end",datetime.datetime.now())
-logging.release()

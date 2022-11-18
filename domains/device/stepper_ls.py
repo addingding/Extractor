@@ -1,8 +1,8 @@
+from app.board import defaults
+from domains.device.modbus import *
+from domains.uv_widget.uv_timer import JobTimer
 from ecosys import *
 from prots import *
-from app.board import defaults
-from domains.device.modbus import  *
-from domains.uv_widget.uv_timer import JobTimer
 
 PointMode = namedtuple("PointMode","type_03 insert_4 ovlp_5 abspos_6 jump_pnt813 jump_14")
 def mode_to_number(p:PointMode):
@@ -50,7 +50,7 @@ class LsStepperDriver(ModbusTerminal):
             else:
                 return ret
         except Exception as e:
-            print(e)
+            logger.error(e)
     def set_zero_threshold(self):
         self.ls_set_single(0x0175,10)
 
@@ -152,7 +152,7 @@ class LsStepperDriver(ModbusTerminal):
             try:
                 if self.is_ended(): return
             except Exception as e:
-                print(e)
+                logger.error(e)
 
     def point_set(self,site:int,point:sPoint=None):
         assert 0<=site<=16

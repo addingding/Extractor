@@ -56,7 +56,7 @@ def mytry(f,*args,**kwargs):
     try:
         f(*args,**kwargs)
     except Exception as e:
-        print(e)
+        logger.error(e)
 
 def func_time(f):
     """
@@ -142,24 +142,7 @@ def attach(text):
     return decorator
 
 
-class WithAble():
-    def __enter__(self):
-        if hasattr(self,'start'):
-            self.start()
-        return self
-    def __exit__(self, type, value, trace):
-        self.release()
 
-class Logging(WithAble):
-    sysout_bak = sys.stdout
-    def start(self):
-        import time
-        log = open('log.txt','a+',1)
-        sys.stdout = log
-        print('--------------------------')
-        print('\n',time.ctime())
-    def release(self):
-        sys.stdout = self.sysout_bak
 
 class RollbackAble:
     def __init__(self,charge_board:list):
@@ -240,6 +223,6 @@ class Simulator():
                 print(":::Simulator NotFind:::")
                 return printf
         except Exception as e:
-            print(e)
+            logger.error(e)
             return printf
 aSim = Simulator

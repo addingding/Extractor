@@ -31,7 +31,7 @@ def window_ready():
         # return
     control_assign()
     
-    refresh_thread_start()
+    # refresh_thread_start()
     # window.showFullScreen()
     window.show()
 
@@ -117,7 +117,7 @@ def machine_init():
         except SafeError:
             infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
-            print(e)
+            logger.error(e)
             # infowin.popup(about=(lang('Alert'),lang('InitError')))
     else:
         print("machine is not ready ,wait for 5 secs and simulator on")

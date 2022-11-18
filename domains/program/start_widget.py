@@ -1,6 +1,5 @@
-from prots import *
 from domains.program.programs import *
-
+from prots import *
 
 checked_img = os.path.join(BASE_DIR,'app','settings','imgs','checked.png')
 unchecked_img = os.path.join(BASE_DIR,'app','settings','imgs','unchecked.png')
@@ -72,7 +71,7 @@ class StartWidget(aStartWidget):
         try:
             idx = self.selected_idx
         except Exception as e:
-            print(e)
+            logger.error(e)
     def view(self):
         self.ui.tabWidget.setCurrentIndex(2)
         pass
@@ -161,7 +160,7 @@ class StartWidget(aStartWidget):
                         chd.setTextAlignment(i,Qt.AlignCenter)
                         chd.setFont(i,QFont('times', 18, QFont.Normal))
                 except Exception as e:
-                    # print(e)
+                    # logger.error(e)
                     pass
             self.tree.addTopLevelItem(child)
             
@@ -196,7 +195,7 @@ start_widgets = Widgets()
 
 class TestProgramerWidget():
     def __init__(self):
-        from domains.ui.uis import application,uis
+        from domains.ui.uis import application, uis
         self.app = application
         self.main_win = uis.main_win()
         self.main_win.show()

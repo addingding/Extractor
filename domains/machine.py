@@ -122,12 +122,12 @@ class MachineMain(aMachine):
         #     try:
         #         device.close()
         #     except Exception as e:
-        #         print(e)
+        #         logger.error(e)
         # for thread in self.threads:
         #     try:
         #         thread.join(1)
         #     except Exception as e:
-        #         print(e)
+        #         logger.error(e)
         pass
 
     def perform_step(self,partition:int,operation:Operation,step_idx:int):
@@ -224,7 +224,7 @@ class MachineMain(aMachine):
                 "sheath_at_spot":self.has_sheath,
             })
         except Exception as e:
-            print(e)
+            logger.error(e)
             # info.update({"disk":1})
             # raise e
 
@@ -279,7 +279,7 @@ class Machines:
             try:
                 _sers[f'server_{i}'] = servers.get_modbus_server(dm.get(port).get(SYS_NAME))
             except Exception as e:
-                print(e)
+                logger.error(e)
                 pass
         self.server_0:Union[aModbusServer,RtuMaster] = _sers["server_0"]
         self.server_1:Union[aModbusServer,RtuMaster] = _sers["server_1"]
@@ -293,7 +293,7 @@ class Machines:
             if not self.server_2 is None: self.server_2.close()
             if not self.server_3 is None: self.server_3.close()
         except Exception as e:
-            print(e)
+            logger.error(e)
 
     def __del__(self):
         self.close_servers()
@@ -370,7 +370,7 @@ class Machines:
             machine = self.assemble_machine()
             return machine 
         except Exception as e:
-            print(e)
+            logger.error(e)
             # raise Exception("MachineInitError")
     
 machines = Machines()

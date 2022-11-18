@@ -1,7 +1,6 @@
-from prots import *
-from domains.program.programs import *
 from domains.program.lock_widget import LockWidget
-
+from domains.program.programs import *
+from prots import *
 
 program_map = {
     "table":"treeWidget",
@@ -125,7 +124,7 @@ class ProgramWidget(aProgrameWidget):
                         obj.steps.append([i,1,[""]*7])
                 self.program_handler.update(obj)
             except Exception as e:
-                # print(e)
+                # logger.error(e)
                 pass
         self.table_update()
     def copy(self):
@@ -133,7 +132,7 @@ class ProgramWidget(aProgrameWidget):
             idx:int = self._selected_program_idx
             new_obj = self.program_handler.copy(idx)
         except Exception as e:
-            print(e)
+            logger.error(e)
         self.table_update()
         pass
 
@@ -179,12 +178,12 @@ class ProgramWidget(aProgrameWidget):
         try:
             self.program_handler.delete(prg_idx)
         except Exception as e:
-            print(e)
+            logger.error(e)
     def delete_step(self,prg_idx:int,stp_idx:int):
         try:
             self.program_handler.delete(prg_idx,stp_idx)
         except Exception as e:
-            print(e)
+            logger.error(e)
         
     def delete(self):
         if not self.ui.popup(question=(lang("Alert"),lang("Sure to Delete?"))):
@@ -299,7 +298,7 @@ programer_widgets = Widgets()
 
 class TestProgramerWidget():
     def __init__(self):
-        from domains.ui.uis import application,uis
+        from domains.ui.uis import application, uis
         self.app = application
         self.main_win = uis.main_win()
         self.main_win.show()

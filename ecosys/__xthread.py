@@ -1,8 +1,10 @@
+import asyncio
+from queue import *
+from threading import *
+
+from ecosys.__log import logger
 from ecosys.__pies import *
 
-from threading import *
-from queue import *
-import asyncio
 
 def start_source_threading(obj:object,thread_name:str,target_obj:object,args:tuple) -> None:
     """ start a stand_alone threading with some source occupation """
@@ -25,7 +27,7 @@ class LatestQueue():
         try:
             self.queue.put_nowait(_item)
         except Exception as e:
-            print(e)
+            logger.error(e)
 
     def get(self):
         data = self.queue.get()
@@ -43,7 +45,7 @@ class LatestQueue():
                 else:
                     break
         except Exception as e:
-            print(e)
+            logger.error(e)
             pass
 
 class LineWorker():
