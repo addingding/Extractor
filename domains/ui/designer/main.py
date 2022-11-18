@@ -138,6 +138,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_21.addWidget(self.frame, 1, 0, 1, 1)
 
+        self.verticalSpacer_37 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_21.addItem(self.verticalSpacer_37, 2, 0, 1, 1)
+
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
         sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
@@ -289,17 +293,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_8)
 
-        self.pushButton_57 = QPushButton(self.frame_5)
-        self.pushButton_57.setObjectName(u"pushButton_57")
-        self.pushButton_57.setMinimumSize(QSize(200, 50))
-        self.pushButton_57.setFlat(False)
-
-        self.verticalLayout_2.addWidget(self.pushButton_57)
-
-        self.verticalSpacer_39 = QSpacerItem(20, 13, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer_39)
-
         self.pushButton_18 = QPushButton(self.frame_5)
         self.pushButton_18.setObjectName(u"pushButton_18")
         self.pushButton_18.setMinimumSize(QSize(200, 50))
@@ -327,6 +320,18 @@ class Ui_MainWindow(object):
         self.pushButton_20.setMinimumSize(QSize(200, 50))
 
         self.verticalLayout_2.addWidget(self.pushButton_20)
+
+        self.verticalSpacer_31 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_31)
+
+        self.pushButton_57 = QPushButton(self.frame_5)
+        self.pushButton_57.setObjectName(u"pushButton_57")
+        self.pushButton_57.setMinimumSize(QSize(200, 100))
+        self.pushButton_57.setMaximumSize(QSize(16777215, 100))
+        self.pushButton_57.setFlat(False)
+
+        self.verticalLayout_2.addWidget(self.pushButton_57)
 
         self.verticalSpacer_6 = QSpacerItem(20, 80, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
@@ -625,7 +630,7 @@ class Ui_MainWindow(object):
         self.tab_run.setObjectName(u"tab_run")
         self.gridLayout_9 = QGridLayout(self.tab_run)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.verticalSpacer_14 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_14 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.gridLayout_9.addItem(self.verticalSpacer_14, 3, 1, 1, 1)
 
@@ -1541,15 +1546,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_21.addWidget(self.tabWidget, 0, 0, 1, 1)
 
-        self.verticalSpacer_37 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_21.addItem(self.verticalSpacer_37, 2, 0, 1, 1)
-
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.stackedWidget.setCurrentIndex(5)
         self.toolBox.setCurrentIndex(0)
 
@@ -1582,10 +1583,10 @@ class Ui_MainWindow(object):
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Stirring Sec", None))
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"Stirring Speed", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"HB_DNA", None))
-        self.pushButton_57.setText(QCoreApplication.translate("MainWindow", u"start", None))
         self.pushButton_18.setText(QCoreApplication.translate("MainWindow", u"\u505c\u6b62", None))
         self.pushButton_19.setText(QCoreApplication.translate("MainWindow", u"\u6682\u505c", None))
         self.pushButton_20.setText(QCoreApplication.translate("MainWindow", u"\u8fd4\u56de", None))
+        self.pushButton_57.setText(QCoreApplication.translate("MainWindow", u"start", None))
         self.pushButton_43.setText(QCoreApplication.translate("MainWindow", u"1", None))
         self.pushButton_44.setText(QCoreApplication.translate("MainWindow", u"2", None))
         self.pushButton_45.setText(QCoreApplication.translate("MainWindow", u"3", None))
