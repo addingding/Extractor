@@ -24,7 +24,7 @@ def prepare_task(a=None):
             
             info["disk_info"][idx-1] = t
     
-    print("prepare task")
+    logger.info("prepare task")
     window.tabWidget.setCurrentIndex(0)
     status_widget.btn_task_start.setEnabled(True)
     status_widget.btn_task_start.clicked.connect(start_task, type=Qt.UniqueConnection)
@@ -37,7 +37,7 @@ def start_task(a=None):
         window.popup(about=(lang("Alert"),lang("No sheath")) )
         return
     
-    print("start task")
+    logger.info("start task")
 
 
     set_task_start_sets(True)

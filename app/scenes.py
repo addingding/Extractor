@@ -107,7 +107,7 @@ def machine_init():
             machine.motor_disk.bottom()
             infowin.show_info("Disk Motor ready")
 
-            print("machine is ready!")
+            logger.info("machine is ready!")
             infowin.show_info("machine is ready!")
 
         except HomeError:
@@ -120,7 +120,7 @@ def machine_init():
             logger.error(e)
             # infowin.popup(about=(lang('Alert'),lang('InitError')))
     else:
-        print("machine is not ready ,wait for 5 secs and simulator on")
+        logger.info("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)
 
 

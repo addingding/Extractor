@@ -49,15 +49,16 @@ thermos = Thermos()
 
 class SelfTest():
     def test_thermo(self):
+        logger.info("test thermo")
 
         server = servers.get_modbus_server("COM4" if sys.platform.startswith('win') else "/dev/ttySC0")
         thermo_master = thermos.get_thermo_master(server,3)
-        print(thermo_master.temperatures)
+        logger.info(str(thermo_master.temperatures))
         thermo_master.set_temperatrues((50,50,50,50))
         # time.sleep(30)
         for i in range(4):
             thermo = thermos.get_thermo("thermo",server,3,i)
-            print(thermo.temperature)
+            logger.info(str(thermo.temperature))
         server.close()
 
 def main():

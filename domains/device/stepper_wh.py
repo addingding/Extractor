@@ -88,7 +88,7 @@ class ModbusStepperDriver(ModbusTerminal):
                     _p = int(_r[-28]+_r[-24:],2)
                     ret = tuple_int(_d,_p)
         except Exception as e:
-            print(self.id,"_position_query",e)
+            logger.error(f"{self.id} _position_query {e}")
             return 0
         return ret
 
@@ -103,7 +103,7 @@ class ModbusStepperDriver(ModbusTerminal):
             try:
                 s = self.query(0x002E,1)
             except Exception as e:
-                print("status get error",e)
+                logger.error(f"status get error {e}")
                 time.sleep(0.1)
                 continue
 
@@ -174,18 +174,18 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         return super().rotate_till(speed, direction_right, sensor_right, sensor_high)
 
     def _back_zero(self,timeout = 15):
-        print(self.name,"back_zero:",datetime.datetime.now())
+        logger.info(f"{self.name},back_zero")
         _status = self._status
         if _status is None:
             time.sleep(1)
-            print(self.name,"no return, retry...")
+            logger.info(f"{self.name} no return, retry...")
             self._back_zero(timeout)
         else:
             if not self.at_home:
-                print(self.name,"hard home return")
+                logger.info(f"{self.name} hard home return")
                 self._restore()
             else:
-                print(self.name,"just right_at_home")
+                logger.info(f"{self.name} just right_at_home")
         self._wait_until_stopped(timeout)
         if not self.at_home:
             self._back_zero()
@@ -195,7 +195,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
 
     def _assert_zero_point(self):
         if not self.at_home:
-            print(self.name,"HomeError")
+            logger.info(f"{self.name} HomeError")
             raise HomeError
 
     def is_stopped(self):
@@ -211,7 +211,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                 if self.is_stopped():
                     t += 1
                     if t>=3:
-                        print("motor stopped")
+                        logger.info("motor stopped")
                         break
                 time.sleep(0.1)
                 if not timeout is None:
@@ -219,7 +219,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                     if timeout<=0:
                         raise TimeoutError
             except Exception as e:
-                print(self.name,e)
+                logger.info(f"{self.name} {e}")
 
 
 
@@ -228,7 +228,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
             self._back_zero(timeout)
             self._position = 0
         else:
-            print(self.name,"not sure to move safely ")
+            logger.info(f"{self.name} not sure to move safely ")
             raise SafeError
 
     def set_points(self,ul,bottom_u:float):
@@ -238,7 +238,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         if self.motion_safe:
             self.move_to(self._bottom)
         else:
-            print("not sure to move safely ")
+            logger.info("not sure to move safely ")
             raise SafeError
     def home(self):
         self.move_to(0)
@@ -257,10 +257,10 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self._wait_until_stopped()
         self.soft_stop()
         pos_after = self.position
-        print("before",pos_before,"after",pos_after)
+        logger.info(f"before {pos_before},after {pos_after}")
         delta_p = pos_after-pos_before
         delta_u = delta_p/self.ppu
-        print("distance_p return",delta_p,"delta_u move",-delta_u)
+        logger.info(f"distance_p return {delta_p} delta_u move {-delta_u}")
 
         self.position_u = 0
         self.move(-delta_u)
@@ -293,12 +293,12 @@ class DiskMotor(ModbusStepper):
         self._grid = 1
 
     def grid(self,site:int):
-        print("grid",site)
+        logger.info(f"grid,{site}")
         if self.action_stop.is_set():
             return
         self._target = site
         if not self.motion_safe:
-            print("not safe for motion, please check the stir_motor")
+            logger.error("not safe for motion, please check the stir_motor")
             raise(SafeError)
         elif 1<= site <=8:
             self.grid_move(site)
@@ -385,7 +385,7 @@ class ModbusStepperTest():
 
     # def __del__(self):
     #     self.switches.turn_off(2)
-    #     print(self.switches.read_out())
+    #     logger.info(f"{self.switches.read_out()}"")
 
     #     self.switches.exit()
 
@@ -410,17 +410,17 @@ class ModbusStepperTest():
         self.motor_disk.grid(2)
     def thread_pause(self):
         self.motor_disk.pause()
-        print('pause finished')
+        logger.info('pause finished')
     def thread_resume(self):
         self.motor_disk.resume()
-        print('resume finished')
+        logger.info('resume finished')
     def thread_stop(self):
         self.motor_disk.stop()
-        print('stop finished')
+        logger.info('stop finished')
 
     def test_signal(self):
         for stepper in self.steppers:
-            print(stepper.name,"right:",stepper.at_home)
+            logger.info(f"{stepper.name} right: {stepper.at_home}")
 
 
     def test_home(self):

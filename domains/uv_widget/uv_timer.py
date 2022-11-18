@@ -62,7 +62,7 @@ class UvTimerWidget(aTimerWidget):
 
     def ring(self):
         self.stop_clicked()
-        print("Time reached!")
+        logger.info("Time reached!")
         self.head.setText("UV Time Satified!!!")
 
     def start_clicked(self):
@@ -122,13 +122,13 @@ class JobTimer():
     def __left_time(self):
         return  self.wait_seconds- self.__past_seconds
     def start(self):
-        print("wait",self.wait_seconds,"seconds.")
+        logger.info(f"wait {self.wait_seconds} seconds.")
         self._timer.start(int(self.wait_seconds*1000))
         self.start_time =  time.time()
     def pause(self):
         self._timer.stop()
         self.wait_seconds = self.__left_time
-        # print("time_left",self.wait_seconds)
+        # logger.info(f"time_left {self.wait_seconds}",)
     def restart(self):
         self.start()
     def stop_operation(self):
@@ -147,7 +147,7 @@ timers = Timers()
 
 class TestTimer():
     def __init__(self):
-        from domains.ui.uis import application,uis
+        from domains.ui.uis import application, uis
         self.app = application
         self.main_win = uis.main_win()
         self.main_win.show()

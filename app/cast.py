@@ -33,7 +33,7 @@ app_worker = QWorker()
 try:
     from domains.device.beeper import beepers
     beeper = call(beeper,beepers.get_beeper())
-    print("beeper loaded")
+    logger.info("beeper loaded")
 except Exception as e:
     logger.error(e)
 
@@ -71,7 +71,7 @@ def ermergency_check():
     _new_status = machine.door_safe.is_on
     if e_work.is_set() and status_widget.btn_task_pause.isEnabled() and \
        _last_status and (not _new_status):
-        print("ermergency activated")
+        logger.info("ermergency activated")
         status_widget.pause_signal.emit(1)
     _last_status = _new_status
     emergency_timer.start(200)

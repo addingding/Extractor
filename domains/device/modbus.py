@@ -19,14 +19,14 @@ def serial_ports():
 
     if sys.platform.startswith('win'):
         available_ports = ['COM%s' % (i + 1) for i in range(16)]
-        print("Windows platform")
+        logger.info("Windows platform")
     elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
         # this excludes your current terminal"/dev/tty"
         available_ports = glob.glob('/dev/tty[A-Za-z]*')
-        print("Linux platform")
+        logger.info("Linux platform")
     elif sys.platform.startswith('darwin'):
         available_ports = glob.glob('/dev/tty.*')
-        print("Darwin kernal")
+        logger.info("Darwin kernal")
     else:
         raise EnvironmentError('Unsupported platform')
 
@@ -41,7 +41,7 @@ def serial_ports():
     return result
 
 available_ports = serial_ports()
-print("working serial_ports:",available_ports)
+logger.info(f"working serial_ports:{available_ports}",)
 
 # @dataclass
 # class Message():
@@ -101,7 +101,7 @@ class Servers():
                 xonxoff=0)
             ser.timeout = timeout
         except Exception as e:
-            print(self.__class__.__name__,e)
+            logger.error(f"{self.__class__.__name__},{e}")
         return ser
 
     def __del__(self):
@@ -109,7 +109,7 @@ class Servers():
             try:
                 self._servers.get(ser).close()
             except Exception as e:
-                print(self.__class__.__name__,e)
+                logger.error(f"{self.__class__.__name__},{e}")
     
 
 servers = Servers()
@@ -160,7 +160,7 @@ class ModbusTerminal():
             if ret is not None:
                 return True
         except Exception as e:
-            print(self.__class__.__name__,e)
+            logger.error(f"{self.__class__.__name__},{e}")
             return
 
     def _execute(self,function_code,data_start,data_quantity=1,output_value=None):
@@ -168,13 +168,13 @@ class ModbusTerminal():
             try:
                 return self.server.execute(self.address,function_code,data_start,data_quantity,output_value=output_value)
             except Exception as e:
-                # print(self.address,function_code,hex(data_start),self.__class__.__name__,e)
+                # logger.info(f"{self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
                 return None
     def _execute_(self,function_code,data_start,output_value=None):
         try:
             return self.server.execute(self.address,function_code,data_start,output_value=output_value)
         except Exception as e:
-            print(self.address,function_code,hex(data_start),self.__class__.__name__,e)
+            logger.info(f"{self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
             return None
 
     def read_coils(self,data_quantity):#out
@@ -210,7 +210,8 @@ class SelfTest():
     #     cmd = Command(1, modbus_tk.defines.READ_HOLDING_REGISTERS, 2700, 43)
     #     print(*cmd.__repr__())
     def test_serial_ports(self):
-        print(serial_ports())
+        print("test_serial_ports")
+        print(f"{serial_ports()}")
 
     def test_open_close(self):
         server = servers.get_modbus_server("COM4" if sys.platform.startswith('win') else "/dev/ttySC1")

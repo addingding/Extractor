@@ -110,7 +110,7 @@ class MachineMain(aMachine):
         if value in  ["extracting","sterilizing","waiting","paused"]:
             self._status_acting = value
         else:
-            print("not proper status setting")
+            logger.info("not proper status setting")
 
     def self_check(self):
         for device in self.devices:
@@ -382,30 +382,32 @@ class TestMachine:
     def test_light_open(self):
         self.machine.led.turn_on()
     def test_motors_return_home(self):
-        print(
-            self.machine.motor_stir.at_home,
-            self.machine.motor_mag.at_home,
-            self.machine.motor_disk.at_home,
-            self.machine.motor_mask.at_home,
+        logger.info(f""" 
+            {self.machine.motor_stir.at_home}
+            {self.machine.motor_mag.at_home}
+            {self.machine.motor_disk.at_home}
+            {self.machine.motor_mask.at_home}
+         """
             )
         self.machine.motor_stir.home()
         self.machine.motor_mag.home()
         self.machine.motor_disk.home()
         self.machine.motor_mask.home()
-        print(
-            self.machine.motor_stir.at_home,
-            self.machine.motor_mag.at_home,
-            self.machine.motor_disk.at_home,
-            self.machine.motor_mask.at_home,
+        logger.info(f""" 
+            {self.machine.motor_stir.at_home}
+            {self.machine.motor_mag.at_home}
+            {self.machine.motor_disk.at_home}
+            {self.machine.motor_mask.at_home}
+         """
             )
     def test_thermo(self):
-        print(self.machine.thermo_0.temperature)
-        print(self.machine.thermo_1.temperature)
+        logger.info(f"{self.machine.thermo_0.temperature}")
+        logger.info(f"{self.machine.thermo_1.temperature}")
         self.machine.thermo_0.set_temperatrue(50)
         self.machine.thermo_1.set_temperatrue(50)
+        logger.info(f"{self.machine.thermo_0.temperature}")
+        logger.info(f"{self.machine.thermo_1.temperature}")
         # time.sleep(5)
-        print(self.machine.thermo_0.temperature)
-        print(self.machine.thermo_1.temperature)
 if __name__=="__main__":
     T = TestMachine()
     # T.test_light_open()

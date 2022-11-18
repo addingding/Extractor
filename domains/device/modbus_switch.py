@@ -1,6 +1,5 @@
-from prots import *
 from domains.device.modbus import *
-
+from prots import *
 
 RelayStatus = namedtuple('RelayStatus',['ON','OFF'])
 statuses = RelayStatus(0xFF00,0x0000)
@@ -63,7 +62,7 @@ class Sensor(aSensor):
                 ret = ret_[self.channel]
             return ret
         except Exception as e:
-            print(self.__class__.__name__,e)
+            logger.error(f"{self.__class__.__name__},{e}")
         return ret
 
 class Switch(aSwitch):
@@ -87,7 +86,7 @@ class Switch(aSwitch):
                 ret = ret_[self.channel]
             return ret
         except Exception as e:
-            print(self.__class__.__name__,e)
+            logger.error(f"{self.__class__.__name__},{e}")
         return ret
     def switch(self):
         if self.on:
@@ -117,24 +116,27 @@ class Switches():
 switches = Switches()
 
 def test_switch():
+    logger.info("test_switch")
     sw = switches.get_ios("ios")
-    print("in",sw.read_in())
-    print("out",sw.read_out())
+    logger.info(f"in,{sw.read_in()}")
+    logger.info(f"out,{sw.read_out()}")
     sw.turn_on(0) # light
     sw.turn_on(1)   # fan
 
     sw.turn_off(2)
     time.sleep(0.5)
     sw.turn_on(2)
-
-    print("in",sw.read_in())
-    print("out",sw.read_out())
+    logger.info(f"in,{sw.read_in()}")
+    logger.info(f"out,{sw.read_out()}")
 
     time.sleep(3)
     sw.turn_off(0)
     sw.turn_off(1)
     sw.turn_off(2)
-    print("out",sw.read_out())
+    logger.info(f"in,{sw.read_in()}")
+    logger.info(f"out,{sw.read_out()}")
+
+
 
 def test_led():
     sw = switches.get_ios("ios")
@@ -145,7 +147,7 @@ def test_led():
     
     door_safe = switches.get_sensor(sw,0)
     reag_safe = switches.get_sensor(sw,1)
-    print(door_safe.is_on,reag_safe.is_on)
+    logger.info(f"{door_safe.is_on},{reag_safe.is_on}")
 
     time.sleep(3)
     for i in range(5):

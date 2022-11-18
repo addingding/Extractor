@@ -146,12 +146,12 @@ class StatusWidget(QWidget,aWidget):
     @Slot(int)
     def btn_pause_status_trans(self,n:int):
         if n==1:
-            # print("btn_pause_pressed",n,"1 for show resume")
+            # logger.debug(f"btn_pause_pressed {n} 1 for show resume")
             self.btn_task_pause.setText(lang("resume"))
             self.btn_task_pause.setChecked(True)
             self.btn_task_stop.setEnabled(False)
         else:
-            # print("btn_pause_pressed",n,"0 for show pause")
+            # logger.debug(f"btn_pause_pressed {n} 0 for show pause")
             self.btn_task_pause.setText(lang("pause"))
             self.btn_task_pause.setChecked(False)
             self.btn_task_stop.setEnabled(True)

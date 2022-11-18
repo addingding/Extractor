@@ -42,7 +42,7 @@ class LsStepperDriver(ModbusTerminal):
             if ret is None:
                 _tries += 1
                 if _tries >= 10:
-                    print("No response 10 times. Ignore.")
+                    logger.info("No response 10 times. Ignore.")
                     _tries = 0
                     return
                 time.sleep(0.01)
@@ -275,7 +275,7 @@ class LsStepper(Stepper,ActionStoppable):
 
 
         pos_p = pos_p - (int(self.ppu*d) - _p)
-        print("distance return:",pos_p,'p')
+        logger.info("distance return:",pos_p,'p')
         return pos_p
 
     def rotate(self, pulses: int, accel_ms: int, speed: int, keep_sec: int):
@@ -502,11 +502,11 @@ class TestLs:
         #     self.start(11)
         # dt = time.time()-t
         
-        # print(int(ts/dt),"Hz")
+        # logger.info(int(ts/dt),"Hz")
         self.stepper.home()
 
     def read_light_limit(self):
-        print("right_light_limit",self.driver.right_light_is_on)
+        logger.info("right_light_limit",self.driver.right_light_is_on)
 
     def test_home_return_and_stir(self):
         self.driver.set_max_current(10)
@@ -516,7 +516,7 @@ class TestLs:
         T.stepper.set_points(100,60)
 
         T.stepper.bottom_mag(1)
-        print(self.driver.position/self.stepper.ppu)
+        logger.info(self.driver.position/self.stepper.ppu)
         T.stepper.start(5)
         time.sleep(10)
         T.stepper.driver.speed_stop()
@@ -524,7 +524,7 @@ class TestLs:
     def test_calibration(self):
         self.stepper.drop_before_calibrate()
         pos = self.stepper.calibrate()
-        # print("bottom detected at:",pos,"\bp")
+        # logger.info("bottom detected at:",pos,"\bp")
     def test_mix_sec(self):
         self.stepper.stir_mix(10)
 
@@ -556,13 +556,13 @@ class TestLs:
 
     def thread_pause(self):
         self.stepper.pause()
-        print("paused")
+        logger.info("paused")
     def thread_resume(self):
         self.stepper.resume()
-        print("resume")
+        logger.info("resume")
     def thread_stop(self):
         self.stepper.stop()
-        print("stopped")
+        logger.info("stopped")
 
 
 if __name__ == "__main__":
