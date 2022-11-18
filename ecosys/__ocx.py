@@ -1,6 +1,5 @@
 from ecosys.__xgui import *
 
-
 Button = QPushButton
 Label = QLabel
 ComboBox = QComboBox

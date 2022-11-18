@@ -1,6 +1,7 @@
 import json
 from typing import Any
 
+
 class Config():
     def __init__(self,config_file) -> None:
         self.__dict__["config_file"] = config_file

@@ -3,10 +3,11 @@
 # from PySide6.QtGui import *  # type: ignore
 # from PySide6.QtWidgets import *  # type: ignore
 
-from PySide2 import QtWidgets, QtCore, QtGui
+from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import *  # type: ignore
 from PySide2.QtGui import *  # type: ignore
 from PySide2.QtWidgets import *  # type: ignore
+
 # from PySide2.QtWebEngineWidgets import *
 
 # from PyQt5 import QtWidgets, QtCore, QtGui
@@ -26,8 +27,10 @@ def clear_layout(layout:QGridLayout):
         layout.itemAt(i).widget().deleteLater()
 
 
-from abc import ABC,abstractmethod
+from abc import ABC, abstractmethod
 from threading import Event
+
+
 class Worker(QThread):
     """
     # main

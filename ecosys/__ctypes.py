@@ -1,1 +1,2 @@
-import struct,ctypes
+import ctypes
+import struct

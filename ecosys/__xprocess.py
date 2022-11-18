@@ -1,4 +1,5 @@
-from multiprocessing import cpu_count,freeze_support,Pool
+from multiprocessing import Pool, cpu_count, freeze_support
+
 # from pathos.helpers import cpu_count, freeze_support, ProcessPool as Pool
 freeze_support()
 import multiprocessing.dummy
