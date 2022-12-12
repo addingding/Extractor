@@ -44,24 +44,17 @@ class MyLogger():
         rf_handler.setFormatter(logging.Formatter("%(levelname)s %(message)s -%(filename)s:%(lineno)d"))
         self.logger.addHandler(rf_handler)
 
-    # def start_backup_logger(self,filename:str="back.log"):
-    #     _handler = handlers.TimedRotatingFileHandler(
-    #             filename,when='midnight', interval=1, backupCount=7, atTime=datetime.time(0, 0, 0, 0))
-    #     _handler.setLevel(logging.DEBUG)
-    #     _handler.setFormatter(
-    #         logging.Formatter(
-    #             "%(asctime)s - %(message)s",
-    #             datefmt='%y-%m-%d %H:%M:%S'))
-    #     self.logger.addHandler(_handler)
-
-    def start_backup_logger(self,filename:str="Log.log"):
-        _handler = logging.RotatingFileHandler(filename, maxBytes=102400, backupCount=3, encoding='utf-8')
+    def start_backup_logger(self,filename:str="back.log"):
+        _handler = handlers.TimedRotatingFileHandler(
+                filename,when='midnight', interval=1, backupCount=7, atTime=datetime.time(0, 0, 0, 0))
         _handler.setLevel(logging.DEBUG)
         _handler.setFormatter(
             logging.Formatter(
-                "%(asctime)s %(levelname)s %(message)s -%(filename)s:%(lineno)d ",
+                "%(asctime)s - %(message)s",
                 datefmt='%y-%m-%d %H:%M:%S'))
         self.logger.addHandler(_handler)
+
+
 
     def start_error_logger(self,filename:str="error.log"):
         _handler = logging.FileHandler(filename)
@@ -77,4 +70,4 @@ class Loggers():
         return MyLogger(name,console,backup,error)
 
 loggers = Loggers()
-logger:logging = loggers.logger("ProjectLogger",0,1,1)
+logger:logging = loggers.logger("ProjectLogger",1,1,1)
