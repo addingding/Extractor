@@ -149,7 +149,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self._wait_ignore = Event()
 
         # self.set_baud()
-        self.set_current(15) # (n=15+1)/16 A
+        self.set_current(17) # (n=15+1)/16 A
         self.local_set_speed(1)
         time.sleep(0.2)
 

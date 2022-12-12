@@ -27,11 +27,11 @@ def window_ready():
     infowin.close()
     if not is_real(machine):
         window.popup(about=(lang("Alert"),lang("Device_Error!")))
-        # return
+        #return
     control_assign()
     
-    # refresh_thread_start()
-    # window.showFullScreen()
+    refresh_thread_start()
+    window.showFullScreen()
     window.show()
 
 def control_assign():

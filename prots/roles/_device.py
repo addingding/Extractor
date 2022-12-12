@@ -1,5 +1,6 @@
 from ecosys import *
 
+
 class aInput(ABC):
     @abstractproperty
     def is_on(self):...

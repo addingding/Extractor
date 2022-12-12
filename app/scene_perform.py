@@ -98,7 +98,7 @@ def set_temperature_via_steps(partition:int,steps:list):
     if partition in [1,8]:
         t = get_preset_temperature(steps,partition)
         set_temperature(partition, t)
-def get_preset_temperature(partition:int,steps:list):
+def get_preset_temperature(steps:list,partition:int):
     t = 25
     for stp in steps:
         if int(stp[1])==partition and stp[2]:

@@ -66,10 +66,17 @@ emergency_last_status = False
 def emergency_check():
     global emergency_last_status
     _new_status = machine.door_safe.is_on
-    if e_work.is_set() and status_widget.btn_task_pause.isEnabled() and \
-       emergency_last_status and (not _new_status):
-        logger.info("ermergency activated")
-        status_widget.pause_signal.emit(1)
+    is_extracting =(status_widget.btn_task_pause.isEnabled() and \
+       emergency_last_status and (not _new_status))
+    is_uv_working = machine.uv.is_on()
+    if e_work.is_set(): 
+        if is_extracting:
+            logger.info("ermergency activated, pausing extracting")
+            status_widget.pause_signal.emit(1)
+        elif is_uv_working:
+            logger.info("ermergency activated, turn off uv")
+            machine.uv.turn_off()
+
     emergency_last_status = _new_status
     emergency_timer.start(1000)
 emergency_timer.timeout.connect(emergency_check)

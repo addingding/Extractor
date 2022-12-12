@@ -1,7 +1,7 @@
+from domains.device.modbus import *
 from ecosys import *
 from prots import *
 
-from domains.device.modbus import *
 
 class ThermoMaster(ModbusTerminal):
     def __init__(self, id: str, server: RtuServer, address: int):
@@ -32,6 +32,7 @@ class Thermo(aThermo):
         ts = list(self.thermo_master.temperatures)
         ts[self.channel] = t
         self.thermo_master.set_many_tuple(1,4,tuple(ts))
+        logger.info(f"{self.channel} temperature set to {t}")
 
 
 class Thermos:
