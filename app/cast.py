@@ -56,29 +56,26 @@ status_widget.disk_key_pressed.connect(machine_signals.grid_pressed)
 machine_signals.grid_arrived.connect(status_widget.disk_arrived_and_work_done)
 
 status_widget.pause_signal.connect(machine.pause_pressed)
-status_widget.pause_signal.connect(status_widget.btn_pause_status_trans)
+status_widget.uv_stop_signal.connect(machine.uv_stop)
 
+status_widget.pause_signal.connect(status_widget.btn_pause_status_trans)
 status_widget.stop_signal.connect(machine.stop_pressed)
 
-emergency_timer = QTimer()
 
+emergency_timer = QTimer()
 emergency_last_status = False
+
 def emergency_check():
     global emergency_last_status
     _new_status = machine.door_safe.is_on
-    is_extracting =(status_widget.btn_task_pause.isEnabled() and \
-       emergency_last_status and (not _new_status))
-    is_uv_working = machine.uv.is_on()
-    if e_work.is_set(): 
-        if is_extracting:
+    if e_work.is_set() and emergency_last_status and (not _new_status): 
+        if status_widget.btn_task_pause.isEnabled():
             logger.info("ermergency activated, pausing extracting")
             status_widget.pause_signal.emit(1)
-        elif is_uv_working:
-            logger.info("ermergency activated, turn off uv")
-            machine.uv.turn_off()
-
+        status_widget.uv_stop_signal.emit(1)
     emergency_last_status = _new_status
     emergency_timer.start(1000)
+
 emergency_timer.timeout.connect(emergency_check)
 emergency_timer.start(1000)
 

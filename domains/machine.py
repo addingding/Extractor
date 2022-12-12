@@ -266,6 +266,13 @@ class MachinePause():
             Thread(target=self.pause).start()
         else:
             Thread(target=self.resume).start()
+
+    @Slot(int)
+    def uv_stop(self,checked:bool):
+        Thread(target=self._uv_stop).start()
+    def _uv_stop(self):
+        self._machine.uv.turn_off()
+
     def stop_pressed(self,pressed:int):
         Thread(target=self.stop).start()
 

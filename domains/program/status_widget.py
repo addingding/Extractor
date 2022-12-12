@@ -70,6 +70,7 @@ class StatusWidget(QWidget,aWidget):
     disk_key_pressed = Signal(int)
     pause_signal = Signal(int)
     stop_signal = Signal(int)
+    uv_stop_signal = Signal(int)
 
     def __init__(self, ui, map,e_work:Event, e_stop:Event):
         super().__init__()
