@@ -183,7 +183,7 @@ class StartWidget(aStartWidget):
             else:
                 idx = item.parent().text(1)
             self._selected_idx = idx
-        print(self._selected_idx,"clicked")
+        logger.debug(f"{self._selected_idx} clicked")
 
 
 class Widgets():
