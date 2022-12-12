@@ -150,11 +150,11 @@ pb_message_style = ("""
                 }
 
                 QWidget{
-                    font:24px;
+                    font:18px;
                     background-color:rgba(200,200,200,0)
                     }
                 QFrame{
-                    font:24px;
+                    font:18px;
                     background-color:rgba(200,200,200,0)
                 }
                  """)
@@ -162,10 +162,10 @@ pb_message_style = ("""
 message_style = ("""
                 
                 QWidget{
-                    font:48px;
+                    font:32px;
                     }
                 QFrame{
-                    font:48px;
+                    font:32px;
                 }
                  """)
 

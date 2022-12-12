@@ -1,4 +1,4 @@
-from app.board import info
+from app.board import e_stop, e_work, info
 from app.stage import application
 from domains import (programer_widgets, start_widgets, status_widgets,
                      translators, uis)
@@ -12,9 +12,6 @@ from domains.uv_widget.uv_timer import timer_map, timers
 from ecosys import *
 from prots import *
 from prots._cast import *
-
-e_work = Event()
-e_stop = Event()
 
 update_timer = QTimer()
 
@@ -51,7 +48,7 @@ status_widget = status_widgets.status_widget(window,e_work, e_stop)
 calib_widget = Calibration(window)
 
 
-# machine:Machine = call(machine,machines.get_machine())
+machine:Machine = call(machine,machines.get_machine())
 
 uv_widget.uv = machine.uv
 machine_signals = MachineSignals(machine)
@@ -65,18 +62,18 @@ status_widget.stop_signal.connect(machine.stop_pressed)
 
 emergency_timer = QTimer()
 
-_last_status = False
-def ermergency_check():
-    global _last_status
+emergency_last_status = False
+def emergency_check():
+    global emergency_last_status
     _new_status = machine.door_safe.is_on
     if e_work.is_set() and status_widget.btn_task_pause.isEnabled() and \
-       _last_status and (not _new_status):
+       emergency_last_status and (not _new_status):
         logger.info("ermergency activated")
         status_widget.pause_signal.emit(1)
-    _last_status = _new_status
-    emergency_timer.start(200)
-emergency_timer.timeout.connect(ermergency_check)
-emergency_timer.start(200)
+    emergency_last_status = _new_status
+    emergency_timer.start(1000)
+emergency_timer.timeout.connect(emergency_check)
+emergency_timer.start(1000)
 
 
 

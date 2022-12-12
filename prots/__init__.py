@@ -1,6 +1,5 @@
-from .roles import *
-from .widgets import *
-from .patterns import *
 from .lang import *
-
+from .patterns import *
+from .roles import *
 from .stereotype import *
+from .widgets import *

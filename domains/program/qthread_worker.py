@@ -1,6 +1,5 @@
-from prots import *
 from ecosys import *
-
+from prots import *
 
 e_safe_collect = Event()
 e_stop_collect = Event()

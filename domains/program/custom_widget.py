@@ -1,7 +1,6 @@
-from prots import *
 from app.board import *
-
 from domains.program.lock_widget import LockWidget
+from prots import *
 
 locked_buttons = [
     "pushButton_10",

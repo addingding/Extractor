@@ -1,5 +1,5 @@
-from ecosys import *
 from app.board import background_png
+from ecosys import *
 
 checked_img = os.path.join(BASE_DIR,'app','settings','imgs','checked.png')
 unchecked_img = os.path.join(BASE_DIR,'app','settings','imgs','unchecked.png')
