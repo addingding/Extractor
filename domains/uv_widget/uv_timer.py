@@ -80,6 +80,7 @@ class UvTimerWidget(aTimerWidget):
         self.time_total = self.time_count
         self.time_passed = 0
         self.face.setReadOnly(True)
+        self.pause.setEnabled(True)
         self.start.setEnabled(False)
         self.reset.setEnabled(False)
         if not self.uv is None:

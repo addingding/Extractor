@@ -211,7 +211,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                 if self.is_stopped():
                     t += 1
                     if t>=3:
-                        logger.info("motor stopped")
+                        logger.info(f"motor {self.name} stopped")
                         break
                 time.sleep(0.1)
                 if not timeout is None:
@@ -294,6 +294,7 @@ class DiskMotor(ModbusStepper):
 
     def grid(self,site:int):
         if self.action_stop.is_set():
+            logger.info(f"no need to grid to {site} for action_stop")
             return
         logger.info(f"grid to {site}")
         self._target = site
@@ -304,8 +305,10 @@ class DiskMotor(ModbusStepper):
             self.grid_move(site)
     def grid_move(self,site:int):
         self.signal_ignore.set()
-        _point = self.signal_to_site(site)
-        logger.info(f"disk starts to point {_point}")
+        _point = self.send_signal_to_site(site)
+        time.sleep(0.1)
+        _point = self.send_signal_to_site(site)
+        time.sleep(0.1)
         ret = self.wait_grid_move_end(_point)
 
         if ret:
@@ -326,25 +329,29 @@ class DiskMotor(ModbusStepper):
             else:
                 pass #TODO 如果位置不正确，如何返回？
 
-    def signal_to_site(self, site:int):
+    def send_signal_to_site(self, site:int):
         _point = int(self.ppu*(site-1+abs(self._bottom)))
         self._rotate_to(True,False,False,False,False,_point)
+        logger.info(f"disk starts to point {_point}")
         return _point
 
     def pause(self):
+        logger.debug(f"{self.name} pauses")
         self.signal_ignore.clear()
         time.sleep(0.05)
         self.soft_stop()
         self.signal_ignore.set()
     def resume(self):
+        logger.debug(f"{self.name} resumes")
         self.signal_ignore.clear()
         time.sleep(0.01)
         if self._target is not None:
-            self.signal_to_site(self._target)
+            self.send_signal_to_site(self._target)
         self.signal_ignore.set()
     def stop(self):
         self.pause()
         time.sleep(0.5)
+        logger.debug(f"{self.name} stops")
         self.action_stop.set()
         time.sleep(1)
         self.prepare_at_grid_1()
@@ -391,7 +398,7 @@ class ModbusStepperTest():
 
     def test_motor_disk(self):
         self.motor_disk.prepare_at_grid_1()
-        tm = Thread(target=self.thread_move)
+        tm = Thread(target=self.test_thread_move)
         tm.start()
         time.sleep(2)
         Thread(target=self.thread_pause).start()
@@ -405,7 +412,7 @@ class ModbusStepperTest():
         ts = Thread(target=self.thread_stop)
         ts.start()
 
-    def thread_move(self):
+    def test_thread_move(self):
         self.motor_disk.grid(5)
         self.motor_disk.grid(2)
     def thread_pause(self):
