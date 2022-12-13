@@ -227,12 +227,14 @@ class MachineMain(aMachine):
                 "door_at_spot":self.door_safe.is_on,
                 "sheath_at_spot":self.has_sheath,
             })
-            if info["disk_1_temperature"]>=info["disk_1_preset"]-10:
+            if not (info["disk_1_temperature"] is None) and \
+                    info["disk_1_temperature"] >= info["disk_1_preset"]-10:
                 info["disk_1_temperature_ok"].set()
             else:
                 info["disk_1_temperature_ok"].clear()
 
-            if info["disk_8_temperature"]>=info["disk_8_preset"]-10:
+            if not (info["disk_8_temperature"] is None) and \
+                    info["disk_8_temperature"]>=info["disk_8_preset"]-10:
                 info["disk_8_temperature_ok"].set()
             else:
                 info["disk_8_temperature_ok"].clear()
@@ -266,12 +268,6 @@ class MachinePause():
             Thread(target=self.pause).start()
         else:
             Thread(target=self.resume).start()
-
-    @Slot(int)
-    def uv_stop(self,checked:bool):
-        Thread(target=self._uv_stop).start()
-    def _uv_stop(self):
-        self._machine.uv.turn_off()
 
     def stop_pressed(self,pressed:int):
         Thread(target=self.stop).start()

@@ -15,6 +15,7 @@ timer_map:dict = dict(
 )
 
 class UvTimerWidget(aTimerWidget):
+    uv_stop_signal = Signal(int)
     def __init__(self,ui,map,e_work:Event =None,uv:aUV = None):
         super().__init__(ui,map)
         if e_work is None:
@@ -37,7 +38,11 @@ class UvTimerWidget(aTimerWidget):
     @uv.setter
     def uv(self,value):
         self._uv = value
-        
+    
+    @Slot(int)
+    def uv_pause(self,checked:bool):
+        Thread(target=self.pause_clicked).start()
+    
     def update_time(self):
         if self.time_count>0:
             self.time_count -=1
@@ -81,7 +86,8 @@ class UvTimerWidget(aTimerWidget):
             self.uv.turn_on()
         self._timer.start(1000)
         pass
-    def stop_clicked(self):
+
+    def stop_clicked(self,key=None):
         self._timer.stop()
         if not self.uv is None:
             self.uv.turn_off()
@@ -95,9 +101,14 @@ class UvTimerWidget(aTimerWidget):
         self.set_face_time(self.time_count)
         self.head.setText("UV Time")
         pass
-    def pause_clicked(self):
-        self._timer.stop()
-        self.start.setEnabled(True)
+    def pause_clicked(self,key=None):
+        if self.pause.isEnabled():
+            self.pause.setEnabled(False)
+            if not self.uv is None:
+                self.uv.turn_off()
+            self._timer.stop()
+            self.reset.setEnabled(True)
+            self.start.setEnabled(True)
         pass
 
 class JobTimer():

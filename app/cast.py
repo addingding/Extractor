@@ -56,7 +56,7 @@ status_widget.disk_key_pressed.connect(machine_signals.grid_pressed)
 machine_signals.grid_arrived.connect(status_widget.disk_arrived_and_work_done)
 
 status_widget.pause_signal.connect(machine.pause_pressed)
-status_widget.uv_stop_signal.connect(machine.uv_stop)
+uv_widget.uv_stop_signal.connect(uv_widget.uv_pause)
 
 status_widget.pause_signal.connect(status_widget.btn_pause_status_trans)
 status_widget.stop_signal.connect(machine.stop_pressed)
@@ -72,7 +72,7 @@ def emergency_check():
         if status_widget.btn_task_pause.isEnabled():
             logger.info("ermergency activated, pausing extracting")
             status_widget.pause_signal.emit(1)
-        status_widget.uv_stop_signal.emit(1)
+        uv_widget.uv_stop_signal.emit(1)
     emergency_last_status = _new_status
     emergency_timer.start(1000)
 
