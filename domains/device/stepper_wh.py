@@ -293,9 +293,9 @@ class DiskMotor(ModbusStepper):
         self._grid = 1
 
     def grid(self,site:int):
-        logger.info(f"grid,{site}")
         if self.action_stop.is_set():
             return
+        logger.info(f"grid to {site}")
         self._target = site
         if not self.motion_safe:
             logger.error("not safe for motion, please check the stir_motor")
@@ -303,9 +303,9 @@ class DiskMotor(ModbusStepper):
         elif 1<= site <=8:
             self.grid_move(site)
     def grid_move(self,site:int):
-
-        _point = self.signal_to_site(site)
         self.signal_ignore.set()
+        _point = self.signal_to_site(site)
+        logger.info(f"disk starts to point {_point}")
         ret = self.wait_grid_move_end(_point)
 
         if ret:

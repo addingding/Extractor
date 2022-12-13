@@ -98,6 +98,7 @@ def set_temperature_via_steps(partition:int,steps:list):
     if partition in [1,8]:
         t = get_preset_temperature(steps,partition)
         set_temperature(partition, t)
+        logger.debug(f"{partition} temperatrue set to {t}")
 def get_preset_temperature(steps:list,partition:int):
     t = 25
     for stp in steps:
@@ -120,8 +121,8 @@ def total_pg_time(steps:list):
 
 def run_task(e_stop,signal_updated,machine:Machine,steps:list):
     for step in steps:
-
         partition:int = int(step[1])
+        logger.debug(f"partition {partition} start to go")
         operation:Operation = Operation(*step[2])
 
         if partition in [1,8]:
@@ -144,6 +145,7 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
             })
         signal_updated.emit(1)
 
+        
         machine.perform_step(partition,operation,step[0])
         if machine.motor_stir._action_end.is_set():
             machine.motor_stir._action_end.clear()
