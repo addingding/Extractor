@@ -1025,7 +1025,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_29 = QPushButton(self.groupBox_5)
         self.pushButton_29.setObjectName(u"pushButton_29")
-        self.pushButton_29.setMinimumSize(QSize(160, 80))
+        self.pushButton_29.setMinimumSize(QSize(180, 90))
 
         self.horizontalLayout_2.addWidget(self.pushButton_29)
 
@@ -1035,7 +1035,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_30 = QPushButton(self.groupBox_5)
         self.pushButton_30.setObjectName(u"pushButton_30")
-        self.pushButton_30.setMinimumSize(QSize(160, 80))
+        self.pushButton_30.setMinimumSize(QSize(180, 90))
 
         self.horizontalLayout_2.addWidget(self.pushButton_30)
 
@@ -1045,7 +1045,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_31 = QPushButton(self.groupBox_5)
         self.pushButton_31.setObjectName(u"pushButton_31")
-        self.pushButton_31.setMinimumSize(QSize(160, 80))
+        self.pushButton_31.setMinimumSize(QSize(180, 90))
 
         self.horizontalLayout_2.addWidget(self.pushButton_31)
 
@@ -1137,30 +1137,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_26.addItem(self.verticalSpacer_27, 2, 0, 1, 1)
 
-        self.doubleSpinBox = QDoubleSpinBox(self.page_8)
-        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
-        self.doubleSpinBox.setMinimumSize(QSize(720, 240))
-        font8 = QFont()
-        font8.setFamily(u"Arial")
-        font8.setPointSize(48)
-        self.doubleSpinBox.setFont(font8)
-        self.doubleSpinBox.setFocusPolicy(Qt.NoFocus)
-        self.doubleSpinBox.setContextMenuPolicy(Qt.DefaultContextMenu)
-        self.doubleSpinBox.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
-        self.doubleSpinBox.setWrapping(False)
-        self.doubleSpinBox.setFrame(True)
-        self.doubleSpinBox.setAlignment(Qt.AlignCenter)
-        self.doubleSpinBox.setButtonSymbols(QAbstractSpinBox.UpDownArrows)
-        self.doubleSpinBox.setAccelerated(True)
-        self.doubleSpinBox.setCorrectionMode(QAbstractSpinBox.CorrectToNearestValue)
-        self.doubleSpinBox.setProperty("showGroupSeparator", False)
-        self.doubleSpinBox.setDecimals(1)
-        self.doubleSpinBox.setMinimum(-70.000000000000000)
-        self.doubleSpinBox.setMaximum(-50.000000000000000)
-        self.doubleSpinBox.setSingleStep(0.200000000000000)
-
-        self.gridLayout_26.addWidget(self.doubleSpinBox, 3, 1, 1, 1)
-
         self.horizontalSpacer_18 = QSpacerItem(290, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.gridLayout_26.addItem(self.horizontalSpacer_18, 5, 0, 1, 1)
@@ -1187,6 +1163,31 @@ class Ui_MainWindow(object):
         self.horizontalSpacer_20 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.gridLayout_26.addItem(self.horizontalSpacer_20, 3, 0, 1, 1)
+
+        self.doubleSpinBox = QDoubleSpinBox(self.page_8)
+        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
+        self.doubleSpinBox.setMinimumSize(QSize(720, 240))
+        font8 = QFont()
+        font8.setFamily(u"Arial")
+        font8.setPointSize(48)
+        self.doubleSpinBox.setFont(font8)
+        self.doubleSpinBox.setFocusPolicy(Qt.NoFocus)
+        self.doubleSpinBox.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.doubleSpinBox.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
+        self.doubleSpinBox.setWrapping(False)
+        self.doubleSpinBox.setFrame(True)
+        self.doubleSpinBox.setAlignment(Qt.AlignCenter)
+        self.doubleSpinBox.setButtonSymbols(QAbstractSpinBox.UpDownArrows)
+        self.doubleSpinBox.setAccelerated(True)
+        self.doubleSpinBox.setCorrectionMode(QAbstractSpinBox.CorrectToNearestValue)
+        self.doubleSpinBox.setKeyboardTracking(False)
+        self.doubleSpinBox.setProperty("showGroupSeparator", False)
+        self.doubleSpinBox.setDecimals(1)
+        self.doubleSpinBox.setMinimum(-90.000000000000000)
+        self.doubleSpinBox.setMaximum(-50.000000000000000)
+        self.doubleSpinBox.setSingleStep(0.200000000000000)
+
+        self.gridLayout_26.addWidget(self.doubleSpinBox, 3, 1, 1, 1)
 
         self.stackedWidget.addWidget(self.page_8)
         self.page_10 = QWidget()
@@ -1430,7 +1431,7 @@ class Ui_MainWindow(object):
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 1866, 576))
+        self.page_status.setGeometry(QRect(0, 0, 1874, 653))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
@@ -1445,7 +1446,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_status, u"Inspect")
         self.page_run = QWidget()
         self.page_run.setObjectName(u"page_run")
-        self.page_run.setGeometry(QRect(0, 0, 1866, 650))
+        self.page_run.setGeometry(QRect(0, 0, 89, 89))
         self.gridLayout_4 = QGridLayout(self.page_run)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.textBrowser = QTextBrowser(self.page_run)
@@ -1458,7 +1459,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_run, u"Start")
         self.page_program = QWidget()
         self.page_program.setObjectName(u"page_program")
-        self.page_program.setGeometry(QRect(0, 0, 1866, 650))
+        self.page_program.setGeometry(QRect(0, 0, 89, 89))
         self.gridLayout_5 = QGridLayout(self.page_program)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.textBrowser_2 = QTextBrowser(self.page_program)
@@ -1469,7 +1470,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_program, u"Programs")
         self.page_manage = QWidget()
         self.page_manage.setObjectName(u"page_manage")
-        self.page_manage.setGeometry(QRect(0, 0, 1866, 650))
+        self.page_manage.setGeometry(QRect(0, 0, 89, 89))
         self.gridLayout_7 = QGridLayout(self.page_manage)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.textBrowser_4 = QTextBrowser(self.page_manage)
@@ -1480,7 +1481,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_manage, u"Config")
         self.page_sterilize = QWidget()
         self.page_sterilize.setObjectName(u"page_sterilize")
-        self.page_sterilize.setGeometry(QRect(0, 0, 1866, 650))
+        self.page_sterilize.setGeometry(QRect(0, 0, 89, 89))
         self.gridLayout_6 = QGridLayout(self.page_sterilize)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.textBrowser_3 = QTextBrowser(self.page_sterilize)
@@ -1492,7 +1493,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_sterilize, u"Sterilize")
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
-        self.page_3.setGeometry(QRect(0, 0, 1866, 650))
+        self.page_3.setGeometry(QRect(0, 0, 89, 89))
         self.gridLayout_18 = QGridLayout(self.page_3)
         self.gridLayout_18.setObjectName(u"gridLayout_18")
         self.textBrowser_6 = QTextBrowser(self.page_3)
@@ -1628,8 +1629,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
-        self.stackedWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(6)
         self.toolBox.setCurrentIndex(0)
 
 
@@ -1731,8 +1732,8 @@ class Ui_MainWindow(object):
         self.pushButton_39.setText(QCoreApplication.translate("MainWindow", u"Axis Magnetic", None))
         self.pushButton_40.setText(QCoreApplication.translate("MainWindow", u"Axis Disk", None))
         self.pushButton_42.setText(QCoreApplication.translate("MainWindow", u"Return", None))
-        self.doubleSpinBox.setSuffix(QCoreApplication.translate("MainWindow", u" mm", None))
         self.lineEdit_7.setText(QCoreApplication.translate("MainWindow", u"plus/minus the number to calibrate motor V", None))
+        self.doubleSpinBox.setSuffix(QCoreApplication.translate("MainWindow", u" mm", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"Steps", None))
         self.pushButton_33.setText(QCoreApplication.translate("MainWindow", u"New Step", None))
         self.pushButton_17.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
@@ -1769,39 +1770,39 @@ class Ui_MainWindow(object):
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:14pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:26pt;\">    Click &quot;Start&quot; to run the program list mode, scan mode, quick launch mode and view  the steps of the program to start running according to the selected current step.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0"
-                        "px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:26pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px"
+                        "; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:26pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:26pt;\">    \u70b9\u51fb&quot;\u7a0b\u5e8f\u8fd0\u884c&quot;\uff0c\u9009\u62e9\u7a0b\u5e8f\uff0c\u518d\u70b9\u51fb&quot;\u5f00\u59cb\u8fd0\u884c&quot;, \u8bbe\u5907\u5c06\u6309\u9009\u62e9\u7684\u7a0b\u5e8f\u6b65\u9aa4\u8fd0\u884c\u64cd\u4f5c\u3002\u53e6\u5916\u4e5f\u53ef\u4ee5\u9009\u62e9\u70b9\u51fb&quot;\u626b\u63cf\u8fd0\u884c&quot;\u540e\u626b\u63cf\u8bd5\u5242\u6761\u7801\uff0c\u7a0b\u5e8f\u5c06\u9009\u62e9\u5bf9\u5e94\u7684\u7a0b\u5e8f\u6b65\u9aa4\uff0c\u4eba\u5de5\u786e\u8ba4\u540e\u8fd0\u884c\u64cd\u4f5c\u3002</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_run), QCoreApplication.translate("MainWindow", u"Start", None))
         self.textBrowser_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:28pt;\">    Click &quot;Programs&quot; to create new programs, edit programs, delete programs and other functions.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:28pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-siz"
-                        "e:28pt;\">    \u70b9\u51fb\u201c\u7a0b\u5e8f\u7ba1\u7406\u201d\uff0c\u53ef\u4ee5\u5bf9\u64cd\u4f5c\u7a0b\u5e8f\u65b0\u5efa\u3001\u7f16\u8f91\u3001\u5220\u9664\u4ee5\u53ca\u5176\u4ed6\u64cd\u4f5c\u3002</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:"
+                        "28pt;\">    \u70b9\u51fb\u201c\u7a0b\u5e8f\u7ba1\u7406\u201d\uff0c\u53ef\u4ee5\u5bf9\u64cd\u4f5c\u7a0b\u5e8f\u65b0\u5efa\u3001\u7f16\u8f91\u3001\u5220\u9664\u4ee5\u53ca\u5176\u4ed6\u64cd\u4f5c\u3002</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_program), QCoreApplication.translate("MainWindow", u"Programs", None))
         self.textBrowser_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    Click &quot;Config&quot; to set the time, instrument motion parameters, export the protocol to the U disk, import the protocol from the U disk to the system and upgrade the software.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
-                        "ent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb\u201c\u4eea\u5668\u7ba1\u7406\u201d\u4ee5\u8bbe\u7f6e\u65f6\u95f4\u3001\u8bbe\u5907\u8fd0\u52a8\u53c2\u6570\u3001\u5c06\u7a0b\u5e8f\u5728\u7cfb\u7edf\u4e0eU\u76d8\u4e4b\u95f4\u5bfc\u5165\u5bfc\u51fa\uff0c\u6b64\u5904\u4ea6\u53ef\u5347\u7ea7\u8f6f\u4ef6\u3002</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
+                        "t:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb\u201c\u4eea\u5668\u7ba1\u7406\u201d\u4ee5\u8bbe\u7f6e\u65f6\u95f4\u3001\u8bbe\u5907\u8fd0\u52a8\u53c2\u6570\u3001\u5c06\u7a0b\u5e8f\u5728\u7cfb\u7edf\u4e0eU\u76d8\u4e4b\u95f4\u5bfc\u5165\u5bfc\u51fa\uff0c\u6b64\u5904\u4ea6\u53ef\u5347\u7ea7\u8f6f\u4ef6\u3002</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_manage), QCoreApplication.translate("MainWindow", u"Config", None))
         self.textBrowser_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    Click &quot;Sterilize&quot; to enter the UV disinfection interface, and click &quot;+&quot;, &quot;-&quot; to adjust the disinfection time. Click &quot;start&quot; to turn on the UV light. The operation would be broken when the door is pulled open.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; m"
-                        "argin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb&quot;\u7d2b\u5916\u6d88\u6bd2&quot;,\u8fdb\u5165\u7d2b\u5916\u6d88\u6bd2\u754c\u9762\uff0c\u70b9\u51fb\u201c+\u201d\u201c-\u201d\u53ef\u8c03\u6574\u6d88\u6bd2\u65f6\u95f4\u3002\u6d88\u6bd2\u64cd\u4f5c\u53ef\u56e0\u4ed3\u95e8\u88ab\u6253\u5f00\u800c\u4e2d\u65ad\u3002</span></p>\n"
+"<p style=\" margin-top:0px; mar"
+                        "gin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb&quot;\u7d2b\u5916\u6d88\u6bd2&quot;,\u8fdb\u5165\u7d2b\u5916\u6d88\u6bd2\u754c\u9762\uff0c\u70b9\u51fb\u201c+\u201d\u201c-\u201d\u53ef\u8c03\u6574\u6d88\u6bd2\u65f6\u95f4\u3002\u6d88\u6bd2\u64cd\u4f5c\u53ef\u56e0\u4ed3\u95e8\u88ab\u6253\u5f00\u800c\u4e2d\u65ad\u3002</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;\"><br /></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_sterilize), QCoreApplication.translate("MainWindow", u"Sterilize", None))
         self.textBrowser_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

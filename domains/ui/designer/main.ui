@@ -1814,7 +1814,7 @@ QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);bo
            </size>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>6</number>
           </property>
           <widget class="QWidget" name="page">
            <layout class="QGridLayout" name="gridLayout_12">
@@ -2819,67 +2819,6 @@ s(0-60)</string>
               </property>
              </spacer>
             </item>
-            <item row="3" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox">
-              <property name="minimumSize">
-               <size>
-                <width>720</width>
-                <height>240</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>48</pointsize>
-               </font>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="contextMenuPolicy">
-               <enum>Qt::DefaultContextMenu</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgba(255, 255, 255,0);</string>
-              </property>
-              <property name="wrapping">
-               <bool>false</bool>
-              </property>
-              <property name="frame">
-               <bool>true</bool>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::UpDownArrows</enum>
-              </property>
-              <property name="accelerated">
-               <bool>true</bool>
-              </property>
-              <property name="correctionMode">
-               <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-              </property>
-              <property name="showGroupSeparator" stdset="0">
-               <bool>false</bool>
-              </property>
-              <property name="suffix">
-               <string> mm</string>
-              </property>
-              <property name="decimals">
-               <number>1</number>
-              </property>
-              <property name="minimum">
-               <double>-70.000000000000000</double>
-              </property>
-              <property name="maximum">
-               <double>-50.000000000000000</double>
-              </property>
-              <property name="singleStep">
-               <double>0.200000000000000</double>
-              </property>
-             </widget>
-            </item>
             <item row="5" column="0">
              <spacer name="horizontalSpacer_18">
               <property name="orientation">
@@ -2954,6 +2893,70 @@ font:24px;</string>
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="3" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox">
+              <property name="minimumSize">
+               <size>
+                <width>720</width>
+                <height>240</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>48</pointsize>
+               </font>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
+              </property>
+              <property name="contextMenuPolicy">
+               <enum>Qt::DefaultContextMenu</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+              </property>
+              <property name="wrapping">
+               <bool>false</bool>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::UpDownArrows</enum>
+              </property>
+              <property name="accelerated">
+               <bool>true</bool>
+              </property>
+              <property name="correctionMode">
+               <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+              </property>
+              <property name="keyboardTracking">
+               <bool>false</bool>
+              </property>
+              <property name="showGroupSeparator" stdset="0">
+               <bool>false</bool>
+              </property>
+              <property name="suffix">
+               <string> mm</string>
+              </property>
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="minimum">
+               <double>-90.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>-50.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.200000000000000</double>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -3560,8 +3563,8 @@ font:24px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1866</width>
-             <height>576</height>
+             <width>1874</width>
+             <height>653</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3594,8 +3597,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1866</width>
-             <height>650</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3614,7 +3617,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:14pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:26pt;&quot;&gt;    Click &amp;quot;Start&amp;quot; to run the program list mode, scan mode, quick launch mode and view  the steps of the program to start running according to the selected current step.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:26pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -3629,8 +3632,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1866</width>
-             <height>650</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3643,7 +3646,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:28pt;&quot;&gt;    Click &amp;quot;Programs&amp;quot; to create new programs, edit programs, delete programs and other functions.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:28pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:28pt;&quot;&gt;    点击“程序管理”，可以对操作程序新建、编辑、删除以及其他操作。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3657,8 +3660,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1866</width>
-             <height>650</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3671,7 +3674,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:24pt;&quot;&gt;    Click &amp;quot;Config&amp;quot; to set the time, instrument motion parameters, export the protocol to the U disk, import the protocol from the U disk to the system and upgrade the software.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:24pt;&quot;&gt;    点击“仪器管理”以设置时间、设备运动参数、将程序在系统与U盘之间导入导出，此处亦可升级软件。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3685,8 +3688,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1866</width>
-             <height>650</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3702,7 +3705,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:24pt;&quot;&gt;    Click &amp;quot;Sterilize&amp;quot; to enter the UV disinfection interface, and click &amp;quot;+&amp;quot;, &amp;quot;-&amp;quot; to adjust the disinfection time. Click &amp;quot;start&amp;quot; to turn on the UV light. The operation would be broken when the door is pulled open.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Adobe Heiti Std'; font-size:24pt;&quot;&gt;    点击&amp;quot;紫外消毒&amp;quot;,进入紫外消毒界面，点击“+”“-”可调整消毒时间。消毒操作可因仓门被打开而中断。&lt;/span&gt;&lt;/p&gt;
@@ -3717,8 +3720,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1866</width>
-             <height>650</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">

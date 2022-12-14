@@ -22,6 +22,7 @@ class UvTimerWidget(aTimerWidget):
             e_work = Event()
         self.e_work = e_work
         self._uv:aUV = uv
+        self.pause.setText(lang("pause"))
         self.stop.clicked.connect(self.stop_clicked)
         self.reset.clicked.connect(self.reset_clicked)
         self.pause.clicked.connect(self.pause_clicked)
@@ -41,7 +42,7 @@ class UvTimerWidget(aTimerWidget):
     
     @Slot(int)
     def uv_pause(self,checked:bool):
-        Thread(target=self.pause_clicked).start()
+        Thread(target=self.door_pause).start()
     
     def update_time(self):
         if self.time_count>0:
@@ -103,14 +104,24 @@ class UvTimerWidget(aTimerWidget):
         self.head.setText("UV Time")
         pass
     def pause_clicked(self,key=None):
-        if self.pause.isEnabled():
-            self.pause.setEnabled(False)
+        if self.pause.text()==lang("pause"):
+            self.pause.setText(lang("resume"))
             if not self.uv is None:
                 self.uv.turn_off()
             self._timer.stop()
-            self.reset.setEnabled(True)
-            self.start.setEnabled(True)
+        else:
+            self.pause.setText(lang("pause"))
+            if not self.uv is None:
+                self.uv.turn_on()
+            self._timer.start(1000)
         pass
+    def door_pause(self,key=None):
+        if self.pause.text()==lang("pause"):
+            self.pause.setText(lang("resume"))
+            if not self.uv is None:
+                self.uv.turn_off()
+            self._timer.stop()
+
 
 class JobTimer():
     def __init__(self):
