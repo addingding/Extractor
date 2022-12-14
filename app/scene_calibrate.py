@@ -92,7 +92,9 @@ def disk_calibrate_disk_1():
                 calibrate_motor_stir()
                 bottom_p = motor.calibrate()
                 motor._grid = 1
+                motor_stir_drop()
                 if window.popup(question=(lang("Alert"),lang("Is the target on the same site you want?"))):
+                    motor_stir_home()
                     bottom_u = bottom_p/motor.ppu
                     if bottom_u > 0.4447:
                         window.popup(about=(lang("Alert"),lang("Bias_Error")))
@@ -101,8 +103,14 @@ def disk_calibrate_disk_1():
                         update_defaults("motor_bottom",{"motor_disk":bottom_u})
                         return True
                 else:
+                    motor_stir_home()
                     bottom_u = disk_calibrate_disk_1()
     return False
+
+def motor_stir_drop():
+    machine.motor_stir.hard_stop()
+def motor_stir_home():
+    machine.motor_stir.home(7)
 
 def disk_calibrate_disk_8():
     motor_name = "motor_disk"
@@ -116,7 +124,9 @@ def disk_calibrate_disk_8():
             calibrate_motor_stir()
             disk8_p = motor.calibrate()
             motor._grid = 8
+            motor_stir_drop()
             if window.popup(question=(lang("Alert"),lang("Is the target on the same site you want?"))):
+                motor_stir_home()
                 disk1_p = motor.ppu*disk1_u
                 delta_p = disk8_p - disk1_p
                 new_upr = 7/delta_p*ppr
@@ -127,5 +137,6 @@ def disk_calibrate_disk_8():
 
                 window.popup(about=(lang("About"),lang(motor_name)+', '+lang("Done. Good Job!")))
             else:
+                motor_stir_home()
                 disk_calibrate_disk_8()
 

@@ -6,8 +6,8 @@
         "tasks_file": "app/data/tasks.json",
         "database_file": "app/data/database.db"
     },
-    "beads_distance": 1,
-    "prepare_point":10,
+    "beads_distance": 0.5,
+    "prepare_point":30,
     "device_map": {
         "port_0": {
             "Linux": "/dev/ttyAMA0",
