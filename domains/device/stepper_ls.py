@@ -268,7 +268,7 @@ class LsStepper(Stepper,ActionStoppable):
         self.driver.set_current_point_0()
 
         while not self.driver.right_light_is_on:
-            self.driver.speed_run(1)
+            self.driver.speed_run(15)
         self.driver.speed_stop()
         _p = self.driver.position
         self.driver.set_current_point_0()
