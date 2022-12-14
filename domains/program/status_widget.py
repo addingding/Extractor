@@ -66,6 +66,49 @@ status_map.update(disk_labels)
 
 font_style ="""QLabel{font-size:28px;} """
 
+class TimeLeftTimer(QWidget):
+    def __init__(self,e_work,timer_bar,time_label):
+        self.e_work = e_work
+        self.timer_bar = timer_bar
+        self.timer_label = time_label
+
+        self.time_left_timer:QTimer = QTimer(self)
+        self.time_left_timer.connect(self._time_bar_update)
+        self.timer_left_timer.start(1000)
+
+    def _time_bar_update(self):
+        if self.e_work.is_set() \
+                and (not info.get("extract_pausing")) \
+                and (not info.get("uv_is_on")) \
+                    :
+            self.__time_bar_update()
+
+    def __time_bar_update(self):
+        global info
+        if info.get("step_total_time") > info['step_worked_time']:
+            info['step_worked_time'] += 1
+            step_time_left = int(info.get("step_total_time")-info.get("step_worked_time"))
+        else:
+            step_time_left = 0
+
+        if info.get("pg_total_time") > info['pg_worked_time']:
+            info['pg_worked_time'] += 1
+            pg_time_left = int(info.get("pg_total_time")-info.get("pg_worked_time"))
+        else:
+            pg_time_left = 0
+
+        self.time_label.setText(\
+            f'{lang("step_needs")} {step_time_left}s,{lang("program_needs")} {pg_time_left}s'
+            )
+        
+        if info.get("pg_total_time") > info['pg_worked_time']:
+            _value = int(pg_time_left/int(info.get("pg_total_time"))*100)
+            if _value>=100:
+                _value =100
+            if _value<0:
+                _value =0
+            self.time_bar.setValue(_value),
+
 class StatusWidget(QWidget,aWidget):
     disk_key_pressed = Signal(int)
     pause_signal = Signal(int)
@@ -78,7 +121,8 @@ class StatusWidget(QWidget,aWidget):
 
         self.e_work=e_work
         self.e_stop = e_stop
-        
+        self._time_left_timer = TimeLeftTimer(e_work,self.time_bar,self.time_label)
+
         self.btn_task_start.setStyleSheet(u"font:36px bold black;")
         self.btn_task_pause.setStyleSheet(u"font:36px bold black;")
         self.btn_task_stop.setStyleSheet(u"font:36px bold black;")
@@ -140,6 +184,8 @@ class StatusWidget(QWidget,aWidget):
 
         # for test
         # self.disk_key_pressed.connect(self.act_after_pressed)
+
+
 
     # for test
     @Slot(int)
@@ -262,25 +308,9 @@ class StatusWidget(QWidget,aWidget):
         self.temp_1.setText(f'{info.get("disk_1_temperature")}/{info.get("disk_1_preset")} ℃')
         self.temp_2.setText(f'{info.get("disk_8_temperature")}/{info.get("disk_8_preset")} ℃')
 
-        pg_time_past = int(time.time()- int(info.get("pg_start_time")))
-        pg_time_left = int(info.get("pg_total_time")-pg_time_past)
-        if pg_time_left<0:
-            pg_time_left =0
-        step_time_past = int(time.time()- int(info.get("step_start_time")))
-        step_time_left = int(info.get("step_total_time")-step_time_past)
-        if step_time_left<0:
-            step_time_left =0
-        
-        _value = int(pg_time_past/int(info.get("pg_total_time"))*100)
-        if _value>=100:
-            _value =100
-        if _value<0:
-            _value =0
-        self.time_bar.setValue(_value),
-        self.time_label.setText(\
-            f'{lang("step_needs")} {step_time_left}s,{lang("program_needs")} {pg_time_left}s'
-            )
         self.disk_look_update(int(info.get("disk")))
+
+
 
     def check_signals(self,info):
         door_safe = info.get("door_at_spot")

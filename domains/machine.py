@@ -275,9 +275,11 @@ class MachinePause():
     def pause(self):
         self._machine.motor_disk.pause()
         self._machine.motor_stir.pause()
+        info["extract_pausing"] = True
     def resume(self):
         self._machine.motor_disk.resume()
         self._machine.motor_stir.resume()
+        info["extract_pausing"] = False
     def stop(self):
         self._machine.motor_stir.stop()
 

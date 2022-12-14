@@ -88,6 +88,7 @@ def perform_job(e_stop:Event,signal_updated:Signal=None):
     steps:list = start_widget.get_checked_steps()
 
     info["pg_total_time"] = total_pg_time(steps)
+    info["pg_worked_time"] = 0
     info["pg_start_time"] = time.time()
     signal_updated.emit(1)
 
@@ -149,6 +150,7 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
             "step_total_time": operation.sec_mag
                 +operation.sec_mix
                 +operation.sec_wait+65,
+            "step_worked_time":0,
             "step_start_time":time.time(),
             })
         signal_updated.emit(1)
