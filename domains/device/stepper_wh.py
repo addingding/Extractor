@@ -149,7 +149,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self._wait_ignore = Event()
 
         # self.set_baud()
-        self.set_current(17) # (n=15+1)/16 A
+        self.set_current(17,11) # (n=15+1)/16 A
         self.local_set_speed(1)
         time.sleep(0.2)
 
@@ -202,7 +202,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         return self._status.get("stopped")
 
     def _wait_until_stopped(self,timeout=None):
-        time.sleep(1)
+        time.sleep(0.5)
         if not timeout is None:
             timeout -= 1
         t = 0
@@ -213,6 +213,8 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                     if t>=3:
                         logger.info(f"motor {self.name} stopped")
                         break
+                else:
+                    t = 0
                 time.sleep(0.1)
                 if not timeout is None:
                     timeout -= 0.1

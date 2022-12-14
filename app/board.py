@@ -2,6 +2,7 @@ from ecosys import *
 
 e_work = Event()
 e_stop = Event()
+e_pause = Event()
 
 disk_1_temperature_ok = Event()
 disk_8_temperature_ok = Event()
@@ -37,7 +38,7 @@ info = dict(
     door_at_spot = False,
     sheath_at_spot = False,
     disk_info = [""]*8,
-    
+    pausing = False,
 
 )
 
