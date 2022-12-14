@@ -60,7 +60,7 @@
     "Attention":["Attention please","请注意"],
     "Are_you_sure_to_calibrate?":["Are you sure to calibrate?","确认要校正?"],
     "How_to":["How to","操作方法"],
-    "Align_DISK_1":["Align DISK 1, and press 'Yes' to fall motor Z","对齐盘位1后点击'是',振荡机构将落下,请保证对齐"],
+    "Align_DISK_1":["Align DISK 1, and press 'Yes' to fall motor Z","对齐盘位 1 号位后点击'是',振荡机构将落下,请保证对齐"],
     "Aligned?":["Aligned?","已对齐？"],
     "No_sheath":["No sheath find! Please check.","未检测到磁套，不能开始。请检查。"],
     "Device_Error!":["Device Error!","设备故障，请检查或联系技术支持工程师。"],
@@ -89,9 +89,9 @@
     "Insert_Up":["Insert Up","上方插入"],
     "Insert_Down":["Insert Down","下方插入"],
     "finished":["Finished!","完成！"],
-    "close_the_door":["Please Close the Door!","请先关门！"],
+    "close_the_door":["Please Close the Door!","请关门！"],
     "Sure_to_Delete?":["Sure to Delete?","删除将不可恢复。确认？"],
-    "Align DISK 8, and press 'Yes'":["Align DISK 8, and press 'Yes'","对齐8号位后, 点击Yes"],
+    "Align DISK 8, and press 'Yes'":["Align DISK 8, and press 'Yes'","对齐 8 号位后, 点击Yes"],
     "Busy for new job":["Busy for new job","工作中，无法启动新任务！"],
     "Continue to calibrate?":["Continue to calibrate?","继续校正?"],
     "Done. Good Job!":["Done. Good Job!","任务完成！"],
@@ -100,6 +100,8 @@
     "Please enssure the position, and press 'Yes'":["Please enssure the position, and press 'Yes'","请确认位置后点击Yes"],
     "Program Name":["Program Name","程序名称"],
     "step_needs":["step needs:","步骤需时："],
-    "program_needs":["program needs:","程序需时："]
+    "program_needs":["program needs:","程序需时："],
+    "Bias_Error":["Bias Error, contact the manufactor or restart calibration.","1号位定位值过大：请联系厂家或重新校准。"],
+    "Sure_Align_DISK_1":["Important! Disk partion 1 aligned?:","重要！ 请确认 1 号位对齐！"]
 
 }

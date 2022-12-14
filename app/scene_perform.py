@@ -35,12 +35,20 @@ def prepare_task(a=None):
 
 @Slot()
 def start_task(a=None):
-    if machine.sheath_sensor.is_on:
-        window.popup(about=(lang("Alert"),lang("No_sheath")) )
-        return
-    
     logger.info("start task")
 
+    if machine.sheath_sensor.is_on:
+        logger.info("check sheath: no sheath")
+        window.popup(about=(lang("Alert"),lang("No_sheath")) )
+        return
+    logger.info("check sheath: ok")
+
+    if not info.get("door_at_spot"): #safe
+        logger.info("check door: open. stop and return.")
+        window.popup(about=(lang("Alert"),lang("close_the_door")) )
+        return
+    logger.info("check door: closed")
+    
 
     set_task_start_sets(True)
     

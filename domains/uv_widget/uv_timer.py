@@ -1,3 +1,4 @@
+from app.board import info
 from ecosys import *
 from prots import *
 
@@ -75,6 +76,13 @@ class UvTimerWidget(aTimerWidget):
         if self.e_work.is_set():
             self.ui.popup(about=(lang('Alert'),lang('Busy for new job')))
             return
+        
+        if not info.get("door_at_spot"): #safe
+            logger.info("check door: open. stop and return.")
+            self.ui.popup(about=(lang("Alert"),lang("close_the_door")) )
+            return
+        logger.info("check door: closed")
+
         self.e_work.set() 
         self.head.setText("UV Time")
         self.time_count = self.read_face_time()
@@ -110,6 +118,11 @@ class UvTimerWidget(aTimerWidget):
                 self.uv.turn_off()
             self._timer.stop()
         else:
+            if not info.get("door_at_spot"): #safe
+                logger.info("check door: open. stop and return.")
+                self.ui.popup(about=(lang("Alert"),lang("close_the_door")) )
+                return
+            logger.info("check door: closed")
             self.pause.setText(lang("pause"))
             if not self.uv is None:
                 self.uv.turn_on()

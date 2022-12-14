@@ -1,5 +1,5 @@
-from ecosys import *
 from app.cast import *
+from ecosys import *
 
 
 def calibration_widget_activate():
@@ -73,13 +73,10 @@ def calibrate_motor_stir():
         motor.home_return()
     return bottom_u
 
-
-
-
 def disk_calibrate():
-    disk_calibrate_disk_1()
-    disk_calibrate_disk_8()
-    machine.motor_disk.prepare_at_grid_1()
+    if disk_calibrate_disk_1():
+        disk_calibrate_disk_8()
+        machine.motor_disk.prepare_at_grid_1()
 
 def disk_calibrate_disk_1():
     motor_name = "motor_disk"
@@ -90,14 +87,23 @@ def disk_calibrate_disk_1():
         motor.hard_stop()
         ret = window.popup(question=(lang("How to"),lang("Align_DISK_1")))
         if ret:
-            calibrate_motor_stir()
-            bottom_p = motor.calibrate()
-            motor._grid = 1
-            if window.popup(question=(lang("Alert"),lang("Is the target on the same site you want?"))):
-                bottom_u = bottom_p/motor.ppu
-                update_defaults("motor_bottom",{"motor_disk":bottom_u})
-            else:
-                bottom_u = disk_calibrate_disk_1()
+            ret = window.popup(question=(lang("Important!"),lang("Sure_Align_DISK_1")))
+            if ret:
+                calibrate_motor_stir()
+                bottom_p = motor.calibrate()
+                motor._grid = 1
+                if window.popup(question=(lang("Alert"),lang("Is the target on the same site you want?"))):
+                    bottom_u = bottom_p/motor.ppu
+                    if bottom_u > 0.4447:
+                        window.popup(about=(lang("Alert"),lang("Bias_Error")))
+                        bottom_u = disk_calibrate_disk_1()
+                    else:
+                        update_defaults("motor_bottom",{"motor_disk":bottom_u})
+                        return True
+                else:
+                    bottom_u = disk_calibrate_disk_1()
+    return False
+
 def disk_calibrate_disk_8():
     motor_name = "motor_disk"
     motor = machine.motor_disk
