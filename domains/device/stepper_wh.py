@@ -202,7 +202,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         return self._status.get("stopped")
 
     def _wait_until_stopped(self,timeout=None):
-        time.sleep(0.5)
+        time.sleep(1)
         if not timeout is None:
             timeout -= 1
         t = 0
@@ -215,7 +215,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
                         break
                 else:
                     t = 0
-                time.sleep(0.1)
+                time.sleep(0.01)
                 if not timeout is None:
                     timeout -= 0.1
                     if timeout<=0:

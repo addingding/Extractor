@@ -66,21 +66,12 @@ status_map.update(disk_labels)
 
 font_style ="""QLabel{font-size:28px;} """
 
-class TimeLeftTimer(QWidget):
-    def __init__(self,e_work,timer_bar,time_label):
-        self.e_work = e_work
-        self.timer_bar = timer_bar
-        self.timer_label = time_label
+class pTimeLeftTimer():
 
-        self.time_left_timer:QTimer = QTimer(self)
-        self.time_left_timer.connect(self._time_bar_update)
-        self.timer_left_timer.start(1000)
-
-    def _time_bar_update(self):
+    def time_bar_update(self):
         if self.e_work.is_set() \
                 and (not info.get("extract_pausing")) \
-                and (not info.get("uv_is_on")) \
-                    :
+                and (not info.get("uv_is_on")):
             self.__time_bar_update()
 
     def __time_bar_update(self):
@@ -109,7 +100,7 @@ class TimeLeftTimer(QWidget):
                 _value =0
             self.time_bar.setValue(_value),
 
-class StatusWidget(QWidget,aWidget):
+class StatusWidget(QWidget,pTimeLeftTimer,aWidget):
     disk_key_pressed = Signal(int)
     pause_signal = Signal(int)
     stop_signal = Signal(int)
@@ -121,7 +112,6 @@ class StatusWidget(QWidget,aWidget):
 
         self.e_work=e_work
         self.e_stop = e_stop
-        self._time_left_timer = TimeLeftTimer(e_work,self.time_bar,self.time_label)
 
         self.btn_task_start.setStyleSheet(u"font:36px bold black;")
         self.btn_task_pause.setStyleSheet(u"font:36px bold black;")
@@ -307,7 +297,7 @@ class StatusWidget(QWidget,aWidget):
 
         self.temp_1.setText(f'{info.get("disk_1_temperature")}/{info.get("disk_1_preset")} ℃')
         self.temp_2.setText(f'{info.get("disk_8_temperature")}/{info.get("disk_8_preset")} ℃')
-
+        self.time_bar_update()
         self.disk_look_update(int(info.get("disk")))
 
 

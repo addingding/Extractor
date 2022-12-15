@@ -12,7 +12,7 @@ info = dict(
     disk_1_preset = 25,
     disk_8_preset = 25,
     pg_total_time = 0,
-    pg_worked_time = 0
+    pg_worked_time = 0,
     pg_start_time = time.time(),
 
     step_idx = 1,
@@ -25,7 +25,7 @@ info = dict(
     speed_mix= 2,
     temperature= 0,
     step_total_time = 0,
-    step_worked_time = 0
+    step_worked_time = 0,
     step_start_time = time.time(),
     
     disk_1_temperature = 25,
@@ -39,7 +39,7 @@ info = dict(
     door_at_spot = False,
     sheath_at_spot = False,
     disk_info = [""]*8,
-    extract_pausing = False
+    extract_pausing = False,
 )
 
 class Updater:

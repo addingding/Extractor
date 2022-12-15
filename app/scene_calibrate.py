@@ -29,10 +29,10 @@ def calibrate_axis_disk():
     e_work.clear()
 
 def motor_mag_spin(a:float=0):
-    assert -70.0 <= a <= -50.0
-    if a<-70: a = -70
-    if a>-50: a = -50
-    window.doubleSpinBox.setValue(a)
+    # assert -90.0 <= a <= -50.0
+    # if a<-90: a = -90
+    # if a>-50: a = -50
+    # window.doubleSpinBox.setValue(a)
     machine.motor_mag.move_to(a)
 
 def calibrate_motor_mag():
@@ -83,13 +83,15 @@ def disk_calibrate_disk_1():
     motor = machine.motor_disk
     if window.popup(question=(lang("Alert"),lang(motor_name)+', '+lang("Are_you_sure_to_calibrate?"))):
         machine.motor_mask.home()
-        machine.motor_stir.home()
+        machine.motor_stir.home_direct()
         motor.hard_stop()
         ret = window.popup(question=(lang("How to"),lang("Align_DISK_1")))
         if ret:
             ret = window.popup(question=(lang("Important!"),lang("Sure_Align_DISK_1")))
             if ret:
-                calibrate_motor_stir()
+                motor_stir_drop()
+                ret = window.popup(about=(lang("Alert"),lang("Aligned?")))
+                motor_stir_home()
                 bottom_p = motor.calibrate()
                 motor._grid = 1
                 motor_stir_drop()
@@ -110,7 +112,7 @@ def disk_calibrate_disk_1():
 def motor_stir_drop():
     machine.motor_stir.hard_stop()
 def motor_stir_home():
-    machine.motor_stir.home(7)
+    machine.motor_stir.home_return()
 
 def disk_calibrate_disk_8():
     motor_name = "motor_disk"
@@ -121,7 +123,9 @@ def disk_calibrate_disk_8():
         motor.hard_stop()
         ret = window.popup(question=(lang("How to"),lang("Align DISK 8, and press 'Yes'")))
         if ret:
-            calibrate_motor_stir()
+            motor_stir_drop()
+            ret = window.popup(about=(lang("Alert"),lang("Aligned?")))
+            motor_stir_home()
             disk8_p = motor.calibrate()
             motor._grid = 8
             motor_stir_drop()
