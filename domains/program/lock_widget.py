@@ -14,6 +14,7 @@ class LockWidget(QWidget):
     def locker_pressed(self):
         lock = (self.locker.text()==lang("lock"))
         if lock:
+            self.lock_pages()
             self.lock_buttons()
         else:
             self.unlock_buttons()
@@ -23,6 +24,9 @@ class LockWidget(QWidget):
             btn:QPushButton = getattr(self.ui,button)
             btn.setEnabled(not lock)
         self.locker.setText(lang("unlock" if lock else "lock"))
+
+    def lock_pages(self):
+        self.ui.stackedWidget.setCurrentIndex(4)
 
     def unlock_buttons(self):
         text = self.ui.popup(dialog=(lang("Input"),lang("Input_unlock_key")))
