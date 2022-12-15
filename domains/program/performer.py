@@ -1,6 +1,7 @@
 from prots import *
 
-#TODO cancel?
+
+#TODO cancel this?
 class Performer(aPerformer):
     def __init__(self,steps:List[list],machine:aMachine):
         self._steps = steps

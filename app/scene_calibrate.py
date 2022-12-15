@@ -21,7 +21,7 @@ def calibrate_axis_stir():
 class MagCalibrationThread(QThread):
     def run(self):
         e_work.set()
-        calibrate_motor_mag() #TODO
+        calibrate_motor_mag() 
         e_work.clear()
 def calibrate_axis_mag():
     if e_work.is_set():

@@ -329,7 +329,7 @@ class DiskMotor(ModbusStepper):
             if self.is_stopped() and abs(point-abs(self.position))<20: # 
                 return True
             else:
-                pass #TODO 如果位置不正确，如何返回？
+                pass #TO DO 如果位置不正确，如何返回？暂且没遇到
 
     def send_signal_to_site(self, site:int):
         _point = int(self.ppu*(site-1+abs(self._bottom)))
