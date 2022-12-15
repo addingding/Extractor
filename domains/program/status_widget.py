@@ -93,7 +93,7 @@ class pTimeLeftTimer():
             )
         
         if info.get("pg_total_time") > info['pg_worked_time']:
-            _value = int(pg_time_left/int(info.get("pg_total_time"))*100)
+            _value = int(1-pg_time_left/int(info.get("pg_total_time"))*100)
             if _value>=100:
                 _value =100
             if _value<0:
