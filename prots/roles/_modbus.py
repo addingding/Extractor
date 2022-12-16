@@ -1,6 +1,7 @@
 from ecosys import *
 from prots.roles._device import *
 
+
 class aModbusServer(ABC):
     @abstractproperty
     def port(self)->int:...

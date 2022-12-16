@@ -165,28 +165,28 @@ class ModbusTerminal():
 
     def _execute(self,function_code,data_start,data_quantity=1,output_value=None):
         with self.server.lock:
-            try_times = 1
+            try_times = 5
             for i in range(try_times):
                 try:
                     return self.server.execute(self.address,function_code,data_start,data_quantity,output_value=output_value)
                 except Exception as e:
-                    logger.error(f"modbus with lock: {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
-                    # logger.info("retry.")
-                    # time.sleep(0.1)
+                    # logger.error(f"modbus with lock: {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
+                    # logger.debug("retry.")
+                    time.sleep(0.01)
         # logger.info(f"failed to excute.")
-        # logger.error(f"modbus with lock: {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
+        logger.error(f"modbus: {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
                 
     def _execute_(self,function_code,data_start,output_value=None):
-        try_times = 1    
+        try_times = 5    
         for i in range(try_times):
             try:
                 return self.server.execute(self.address,function_code,data_start,output_value=output_value)
             except Exception as e:
-                logger.error(f"modbus {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
-                # logger.info("retry")
-                # time.sleep(0.1)
+                # logger.error(f"modbus {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
+                # logger.debug("retry")
+                time.sleep(0.01)
         # logger.info(f"failed to excute.")
-        # logger.error(f"modbus {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
+        logger.error(f"modbus: {self.address},{function_code},{hex(data_start)},{self.__class__.__name__},{e}")
 
     def read_coils(self,data_quantity):#out
         return self._execute(1,0,4)
