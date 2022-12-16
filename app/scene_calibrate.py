@@ -8,35 +8,26 @@ def calibration_widget_activate():
     calib_widget.btn_disk_calib.clicked.connect(calibrate_axis_disk)
 
 
-class StirCalibrationThread(QThread):
-    def run(self):
-        e_work.set()
-        calibrate_motor_stir()
-        e_work.clear()
 def calibrate_axis_stir():
     if e_work.is_set():
         return
-    StirCalibrationThread().start()
+    e_work.set()
+    calibrate_motor_stir()
+    e_work.clear()
 
-class MagCalibrationThread(QThread):
-    def run(self):
-        e_work.set()
-        calibrate_motor_mag() 
-        e_work.clear()
 def calibrate_axis_mag():
     if e_work.is_set():
         return
-    MagCalibrationThread().start()
+    e_work.set()
+    calibrate_motor_mag() 
+    e_work.clear()
 
-class DiskCalibrationThread(QThread):
-    def run(self):
-        e_work.set()
-        disk_calibrate()
-        e_work.clear()
 def calibrate_axis_disk():
     if e_work.is_set():
         return
-    DiskCalibrationThread().start()
+    e_work.set()
+    disk_calibrate()
+    e_work.clear()
 
 
 def motor_mag_spin(a:float=0):
