@@ -120,8 +120,15 @@ class aWidget():
         ...
 
 class MyQInputDialog(QInputDialog):
+    clicked = Signal()
     def closeEvent(self,event):
         event.ignore()
+
+    def mouseReleaseEvent(self, event: QMouseEvent) -> None:
+        if event.button()==Qt.LeftButton:
+            self.clicked.emit()
+    def on_clicked(self,event=None):
+        print("mouse pressed")
 class MyQProgressDialog(QProgressDialog):
     def closeEvent(self,event):
         if self.value()>=98:

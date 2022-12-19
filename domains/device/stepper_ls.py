@@ -262,13 +262,13 @@ class LsStepper(Stepper,ActionStoppable):
         pos_p = self.driver.position
         self.driver.set_current_point_0()
 
-        d=5
-        self.set_points(200,d)
-        self.bottom()
+        d=10
+        self.set_points(100,d+7) #liquid 100=7; bottom = d +7 = outer+7
+        self.outer_liquid()
         self.driver.set_current_point_0()
 
         while not self.driver.right_light_is_on:
-            self.driver.speed_run(15)
+            self.driver.speed_run(5)
         self.driver.speed_stop()
         _p = self.driver.position
         self.driver.set_current_point_0()
@@ -298,7 +298,10 @@ class LsStepper(Stepper,ActionStoppable):
         prepare_point = defaults.get("prepare_point",0)
         beads_distance = defaults.get("beads_distance",0)
         bottom_u = abs(bottom_u)- beads_distance
-
+        logger.info(f"prepare point set to {prepare_point} \n \
+                    beads gap set to {beads_distance} \n \
+                    bottom set to {bottom_u}")
+        
         if ul<=100: 
             level_mm = 7*ul/100
             stir_mm = 3

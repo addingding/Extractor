@@ -58,6 +58,10 @@ class WithPop:
 
         if dialog is not None:
             _dialog = MyQInputDialog(None) #XXX
+            # _dialog.clicked.connect(_dialog.on_clicked)
+            import os
+            Thread(target=os.system,args=("onboard")).start()
+            _dialog.setWindowModality(Qt.WindowModal)
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
             _dialog.setFocusPolicy(Qt.ClickFocus)
             _dialog.setTextEchoMode(QLineEdit.Normal)
@@ -367,7 +371,8 @@ def main():
     # w.start()
 
     # ret = main_win.popup(question=("how","are you ok?"))
-    ret = main_win.popup(about=("how","are you ok?"))
+    # ret = main_win.popup(about=("how","are you ok?"))
+    ret = main_win.popup(dialog=("input","write something"))
     print(ret)
     sys.exit(application.exec_())
 
