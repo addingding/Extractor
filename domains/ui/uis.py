@@ -60,7 +60,7 @@ class WithPop:
             _dialog = MyQInputDialog(None) #XXX
             # _dialog.clicked.connect(_dialog.on_clicked)
             import os
-            Thread(target=os.system,args=("onboard")).start()
+            Thread(target=os.system,args=("onboard&")).start()
             _dialog.setWindowModality(Qt.WindowModal)
             _dialog.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
             _dialog.setFocusPolicy(Qt.ClickFocus)

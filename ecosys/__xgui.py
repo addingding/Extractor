@@ -129,6 +129,7 @@ class MyQInputDialog(QInputDialog):
             self.clicked.emit()
     def on_clicked(self,event=None):
         print("mouse pressed")
+        
 class MyQProgressDialog(QProgressDialog):
     def closeEvent(self,event):
         if self.value()>=98:

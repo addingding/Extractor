@@ -1,5 +1,6 @@
 from prots import *
 
+
 class LockWidget(QWidget):
     def __init__(self,ui,key:str,locked_buttons:List[str],locker:str):
         super().__init__()
@@ -30,6 +31,7 @@ class LockWidget(QWidget):
 
     def unlock_buttons(self):
         text = self.ui.popup(dialog=(lang("Input"),lang("Input_unlock_key")))
+        
         if text not in [None,""] and text == self.key:
             self.lock_buttons(False)
         else:
