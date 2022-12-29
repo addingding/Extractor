@@ -257,10 +257,11 @@ class ProgramWidget(aProgrameWidget):
                 chd.setText(7,str(step[2][5]))
                 chd.setText(8,str(step[2][6]))
                 for i in range(9):
-                    chd.setFont(0,QFont('times', 24, QFont.Normal))
+                    chd.setFont(0,QFont('times', 22, QFont.Normal))
                     chd.setTextAlignment(i,Qt.AlignHCenter)
                 for i in range(1,9):
                     chd.setFlags(Qt.ItemIsEnabled | Qt.ItemIsEditable)
+
 
             self.tree.addTopLevelItem(child)
 
@@ -269,7 +270,16 @@ class ProgramWidget(aProgrameWidget):
         # self.tree.setItemsExpandable(False)
 
         self.tree.clicked.connect(self.onTreeClicked)
+        self.tree.itemDoubleClicked.connect(self.expand_keyboard)
 
+    def expand_keyboard(self,item=None,column=None):
+        item = self.tree.currentItem()
+        _is_editable = (Qt.ItemIsEditable & item.flags()) and (Qt.ItemIsEnabled & item.flags())
+        _is_pg = item.parent() is None
+        _is_step = item.parent() is not None
+        _editable = _is_editable and ((_is_pg and column==0) or (_is_step and column>0))
+        if _editable:
+            Thread(target = os.system,args=("onboard&",),daemon=True).start()
 
     def onTreeClicked(self,qmodelindex):
         item = self.tree.currentItem()
@@ -277,7 +287,7 @@ class ProgramWidget(aProgrameWidget):
             self._selected_program_idx = None
             self._selected_step_idx = None
         else:
-            if item.parent() is None:
+            if item.parent() is None: #根节点
                 self._selected_program_idx = int(item.text(1))
                 self._selected_step_idx = None
 
