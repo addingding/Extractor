@@ -32,7 +32,24 @@ program_tree = """
     QTreeView::branch:closed:has-children:!has-siblings{}
     QTreeView::branch:closed:has-children:has-siblings {image: url('""" + expand_img + """');}
     """
+pb_message_style = ("""
+                QProgressBar{
+                    border-radius: 5px;
+                    background-color:rgba(200,200,200,0);
+                }
+                QProgressBar::chunk {
+                    background-color:rgba(200,200,200,0);
+                }
 
+                QWidget{
+                    font:18px;
+                    background-color:rgba(200,200,200,0)
+                    }
+                QFrame{
+                    font:18px;
+                    background-color:rgba(200,200,200,0)
+                }
+                 """)
 
 frame_widget_style = """
     QTextBrowser {

@@ -44,6 +44,9 @@ locked_buttons = [
     "pushButton_59",
 ]
 
+fold_img =  os.path.join(BASE_DIR,'app','settings','imgs','fold.png')
+expand_img =  os.path.join(BASE_DIR,'app','settings','imgs','expand.png')
+
 
 table_style = """
 
@@ -54,6 +57,8 @@ table_style = """
         background:rgba(255,255,255,0);
     }
 
+    QTreeWidget::branch:open:has-children {image: url('""" + fold_img + """');}
+    QTreeWidget::branch:closed:has-children {image: url('""" + expand_img + """');}
     QHeaderView::section
     {
         font-size:32px;
@@ -105,8 +110,10 @@ class ProgramWidget(aProgrameWidget):
         self.table_show()
 
     def _set_default_style(self):
-        self.table.setStyleSheet(table_style)
+        global table_style
         self.table.header().setDefaultAlignment(Qt.AlignCenter)
+        self.table.setStyleSheet(table_style)
+        self.table.setIndentation(40)
 
     def edit(self):
         pass

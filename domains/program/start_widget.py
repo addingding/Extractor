@@ -6,6 +6,7 @@ unchecked_img = os.path.join(BASE_DIR,'app','settings','imgs','unchecked.png')
 fold_img =  os.path.join(BASE_DIR,'app','settings','imgs','fold.png')
 expand_img =  os.path.join(BASE_DIR,'app','settings','imgs','expand.png')
 ico = os.path.join(BASE_DIR,'domains/ui/image/home.png')
+bk_img = os.path.join(BASE_DIR,'app','settings','imgs','background.png')
 
 start_map:dict = {
     "table":"treeWidget_2",
@@ -41,8 +42,9 @@ tree_style = """
         }
     QTreeView::branch:open:has-children:!has-siblings{}
     QTreeView::branch:closed:has-children:!has-siblings{}
-    QTreeView::branch:open:has-children {image: url('""" + fold_img + """');}
-    QTreeView::branch:closed:has-children {image: url('""" + expand_img + """');}
+
+    QTreeView::branch:open:has-children {image: url('""" + fold_img + """') 50px 200px;}
+    QTreeView::branch:closed:has-children {image: url('""" + expand_img + """');height:80px;}
 
   """
 tree_style =  tree_style.replace("\\","/")
@@ -63,6 +65,7 @@ class StartWidget(aStartWidget):
         self.btn_view.hide()
         self.btn_start.setStyleSheet(u"QPushButton{font:32px;}")
         self.table.setStyleSheet(tree_style)
+        self.table.setIndentation(40)
         self.table_show()
 
     def scan(self):
