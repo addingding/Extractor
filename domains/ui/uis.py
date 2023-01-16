@@ -20,7 +20,7 @@ class WithPop:
             
         if about is not None:
             t_ = 30 if len(about)==2 else int(about[2])
-            mesBox = QMessageBox()
+            mesBox = MyQMessageBox()
             mesBox.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
             mesBox.setWindowTitle(about[0])
             mesBox.setText(about[1])
@@ -32,7 +32,7 @@ class WithPop:
             return ret
         if question is not None:
             t_ = 10 if len(question)==2 else int(question[2])
-            mesBox = QMessageBox(QMessageBox.Question,question[0],question[1])
+            mesBox = MyQMessageBox(QMessageBox.Question,question[0],question[1])
             mesBox.setWindowFlags(Qt.FramelessWindowHint | Qt.Popup)
             mesBox.setIcon(QMessageBox.Question)
             mesBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)

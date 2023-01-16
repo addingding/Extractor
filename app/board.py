@@ -1,6 +1,8 @@
 from ecosys import *
 
 e_work = Event()
+e_mt = Event()
+e_uv = Event()
 e_stop = Event()
 
 disk_1_temperature_ok = Event()

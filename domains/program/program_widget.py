@@ -257,7 +257,7 @@ class ProgramWidget(aProgrameWidget):
                 chd.setText(7,str(step[2][5]))
                 chd.setText(8,str(step[2][6]))
                 for i in range(9):
-                    chd.setFont(0,QFont('times', 22, QFont.Normal))
+                    chd.setFont(0,QFont('times', 24, QFont.Normal))
                     chd.setTextAlignment(i,Qt.AlignHCenter)
                 for i in range(1,9):
                     chd.setFlags(Qt.ItemIsEnabled | Qt.ItemIsEditable)

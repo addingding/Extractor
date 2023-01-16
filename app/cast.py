@@ -1,4 +1,4 @@
-from app.board import e_stop, e_work, info
+from app.board import e_mt, e_stop, e_uv, e_work, info
 from app.stage import application
 from domains import (programer_widgets, start_widgets, status_widgets,
                      translators, uis)
@@ -74,10 +74,10 @@ def emergency_check():
             status_widget.pause_signal.emit(1)
         uv_widget.uv_stop_signal.emit(1)
     emergency_last_status = _new_status
-    emergency_timer.start(1000)
+    emergency_timer.start(300)
 
 emergency_timer.timeout.connect(emergency_check)
-emergency_timer.start(1000)
+emergency_timer.start(300)
 
 
 

@@ -1,4 +1,4 @@
-from app.board import info
+from app.board import e_mt, e_uv, info
 from ecosys import *
 from prots import *
 
@@ -104,14 +104,16 @@ class UvTimerWidget(aTimerWidget):
         self.face.setReadOnly(False)
         self.start.setEnabled(True)
         self.reset.setEnabled(True)
-        self.e_work.clear()
-        pass
+        if not e_mt.is_set():
+            self.e_work.clear()
     def reset_clicked(self):
         self.time_count = DEFAULT_STOP_TIME
         self.set_face_time(self.time_count)
         self.head.setText("UV Time")
         pass
     def pause_clicked(self,key=None):
+        if e_mt.is_set():
+            return
         if self.pause.text()==lang("pause"):
             self.pause.setText(lang("resume"))
             if not self.uv is None:

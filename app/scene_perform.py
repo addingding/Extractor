@@ -77,8 +77,9 @@ def set_task_start_sets(ends:bool=False):
     status_widget.btn_task_start.setEnabled(False)
 
 def perform_job(e_stop:Event,signal_updated:Signal=None):
-    global e_work
+    global e_work, e_mt
     e_work.set()
+    e_mt.set()
     e_stop.clear()
     task_program = start_widget.selected_program
     pg_idx = task_program.idx
@@ -173,6 +174,7 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
     
 def task_end_notice(a=None):
     e_work.clear()
+    e_mt.clear()
     status_widget.btn_task_pause.setEnabled(False)
     status_widget.btn_task_start.setEnabled(False)
     status_widget.btn_task_stop.setEnabled(False)
