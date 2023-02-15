@@ -58,6 +58,6 @@ class Simulator():
                 print(":::Simulator NotFind:::")
                 return printf
         except Exception as e:
-            logger.error(e)
+            logger.error("error")
             return printf
 aSim = Simulator

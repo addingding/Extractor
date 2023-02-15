@@ -32,7 +32,7 @@ try:
     beeper = call(beeper,beepers.get_beeper())
     logger.info("beeper loaded")
 except Exception as e:
-    logger.error(e)
+    logger.error("error")
 
 
 uv_widget = timers.uv_widget(window,e_work,timer_map)

@@ -50,7 +50,7 @@ class LsStepperDriver(ModbusTerminal):
             else:
                 return ret
         except Exception as e:
-            logger.error(e)
+            logger.error("error")
     def set_zero_threshold(self):
         self.ls_set_single(0x0175,10)
 
@@ -152,7 +152,7 @@ class LsStepperDriver(ModbusTerminal):
             try:
                 if self.is_ended(): return
             except Exception as e:
-                logger.error(e)
+                logger.error("error")
 
     def point_set(self,site:int,point:sPoint=None):
         assert 0<=site<=16

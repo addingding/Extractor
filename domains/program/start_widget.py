@@ -74,7 +74,7 @@ class StartWidget(aStartWidget):
         try:
             idx = self.selected_idx
         except Exception as e:
-            logger.error(e)
+            logger.error("error")
     def view(self):
         self.ui.tabWidget.setCurrentIndex(2)
         pass
@@ -163,7 +163,7 @@ class StartWidget(aStartWidget):
                         chd.setTextAlignment(i,Qt.AlignCenter)
                         chd.setFont(i,QFont('times', 24, QFont.Normal))
                 except Exception as e:
-                    # logger.error(e)
+                    # logger.error("error")
                     pass
             self.tree.addTopLevelItem(child)
             

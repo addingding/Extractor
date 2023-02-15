@@ -117,7 +117,7 @@ def machine_init():
             infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
             infowin.popup(about=(lang('Alert'),lang('InitError')))
-            logger.error(e)
+            logger.error("error")
     else:
         logger.info("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)
