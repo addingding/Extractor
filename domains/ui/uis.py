@@ -5,7 +5,9 @@ from domains.ui.__styles import *
 from domains.ui.designer.info import Ui_MainWindow as info_win
 
 WIN_HEIGHT = application.desktop().height()
+print("Screen height:",WIN_HEIGHT)
 if WIN_HEIGHT>=1200:
+
     from domains.ui.designer.main import Ui_MainWindow as MainWin
 else:
     from domains.ui.designer.main_small import Ui_MainWindow as MainWin
