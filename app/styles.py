@@ -61,40 +61,40 @@ frame_widget_style = """
     }
 
  """
-main_tab_widget_style=(""" 
-    QTabWidget::tab-bar { 
-        alignment: center; 
-    } 
-    QTabBar::tab{
-        font:28px;
-        width:200px;
-        height:60;
-        margin-top:5px; 
-        margin-right:1px;
-        margin-left:1px;
-        margin-bottom:0px;
-        border-bottom-color: #C2C7CB;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-    QTabWidget::pane{
-        border:none;
-        }
-    QTabBar::tab:!selected {
-        color:#606060;
-        background:rgba(135,206,250,60);
-        }
-    QTabBar::tab:hover {
-        color:#000000;
-        background:rgba(135,206,250,90);
-        }
-    QTabBar::tab:selected {
-        color:#000000;
-        background:rgb(135,206,250);
-    }
- """)
-	# border-image: url(:/common/images/common/左_normal.png);
-    # border-image: url(:/common/images/common/左_pressed.png);
+# main_tab_widget_style=(""" 
+#     QTabWidget::tab-bar { 
+#         alignment: center; 
+#     } 
+#     QTabBar::tab{
+#         font:28px;
+#         width:200px;
+#         height:60;
+#         margin-top:5px; 
+#         margin-right:1px;
+#         margin-left:1px;
+#         margin-bottom:0px;
+#         border-bottom-color: #C2C7CB;
+#         border-top-left-radius: 10px;
+#         border-top-right-radius: 10px;
+#     }
+#     QTabWidget::pane{
+#         border:none;
+#         }
+#     QTabBar::tab:!selected {
+#         color:#606060;
+#         background:rgba(135,206,250,60);
+#         }
+#     QTabBar::tab:hover {
+#         color:#000000;
+#         background:rgba(135,206,250,90);
+#         }
+#     QTabBar::tab:selected {
+#         color:#000000;
+#         background:rgb(135,206,250);
+#     }
+#  """)
+# 	# border-image: url(:/common/images/common/左_normal.png);
+#     # border-image: url(:/common/images/common/左_pressed.png);
 
 wax = "rgba(246, 179, 127,70)"
 xyl = "rgba(0, 239, 255,70)"

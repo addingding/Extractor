@@ -6,11 +6,13 @@ from domains.ui.designer.info import Ui_MainWindow as info_win
 
 WIN_HEIGHT = application.desktop().height()
 print("Screen height:",WIN_HEIGHT)
-if WIN_HEIGHT>=1200:
 
+if WIN_HEIGHT>=1200:
     from domains.ui.designer.main import Ui_MainWindow as MainWin
+    widget_style = main_tab_widget_style
 else:
     from domains.ui.designer.main_small import Ui_MainWindow as MainWin
+    widget_style = main_tab_widget_style_small
 
 from domains.ui.designer.open import Ui_MainWindow as Opening
 from domains.ui.translate_ui import *
@@ -215,7 +217,7 @@ class MainInterface(QMainWindow,MainWin,WithPop):
         self.languages_retranslate()
 
         self.setWindowFlag(Qt.FramelessWindowHint)
-        self.setStyleSheet(main_win_style+frame_widget_style+scroll_vertical + button_style+main_tab_widget_style)
+        self.setStyleSheet(main_win_style+frame_widget_style+scroll_vertical + button_style+widget_style)
         self.setAttribute(Qt.WA_AcceptTouchEvents, True)
         self.set_styles()
 
