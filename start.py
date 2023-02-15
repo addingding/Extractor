@@ -8,6 +8,6 @@ if __name__ == "__main__":
     try:
         start()
     except Exception as e:
-        logger.critical(e)
+        logger.error(e)
 
 logger.info("end")

@@ -3,7 +3,13 @@ from app.stage import application
 # from app.styles import *
 from domains.ui.__styles import *
 from domains.ui.designer.info import Ui_MainWindow as info_win
-from domains.ui.designer.main import Ui_MainWindow as MainWin
+
+WIN_HEIGHT = application.desktop().height()
+if WIN_HEIGHT>=1200:
+    from domains.ui.designer.main import Ui_MainWindow as MainWin
+else:
+    from domains.ui.designer.main_small import Ui_MainWindow as MainWin
+
 from domains.ui.designer.open import Ui_MainWindow as Opening
 from domains.ui.translate_ui import *
 from ecosys import *
@@ -231,7 +237,8 @@ class MainInterface(QMainWindow,MainWin,WithPop):
         # self.pushButton_10.hide() #program io
         self.pushButton_28.clicked.connect(lambda x: self.tabWidget.setCurrentIndex(1))
         self.pushButton.clicked.connect(self.close_window)
-        
+
+        self.win_height = WIN_HEIGHT        
 
     def close_window(self):
         if self.popup(question=(lang("Alert"),lang("Are_you_sure?"))):

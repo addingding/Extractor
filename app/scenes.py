@@ -77,7 +77,7 @@ def machine_init():
         try:
             bottoms = defaults.get("motor_bottom")
             machine.led.turn_on()
-            machine.fan.turn_on()
+            # machine.fan.turn_on()
             window.pushButton_4.setChecked(True)
             window.pushButton_5.setChecked(True)
 

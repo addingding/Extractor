@@ -125,8 +125,12 @@ class StatusWidget(QWidget,pTimeLeftTimer,aWidget):
         self.btn_task_start.setEnabled(False)
         self.btn_task_pause.setEnabled(False)
         self.btn_task_stop.setEnabled(False)
-
-        disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk.png')
+        
+        if hasattr(ui,"win_height") and ui.win_height>=1200:
+            disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk.png')
+        else:
+            disk_img = os.path.join(BASE_DIR,'app/settings/imgs/disk360.png')
+        
         self.show_selected_image(disk_img)
 
         def press_p1(): self.key_pressed("1")
