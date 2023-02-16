@@ -58,7 +58,7 @@
 QPushButton{font:22px;}</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -3572,8 +3572,8 @@ font:24px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1246</width>
-             <height>235</height>
+             <width>89</width>
+             <height>89</height>
             </rect>
            </property>
            <attribute name="label">
