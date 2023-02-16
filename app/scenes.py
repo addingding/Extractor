@@ -43,7 +43,7 @@ def control_button_activate():
     window.pushButton_4.clicked.connect(fan_switch)
     window.pushButton_5.clicked.connect(led_switch)
 @Slot()
-def fan_switch():
+def fan_switch(a=None):
     return machine.fan.switch()
 @Slot()
 def led_switch(a=None):
@@ -77,9 +77,10 @@ def machine_init():
         try:
             bottoms = defaults.get("motor_bottom")
             machine.led.turn_on()
-            # machine.fan.turn_on()
-            window.pushButton_4.setChecked(True)
             window.pushButton_5.setChecked(True)
+
+            # machine.fan.turn_on()
+            # window.pushButton_4.setChecked(False)
 
             machine.motor_disk.set_points(0,bottoms["motor_disk"])
             machine.motor_mask.set_points(0,bottoms["motor_mask"])
@@ -117,7 +118,7 @@ def machine_init():
             infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
             infowin.popup(about=(lang('Alert'),lang('InitError')))
-            logger.error("error")
+            logger.error(e)
     else:
         logger.info("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)

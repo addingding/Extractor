@@ -27,7 +27,7 @@ class LatestQueue():
         try:
             self.queue.put_nowait(_item)
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
 
     def get(self):
         data = self.queue.get()
@@ -45,7 +45,7 @@ class LatestQueue():
                 else:
                     break
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
             pass
 
 class LineWorker():

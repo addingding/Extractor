@@ -91,7 +91,7 @@ class PartSubscribe():
         try:
             self._attach_subscribe(subscribe)
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
 
     def _attach_subscribe(self,subscribe:aSubscribe):
         subscriber,channel = subscribe.subscribe,subscribe.channel

@@ -108,7 +108,7 @@ class Beepers:
         try:
             _beeper = Beeper(pin)
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
             _beeper = None
         return _beeper
     def get_singer(self,pin=22):

@@ -131,7 +131,7 @@ class ProgramWidget(aProgrameWidget):
                         obj.steps.append([i,1,[""]*7])
                 self.program_handler.update(obj)
             except Exception as e:
-                # logger.error("error")
+                # logger.error(e)
                 pass
         self.table_update()
     def copy(self):
@@ -139,7 +139,7 @@ class ProgramWidget(aProgrameWidget):
             idx:int = self._selected_program_idx
             new_obj = self.program_handler.copy(idx)
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
         self.table_update()
         pass
 
@@ -185,12 +185,12 @@ class ProgramWidget(aProgrameWidget):
         try:
             self.program_handler.delete(prg_idx)
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
     def delete_step(self,prg_idx:int,stp_idx:int):
         try:
             self.program_handler.delete(prg_idx,stp_idx)
         except Exception as e:
-            logger.error("error")
+            logger.error(e)
         
     def delete(self):
         if not self.ui.popup(question=(lang("Alert"),lang("Sure_to_Delete?"))):
