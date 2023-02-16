@@ -511,14 +511,6 @@ class Ui_MainWindow(object):
         self.label_40.setFrameShape(QFrame.NoFrame)
         self.label_40.setAlignment(Qt.AlignCenter)
         self.label_40.setIndent(0)
-        self.label = QLabel(self.widget_7)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(114, 60, 360, 360))
-        sizePolicy5.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy5)
-        self.label.setMinimumSize(QSize(70, 70))
-        self.label.setFrameShape(QFrame.Box)
-        self.label.raise_()
         self.pushButton_49.raise_()
         self.pushButton_45.raise_()
         self.pushButton_48.raise_()
@@ -1307,6 +1299,13 @@ class Ui_MainWindow(object):
         self.pushButton_25.setObjectName(u"pushButton_25")
         self.pushButton_25.setGeometry(QRect(610, 140, 120, 50))
         self.pushButton_25.setMinimumSize(QSize(100, 50))
+        self.label = QLabel(self.page_10)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(580, 60, 360, 360))
+        sizePolicy5.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy5)
+        self.label.setMinimumSize(QSize(70, 70))
+        self.label.setFrameShape(QFrame.Box)
         self.stackedWidget.addWidget(self.page_10)
 
         self.gridLayout_8.addWidget(self.stackedWidget, 0, 0, 8, 1)
@@ -1445,7 +1444,7 @@ class Ui_MainWindow(object):
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 89, 89))
+        self.page_status.setGeometry(QRect(0, 0, 1246, 235))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
@@ -1647,7 +1646,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.tabWidget.setCurrentIndex(0)
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(7)
         self.toolBox.setCurrentIndex(0)
 
 
@@ -1700,10 +1699,6 @@ class Ui_MainWindow(object):
         self.label_38.setText("")
         self.label_39.setText("")
         self.label_40.setText("")
-        self.label.setStyleSheet(QCoreApplication.translate("MainWindow", u"QPushButton{background-color:rgba(200,200,200,60%);border:0.5px solid gray;border-radius:35;font:48px;}\n"
-"QPushButton:hover{background-color:rgba(220,220,220,80%);border:1px solid lightblue;font:54px bold;border-style:outset;}\n"
-"QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);border:2px solid lightblue;font:54px bold;border-style:inset;}", None))
-        self.label.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_status), QCoreApplication.translate("MainWindow", u"Inspect", None))
         self.pushButton_26.setText(QCoreApplication.translate("MainWindow", u"Prepare", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_run), QCoreApplication.translate("MainWindow", u"Start", None))
@@ -1764,6 +1759,10 @@ class Ui_MainWindow(object):
         self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"Copy", None))
         self.pushButton_27.setText(QCoreApplication.translate("MainWindow", u"Details", None))
         self.pushButton_25.setText(QCoreApplication.translate("MainWindow", u"Scan Start", None))
+        self.label.setStyleSheet(QCoreApplication.translate("MainWindow", u"QPushButton{background-color:rgba(200,200,200,60%);border:0.5px solid gray;border-radius:35;font:48px;}\n"
+"QPushButton:hover{background-color:rgba(220,220,220,80%);border:1px solid lightblue;font:54px bold;border-style:outset;}\n"
+"QPushButton:pressed,QpushButton:checked{background-color:rgba(48,204,102,70%);border:2px solid lightblue;font:54px bold;border-style:inset;}", None))
+        self.label.setText("")
         self.pushButton_41.setText(QCoreApplication.translate("MainWindow", u"Calibration", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Programs IO", None))
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Upgrade", None))
