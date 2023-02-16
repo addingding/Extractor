@@ -77,7 +77,6 @@ def emergency_check():
     emergency_timer.start(300)
 
 emergency_timer.timeout.connect(emergency_check)
-emergency_timer.start(300)
 
 
 

@@ -27,7 +27,8 @@ def window_ready():
     infowin.close()
     if not is_real(machine):
         window.popup(about=(lang("Alert"),lang("Device_Error!")))
-        #return
+        raise Exception("Machine not started")
+        # return
     control_assign()
     
     refresh_thread_start()
@@ -51,9 +52,13 @@ def led_switch(a=None):
 
 
 def refresh_thread_start():
+    emergency_timer.start(300)
+    
     Thread(target=signal_update).start()
     update_timer.timeout.connect(status_widget.update)
     update_timer.start(1000)
+    
+
 def signal_update():
     while not e_stop_collect.is_set():
         machine.update()
@@ -116,8 +121,8 @@ def machine_init():
         except SafeError:
             infowin.popup(about=(lang('Alert'),lang('SafeError')))
         except Exception as e:
-            infowin.popup(about=(lang('Alert'),lang('InitError')))
             logger.error(e)
+            infowin.popup(about=(lang('Alert'),lang('InitError')))
     else:
         logger.info("machine is not ready ,wait for 5 secs and simulator on")
         time.sleep(5)
