@@ -232,7 +232,7 @@ button_style =(""" QPushButton{
 
                         {
 
-                        background-color:rgba(0,191,255,75);
+                        background-color:rgba(0,191,255,90);
 
                         }
                                 """)
