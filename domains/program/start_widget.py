@@ -1,6 +1,10 @@
 from domains.program.programs import *
 from prots import *
 
+font_scale = 2/3
+grid = int(60*font_scale)
+font_size = int(26*font_scale)
+
 checked_img = os.path.join(BASE_DIR,'app','settings','imgs','checked.png')
 unchecked_img = os.path.join(BASE_DIR,'app','settings','imgs','unchecked.png')
 fold_img =  os.path.join(BASE_DIR,'app','settings','imgs','fold.png')
@@ -18,21 +22,20 @@ start_map:dict = {
 # border:1px golid gray;
 tree_style = """
     QTreeWidget{
-        font-size:42px;
         border:1px solid gray;
     }
     QHeaderView::section
     {
-        font-size: 32px;
+        font-size:"""+f'{font_size}'+"""px;
         color:black;
         background:rgba(0,156,230,30);
-        margin:5px;
+        margin:2px;
         padding:0px;
     }
-    QTreeWidget::item{margin:10px;}
+    QTreeWidget::item{margin:8px;}
     QTreeWidget::indicator {
-        width:90px;
-        height:60px;
+        width:"""+f"{int(90*font_scale)}"+"""px;
+        height:"""+f"{int(60*font_scale)}"+"""px;
         }
     QTreeWidget::indicator:checked {
         image:url('""" + checked_img + """');
@@ -116,13 +119,14 @@ class StartWidget(aStartWidget):
         program_handler = self.program_handler
         self.tree:QTreeWidget = self.table
 
-        self.tree.setColumnCount(11)
-        self.tree.setColumnWidth(0,270)
-        self.tree.setColumnWidth(1,180)
-        self.tree.setColumnWidth(2,180)
-        for i in range(3,9):
-            self.tree.setColumnWidth(i,120)
-        self.tree.setColumnWidth(9,120)
+
+        self.tree.setColumnCount(10)
+        self.tree.setColumnWidth(0,int(grid*4.5))
+        self.tree.setColumnWidth(1,int(grid*2.1))
+        self.tree.setColumnWidth(2,int(grid*3))
+        for i in range(3,10):
+            self.tree.setColumnWidth(i,int(grid*2.1))
+        self.tree.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         # self.tree.header().setSectionResizeMode(QHeaderView.Stretch)
         # self.tree.setHeaderHidden(True)
         self.tree.header().setLineWidth(0)                          #设置外线宽度
@@ -141,7 +145,7 @@ class StartWidget(aStartWidget):
         for pg in program_handler.obj_all():
             child = QTreeWidgetItem(self.tree)
             child.setText(0,pg.pg_name)
-            child.setFont(0,QFont('times', 24, QFont.Black))
+            child.setFont(0,QFont('times', int(font_size), QFont.Black))
             child.setText(1,str(pg.idx))
             child.setTextColor(1,QColor(0,0,0,0))
             # child.setIcon(0,QIcon(ico))
@@ -161,7 +165,7 @@ class StartWidget(aStartWidget):
                     chd.setText(8,str(step[2][6]))
                     for i in range(9):
                         chd.setTextAlignment(i,Qt.AlignCenter)
-                        chd.setFont(i,QFont('times', 24, QFont.Normal))
+                        chd.setFont(i,QFont('times', int(font_size), QFont.Normal))
                 except Exception as e:
                     # logger.error(e)
                     pass

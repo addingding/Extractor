@@ -1,6 +1,5 @@
 from app.board import defaults, logo_file, opening_gif
 from app.stage import application
-# from app.styles import *
 from domains.ui.__styles import *
 from domains.ui.designer.info import Ui_MainWindow as info_win
 

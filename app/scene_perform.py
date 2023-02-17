@@ -136,7 +136,7 @@ def run_task(e_stop,signal_updated,machine:Machine,steps:list):
         operation:Operation = Operation(*step[2])
 
         if partition in [1,8]:
-            set_temperature_via_steps(partition,steps)
+            Thread(target =set_temperature_via_steps,args=(partition,steps)).start()
 
         info.update({
             "step_idx": int(step[0]),
