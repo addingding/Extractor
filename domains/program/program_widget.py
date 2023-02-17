@@ -4,7 +4,7 @@ from prots import *
 
 font_scale = 2/3
 grid = int(60*font_scale)
-font_size = int(26*font_scale)
+font_size = int(28*font_scale)
 
 program_map = {
     "table":"treeWidget",
