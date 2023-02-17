@@ -27,8 +27,10 @@ def window_ready():
     infowin.close()
     if not is_real(machine):
         window.popup(about=(lang("Alert"),lang("Device_Error!")))
-        raise Exception("Machine not started")
-        # return
+        logger.error("Machine not started")
+        window.close()
+        return
+    
     control_assign()
     
     refresh_thread_start()
