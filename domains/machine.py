@@ -342,7 +342,7 @@ class Machines:
         self.thermo_master = thermos.get_thermo_master(
             self.server_2,dm.get("thermos")
         )
-        self.thermo_master.set_temperatrues((25,25,25,25))
+        # self.thermo_master.set_temperatrues((25,25,25,25))
         self.thermo_0 = thermos.get_thermo(
             "thermo_0",self.server_2,dm.get("thermos"),0)
         self.thermo_1 = thermos.get_thermo(
