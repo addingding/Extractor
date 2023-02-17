@@ -1,7 +1,7 @@
 from domains.program.programs import *
 from prots import *
 
-font_scale = 2/3
+font_scale = 1
 grid = int(60*font_scale)
 font_size = int(28*font_scale)
 
