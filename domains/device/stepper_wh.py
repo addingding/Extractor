@@ -24,9 +24,13 @@ class ModbusStepperDriver(ModbusTerminal):
 
     def _set_current(self,current:int=16,standby:int=1):
         if current >31: current =31
+        if standby >16: standby =16
+        if current < 1: current = 1
+        if standby < 1: standby = 1
+
         _current = (current<<8) + standby
         self.set_single(0x0023,_current)
-    
+        time.sleep(0.1)
     def _set_baud(self,baud:int):
         self.set_many(0x0021,2,baud)
     def _set_back_zero_speed(self,speed=PPR*1):
@@ -133,6 +137,9 @@ class ModbusStepperDriver(ModbusTerminal):
         return self._set_baud(115200)
     def set_current(self,current=16,standby=1):
         return self._set_current(current,standby)
+    def set_current_by_a(self,run:float=1):
+        stand = run/4
+        return self.set_current(int(run*16)-1,int(stand*16)-1)
     def local_set_speed(self,speed_float):
         speed_p = int(PPR*speed_float)
         self._set_running_speed(speed_p)
@@ -149,7 +156,8 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self._wait_ignore = Event()
 
         # self.set_baud()
-        self.set_current(17,11) # (n=15+1)/16 A
+        # self.set_current(17,11) # (n=17+1)/16 A
+        self.set_current_by_a()
         self.local_set_speed(1)
         time.sleep(0.2)
 
@@ -282,7 +290,7 @@ class DiskMotor(ModbusStepper):
         self.signal_ignore = Event()
         self._target = None
 
-        self.set_current(25,9) # (n=15+1)/16 A
+        self.set_current_by_a()
         self.local_set_speed(1)
 
 
@@ -310,8 +318,8 @@ class DiskMotor(ModbusStepper):
         self.signal_ignore.set()
         _point = self.send_signal_to_site(site)
         time.sleep(0.1)
-        _point = self.send_signal_to_site(site)
-        time.sleep(0.1)
+        # _point = self.send_signal_to_site(site)
+        # time.sleep(0.1)
         ret = self.wait_grid_move_end(_point)
 
         if ret:
@@ -391,6 +399,7 @@ class ModbusStepperTest():
         # self.steppers:List[ModbusStepper] = [self.motor_mag,self.motor_disk,self.motor_mask]
 
         from app.board import defaults
+        self.motor_disk.set_current_by_a(defaults.get("motor_current").get("motor_disk"))
         self.motor_disk.set_points(0, defaults.get("motor_bottom").get("motor_disk"))
 
     # def __del__(self):
@@ -403,13 +412,13 @@ class ModbusStepperTest():
         self.motor_disk.prepare_at_grid_1()
         tm = Thread(target=self.test_thread_move)
         tm.start()
-        time.sleep(2)
+        time.sleep(1)
         Thread(target=self.thread_pause).start()
-        time.sleep(2)
+        time.sleep(1)
         Thread(target=self.thread_resume).start()
-        time.sleep(2)
+        time.sleep(1)
         Thread(target=self.thread_pause).start()
-        time.sleep(2)
+        time.sleep(1)
         Thread(target=self.thread_resume).start()
         time.sleep(1)
         ts = Thread(target=self.thread_stop)

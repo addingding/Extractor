@@ -61,6 +61,12 @@
             400
         ]
     ],
+    "motor_current": {
+        "motor_stir": 2,
+        "motor_mag": 0.75,
+        "motor_disk": 0.5,
+        "motor_mask": 0.25
+    },
     "motor_ppr": {
         "motor_stir": 10000,
         "motor_mag": 51200,

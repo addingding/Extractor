@@ -119,6 +119,8 @@ class LsStepperDriver(ModbusTerminal):
             # self.ls_set_single(0x0195,10) #额定电流
             # self.ls_set_single(0x0197,10) #锁轴电流
 
+    def set_current_by_a(self,cur:float):
+        return self.set_max_current(int(cur*10))
     def set_ppr(self,ppr=10000):
         assert 200<=ppr<=51200
         self.ls_set_single(0x1001,ppr)

@@ -39,9 +39,11 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
         self.tabWidget.setSizePolicy(sizePolicy1)
+        self.tabWidget.setMinimumSize(QSize(0, 90))
+        self.tabWidget.setBaseSize(QSize(0, 90))
         font = QFont()
         font.setFamily(u"\u5b8b\u4f53")
-        font.setPointSize(24)
+        font.setPointSize(28)
         self.tabWidget.setFont(font)
         self.tabWidget.setStyleSheet(u"QLabel{font:22px;}\n"
 "QPushButton{font:22px;}")
@@ -700,6 +702,9 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setObjectName(u"gridLayout_12")
         self.groupBox_2 = QGroupBox(self.page)
         self.groupBox_2.setObjectName(u"groupBox_2")
+        font5 = QFont()
+        font5.setPointSize(28)
+        self.groupBox_2.setFont(font5)
         self.gridLayout_19 = QGridLayout(self.groupBox_2)
         self.gridLayout_19.setObjectName(u"gridLayout_19")
         self.verticalSpacer_23 = QSpacerItem(20, 55, QSizePolicy.Minimum, QSizePolicy.Preferred)
@@ -812,6 +817,7 @@ class Ui_MainWindow(object):
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.groupBox = QGroupBox(self.page_2)
         self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setFont(font5)
         self.gridLayout_27 = QGridLayout(self.groupBox)
         self.gridLayout_27.setObjectName(u"gridLayout_27")
         self.verticalSpacer_16 = QSpacerItem(20, 127, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -826,10 +832,10 @@ class Ui_MainWindow(object):
         self.dateTimeEdit_2.setObjectName(u"dateTimeEdit_2")
         self.dateTimeEdit_2.setEnabled(False)
         self.dateTimeEdit_2.setMinimumSize(QSize(720, 180))
-        font5 = QFont()
-        font5.setFamily(u"Adobe Heiti Std")
-        font5.setPointSize(42)
-        self.dateTimeEdit_2.setFont(font5)
+        font6 = QFont()
+        font6.setFamily(u"Adobe Heiti Std")
+        font6.setPointSize(42)
+        self.dateTimeEdit_2.setFont(font6)
         self.dateTimeEdit_2.setAlignment(Qt.AlignCenter)
 
         self.gridLayout_27.addWidget(self.dateTimeEdit_2, 1, 1, 1, 1)
@@ -870,6 +876,7 @@ class Ui_MainWindow(object):
         self.gridLayout_13.setObjectName(u"gridLayout_13")
         self.groupBox_3 = QGroupBox(self.page_4)
         self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setFont(font5)
         self.gridLayout_20 = QGridLayout(self.groupBox_3)
         self.gridLayout_20.setObjectName(u"gridLayout_20")
         self.verticalSpacer_32 = QSpacerItem(20, 153, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -896,10 +903,10 @@ class Ui_MainWindow(object):
         self.lineEdit_8 = QLineEdit(self.widget)
         self.lineEdit_8.setObjectName(u"lineEdit_8")
         self.lineEdit_8.setMinimumSize(QSize(600, 90))
-        font6 = QFont()
-        font6.setFamily(u"Arial")
-        font6.setPointSize(18)
-        self.lineEdit_8.setFont(font6)
+        font7 = QFont()
+        font7.setFamily(u"Arial")
+        font7.setPointSize(18)
+        self.lineEdit_8.setFont(font7)
         self.lineEdit_8.setStyleSheet(u"")
         self.lineEdit_8.setFrame(True)
         self.lineEdit_8.setReadOnly(True)
@@ -953,6 +960,7 @@ class Ui_MainWindow(object):
         self.gridLayout_14.setObjectName(u"gridLayout_14")
         self.groupBox_4 = QGroupBox(self.page_5)
         self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setFont(font5)
         self.gridLayout_10 = QGridLayout(self.groupBox_4)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
         self.verticalSpacer_34 = QSpacerItem(20, 170, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -966,7 +974,7 @@ class Ui_MainWindow(object):
         self.lineEdit_9 = QLineEdit(self.groupBox_4)
         self.lineEdit_9.setObjectName(u"lineEdit_9")
         self.lineEdit_9.setMinimumSize(QSize(0, 30))
-        self.lineEdit_9.setFont(font6)
+        self.lineEdit_9.setFont(font7)
         self.lineEdit_9.setStyleSheet(u"")
         self.lineEdit_9.setFrame(True)
         self.lineEdit_9.setReadOnly(True)
@@ -1016,6 +1024,7 @@ class Ui_MainWindow(object):
         self.groupBox_5 = QGroupBox(self.page_6)
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.groupBox_5.setMinimumSize(QSize(0, 520))
+        self.groupBox_5.setFont(font5)
         self.groupBox_5.setCheckable(False)
         self.horizontalLayout_2 = QHBoxLayout(self.groupBox_5)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -1063,46 +1072,109 @@ class Ui_MainWindow(object):
         self.gridLayout_25.setObjectName(u"gridLayout_25")
         self.groupBox_8 = QGroupBox(self.page_7)
         self.groupBox_8.setObjectName(u"groupBox_8")
-        self.groupBox_8.setMinimumSize(QSize(0, 520))
+        self.groupBox_8.setMinimumSize(QSize(0, 0))
+        self.groupBox_8.setFont(font5)
         self.groupBox_8.setCheckable(False)
-        self.horizontalLayout_5 = QHBoxLayout(self.groupBox_8)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.gridLayout_28 = QGridLayout(self.groupBox_8)
+        self.gridLayout_28.setObjectName(u"gridLayout_28")
+        self.label_29 = QLabel(self.groupBox_8)
+        self.label_29.setObjectName(u"label_29")
+        self.label_29.setFont(font3)
+
+        self.gridLayout_28.addWidget(self.label_29, 0, 1, 1, 1)
+
+        self.doubleSpinBox_2 = QDoubleSpinBox(self.groupBox_8)
+        self.doubleSpinBox_2.setObjectName(u"doubleSpinBox_2")
+        self.doubleSpinBox_2.setMinimumSize(QSize(300, 90))
+        font8 = QFont()
+        font8.setFamily(u"Arial")
+        font8.setPointSize(32)
+        self.doubleSpinBox_2.setFont(font8)
+        self.doubleSpinBox_2.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
+        self.doubleSpinBox_2.setAlignment(Qt.AlignCenter)
+        self.doubleSpinBox_2.setMaximum(3.000000000000000)
+        self.doubleSpinBox_2.setSingleStep(0.250000000000000)
+        self.doubleSpinBox_2.setValue(1.000000000000000)
+
+        self.gridLayout_28.addWidget(self.doubleSpinBox_2, 1, 1, 1, 1)
+
+        self.doubleSpinBox_3 = QDoubleSpinBox(self.groupBox_8)
+        self.doubleSpinBox_3.setObjectName(u"doubleSpinBox_3")
+        self.doubleSpinBox_3.setMinimumSize(QSize(300, 90))
+        self.doubleSpinBox_3.setFont(font8)
+        self.doubleSpinBox_3.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
+        self.doubleSpinBox_3.setAlignment(Qt.AlignCenter)
+        self.doubleSpinBox_3.setMinimum(0.000000000000000)
+        self.doubleSpinBox_3.setMaximum(2.000000000000000)
+        self.doubleSpinBox_3.setSingleStep(0.250000000000000)
+        self.doubleSpinBox_3.setValue(1.000000000000000)
+
+        self.gridLayout_28.addWidget(self.doubleSpinBox_3, 1, 3, 1, 1)
+
+        self.doubleSpinBox_4 = QDoubleSpinBox(self.groupBox_8)
+        self.doubleSpinBox_4.setObjectName(u"doubleSpinBox_4")
+        self.doubleSpinBox_4.setMinimumSize(QSize(300, 90))
+        self.doubleSpinBox_4.setFont(font8)
+        self.doubleSpinBox_4.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
+        self.doubleSpinBox_4.setAlignment(Qt.AlignCenter)
+        self.doubleSpinBox_4.setMaximum(2.000000000000000)
+        self.doubleSpinBox_4.setSingleStep(0.250000000000000)
+        self.doubleSpinBox_4.setValue(1.000000000000000)
+
+        self.gridLayout_28.addWidget(self.doubleSpinBox_4, 1, 5, 1, 1)
+
+        self.verticalSpacer_41 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_28.addItem(self.verticalSpacer_41, 2, 1, 1, 1)
+
+        self.verticalSpacer_42 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_28.addItem(self.verticalSpacer_42, 2, 3, 1, 1)
+
+        self.verticalSpacer_43 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_28.addItem(self.verticalSpacer_43, 2, 5, 1, 1)
+
         self.horizontalSpacer_13 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_13)
+        self.gridLayout_28.addItem(self.horizontalSpacer_13, 3, 0, 1, 1)
+
+        self.horizontalSpacer_14 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_28.addItem(self.horizontalSpacer_14, 3, 2, 1, 1)
+
+        self.horizontalSpacer_15 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_28.addItem(self.horizontalSpacer_15, 3, 4, 1, 1)
+
+        self.horizontalSpacer_16 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_28.addItem(self.horizontalSpacer_16, 3, 6, 1, 1)
 
         self.pushButton_38 = QPushButton(self.groupBox_8)
         self.pushButton_38.setObjectName(u"pushButton_38")
         self.pushButton_38.setMinimumSize(QSize(300, 90))
 
-        self.horizontalLayout_5.addWidget(self.pushButton_38)
-
-        self.horizontalSpacer_14 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_14)
+        self.gridLayout_28.addWidget(self.pushButton_38, 3, 1, 1, 1)
 
         self.pushButton_39 = QPushButton(self.groupBox_8)
         self.pushButton_39.setObjectName(u"pushButton_39")
         self.pushButton_39.setMinimumSize(QSize(300, 90))
 
-        self.horizontalLayout_5.addWidget(self.pushButton_39)
-
-        self.horizontalSpacer_15 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_15)
+        self.gridLayout_28.addWidget(self.pushButton_39, 3, 3, 1, 1)
 
         self.pushButton_40 = QPushButton(self.groupBox_8)
         self.pushButton_40.setObjectName(u"pushButton_40")
         self.pushButton_40.setMinimumSize(QSize(300, 90))
 
-        self.horizontalLayout_5.addWidget(self.pushButton_40)
-
-        self.horizontalSpacer_16 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_16)
+        self.gridLayout_28.addWidget(self.pushButton_40, 3, 5, 1, 1)
 
 
         self.gridLayout_25.addWidget(self.groupBox_8, 0, 0, 1, 1)
+
+        self.verticalSpacer_44 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_25.addItem(self.verticalSpacer_44, 1, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_7)
         self.page_8 = QWidget()
@@ -1124,12 +1196,12 @@ class Ui_MainWindow(object):
         self.pushButton_42 = QPushButton(self.page_8)
         self.pushButton_42.setObjectName(u"pushButton_42")
         self.pushButton_42.setMinimumSize(QSize(0, 90))
-        font7 = QFont()
-        font7.setFamily(u"System")
-        font7.setBold(False)
-        font7.setItalic(False)
-        font7.setWeight(50)
-        self.pushButton_42.setFont(font7)
+        font9 = QFont()
+        font9.setFamily(u"System")
+        font9.setBold(False)
+        font9.setItalic(False)
+        font9.setWeight(50)
+        self.pushButton_42.setFont(font9)
 
         self.gridLayout_26.addWidget(self.pushButton_42, 5, 1, 1, 1)
 
@@ -1167,10 +1239,10 @@ class Ui_MainWindow(object):
         self.doubleSpinBox = QDoubleSpinBox(self.page_8)
         self.doubleSpinBox.setObjectName(u"doubleSpinBox")
         self.doubleSpinBox.setMinimumSize(QSize(720, 240))
-        font8 = QFont()
-        font8.setFamily(u"Arial")
-        font8.setPointSize(48)
-        self.doubleSpinBox.setFont(font8)
+        font10 = QFont()
+        font10.setFamily(u"Arial")
+        font10.setPointSize(48)
+        self.doubleSpinBox.setFont(font10)
         self.doubleSpinBox.setFocusPolicy(Qt.NoFocus)
         self.doubleSpinBox.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.doubleSpinBox.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
@@ -1200,6 +1272,7 @@ class Ui_MainWindow(object):
         sizePolicy7.setVerticalStretch(0)
         sizePolicy7.setHeightForWidth(self.groupBox_6.sizePolicy().hasHeightForWidth())
         self.groupBox_6.setSizePolicy(sizePolicy7)
+        self.groupBox_6.setFont(font5)
         self.groupBox_6.setFlat(True)
         self.gridLayout_22 = QGridLayout(self.groupBox_6)
         self.gridLayout_22.setObjectName(u"gridLayout_22")
@@ -1359,12 +1432,12 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.tab_sterilize)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setMinimumSize(QSize(400, 0))
-        font9 = QFont()
-        font9.setFamily(u"Adobe Heiti Std")
-        font9.setBold(False)
-        font9.setItalic(False)
-        font9.setWeight(50)
-        self.label_2.setFont(font9)
+        font11 = QFont()
+        font11.setFamily(u"Adobe Heiti Std")
+        font11.setBold(False)
+        font11.setItalic(False)
+        font11.setWeight(50)
+        self.label_2.setFont(font11)
         self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label_2, 1, 1, 1, 5, Qt.AlignLeft)
@@ -1397,13 +1470,13 @@ class Ui_MainWindow(object):
         self.timeEdit.setSizePolicy(sizePolicy7)
         self.timeEdit.setMinimumSize(QSize(300, 200))
         self.timeEdit.setBaseSize(QSize(300, 100))
-        font10 = QFont()
-        font10.setFamily(u"Arial")
-        font10.setPointSize(56)
-        font10.setBold(False)
-        font10.setWeight(50)
-        font10.setKerning(True)
-        self.timeEdit.setFont(font10)
+        font12 = QFont()
+        font12.setFamily(u"Arial")
+        font12.setPointSize(56)
+        font12.setBold(False)
+        font12.setWeight(50)
+        font12.setKerning(True)
+        self.timeEdit.setFont(font12)
         self.timeEdit.setMouseTracking(True)
         self.timeEdit.setAutoFillBackground(False)
         self.timeEdit.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
@@ -1424,29 +1497,29 @@ class Ui_MainWindow(object):
         self.toolBox = QToolBox(self.tab_help)
         self.toolBox.setObjectName(u"toolBox")
         self.toolBox.setEnabled(True)
-        font11 = QFont()
-        font11.setFamily(u"Arial")
-        font11.setPointSize(26)
-        self.toolBox.setFont(font11)
+        font13 = QFont()
+        font13.setFamily(u"Arial")
+        font13.setPointSize(26)
+        self.toolBox.setFont(font13)
         self.toolBox.setStyleSheet(u"background-color: rgba(0, 250, 220,0);")
         self.page_status = QWidget()
         self.page_status.setObjectName(u"page_status")
-        self.page_status.setGeometry(QRect(0, 0, 1874, 653))
+        self.page_status.setGeometry(QRect(0, 0, 1866, 569))
         self.gridLayout_3 = QGridLayout(self.page_status)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.textBrowser_5 = QTextBrowser(self.page_status)
         self.textBrowser_5.setObjectName(u"textBrowser_5")
-        font12 = QFont()
-        font12.setFamily(u"Arial")
-        font12.setPointSize(24)
-        self.textBrowser_5.setFont(font12)
+        font14 = QFont()
+        font14.setFamily(u"Arial")
+        font14.setPointSize(24)
+        self.textBrowser_5.setFont(font14)
 
         self.gridLayout_3.addWidget(self.textBrowser_5, 0, 0, 1, 1)
 
         self.toolBox.addItem(self.page_status, u"Inspect")
         self.page_run = QWidget()
         self.page_run.setObjectName(u"page_run")
-        self.page_run.setGeometry(QRect(0, 0, 89, 89))
+        self.page_run.setGeometry(QRect(0, 0, 109, 109))
         self.gridLayout_4 = QGridLayout(self.page_run)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.textBrowser = QTextBrowser(self.page_run)
@@ -1459,7 +1532,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_run, u"Start")
         self.page_program = QWidget()
         self.page_program.setObjectName(u"page_program")
-        self.page_program.setGeometry(QRect(0, 0, 89, 89))
+        self.page_program.setGeometry(QRect(0, 0, 109, 109))
         self.gridLayout_5 = QGridLayout(self.page_program)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.textBrowser_2 = QTextBrowser(self.page_program)
@@ -1470,7 +1543,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_program, u"Programs")
         self.page_manage = QWidget()
         self.page_manage.setObjectName(u"page_manage")
-        self.page_manage.setGeometry(QRect(0, 0, 89, 89))
+        self.page_manage.setGeometry(QRect(0, 0, 109, 109))
         self.gridLayout_7 = QGridLayout(self.page_manage)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.textBrowser_4 = QTextBrowser(self.page_manage)
@@ -1481,7 +1554,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_manage, u"Config")
         self.page_sterilize = QWidget()
         self.page_sterilize.setObjectName(u"page_sterilize")
-        self.page_sterilize.setGeometry(QRect(0, 0, 89, 89))
+        self.page_sterilize.setGeometry(QRect(0, 0, 109, 109))
         self.gridLayout_6 = QGridLayout(self.page_sterilize)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.textBrowser_3 = QTextBrowser(self.page_sterilize)
@@ -1493,15 +1566,15 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page_sterilize, u"Sterilize")
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
-        self.page_3.setGeometry(QRect(0, 0, 89, 89))
+        self.page_3.setGeometry(QRect(0, 0, 109, 109))
         self.gridLayout_18 = QGridLayout(self.page_3)
         self.gridLayout_18.setObjectName(u"gridLayout_18")
         self.textBrowser_6 = QTextBrowser(self.page_3)
         self.textBrowser_6.setObjectName(u"textBrowser_6")
-        font13 = QFont()
-        font13.setFamily(u"Arial")
-        font13.setPointSize(36)
-        self.textBrowser_6.setFont(font13)
+        font15 = QFont()
+        font15.setFamily(u"Arial")
+        font15.setPointSize(36)
+        self.textBrowser_6.setFont(font15)
         self.textBrowser_6.setStyleSheet(u"background-color: rgba(255, 255, 255,0);")
 
         self.gridLayout_18.addWidget(self.textBrowser_6, 0, 0, 1, 1)
@@ -1523,10 +1596,10 @@ class Ui_MainWindow(object):
         self.frame.setSizePolicy(sizePolicy9)
         self.frame.setMinimumSize(QSize(1080, 100))
         self.frame.setMaximumSize(QSize(16777215, 110))
-        font14 = QFont()
-        font14.setFamily(u"Arial")
-        font14.setPointSize(12)
-        self.frame.setFont(font14)
+        font16 = QFont()
+        font16.setFamily(u"Arial")
+        font16.setPointSize(12)
+        self.frame.setFont(font16)
         self.frame.setStyleSheet(u"QPushButton{font:22px;}")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
@@ -1557,11 +1630,11 @@ class Ui_MainWindow(object):
         self.dateTimeEdit.setObjectName(u"dateTimeEdit")
         sizePolicy10.setHeightForWidth(self.dateTimeEdit.sizePolicy().hasHeightForWidth())
         self.dateTimeEdit.setSizePolicy(sizePolicy10)
-        font15 = QFont()
-        font15.setFamily(u"Arial")
-        font15.setPointSize(24)
-        font15.setKerning(False)
-        self.dateTimeEdit.setFont(font15)
+        font17 = QFont()
+        font17.setFamily(u"Arial")
+        font17.setPointSize(24)
+        font17.setKerning(False)
+        self.dateTimeEdit.setFont(font17)
         self.dateTimeEdit.setAutoFillBackground(False)
         self.dateTimeEdit.setStyleSheet(u"")
         self.dateTimeEdit.setWrapping(False)
@@ -1630,7 +1703,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.tabWidget.setCurrentIndex(3)
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(5)
         self.toolBox.setCurrentIndex(0)
 
 
@@ -1728,6 +1801,7 @@ class Ui_MainWindow(object):
         self.pushButton_30.setText(QCoreApplication.translate("MainWindow", u"\u7e41\u9ad4\u4e2d\u6587", None))
         self.pushButton_31.setText(QCoreApplication.translate("MainWindow", u"English", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"Calibration", None))
+        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Current Settings", None))
         self.pushButton_38.setText(QCoreApplication.translate("MainWindow", u"Axis Stiring", None))
         self.pushButton_39.setText(QCoreApplication.translate("MainWindow", u"Axis Magnetic", None))
         self.pushButton_40.setText(QCoreApplication.translate("MainWindow", u"Axis Disk", None))
@@ -1770,39 +1844,39 @@ class Ui_MainWindow(object):
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:14pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:26pt;\">    Click &quot;Start&quot; to run the program list mode, scan mode, quick launch mode and view  the steps of the program to start running according to the selected current step.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px"
-                        "; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:26pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0"
+                        "px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:26pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:26pt;\">    \u70b9\u51fb&quot;\u7a0b\u5e8f\u8fd0\u884c&quot;\uff0c\u9009\u62e9\u7a0b\u5e8f\uff0c\u518d\u70b9\u51fb&quot;\u5f00\u59cb\u8fd0\u884c&quot;, \u8bbe\u5907\u5c06\u6309\u9009\u62e9\u7684\u7a0b\u5e8f\u6b65\u9aa4\u8fd0\u884c\u64cd\u4f5c\u3002\u53e6\u5916\u4e5f\u53ef\u4ee5\u9009\u62e9\u70b9\u51fb&quot;\u626b\u63cf\u8fd0\u884c&quot;\u540e\u626b\u63cf\u8bd5\u5242\u6761\u7801\uff0c\u7a0b\u5e8f\u5c06\u9009\u62e9\u5bf9\u5e94\u7684\u7a0b\u5e8f\u6b65\u9aa4\uff0c\u4eba\u5de5\u786e\u8ba4\u540e\u8fd0\u884c\u64cd\u4f5c\u3002</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_run), QCoreApplication.translate("MainWindow", u"Start", None))
         self.textBrowser_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:28pt;\">    Click &quot;Programs&quot; to create new programs, edit programs, delete programs and other functions.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:28pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:"
-                        "28pt;\">    \u70b9\u51fb\u201c\u7a0b\u5e8f\u7ba1\u7406\u201d\uff0c\u53ef\u4ee5\u5bf9\u64cd\u4f5c\u7a0b\u5e8f\u65b0\u5efa\u3001\u7f16\u8f91\u3001\u5220\u9664\u4ee5\u53ca\u5176\u4ed6\u64cd\u4f5c\u3002</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-siz"
+                        "e:28pt;\">    \u70b9\u51fb\u201c\u7a0b\u5e8f\u7ba1\u7406\u201d\uff0c\u53ef\u4ee5\u5bf9\u64cd\u4f5c\u7a0b\u5e8f\u65b0\u5efa\u3001\u7f16\u8f91\u3001\u5220\u9664\u4ee5\u53ca\u5176\u4ed6\u64cd\u4f5c\u3002</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_program), QCoreApplication.translate("MainWindow", u"Programs", None))
         self.textBrowser_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    Click &quot;Config&quot; to set the time, instrument motion parameters, export the protocol to the U disk, import the protocol from the U disk to the system and upgrade the software.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
-                        "t:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb\u201c\u4eea\u5668\u7ba1\u7406\u201d\u4ee5\u8bbe\u7f6e\u65f6\u95f4\u3001\u8bbe\u5907\u8fd0\u52a8\u53c2\u6570\u3001\u5c06\u7a0b\u5e8f\u5728\u7cfb\u7edf\u4e0eU\u76d8\u4e4b\u95f4\u5bfc\u5165\u5bfc\u51fa\uff0c\u6b64\u5904\u4ea6\u53ef\u5347\u7ea7\u8f6f\u4ef6\u3002</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
+                        "ent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb\u201c\u4eea\u5668\u7ba1\u7406\u201d\u4ee5\u8bbe\u7f6e\u65f6\u95f4\u3001\u8bbe\u5907\u8fd0\u52a8\u53c2\u6570\u3001\u5c06\u7a0b\u5e8f\u5728\u7cfb\u7edf\u4e0eU\u76d8\u4e4b\u95f4\u5bfc\u5165\u5bfc\u51fa\uff0c\u6b64\u5904\u4ea6\u53ef\u5347\u7ea7\u8f6f\u4ef6\u3002</span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_manage), QCoreApplication.translate("MainWindow", u"Config", None))
         self.textBrowser_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:7.2pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    Click &quot;Sterilize&quot; to enter the UV disinfection interface, and click &quot;+&quot;, &quot;-&quot; to adjust the disinfection time. Click &quot;start&quot; to turn on the UV light. The operation would be broken when the door is pulled open.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; mar"
-                        "gin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb&quot;\u7d2b\u5916\u6d88\u6bd2&quot;,\u8fdb\u5165\u7d2b\u5916\u6d88\u6bd2\u754c\u9762\uff0c\u70b9\u51fb\u201c+\u201d\u201c-\u201d\u53ef\u8c03\u6574\u6d88\u6bd2\u65f6\u95f4\u3002\u6d88\u6bd2\u64cd\u4f5c\u53ef\u56e0\u4ed3\u95e8\u88ab\u6253\u5f00\u800c\u4e2d\u65ad\u3002</span></p>\n"
+"<p style=\" margin-top:0px; m"
+                        "argin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Adobe Heiti Std'; font-size:24pt;\">    \u70b9\u51fb&quot;\u7d2b\u5916\u6d88\u6bd2&quot;,\u8fdb\u5165\u7d2b\u5916\u6d88\u6bd2\u754c\u9762\uff0c\u70b9\u51fb\u201c+\u201d\u201c-\u201d\u53ef\u8c03\u6574\u6d88\u6bd2\u65f6\u95f4\u3002\u6d88\u6bd2\u64cd\u4f5c\u53ef\u56e0\u4ed3\u95e8\u88ab\u6253\u5f00\u800c\u4e2d\u65ad\u3002</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Adobe Heiti Std'; font-size:24pt;\"><br /></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_sterilize), QCoreApplication.translate("MainWindow", u"Sterilize", None))
         self.textBrowser_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

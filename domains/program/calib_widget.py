@@ -7,6 +7,10 @@ calib_map = {
 
     "btn_calibration":"pushButton_41",
     "grp_calibration":"groupBox_8",
+
+    "spin_stir_current":"doubleSpinBox_2",
+    "spin_mag_current":"doubleSpinBox_3",
+    "spin_disk_current":"doubleSpinBox_4",
 }
 
 class Calibration(aWidget):

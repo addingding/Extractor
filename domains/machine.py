@@ -339,6 +339,8 @@ class Machines:
             defaults.get("motor_upr").get("motor_mask"),
             )
         
+        self.set_assemble_current()
+
         self.thermo_master = thermos.get_thermo_master(
             self.server_2,dm.get("thermos")
         )
@@ -361,6 +363,13 @@ class Machines:
             self.io,dm.get("switches").get("led"))
         self.uv = switches.get_switch(
             self.io,dm.get("switches").get("uv"))
+
+    def set_assemble_current(self):
+        _motor_currents = defaults.get("motor_current")
+        self.motor_stir.driver.set_current_by_a(_motor_currents.get("motor_stir"))
+        self.motor_disk.set_current_by_a(_motor_currents.get("motor_disk"))
+        self.motor_mag.set_current_by_a(_motor_currents.get("motor_mag"))
+        self.motor_mask.set_current_by_a(_motor_currents.get("motor_mask"))
 
     def assemble_machine(self):
         self.motor_stir.set_motor_aware(self.motor_mask)

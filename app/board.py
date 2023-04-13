@@ -80,3 +80,4 @@ def update_defaults(cate=None,item:dict=None):
         defaults.update({cate:_item})
     with open(default_config_file,'w') as f:
         json.dump(defaults,f)
+        logger.info(f"{list(item.keys())} updated and saved")

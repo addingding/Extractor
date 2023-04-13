@@ -7,6 +7,24 @@ def calibration_widget_activate():
     calib_widget.btn_mag_calib.clicked.connect(calibrate_axis_mag)
     calib_widget.btn_disk_calib.clicked.connect(calibrate_axis_disk)
 
+    _default_current = defaults.get("motor_current")
+    calib_widget.spin_stir_current.setValue(_default_current.get("motor_stir"))
+    calib_widget.spin_mag_current.setValue(_default_current.get("motor_mag"))
+    calib_widget.spin_disk_current.setValue(_default_current.get("motor_disk"))
+
+    calib_widget.spin_stir_current.valueChanged.connect(update_stir_current)
+    calib_widget.spin_mag_current.valueChanged.connect(update_mag_current)
+    calib_widget.spin_disk_current.valueChanged.connect(update_disk_current)
+
+def update_stir_current(a:float=1):
+    update_defaults("motor_current",{"motor_stir":a})
+    machine.motor_stir.driver.set_current_by_a(a)
+def update_mag_current(a:float=1):
+    update_defaults("motor_current",{"motor_mag":a})
+    machine.motor_mag.set_current_by_a(a)
+def update_disk_current(a:float=1):
+    update_defaults("motor_current",{"motor_disk":a})
+    machine.motor_disk.set_current_by_a(a)
 
 def calibrate_axis_stir():
     if e_work.is_set():
