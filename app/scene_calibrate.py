@@ -67,6 +67,7 @@ def calibrate_motor_mag():
         window.doubleSpinBox.setValue(float(-bottom_u))
         window.doubleSpinBox.setEnabled(True)
 def return_with_save_assure(): 
+    bottom_u = None
     if window.popup(question=(lang("Alert"),lang("Sure_to_Save?"))):
         bottom_u = window.doubleSpinBox.value()
         update_defaults("motor_bottom",{"motor_mag":-bottom_u})
@@ -120,13 +121,13 @@ def disk_calibrate_disk_1():
                     bottom_u = bottom_p/motor.ppu
                     if bottom_u > 0.4447:
                         window.popup(about=(lang("Alert"),lang("Bias_Error")))
-                        bottom_u = disk_calibrate_disk_1()
+                        disk_calibrate_disk_1()
                     else:
                         update_defaults("motor_bottom",{"motor_disk":bottom_u})
                         return True
                 else:
                     motor_stir_home()
-                    bottom_u = disk_calibrate_disk_1()
+                    disk_calibrate_disk_1()
     return False
 
 def motor_stir_drop():

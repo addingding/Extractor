@@ -168,6 +168,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
   
     def rotate(self, pulses: int, accel_ms: int, speed: int, keep_sec: int):
         self.rotate_no_wait(pulses)
+        time.sleep(0.5)
         self._wait_until_stopped()
 
     def rotate_no_wait(self, pulses):
@@ -259,7 +260,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self._stop(power_stop=False)
 
     def calibrate(self):
-        self.set_speed(0.2)
+        self.local_set_speed(0.2)
         time.sleep(0.5)
         pos_before = self.position
         # self.home_return() # self.position==0
@@ -275,11 +276,17 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
 
         self.position_u = 0
         self.move(-delta_u)
+        time.sleep(0.2)
         self.position_u = 0
-        self.set_speed(5)
+        self.local_set_speed(5)
+        time.sleep(0.5)
 
         return delta_p
 
+class MaskMotor(ModbusStepper):
+    def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
+        super().__init__(id, server, address, ppr, upr)
+        self.local_set_speed(0.2)
 
 class DiskMotor(ModbusStepper):
     def __init__(self, id: str, server: RtuServer, address: int, ppr: int, upr: float):
@@ -289,9 +296,6 @@ class DiskMotor(ModbusStepper):
         self.action_stop = Event()
         self.signal_ignore = Event()
         self._target = None
-
-        self.set_current_by_a()
-        self.local_set_speed(1)
 
 
     def grid_cw(self):
@@ -378,7 +382,7 @@ class WhSteppers:
     def get_stepper_mag(self,name,server,address,ppr,upr):
         return ModbusStepper(name,server,address,ppr,upr)
     def get_stepper_mask(self,name,server,address,ppr,upr):
-        return ModbusStepper(name,server,address,ppr,upr)
+        return MaskMotor(name,server,address,ppr,upr)
     def get_stepper_disk(self,name,server,address,ppr,upr):
         return DiskMotor(name,server,address,ppr,upr)
     

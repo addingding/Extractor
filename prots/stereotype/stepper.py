@@ -21,7 +21,7 @@ class Stepper(aStepper,aScrew,aMotion,ABC):
     def speed(self):
         return self._speed
 
-    def set_speed(self,value:int):
+    def set_speed(self,value:float):
         self._speed = value
         
     @property
