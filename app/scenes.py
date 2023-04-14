@@ -97,7 +97,7 @@ def machine_init():
             machine.motor_disk.local_set_speed(1.5)
 
             infowin.show_info("Mask Motor homing ...")
-            machine.motor_mask.local_set_speed(0.1)
+            machine.motor_mask.local_set_speed(0.2)
             machine.motor_mask.home()
             machine.motor_mask.local_set_speed(1)
             infowin.show_info("Mask Motor homed")

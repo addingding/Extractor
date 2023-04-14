@@ -40,8 +40,8 @@ class ModbusStepperDriver(ModbusTerminal):
     def _set_running_speed(self,speed=PPR*1):
         self.set_many(0x0028,2,speed)
     
-    def _restore(self):
-        _set_zero = 1
+    def _restore(self,set_zero:int=1):
+        _set_zero = set_zero
         right_direction = 1 #更改硬件设置传感器LR以及电机B+B-以对应
         _at_home = 0  
         _left_low = 0
@@ -266,7 +266,6 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         # self.home_return() # self.position==0
         self.move_till(True,False,True)
         self._wait_until_stopped()
-        self.soft_stop()
         time.sleep(0.2)
         pos_after = self.position
         logger.info(f"before {pos_before},after {pos_after}")
@@ -279,7 +278,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         time.sleep(0.2)
         self.position_u = 0
         self.local_set_speed(5)
-        time.sleep(0.5)
+        time.sleep(0.2)
 
         return delta_p
 
