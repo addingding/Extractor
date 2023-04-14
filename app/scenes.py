@@ -94,12 +94,11 @@ def machine_init():
             machine.motor_mag.set_points(0,bottoms["motor_mag"])
             machine.motor_stir.set_points(200,bottoms["motor_stir"])
             machine.motor_mag.local_set_speed(8)
-            machine.motor_disk.local_set_speed(1.5)
+            machine.motor_disk.local_set_speed(2)
 
             infowin.show_info("Mask Motor homing ...")
             machine.motor_mask.local_set_speed(0.2)
             machine.motor_mask.home()
-            machine.motor_mask.local_set_speed(1)
             infowin.show_info("Mask Motor homed")
             infowin.show_info("Stir Motor homing ...")
             machine.motor_stir.home_return()

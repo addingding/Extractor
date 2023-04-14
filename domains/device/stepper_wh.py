@@ -259,7 +259,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self._stop(power_stop=False)
 
     def calibrate(self):
-        self.local_set_speed(1)
+        self.local_set_speed(0.5)
         time.sleep(0.5)
         pos_before = self.position
         # self.home_return() # self.position==0
@@ -276,7 +276,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         self.move(-delta_u)
         time.sleep(0.2)
         self.position_u = 0
-        self.local_set_speed(5)
+        self.local_set_speed(2)
         time.sleep(0.2)
 
         return delta_p
