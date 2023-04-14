@@ -65,8 +65,7 @@ class ModbusStepperDriver(ModbusTerminal):
         self.set_many(0x002B,2,msg)
         return
 
-    def move_till(self,cw:bool,high:bool,enabled:bool=True):
-        set_zero = False
+    def move_till(self,cw:bool,high:bool=False,enabled:bool=True,set_zero:bool = False):
         code = (set_zero<<12)+(cw<<4)+(high<<3)+(high<<2)+(enabled<<1)+(enabled) #使能,光电才生效
         time.sleep(0.1)
         self.set_single(0x002A,code)
@@ -264,7 +263,7 @@ class ModbusStepper(ModbusStepperDriver,Stepper):
         time.sleep(0.5)
         pos_before = self.position
         # self.home_return() # self.position==0
-        self.move_till(True,False,True)
+        self.move_till(True,high=False,enabled =True,set_zero=False)
         self._wait_until_stopped()
         time.sleep(0.2)
         pos_after = self.position
@@ -353,7 +352,7 @@ class DiskMotor(ModbusStepper):
         logger.debug(f"{self.name} pauses")
         self.signal_ignore.clear()
         time.sleep(0.05)
-        self.soft_stop()
+        self.move_till(True,True,True,False)
         self.signal_ignore.set()
     def resume(self):
         logger.debug(f"{self.name} resumes")
